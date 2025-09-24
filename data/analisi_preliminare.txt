@@ -1,0 +1,41 @@
+Analisi Iniziale del Dataset
+
+Informazioni sul dataset (tipi di dati e valori non nulli):
+Data columns (total 14 columns)
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   recipe_name   1090 non-null   object 
+ 1   prep_time     1039 non-null   object 
+ 2   cook_time     782 non-null    object 
+ 3   total_time    1045 non-null   object 
+ 4   servings      1090 non-null   int64  
+ 5   yield         879 non-null    object 
+ 6   ingredients   1090 non-null   object 
+ 7   directions    1090 non-null   object 
+ 8   rating        1090 non-null   float64
+ 9   url           1090 non-null   object 
+ 10  cuisine_path  1090 non-null   object 
+ 11  nutrition     1090 non-null   object 
+ 12  timing        1090 non-null   object 
+ 13  img_src       1090 non-null   object 
+dtypes: float64(1), int64(1), object(12)
+
+Dimensioni del dataset (righe, colonne):
+(1090, 14)
+
+Conteggio dei valori mancanti per colonna:
+
+recipe_name       0
+prep_time        51
+cook_time       308
+total_time       45
+servings          0
+yield           211
+ingredients       0
+directions        0
+rating            0
+url               0
+cuisine_path      0
+nutrition         0
+timing            0
+img_src           0
