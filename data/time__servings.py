@@ -41,4 +41,4 @@ print(df[['recipe_name', 'total_mins']].head().to_string())
 print(df.info())
 
 # Salva il dataframe modificato in un nuovo file CSV
-df.to_csv('recipes_time_servings.csv', index=True)
+df.to_csv('recipes.csv', index=True)

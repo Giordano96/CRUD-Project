@@ -242,7 +242,7 @@ unmapped_ingredients = check_mapping_coverage(all_ingredients)
 df['base_ingredients'] = df['ingredients'].apply(parse_ingredients)
 
 # Salva il DataFrame in un nuovo file CSV
-df.to_csv("recipes_with_base_ingredients.csv", index=False)
+df.to_csv("recipes.csv", index=False)
 
 # Stampa statistiche
 print(f"Totale ricette processate: {len(df)}")
