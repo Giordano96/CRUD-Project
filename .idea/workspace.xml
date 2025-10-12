@@ -5,16 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="modify base_ingredients.py">
-      <change afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/single_ingredients.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/x2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CRUD-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CRUD-Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/clean_ingredients.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/morecleaning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/solo_ingredient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_11_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_11__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_12_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_12__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_14__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_24_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2025_16_24__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/IMG_0941.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/base_ingredients.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/ingredients_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/ingredients_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipe_categories_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_categories_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipe_nutrients_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_nutrients_parse.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/recipes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/single_ingredients.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/time__servings.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/time__servings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +58,13 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.Ingredients_List.executor": "Run",
     "Python.base_ingredients.executor": "Run",
+    "Python.clean_ingredients.executor": "Run",
     "Python.ingredients_parse.executor": "Run",
+    "Python.morecleaning.executor": "Run",
     "Python.recipe_categories_parse.executor": "Run",
     "Python.recipe_nutrients_parse.executor": "Run",
     "Python.single_ingredients.executor": "Run",
+    "Python.solo_ingredient.executor": "Run",
     "Python.time__servings.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -60,15 +72,18 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "LorenzoUccellani",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/Users/utente/PycharmProjects/CRUD-Project/doc",
+    "last_opened_file_path": "C:/Users/lolly/PycharmProjects/CRUD-Project/data",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$/data" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\working_scripts" />
     </key>
   </component>
   <component name="SharedIndexes">

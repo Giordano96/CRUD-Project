@@ -41,7 +41,7 @@ def parse_nutrition(nutrition_str):
 
 
 # Legge il file CSV recipes.csv in un DataFrame
-df = pd.read_csv("recipes.csv")
+df = pd.read_csv("../recipes.csv")
 
 # Applica la funzione parse_nutrition alla colonna nutrition
 df['nutrition'] = df['nutrition'].apply(parse_nutrition)

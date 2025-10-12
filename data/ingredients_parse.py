@@ -103,6 +103,14 @@ def split_ingredients(ingredients_str):
         ingredients.append(current.strip())
     return ingredients
 
+def format_ingredients(ingredients_list):
+    # Formatta la lista di ingredienti senza parentesi graffe, quadre o apici
+    formatted = []
+    for ing in ingredients_list:
+        if ing and ing['quantity'] is not None:
+            formatted.append(f"quantity: {ing['quantity']}, unit: {ing['unit']}, ingredient: {ing['ingredient']}")
+    return ', '.join(formatted)
+
 # Carica dataset completo
 df = pd.read_csv("recipes.csv")
 df = df.drop(columns=['Unnamed: 0'], errors='ignore')
@@ -111,18 +119,17 @@ df = df.dropna(subset=['ingredients'])
 # Dividi gli ingredienti sulla virgola, gestendo parentesi
 df['ingredients_list'] = df['ingredients'].apply(split_ingredients)
 
-# Crea una nuova colonna 'ingredients_parsed' con gli ingredienti parsati come stringhe
+# Crea una nuova colonna 'ingredients_parsed' con gli ingredienti parsati
 df['ingredients_parsed'] = df['ingredients_list'].apply(
-    lambda ingredients: '; '.join(
-        f"quantity: {ing['quantity']}, unit: {ing['unit']}, ingredient: {ing['ingredient']}"
-        for ing in [extract_ingredient(ing) for ing in ingredients]
-        if ing and ing['quantity'] is not None
-    )
+    lambda ingredients: [ing for ing in [extract_ingredient(ing) for ing in ingredients] if ing and ing['quantity'] is not None]
 )
+
+# Formatta la colonna ingredients_parsed per la visualizzazione
+df['ingredients_parsed'] = df['ingredients_parsed'].apply(format_ingredients)
 
 # Stampa il DataFrame con la nuova colonna (solo alcune colonne per chiarezza)
 print(df[['recipe_name', 'ingredients', 'ingredients_parsed']])
 
 # Salva il DataFrame aggiornato in un nuovo file CSV
-df.to_csv("recipes.csv", index=False)
-print("\nDataFrame salvato in 'recipes.csv'")
+df.to_csv("recipes_with_parsed_ingredients.csv", index=False)
+print("\nDataFrame salvato in 'recipes_with_parsed_ingredients.csv'")

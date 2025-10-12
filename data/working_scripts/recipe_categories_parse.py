@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-df = pd.read_csv('recipes.csv')
+df = pd.read_csv('../recipes.csv')
 # Funzione per estrarre la categoria principale
 def extract_main_category(path):
     if pd.isna(path) or not isinstance(path, str) or path.strip() == '':

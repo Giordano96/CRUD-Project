@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 # Carica il dataset
-df = pd.read_csv('recipes.csv', index_col=0)
+df = pd.read_csv('../recipes.csv', index_col=0)
 
 # Funzione per parsare total_time in minuti numerici
 def parse_time(time_str):
@@ -33,7 +33,7 @@ median_serv = df['servings'].median()
 df.fillna({'servings': median_serv}, inplace=True)
 df['servings'] = df['servings'].astype(int)
 
-# Droppa colonne
+# Droppa colonne non necessarie
 df.drop(columns=['yield', 'prep_time', 'cook_time', 'timing', 'total_time'], inplace=True, errors='ignore')
 
 # Mostra le prime righe con le nuove colonne
