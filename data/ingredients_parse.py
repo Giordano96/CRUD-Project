@@ -37,6 +37,11 @@ def parse_quantity(qty_str):
         except:
             return None
 
+def to_metric(ingredients_str):
+    # Converti solo quantità intere di "cup" o "cups" in ml (240 * qty)
+    ingredients_str = re.sub(r'(\d+) cups?\b', lambda m: str(int(m.group(1)) * 240) + ' ml', ingredients_str)
+    return ingredients_str
+
 def extract_ingredient(ingredient_str):
     ingredient_str = ingredient_str.strip()
     # Normalizza frazioni Unicode
@@ -103,18 +108,13 @@ def split_ingredients(ingredients_str):
         ingredients.append(current.strip())
     return ingredients
 
-def format_ingredients(ingredients_list):
-    # Formatta la lista di ingredienti senza parentesi graffe, quadre o apici
-    formatted = []
-    for ing in ingredients_list:
-        if ing and ing['quantity'] is not None:
-            formatted.append(f"quantity: {ing['quantity']}, unit: {ing['unit']}, ingredient: {ing['ingredient']}")
-    return ', '.join(formatted)
-
 # Carica dataset completo
 df = pd.read_csv("recipes.csv")
 df = df.drop(columns=['Unnamed: 0'], errors='ignore')
 df = df.dropna(subset=['ingredients'])
+
+# Aggiungi colonna ingredients_metrico
+df['ingredients_metrico'] = df['ingredients'].apply(to_metric)
 
 # Dividi gli ingredienti sulla virgola, gestendo parentesi
 df['ingredients_list'] = df['ingredients'].apply(split_ingredients)
@@ -124,8 +124,9 @@ df['ingredients_parsed'] = df['ingredients_list'].apply(
     lambda ingredients: [ing for ing in [extract_ingredient(ing) for ing in ingredients] if ing and ing['quantity'] is not None]
 )
 
-# Formatta la colonna ingredients_parsed per la visualizzazione
-df['ingredients_parsed'] = df['ingredients_parsed'].apply(format_ingredients)
+# Seleziona solo le colonne desiderate per matching con ricetta_cleaned_2.csv
+columns_to_keep = ['recipe_name', 'total_time', 'servings', 'ingredients', 'directions', 'url', 'cuisine_path', 'nutrition', 'img_src', 'ingredients_metrico', 'ingredients_list', 'ingredients_parsed']
+df = df[columns_to_keep]
 
 # Stampa il DataFrame con la nuova colonna (solo alcune colonne per chiarezza)
 print(df[['recipe_name', 'ingredients', 'ingredients_parsed']])

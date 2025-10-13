@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/data/recipes_updated.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/data/recipes_with_parsed_ingredients.csv">
           <value>
             <Attribute>
@@ -24,14 +17,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/doc/x.csv">
+        <entry key="/data/working_scripts/conteggio_categorie.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="/doc/x2.csv">
+        <entry key="/data/working_scripts/recipes.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -42,6 +35,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="diff.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
