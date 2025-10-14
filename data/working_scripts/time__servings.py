@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 # Carica il dataset
-df = pd.read_csv('../recipes.csv', index_col=0)
+df = pd.read_csv('recipes_cleaned.csv')
 
 # Funzione per parsare total_time in minuti numerici
 def parse_time(time_str):
@@ -41,4 +41,4 @@ print(df[['recipe_name', 'total_mins']].head().to_string())
 print(df.info())
 
 # Salva il dataframe modificato in un nuovo file CSV
-df.to_csv('recipes.csv', index=True)
+df.to_csv('recipes_cleaned.csv', index=False)

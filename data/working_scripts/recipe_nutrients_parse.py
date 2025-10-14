@@ -41,13 +41,13 @@ def parse_nutrition(nutrition_str):
 
 
 # Legge il file CSV recipes.csv in un DataFrame
-df = pd.read_csv("../recipes.csv")
+df = pd.read_csv("recipes_cleaned.csv")
 
 # Applica la funzione parse_nutrition alla colonna nutrition
 df['nutrition'] = df['nutrition'].apply(parse_nutrition)
 
 # Sovrascrive il file CSV originale con i dati aggiornati
-df.to_csv("recipes.csv", index=False)
+df.to_csv("recipes_cleaned.csv", index=False)
 
 # Stampa un messaggio di conferma dell'aggiornamento del file CSV
-print("Aggiornato 'recipes.csv' con la colonna nutrition normalizzata")
+print("Aggiornato 'recipes_cleaned.csv' con la colonna nutrition normalizzata")

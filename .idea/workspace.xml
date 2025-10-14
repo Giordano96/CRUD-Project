@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="modify base_ingredients.py">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/clean_ingredients.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/clean_ingredients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ingredients_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/ingredients_parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/morecleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/controllo_ingrediente_cleaned_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/controllo_ingrediente_cleaned_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/convertitore.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/lista_ingredienti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/morecleaning.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_cleaned.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_cleaned_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_metric.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_simplified.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/solo_ingredient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lista_ingredienti.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipes_with_base_ingredients.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/recipes_with_parsed_ingredients.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ricetta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipe_categories_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_categories_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipe_nutrients_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_nutrients_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/working_scripts/time__servings.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/time__servings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,20 +74,20 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "LorenzoUccellani",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/Users/utente/PycharmProjects/CRUD-Project/data",
+    "last_opened_file_path": "C:/Users/lolly/PycharmProjects/CRUD-Project/data",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/data/working_scripts" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="$PROJECT_DIR$/doc" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data/working_scripts" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\working_scripts" />
+      <recent name="$PROJECT_DIR$/data/working_scripts" />
     </key>
   </component>
   <component name="SharedIndexes">
