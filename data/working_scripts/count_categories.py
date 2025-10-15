@@ -1,15 +1,12 @@
 import pandas as pd
 
-# Percorso del file CSV
-file_path = "recipes.csv"
+# Carica il file CSV
+df = pd.read_csv("recipes_cleaned.csv")
 
-# Legge il file CSV
-df = pd.read_csv(file_path)
+# Estrai i valori unici dalla colonna cuisine_path
+unique_cuisine_paths = sorted(set(df["cuisine_path"].dropna()))
 
-# Conta le occorrenze di ogni categoria nella colonna
-category_counts = df['cuisine_path'].value_counts()
-
-# Mostra i risultati
-print("Conteggio categorie nella colonna 'cuisine_path':")
-print(category_counts)
-
+# Stampa i valori unici
+print("Valori unici in cuisine_path:")
+for cuisine in unique_cuisine_paths:
+    print(f"- {cuisine}")

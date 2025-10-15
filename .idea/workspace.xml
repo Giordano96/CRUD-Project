@@ -4,26 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="modify base_ingredients.py">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="recipes_cleaned.csv">
+      <change afterPath="$PROJECT_DIR$/data/mysecretchef.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/working_scripts/count_nutrients.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/working_scripts/count_unit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25,_09_39_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25__09_39__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/controllo_ingrediente_cleaned_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/convertitore.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/lista_ingredienti.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/morecleaning.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_cleaned.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_cleaned_2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipes_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_metric.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/ricetta_simplified.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lavorazioni_ingredients/solo_ingredient.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lista_ingredienti.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/recipes_with_base_ingredients.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/recipes_with_parsed_ingredients.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/ricetta.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipe_categories_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_categories_parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipe_nutrients_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/recipe_nutrients_parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/working_scripts/recipes.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/working_scripts/time__servings.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/time__servings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/clean_ingredients.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/controllo_ingrediente_cleaned_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ingredients_parse.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/solo_ingredient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/working_scripts/count_categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/count_categories.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +52,8 @@
     "Python.base_ingredients.executor": "Run",
     "Python.clean_ingredients.executor": "Run",
     "Python.controllo_ingrediente_cleaned_2.executor": "Run",
+    "Python.count_categories.executor": "Run",
+    "Python.count_nutrients.executor": "Run",
     "Python.describe_categories.executor": "Run",
     "Python.ingredients_parse.executor": "Run",
     "Python.morecleaning.executor": "Run",
@@ -68,6 +62,7 @@
     "Python.single_ingredients.executor": "Run",
     "Python.solo_ingredient.executor": "Run",
     "Python.time__servings.executor": "Run",
+    "Python.try_unit.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -137,7 +132,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759506397512</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="recipes_cleaned.csv">
+      <option name="closed" value="true" />
+      <created>1760440948559</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760440948559</updated>
+    </task>
+    <task id="LOCAL-00006" summary="recipes_cleaned.csv">
+      <option name="closed" value="true" />
+      <created>1760440956920</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760440956920</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +164,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modify base_ingredients.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify base_ingredients.py" />
+    <MESSAGE value="recipes_cleaned.csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="recipes_cleaned.csv" />
   </component>
 </project>
