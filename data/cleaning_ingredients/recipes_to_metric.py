@@ -107,4 +107,4 @@ df['ingredients_parsed'] = df['ingredients_parsed'].apply(convert_ingredients_pa
 print(df[['recipe_name', 'ingredients_parsed']].head(10))
 
 # Salva il DataFrame convertito in un nuovo file CSV
-df.to_csv('recipes_cleaned.csv', index=False)
+df.to_csv('recipes_to_metric.csv', index=False)
