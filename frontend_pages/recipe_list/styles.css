@@ -1,0 +1,142 @@
+body {
+    font-family: "Inter", "Noto Sans", sans-serif;
+    background-color: #fcfaf8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #fcfaf8;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    width: 960px;
+    margin: 0 auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #a17445;
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: #ffa200;
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d170c;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #eadfcd;
+    border-radius: 0.5rem;
+    background-color: #f4efe6;
+    color: #1d170c;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+}
+
+.recipe-list {
+    max-width: 960px;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.category-filter {
+    padding: 0.5rem;
+    border: 1px solid #eadfcd;
+    border-radius: 0.5rem;
+    background-color: #f4efe6;
+}
+
+.nutrient-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nutrient-filter input[type="range"] {
+    width: 100px;
+}
+
+.recipes h2,
+.favorites h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1d170c;
+    margin-bottom: 1rem;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #a17445;
+    font-size: 0.875rem;
+}
+
+.prep-time {
+    color: #a17445;
+    font-size: 0.75rem;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #a17445;
+    cursor: pointer;
+}
+
+.favorite-btn.active {
+    color: #ffa200;
+}

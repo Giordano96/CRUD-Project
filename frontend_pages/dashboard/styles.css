@@ -1,0 +1,147 @@
+body {
+    font-family: "Inter", "Noto Sans", sans-serif;
+    background-color: #fcfaf8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #fcfaf8;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    width: 960px;
+    margin: 0 auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #a17445;
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: #ffa200;
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d170c;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #eadfcd;
+    border-radius: 0.5rem;
+    background-color: #f4efe6;
+    color: #1d170c;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+}
+
+.welcome-section {
+    max-width: 960px;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: #1d170c;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    color: #a17445;
+    margin-bottom: 1rem;
+}
+
+.add-button {
+    background-color: #ffa200;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.ingredient-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: #f4efe6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    color: #1d170c;
+}
+
+.recommended-recipes {
+    max-width: 960px;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.recommended-recipes h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1d170c;
+    margin-bottom: 1rem;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #a17445;
+    font-size: 0.875rem;
+}
+
+.popular-label {
+    color: #ffa200;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.popular-section {
+    margin-top: 1rem;
+}

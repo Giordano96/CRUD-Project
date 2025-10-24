@@ -1,0 +1,136 @@
+body {
+    font-family: "Inter", "Noto Sans", sans-serif;
+    background-color: #fcfaf8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #fcfaf8;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    width: 960px;
+    margin: 0 auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: #a17445;
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: #ffa200;
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d170c;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+}
+
+.recipe-details {
+    max-width: 960px;
+    width: 100%;
+}
+
+.recipe-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1d170c;
+    margin-bottom: 0.5rem;
+}
+
+.prep-time {
+    font-size: 0.875rem;
+    color: #a17445;
+    margin-bottom: 1rem;
+}
+
+.sections h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1d170c;
+    margin-bottom: 0.5rem;
+}
+
+.ingredients-list,
+.procedure-list,
+.nutrition-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredients-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.ingredients-list input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.procedure-list li {
+    margin-bottom: 0.5rem;
+}
+
+.suggestions h3 {
+    font-size: 1rem;
+    color: #a17445;
+    margin-bottom: 1rem;
+}
+
+.suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    color: #a17445;
+    font-size: 0.875rem;
+}
