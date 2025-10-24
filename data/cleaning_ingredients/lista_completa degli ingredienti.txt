@@ -1,28 +1,23 @@
-Ingredienti unici (ingredient):
 achiote powder
 agave
 ale
-alfalfa sprouts
+alfalfa sprout
 all purpose flour
 allpurpose baking mix
 allspice
 almond
 almond flour
 almond milk
-almonds
 american cheese
 apple
 apple cider
 apple cider vinegar
 apple juice
-apples
 applesauce
 apricot
 apricot jam
-apricots
 arugula
 avocado
-avocados
 bacon
 baked pastry
 baking mix
@@ -32,36 +27,32 @@ balsamic glaze
 balsamic vinegar
 bamboo
 banana
-bananas
 barbeque sauce
 basil
 bay leaf
-bay leaves
 bean
-beans
 beef
 beef bouillon
 beef broth
 beer
 bell pepper
 benedictine
-biscuits
+biscuit
 bitters
 black olive
-black olives
 black pepper
 black tea
-blackberries
+blackberry
 blue cheese
 blue curacao
-blueberries
+blueberry
 blueberry juice
 bone
 bourbon whiskey
 bran
 brandy
 bread
-bread crumbs
+bread crumb
 bread flour
 brie cheese
 broccoli
@@ -78,19 +69,18 @@ cake
 cake flour
 cake mix
 cake yeast
-candied cherries
-candied mixed
+candied cherry
+candied mix
 candied mixed fruit
-candied pecans
-cannellini beans
+candied pecan
+cannellini bean
 canola oil
 cantaloupe
-capers
-caramels
+caper
+caramel
 cardamom
 carrot
-carrots
-cashews
+cashew
 cayenne pepper
 celery
 cereal
@@ -99,36 +89,33 @@ champagne
 cheddar
 cheddar cheese
 cheese
-cherries
 cherry
-cherry preserves
-cherry tomatoes
+cherry preserve
+cherry tomato
 chia
 chicken
 chicken broth
 chicken stock
-chickpeas
+chickpea
 chile
 chile paste
 chile pepper
-chile peppers
 chile powder
 chile-lime seasoning
-chiles
 chili
 chili garlic sauce
 chili powder
 chili sauce
 chipotle seasoning
-chives
+chive
 chocolate
-chocolate chips
+chocolate chip
 ciabatta
 cilantro
 cinnamon
 clear
-clementine oranges
-cloves
+clementine orange
+clove
 club soda
 cocoa
 cocoa powder
@@ -140,22 +127,19 @@ cointreau
 cola
 condensed milk
 liquid pectin
-cookies
+cookie
 coriander
 coriander seed
 corn
-corn chips
+corn chip
 corn oil
 corn syrup
-corn tortillas
+corn tortilla
 cornflake
-cornflakes
 cornstarch
 couscous
 crabmeat
 cracker
-crackers
-cranberries
 cranberry
 cranberry sauce
 cream
@@ -164,35 +148,29 @@ crema
 creme de cassis liqueur
 cube vegetable bouillon
 cucumber
-cucumbers
 cumin
 currant jelly
-currants
+currant
 curry
 curry paste
 date
-dates
 dijon mustard
-double -crust pie pastry
-double crust ready-to-use pie crust
 double-crust pie pastry
-dried apricots
-dried guajillo chiles
+dried apricot
+dried guajillo chile
 dried mixed fruit
 dry yeast
 duck sauce
 egg
 egg yolk
-egg yolks
-eggs
 english mustard
 espresso
 fajita seasoning
 farina
 fennel seed
 feta
-figs
-firm ripe bartlett pears
+fig
+firm ripe bartlett pear
 fish sauce
 flax seed
 flounder
@@ -200,8 +178,8 @@ flour
 fluid ounce orange-flavored liqueur
 food cake mix
 food coloring
-fresh brussels sprouts
-fresh pitted and quartered sweet cherries
+fresh brussels sprout
+fresh pitted and quartered sweet cherry
 fresh tarragon
 fruit cocktail
 fruit jelly
@@ -218,12 +196,11 @@ golden syrup
 gorgonzola
 grape juice
 grapefruit juice
-grapes
+grape
 grapeseed oil
 greek-style yogurt
-green beans
+green bean
 green chile
-green grapes
 grenadine syrup
 gruyere cheese
 guacamole
@@ -234,7 +211,7 @@ halloumi cheese
 ham
 harissa
 havarti cheese
-hazelnuts
+hazelnut
 heavy cream
 heavy whipping cream
 hoisin sauce
@@ -244,80 +221,67 @@ horseradish
 hot pepper sauce
 ice
 ice cream
-ice cubes
+ice cube
 iceberg lettuce
 italian bread
 jack cheese
 jalapeno
-jalapeno pepper
-jalapeno peppers
 jell-o®
 juice
 kale
 ketchup
-kidney beans
+kidney bean
 kiwi
-kiwifruit
-kiwis
 lacinato
 lamb
-leaves
+leaf
 lemon
 lemon extract
 lemon juice
 lemon pepper
-lemon pepper seasoning
 lemon soda
 lemon zest
-lemon-lime flavored
 lemon-lime soda
-lemon-pepper seasoning
 lemongrass
-lemons
-lentils
+lentil
 lettuce
 lime
 lime juice
 lime soda
 lime zest
 limeade
-limes
 liquid pectin
 lukewarm milk
 maca
 maca powder
-macadamia nuts
+macadamia nut
 macapuno
 mackerel
 mahi mahi
 mahlab
 malt vinegar
 mandarin
-mandarin oranges
 mango
 mango nectar
 mango puree
-mangoes
-mangos
 maple extract
 maple syrup
-maraschino cherries
 maraschino cherry
 maraschino cherry juice
 margarine
 marinara sauce
 marsala
-marshmallows
+marshmallow
 mayonnaise
 melissa
 milk
 milk bread
 milk chocolate
-milk chocolate chips
+milk chocolate chip
 milk powder
 minced garlic
 mint
-mint leaves
+mint leaf
 mixed salad
 mixed spice
 molasses
@@ -326,19 +290,15 @@ mustard
 mustard powder
 mustard seed
 nectarine
-nectarines
-noodles
+noodle
 nutmeg
-nuts
+nut
 oat
 oat cereal
 oatmeal
-oats
 oil
 olive oil
-olives
 onion
-onions
 orange
 orange bell pepper
 orange extract
@@ -349,97 +309,78 @@ orange pekoe tea
 orange roughy
 orange zest
 orange-flavored vodka
-oranges
 oregano
 oyster
 palm
 panko
 papaya
-papayas
 paprika
 parmesan
 parmesan cheese
 parsley
-passion fruits
+passion fruit
 pastry flour
 pastry for 9-inch double-crust pie
-pastry for a 9-inch pie crust
 peach
-peache
-peaches
 peanut butter
-peanuts
+peanut
 pear
-pears
-pecans
+pecan
 pecorino-romano
 pectin
 pepper
-peppers
 persimmon
-persimmons
 pickled ginger
-pickled jalapeno peppers
-pickles
+pickled jalapeno pepper
+pickle
 pickling spice
 pie crust
-pie crusts
 pie dough
-pine nuts
+pine nut
 pineapple
 pineapple juice
-pinto beans
+pinto bean
 pistachio
-pistachio nuts
-pistachios
 plain yogurt
 plum
 plum jam
-plums
 pomegranate
 pomegranate juice
 pomegranate molasses
-pomegranate seeds
+pomegranate seed
 pomegranate vinegar
-pomegranates
 popcorn
-poppy seeds
+poppy seed
 pork
-portobello mushrooms
-potatoes
+portobello mushroom
+potato
 powdered fruit pectin
 powdered gelatin
 powdered sugar
 prosciutto
 protein powder
 provolone cheese
-prune plums
-prunes
+prune
 pudding mix
 puff pastry
 pumpkin
 pumpkin pie spice
 pumpkin puree
-pumpkin seeds
-pureed kiwi
-pureed persimmons
-quick oats
+pumpkin seed
+quick oat
 quinoa
 raisin paste
-raisins
-raspberries
+raisin
+raspberry
 raspberry jam
 raspberry liqueur
 recipe pastry for a 9 inch double crust pie
 recipe pastry for a 9 inch single crust pie
-recipe pastry for a 9-inch double crust pie
 red bell pepper
-red cherries
-red grapes
+red cherry
+red grape
 red onion
-red onions
 red pepper
-red peppers
 red wine
 red wine vinegar
 rhubarb
@@ -449,7 +390,7 @@ rice syrup
 rice vinegar
 ricotta
 roast
-rolled oats
+rolled oat
 romaine lettuce
 rosemary
 rum
@@ -462,26 +403,25 @@ salt
 sauce
 sausage
 sazon seasoning
-scallions
+scallion
 schnapps
 sea bass
-sea scallops
+sea scallop
 seasoning
 seaweed
-seedless grapes
+seedless grape
 serrano chile
 sesame
 sesame oil
-sesame seeds
+sesame seed
 shallot
-shallots
 sherry
 shrimp
 simple syrup
-smoked almonds
+smoked almond
 smoked bacon
-sour cherries
-sour cherry preserves
+sour cherry
+sour cherry preserve
 sour cream
 soy milk
 soy sauce
@@ -490,23 +430,21 @@ spice powder
 spinach
 sponge cake
 sriracha
-celery
 stevia
 stock
-strawberries
 strawberry
-strawberry preserves
+strawberry preserve
 suet
 sugar
 sugar substitute
 sunflower oil
-sunflower seeds
+sunflower seed
 sweet onion
 swiss chard
 swiss cheese
 syrup
 taco seasoning mix
-taco shells
+taco shell
 tahini
 tapioca
 tart
@@ -514,14 +452,13 @@ tequila
 teriyaki sauce
 thyme
 tilapia
-toasted almonds
-tomatillos
+toasted almond
+tomatillo
 tomato
 tomato paste
 tomato sauce
-tomatoes
 tonic water
-tortilla chips
+tortilla chip
 triple sec
 tuna
 turkey
@@ -535,13 +472,11 @@ vanilla yogurt
 vegetable broth
 vegetable oil
 vinaigrette dressing
-vinaigrette salad dressin
 vinegar
 vodka
-wafers
+wafer
 walnut
 walnut oil
-walnuts
 wasabi paste
 water
 watermelon
@@ -559,8 +494,8 @@ whole wheat bread
 whole wheat flour
 whole wheat pastry flour
 wine
-wooden chopsticks
-wooden craft sticks
+wooden chopstick
+wooden craft stick
 worcestershire sauce
 yogurt
 zest
