@@ -2,7 +2,6 @@ import pandas as pd
 import mysql.connector
 from mysql.connector import Error
 import re
-import numpy as np
 
 # Database connection configuration
 db_config = {
