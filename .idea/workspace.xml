@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="recipes_cleaned.csv">
-      <change afterPath="$PROJECT_DIR$/data/cleaning_categories/recipe_categories_parse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_nutrients/count_nutrients.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_nutrients/recipe_nutrients_parse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cleaning_time/time__servings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/count_categories_nutrients/count_categories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/count_categories_nutrients/count_unit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/count_categories_nutrients/recipes_cleaned.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_10_25,_11_41_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_10_25__11_41__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_10_2025_12_04_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_10_2025_12_04__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/PID.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/x3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_nutrients/count_nutrients.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +57,12 @@
     "Python.describe_categories.executor": "Run",
     "Python.ingredients_parse.executor": "Run",
     "Python.morecleaning.executor": "Run",
+    "Python.populate_db.executor": "Run",
     "Python.recipe_categories_parse.executor": "Run",
     "Python.recipe_nutrients_parse.executor": "Run",
     "Python.single_ingredients.executor": "Run",
     "Python.solo_ingredient.executor": "Run",
-    "Python.time__servings.executor": "Debug",
+    "Python.time__servings.executor": "Run",
     "Python.try_unit.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -78,17 +70,17 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/Users/utente/PycharmProjects/CRUD-Project/data/count_categories_nutrients",
+    "last_opened_file_path": "C:/Users/lolly/PycharmProjects/CRUD-Project/data",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_nutrients" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_categories" />
       <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
-      <recent name="$PROJECT_DIR$/data" />
-      <recent name="$PROJECT_DIR$/data/cleaning_time" />
-      <recent name="$PROJECT_DIR$/data/cleaning_categories" />
-      <recent name="$PROJECT_DIR$/data/cleaning_nutrients" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
