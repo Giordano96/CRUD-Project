@@ -25,6 +25,10 @@ tag_variants = {tag: generate_variants(tag) for tag in tags}
 # Carica il CSV originale
 df = pd.read_csv(csv_path)
 
+# 🔹 Rimuovi righe dove 'ingredients_parsed' è nullo o contiene "inch", "quart", "quarts"
+df = df.dropna(subset=['ingredients_parsed'])
+df = df[~df['ingredients_parsed'].str.contains(r'\b(inch|quart|quarts)\b', case=False, na=False)]
+
 # Funzione per trovare i tag presenti negli ingredienti
 def estrai_tags(ingredient_text):
     ingredient_text = str(ingredient_text).lower()
