@@ -5,12 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="recipes_cleaned.csv">
+      <change afterPath="$PROJECT_DIR$/src/Sign/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/.idea/mysecretchef.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/dashboard/img/garlic_bread.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/img/garlic_bread.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/dashboard/img/pomo_basilico.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/img/pomo_basilico.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/description" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/favorites_page/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/favorites_page/img/garlic_bread.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/img/garlic_bread.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/favorites_page/img/pomo_basilico.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/img/pomo_basilico.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/favorites_page/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/img/ChatGPT Image 24 ott 2025, 14_55_56.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/img/ChatGPT Image 24 ott 2025, 14_55_56.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/img/spaghetti_fung.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_fung.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/img/spaghetti_pest.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_pest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/img/spaghetti_pomo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_pomo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/img/spaghetti_vongo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_vongo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/recipe_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_details/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_list/img/riso_funghi.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_List/img/riso_funghi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_list/img/spaghetti_carbo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_List/img/spaghetti_carbo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_list/img/spaghetti_pomo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_List/img/spaghetti_pomo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_list/recipe_list_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_List/recipe_list_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend_pages/recipe_list/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_List/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edit_ingredient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/edit_ingredient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handle_inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/handle_inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/login_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/login_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign/signup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/signup_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sign/signup_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styleInventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/styleInventory.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,24 +99,28 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/lolly/PycharmProjects/CRUD-Project/data",
+    "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src/Sign",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_nutrients" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_categories" />
-      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
       <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
-      <recent name="$PROJECT_DIR$/data/cleaning_categories" />
-      <recent name="$PROJECT_DIR$/data/cleaning_time" />
-      <recent name="$PROJECT_DIR$/data/cleaning_nutrients" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\working_scripts" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -88,6 +130,7 @@
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="" />
@@ -146,6 +189,9 @@
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

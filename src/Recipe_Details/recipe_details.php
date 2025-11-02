@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="recipe-card">
-                    <img src="img/ChatGPT%20Image%2024%20ott%202025,%2014_55_56.png">
+                    <img src="img/ChatGPT Image 24 ott 2025, 14_55_56.png">
                     <h3>Bruschetta</h3>
                     <p>8 min</p>
                     <br>
