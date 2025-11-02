@@ -12,8 +12,7 @@ if (isset($_SESSION["user_id"])) {
 $csrf_token = hash("crc32b", rand());
 $_SESSION["csrf_token"] = $csrf_token;
 
-$connector = new DbConnector("127.0.0.1", "root", "", "mysecretchef");
-
+$connector = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

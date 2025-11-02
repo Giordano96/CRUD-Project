@@ -6,13 +6,13 @@ session_start();
 
 if (isset($_SESSION["user_id"])) {
     header("Location: home.php");
-    exit; // Ensure script stops after redirect
+    exit;
 }
 
 $csrf_token = hash("crc32b", rand());
 $_SESSION["csrf_token"] = $csrf_token;
 
-$connector = new DbConnector("127.0.0.1", "root", "", "mysecretchef");
+$connector = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
 
 $error = "";
 
