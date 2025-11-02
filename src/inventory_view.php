@@ -33,7 +33,7 @@ $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <nav class="sidebar">
         <ul>
             <li><a href="home.php"><span>&#x1F3E0;</span> Home</a></li>
-            <li><a href="inventory.php" class="active"><span>&#x1F4CB;</span> Inventario</a></li>
+            <li><a href="handle_inventory.php" class="active"><span>&#x1F4CB;</span> Inventario</a></li>
             <li><a href="recipes.php"><span>&#x1F372;</span> Ricette</a></li>
             <li><a href="favorites.php"><span>&#x2764;&#xFE0F;</span> Preferiti</a></li>
             <li><a href="profile.php"><span>&#x1F464;</span> Profilo</a></li>
