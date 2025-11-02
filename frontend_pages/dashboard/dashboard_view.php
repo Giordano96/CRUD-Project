@@ -3,79 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Secret Chef - Dashboard</title>
+    <title>Dashboard – MySecretChef</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-    <nav class="navbar">
-        <div class="logo">My Secret Chef</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#" class="active">My Fridge</a></li>
-            <li><a href="#">Recipes</a></li>
-            <li><a href="#">Meal Plans</a></li>
+
+<div class="main-container">
+    <nav class="sidebar">
+        <ul>
+            <li><a href="dashboard_view.php" class="active"><span>🏠</span> Home</a></li>
+            <li><a href="inventory_view.php"><span>📋</span> Inventario</a></li>
+            <li><a href="recipes.php"><span>🍝</span> Ricette</a></li>
+            <li><a href="favorites.php"><span>❤️</span> Preferiti</a></li>
         </ul>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for ingredients">
-        </div>
-        <div class="profile-icon">👤</div>
     </nav>
 
-    <div class="welcome-section">
-        <h1>Welcome, Clara!</h1>
-        <p>Add the ingredients you have and discover what you can cook.</p>
-        <button class="add-button">+ Add</button>
-        <div class="ingredient-tags">
-            <span class="tag">Tomato</span>
-            <span class="tag">Basil</span>
-            <span class="tag">Garlic</span>
-            <span class="tag">Olive Oil</span>
-        </div>
-    </div>
+    <main>
 
-    <div class="recommended-recipes">
-        <h2>Recommended Recipes</h2>
-        <div class="recipe-grid">
-            <div class="card">
-                <img src="img/pomo_basilico.png" alt="Pasta with Tomato and Basil">
-                <p>Pasta with Tomato and Basil</p>
-            </div>
-            <div class="card">
-                <img src="img/garlic_bread.png" alt="Garlic Bread">
-                <p>Garlic Bread</p>
-            </div>
-            <div class="card">
-                <img src="olive_oil_salad.jpg" alt="Olive Oil Salad">
-                <p>Olive Oil Salad</p>
-            </div>
-            <div class="card">
-                <img src="tomato_soup.jpg" alt="Tomato Soup">
-                <p>Tomato Soup</p>
-            </div>
+        <h1>Benvenuto, Clara!</h1>
+        <form class="add-form">
+            <input list="ingredients" placeholder="Cerca ingrediente…" required>
+            <datalist id="ingredients">
+                <option value="Pomodoro">
+                <option value="Basilico">
+                <option value="Aglio">
+                <option value="Olio d’oliva">
+            </datalist>
+            <button type="submit">+ Aggiungi ingrediente</button>
+        </form>
+
+        <div class="tags" style="display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <span class="tag">Pomodoro</span>
+            <span class="tag">Basilico</span>
+            <span class="tag">Aglio</span>
+            <span class="tag">Olio d’oliva</span>
         </div>
-        <div class="popular-section">
-            <span class="popular-label">★ Popular this week</span>
+
+        <div class="recipe-box">
+            <h2>Ricette suggerite❗</h2>
             <div class="recipe-grid">
-                <div class="card">
-                    <img src="img/pomo_basilico.png" alt="Pasta with Tomato and Basil">
-                    <p>Pasta with Tomato and Basil</p>
+                <div class="recipe-card">
+                    <img src="img/pomo_basilico.png">
+                    <h3>Pasta al Pomodoro</h3>
+                    <p>Pronta in 20 min</p>
+                    <br>
+                    <button>Dettagli</button>
                 </div>
-                <div class="card">
-                    <img src="img/garlic_bread.png" alt="Garlic Bread">
-                    <p>Garlic Bread</p>
+
+                <div class="recipe-card">
+                    <img src="img/garlic_bread.png">
+                    <h3>Pane all’Aglio</h3>
+                    <p>Pronta in 15 min</p>
+                    <br>
+                    <button>Dettagli</button>
                 </div>
-                <div class="card">
-                    <img src="olive_oil_salad_popular.jpg" alt="Olive Oil Salad">
-                    <p>Olive Oil Salad</p>
+
+                <div class="recipe-card">
+                    <img src="img/insalata_pomo.png">
+                    <h3>Insalata di Pomodoro</h3>
+                    <p>Pronta in 10 min</p>
+                    <button>Dettagli</button>
                 </div>
-                <div class="card">
-                    <img src="tomato_soup_popular.jpg" alt="Tomato Soup">
-                    <p>Tomato Soup</p>
+
+                <div class="recipe-card">
+                    <img src="img/zuppa_pomo.png">
+                    <h3>Zuppa di Pomodoro</h3>
+                    <p>Pronta in 30 min</p>
+                    <br>
+                    <button>Dettagli</button>
+                </div>
+            </div>
+            <br>
+            <h2>Ricette popolari⭐</h2>
+            <div class="recipe-grid">
+                <div class="recipe-card">
+                    <img src="img/pomo_basilico.png">
+                    <h3>Pasta al Pomodoro</h3>
+                    <p>Pronta in 20 min</p>
+                    <br>
+                    <button>Dettagli</button>
+                </div>
+
+                <div class="recipe-card">
+                    <img src="img/garlic_bread.png">
+                    <h3>Pane all’Aglio</h3>
+                    <p>Pronta in 15 min</p>
+                    <br>
+                    <button>Dettagli</button>
+                </div>
+
+                <div class="recipe-card">
+                    <img src="img/insalata_pomo.png">
+                    <h3>Insalata di Pomodoro</h3>
+                    <p>Pronta in 10 min</p>
+                    <button>Dettagli</button>
+                </div>
+
+                <div class="recipe-card">
+                    <img src="img/zuppa_pomo.png">
+                    <h3>Zuppa di Pomodoro</h3>
+                    <p>Pronta in 30 min</p>
+                    <br>
+                    <button>Dettagli</button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </div>
 </body>
 </html>
