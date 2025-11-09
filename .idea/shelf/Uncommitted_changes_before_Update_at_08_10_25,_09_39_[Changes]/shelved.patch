@@ -1,0 +1,36 @@
+Index: .idea/csv-editor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CsvFileAttributes\">\n    <option name=\"attributeMap\">\n      <map>\n        <entry key=\"/data/recipes.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/recipesRaw.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/recipes_ingredients_parsed.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/recipes_with_parsed_ingredients.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/csv-editor.xml b/.idea/csv-editor.xml
+--- a/.idea/csv-editor.xml	(revision 682f3ce5d6c3ee70a096f449dc3e7b7c6c8c8700)
++++ b/.idea/csv-editor.xml	(date 1759909148312)
+@@ -10,27 +10,6 @@
+             </Attribute>
+           </value>
+         </entry>
+-        <entry key="/data/recipesRaw.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+-        <entry key="/data/recipes_ingredients_parsed.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+-        <entry key="/data/recipes_with_parsed_ingredients.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+       </map>
+     </option>
+   </component>

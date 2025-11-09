@@ -1,0 +1,88 @@
+Index: .idea/csv-editor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CsvFileAttributes\">\n    <option name=\"attributeMap\">\n      <map>\n        <entry key=\"/data/recipes.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/recipes_with_parsed_ingredients.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/working_scripts/conteggio_categorie.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/data/working_scripts/recipes.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"/doc/x3.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\",\" />\n            </Attribute>\n          </value>\n        </entry>\n        <entry key=\"diff.csv\">\n          <value>\n            <Attribute>\n              <option name=\"separator\" value=\":\" />\n            </Attribute>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/csv-editor.xml b/.idea/csv-editor.xml
+--- a/.idea/csv-editor.xml	(revision 674424798655d33bfd7667bf499af3ae9d105be7)
++++ b/.idea/csv-editor.xml	(date 1760956479031)
+@@ -10,24 +10,10 @@
+             </Attribute>
+           </value>
+         </entry>
+-        <entry key="/data/recipes_with_parsed_ingredients.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+-        <entry key="/data/working_scripts/conteggio_categorie.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+-        <entry key="/data/working_scripts/recipes.csv">
++        <entry key="/data/working_scripts/recipes_cleaned.csv">
+           <value>
+             <Attribute>
+-              <option name="separator" value="," />
++              <option name="separator" value=":" />
+             </Attribute>
+           </value>
+         </entry>
+@@ -35,13 +21,6 @@
+           <value>
+             <Attribute>
+               <option name="separator" value="," />
+-            </Attribute>
+-          </value>
+-        </entry>
+-        <entry key="diff.csv">
+-          <value>
+-            <Attribute>
+-              <option name="separator" value=":" />
+             </Attribute>
+           </value>
+         </entry>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"recipes_cleaned.csv\">\n      <change afterPath=\"$PROJECT_DIR$/data/mysecretchef.sql\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/data/working_scripts/count_nutrients.py\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/data/working_scripts/count_unit.py\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25,_09_39_[Changes]1/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25__09_39__Changes_1.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/data/clean_ingredients.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/data/controllo_ingrediente_cleaned_2.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/data/ingredients_parse.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/data/solo_ingredient.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/data/working_scripts/count_categories.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/data/working_scripts/count_categories.py\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"33Cq0jnsInvyWmDZsuNJci1j6zt\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"Python.Ingredients_List.executor\": \"Run\",\n    \"Python.base_ingredients.executor\": \"Run\",\n    \"Python.clean_ingredients.executor\": \"Run\",\n    \"Python.controllo_ingrediente_cleaned_2.executor\": \"Run\",\n    \"Python.count_categories.executor\": \"Run\",\n    \"Python.count_nutrients.executor\": \"Run\",\n    \"Python.describe_categories.executor\": \"Run\",\n    \"Python.ingredients_parse.executor\": \"Run\",\n    \"Python.morecleaning.executor\": \"Run\",\n    \"Python.recipe_categories_parse.executor\": \"Run\",\n    \"Python.recipe_nutrients_parse.executor\": \"Run\",\n    \"Python.single_ingredients.executor\": \"Run\",\n    \"Python.solo_ingredient.executor\": \"Run\",\n    \"Python.time__servings.executor\": \"Run\",\n    \"Python.try_unit.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"LorenzoUccellani\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"last_opened_file_path\": \"C:/Users/lolly/PycharmProjects/CRUD-Project/data\",\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\" />\n      <recent name=\"$PROJECT_DIR$/data\" />\n      <recent name=\"$PROJECT_DIR$/data/working_scripts\" />\n      <recent name=\"$PROJECT_DIR$/doc\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\working_scripts\" />\n      <recent name=\"$PROJECT_DIR$/data/working_scripts\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"\" />\n      <created>1758831181403</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1758831181403</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759503642366</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759503642366</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505383026</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505383026</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505765776</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505765777</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759506397512</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759506397512</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440948559</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440948559</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440956920</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440956920</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"modify base_ingredients.py\" />\n    <MESSAGE value=\"recipes_cleaned.csv\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"recipes_cleaned.csv\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 674424798655d33bfd7667bf499af3ae9d105be7)
++++ b/.idea/workspace.xml	(date 1760708954179)
+@@ -4,18 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="recipes_cleaned.csv">
+-      <change afterPath="$PROJECT_DIR$/data/mysecretchef.sql" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/data/working_scripts/count_nutrients.py" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/data/working_scripts/count_unit.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25,_09_39_[Changes]1/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_25__09_39__Changes_1.xml" beforeDir="false" />
++    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="count_categories.py and parsing_ingredients">
++      <change afterPath="$PROJECT_DIR$/data/working_scripts/populate_database.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/clean_ingredients.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/controllo_ingrediente_cleaned_2.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/ingredients_parse.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/solo_ingredient.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/data/working_scripts/count_categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/working_scripts/count_categories.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -57,6 +50,7 @@
+     "Python.describe_categories.executor": "Run",
+     "Python.ingredients_parse.executor": "Run",
+     "Python.morecleaning.executor": "Run",
++    "Python.populate_database.executor": "Run",
+     "Python.recipe_categories_parse.executor": "Run",
+     "Python.recipe_nutrients_parse.executor": "Run",
+     "Python.single_ingredients.executor": "Run",
