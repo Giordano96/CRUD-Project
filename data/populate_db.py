@@ -1,138 +1,108 @@
 import pandas as pd
 import mysql.connector
-from mysql.connector import Error
 import re
 
-# Database connection configuration
-db_config = {
-    'host': 'localhost',
-    'user': 'root',  # Replace with your MySQL username
-    'password': '',  # Replace with your MySQL password
-    'database': 'mysecretchef'
-}
+# Connect to the database
+conn = mysql.connector.connect(
+    host='localhost',
+    user='root',  # Change to your username
+    password='',  # Change to your password
+    database='mysecretchef'
+)
+cursor = conn.cursor()
 
-# Read CSV file
+# Step 1: Populate nutrient table
+nutrient_names = [
+    'Total Fat', 'Saturated Fat', 'Total Carbohydrate',
+    'Dietary Fiber', 'Total Sugars', 'Protein'
+]
+for name in nutrient_names:
+    cursor.execute("INSERT IGNORE INTO nutrient (name) VALUES (%s)", (name,))
+conn.commit()
+
+# Get nutrient ids
+cursor.execute("SELECT id, name FROM nutrient")
+nutrient_dict = {row[1]: row[0] for row in cursor.fetchall()}
+
+# Step 2: Read the CSV
 df = pd.read_csv('recipes_cleaned.csv')
 
-# Connect to MySQL database
-try:
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor()
+# Step 3: Collect unique ingredients from tags
+unique_ingredients = set()
+for tags in df['tags']:
+    if pd.notna(tags):
+        unique_ingredients.update([tag.strip() for tag in tags.split(',')])
 
-    # Insert nutrients
-    nutrients = [
-        ('Total Fat',),
-        ('Saturated Fat',),
-        ('Total Carbohydrate',),
-        ('Dietary Fiber',),
-        ('Total Sugars',),
-        ('Protein',)
-    ]
-    cursor.executemany("INSERT INTO nutrient (name) VALUES (%s)", nutrients)
+# Insert unique ingredients
+for ing in unique_ingredients:
+    cursor.execute("INSERT IGNORE INTO ingredient (name) VALUES (%s)", (ing,))
+conn.commit()
 
-    # Extract unique ingredients from tags
-    all_tags = set()
-    for tags in df['tags']:
-        if pd.notna(tags):  # Check for non-NaN tags
-            tags_list = tags.split(', ')
-            all_tags.update(tags_list)
+# Get ingredient ids
+cursor.execute("SELECT id, name FROM ingredient")
+ingredient_dict = {row[1]: row[0] for row in cursor.fetchall()}
 
-    # Insert ingredients
-    ingredient_map = {}
-    for idx, tag in enumerate(all_tags, start=1):
-        cursor.execute("INSERT INTO ingredient (id, name) VALUES (%s, %s)", (idx, tag))
-        ingredient_map[tag] = idx
+# Step 4: Populate recipe, recipe_nutrient, recipe_ingredient
+for index, row in df.iterrows():
+    # Insert recipe
+    cursor.execute("""
+        INSERT INTO recipe (name, instructions, category, image_url, prep_time)
+        VALUES (%s, %s, %s, %s, %s)
+    """, (row['recipe_name'], row['directions'], row['category'], row['img_src'], row['total_mins']))
+    recipe_id = cursor.lastrowid
+    conn.commit()
 
-    # Function to parse nutrition values
-    def parse_nutrition(nutrition_str):
-        nutrition_dict = {}
-        if pd.isna(nutrition_str):
-            return nutrition_dict
-        pattern = r"(\w+\s*\w*):\s*(\d+\.\d)"
-        for match in re.finditer(pattern, nutrition_str):
-            nutrient, value = match.groups()
-            nutrition_dict[nutrient.strip()] = float(value)
-        return nutrition_dict
+    # Parse and insert recipe_nutrient
+    if pd.notna(row['nutrition']):
+        nutrition_str = row['nutrition']
+        nutrients = {}
+        for part in nutrition_str.split(','):
+            if ':' in part:
+                name, value = part.split(':', 1)
+                nutrients[name.strip()] = int(float(value.strip()))  # Since decimal(10,0)
 
-    # Function to parse ingredients
-    def parse_ingredients(ingredients_str):
-        ingredients = []
-        if pd.isna(ingredients_str) or not isinstance(ingredients_str, str):
-            return ingredients  # Return empty list if input is NaN or not a string
-        pattern = r"quantity:\s*([\d.]+)\s*unit:\s*([^\s]+)\s*ingredient:\s*([^\n]+)"
-        for match in re.finditer(pattern, ingredients_str):
-            quantity, unit, ingredient = match.groups()
-            ingredients.append({
-                'quantity': float(quantity),
-                'unit': unit,
-                'ingredient': ingredient.strip()
-            })
-        return ingredients
-
-    # Insert recipes and related data
-    for index, row in df.iterrows():
-        # Insert into recipe table
-        recipe_id = index + 1
-        cursor.execute("""
-            INSERT INTO recipe (id, name, instructions, image_url, prep_time, category, ingredients_list)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """, (
-            recipe_id,
-            row['recipe_name'],
-            row['directions'] if pd.notna(row['directions']) else '',
-            row['img_src'] if pd.notna(row['img_src']) else '',
-            row['total_mins'] if pd.notna(row['total_mins']) else 0,
-            row['category'] if pd.notna(row['category']) else 'Desserts',
-            row['ingredients'] if pd.notna(row['ingredients']) else ''
-        ))
-
-        # Insert into recipe_nutrient
-        nutrition = parse_nutrition(row['nutrition'])
-        for nutrient_name, value in nutrition.items():
-            cursor.execute("SELECT id FROM nutrient WHERE name = %s", (nutrient_name,))
-            nutrient_id = cursor.fetchone()
-            if nutrient_id:
+        for nut_name, value in nutrients.items():
+            if nut_name in nutrient_dict:
                 cursor.execute("""
                     INSERT INTO recipe_nutrient (recipe_id, nutrient_id, value)
                     VALUES (%s, %s, %s)
-                """, (recipe_id, nutrient_id[0], value))
-
-        # Insert into recipe_ingredient
-        ingredients = parse_ingredients(row['ingredients_parsed'])
-        for ingredient in ingredients:
-            # Find ingredient ID
-            ingredient_name = ingredient['ingredient']
-            # Find the closest matching tag from ingredient_map
-            matched_tag = None
-            for tag in ingredient_map:
-                if tag.lower() in ingredient_name.lower():
-                    matched_tag = tag
-                    break
-            if matched_tag:
-                ingredient_id = ingredient_map[matched_tag]
-                unit = ingredient['unit']
-                # Map CSV units to database enum
-                unit_map = {
-                    'g': 'ounce',
-                    'ml': 'cup',
-                    'piece': 'piece',
-                    'package': 'package',
-                    'can': 'can'
-                }
-                db_unit = unit_map.get(unit, 'cup')  # Default to cup if unit not found
-                cursor.execute("""
-                    INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit)
-                    VALUES (%s, %s, %s, %s)
-                """, (recipe_id, ingredient_id, ingredient['quantity'], db_unit))
-
-    # Commit changes
+                """, (recipe_id, nutrient_dict[nut_name], value))
     conn.commit()
-    print("Database populated successfully!")
 
-except Error as e:
-    print(f"Error: {e}")
-finally:
-    if conn.is_connected():
-        cursor.close()
-        conn.close()
-        print("Database connection closed.")
+    # Parse ingredients_parsed
+    parsed_str = row['ingredients_parsed']
+    if pd.notna(parsed_str):
+        pattern = r"quantity: (\d+\.?\d*) unit: ([\w]+) ingredient: (.*?)(?= quantity:|$)"
+        parsed_items = re.findall(pattern, parsed_str)
+
+        # Get tags list
+        tags_list = [tag.strip() for tag in row['tags'].split(',')] if pd.notna(row['tags']) else []
+
+        for tag in tags_list:
+            matching_parsed = []
+            for q_str, u, ing in parsed_items:
+                if tag.lower() in ing.lower():
+                    q = float(q_str)
+                    matching_parsed.append((q, u))
+
+            if matching_parsed:
+                units = set(u for _, u in matching_parsed)
+                if len(units) > 1:
+                    continue  # Skip if different units
+                total_q = sum(q for q, _ in matching_parsed)
+                unit = matching_parsed[0][1]
+                allowed_units = ['bottle', 'can', 'cans', 'jar', 'jars', 'package', 'piece', 'g', 'ml']
+                if unit not in allowed_units:
+                    continue
+                if tag in ingredient_dict:
+                    cursor.execute("""
+                        INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit)
+                        VALUES (%s, %s, %s, %s)
+                    """, (recipe_id, ingredient_dict[tag], total_q, unit))
+    conn.commit()
+
+# Close connection
+cursor.close()
+conn.close()
+
+print("Database populated successfully.")
