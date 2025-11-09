@@ -14,7 +14,7 @@
     <div class="hero-section">
         <div class="hero-content">
             <h1>MySecretChef</h1>
-            <h2>Cook with what you have, without waste 🍔</h2>
+            <h2>Cook with what you have, without waste</h2>
         </div>
         <button class="get-started-btn">Get Started</button>
     </div>
@@ -28,11 +28,14 @@
         <a href="login.php" class="active-tab">Log In</a>
         <a href="../Sign/signup.php">Sign Up</a>
     </div>
+
     <?php if (isset($error) && $error): ?>
         <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>
+
     <form method="post" action="login.php" class="form-container">
-        <input type="hidden" name="csrf_token" value="<"<?php echo isset($csrf_token) ? htmlspecialchars($csrf_token) : ''; ?>">
+        <input type="hidden" name="csrf_token" value="<?php echo isset($csrf_token) ? htmlspecialchars($csrf_token) : ''; ?>">
+
         <div class="form-group">
             <label>
                 <input name="email" placeholder="Email" class="form-input" value="" />
