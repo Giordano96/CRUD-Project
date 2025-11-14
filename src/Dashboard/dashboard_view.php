@@ -22,137 +22,168 @@
     <main>
         <h1>Benvenuto, <?php echo htmlspecialchars($username); ?>!</h1>
 
-        <!-- DEBUG: Mostra ingredienti (rimuovi in produzione) -->
-        <?php if (isset($_GET['debug'])): ?>
-            <pre><?php var_dump($user_ingredients); ?></pre>
-        <?php endif; ?>
-
-        <!-- AGGIUNGI INGREDIENTE -->
         <div class="ingredient-search">
             <input type="text" id="ingredient-input" placeholder="Cerca ingrediente…" autocomplete="off">
+            <button type="button" id="add-btn" class="btn-inline">Add</button>
+            <button type="button" id="add-inventory-btn" class="btn-inline">Add from Inventory</button>
             <div id="suggestions" class="suggestions-box"></div>
         </div>
 
-        <!-- INGREDIENTI SELEZIONATI -->
-        <div class="selected-ingredients">
+        <div class="selected-ingredients" id="selected-tags">
             <?php if (empty($user_ingredients)): ?>
                 <p class="no-ingredients">Aggiungi ingredienti per cercare ricette!</p>
-            <?php else: ?>
-                <?php foreach ($user_ingredients as $ing): ?>
-                    <span class="tag"><?php echo htmlspecialchars($ing); ?></span>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <?php else: foreach ($user_ingredients as $ing): ?>
+                <span class="tag" data-name="<?php echo htmlspecialchars($ing); ?>">
+                    <?php echo htmlspecialchars($ing); ?> <span class="remove-tag">×</span>
+                </span>
+            <?php endforeach; endif; ?>
         </div>
 
-        <!-- BOTTONE CERCA -->
-        <?php if (!empty($user_ingredients)): ?>
-            <form method="post" style="margin: 1.5rem 0;">
-                <button type="submit" name="search" class="search-btn">Cerca Ricette</button>
-            </form>
-        <?php endif; ?>
+        <div style="margin: 1.5rem 0;">
+            <button id="search-btn" class="btn-dark" <?php echo empty($user_ingredients) ? 'disabled' : ''; ?>>
+                Cerca Ricette
+            </button>
+        </div>
 
-        <!-- RISULTATI RICERCA -->
-        <div class="recipe-box">
-            <h2>Ricette suggerite
-                <?php if ($search_triggered): ?>
-                    <span class="recipe-count">(<?php echo $total_recipes; ?> trovate)</span>
-                <?php endif; ?>
-            </h2>
-
-            <?php if ($search_triggered && empty($suggested_recipes)): ?>
-                <p class="no-recipes">
-                    Nessuna ricetta trovata con questi ingredienti.
-                </p>
-            <?php elseif ($search_triggered): ?>
-                <div class="recipe-grid">
-                    <?php foreach ($suggested_recipes as $recipe): ?>
-                        <div class="recipe-card">
-                            <img src="<?php echo htmlspecialchars($recipe['image_url'] ?? 'img/placeholder.png'); ?>" alt="<?php echo htmlspecialchars($recipe['name']); ?>">
-                            <h3><?php echo htmlspecialchars($recipe['name']); ?></h3>
-                            <p>Pronta in <?php echo (int)$recipe['prep_time']; ?> min</p>
-                            <br>
-                            <a href="recipe_detail.php?id=<?php echo $recipe['id']; ?>" style="text-decoration:none;">
-                                <button>Dettagli</button>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <!-- PAGINAZIONE -->
-                <?php if ($total_pages > 1): ?>
-                    <div class="pagination">
-                        <?php if ($page > 1): ?>
-                            <a href="?page=<?php echo $page - 1; ?>" class="page-btn">Indietro</a>
-                        <?php endif; ?>
-
-                        <span class="page-info">
-                            Pagina <?php echo $page; ?> di <?php echo $total_pages; ?>
-                        </span>
-
-                        <?php if ($page < $total_pages): ?>
-                            <a href="?page=<?php echo $page + 1; ?>" class="page-btn">Avanti</a>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
-            <?php else: ?>
-                <p class="no-recipes" style="background:none; padding:1rem 0;">
-                    Premi "Cerca Ricette" per vedere i risultati!
-                </p>
-            <?php endif; ?>
+        <div class="recipe-box" id="recipe-results">
+            <p style="text-align:center; color:#a17f45; padding:1rem;">Premi "Cerca Ricette" per vedere i risultati!</p>
         </div>
     </main>
 </div>
 
-<!-- JAVASCRIPT: TENDINA + AGGIUNTA -->
 <script>
-    const input = document.getElementById('ingredient-input');
-    const suggestionsBox = document.getElementById('suggestions');
-    let timeout = null;
+    const els = {
+        input: document.getElementById('ingredient-input'),
+        suggestions: document.getElementById('suggestions'),
+        addBtn: document.getElementById('add-btn'),
+        addInvBtn: document.getElementById('add-inventory-btn'),
+        searchBtn: document.getElementById('search-btn'),
+        results: document.getElementById('recipe-results'),
+        tags: document.getElementById('selected-tags')
+    };
 
-    input.addEventListener('input', function() {
-        clearTimeout(timeout);
-        const query = this.value.trim();
+    let timer;
 
-        if (query.length === 0) {
-            suggestionsBox.innerHTML = '';
-            return;
-        }
+    // === SUGGERIMENTI ===
+    els.input.addEventListener('input', () => {
+        clearTimeout(timer);
+        const q = els.input.value.trim();
+        if (!q) return els.suggestions.innerHTML = '';
 
-        timeout = setTimeout(() => {
-            fetch(`api_ingredients.php?q=${encodeURIComponent(query)}`)
+        timer = setTimeout(() => {
+            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(q)}`)
                 .then(r => r.json())
                 .then(data => {
-                    suggestionsBox.innerHTML = '';
-                    if (data.length === 0) {
-                        suggestionsBox.innerHTML = '<div class="suggestion">Nessun ingrediente trovato</div>';
-                        return;
-                    }
-                    data.forEach(ing => {
-                        const div = document.createElement('div');
-                        div.className = 'suggestion';
-                        div.textContent = ing;
-                        div.onclick = () => addIngredient(ing);
-                        suggestionsBox.appendChild(div);
-                    });
-                })
-                .catch(err => {
-                    console.error('Errore fetch:', err);
+                    els.suggestions.innerHTML = data.length
+                        ? data.map(ing => `<div class="suggestion" onclick="selectIng('${ing}')">${ing}</div>`).join('')
+                        : '<div class="suggestion">Nessun risultato</div>';
                 });
         }, 200);
     });
 
-    function addIngredient(name) {
-        const form = document.createElement('form');
-        form.method = 'post';
-        form.action = `dashboard.php?page=<?php echo $page; ?>`;
-        form.innerHTML = `<input type="hidden" name="ingredient" value="${name}">`;
-        document.body.appendChild(form);
-        form.submit();
+    window.selectIng = (name) => {
+        els.input.value = name;
+        els.suggestions.innerHTML = '';
+    };
+
+    // === AGGIUNGI / RIMUOVI / INVENTARIO ===
+    els.addBtn.onclick = () => {
+        const name = els.input.value.trim();
+        if (!name) return;
+        post('add', { ingredient: name }, () => els.input.value = '');
+    };
+
+    els.tags.onclick = (e) => {
+        if (e.target.classList.contains('remove-tag')) {
+            const name = e.target.parentElement.dataset.name;
+            post('remove', { ingredient: name });
+        }
+    };
+
+    els.addInvBtn.onclick = () => post('load_inventory', {});
+
+    // === CERCA RICETTE CON PAGINAZIONE ===
+    els.searchBtn.onclick = () => search(1);
+
+    function search(page = 1) {
+        els.results.innerHTML = '<p style="text-align:center; color:#a17f45;">Caricamento...</p>';
+
+        fetch(`dashboard.php?ajax=search&page=${page}`)
+            .then(r => r.json())
+            .then(data => {
+                if (!data.recipes?.length) {
+                    els.results.innerHTML = '<p class="no-recipes">Nessuna ricetta trovata con questi ingredienti.</p>';
+                    return;
+                }
+
+                let html = `<h2>Ricette suggerite <span class="recipe-count">(${data.total} trovate)</span></h2>`;
+                html += '<div class="recipe-grid">';
+
+                data.recipes.forEach(r => {
+                    html += `
+                        <div class="recipe-card">
+                            <img src="${r.image_url || 'img/placeholder.png'}" loading="lazy" alt="${r.name}">
+                            <h3>${r.name}</h3>
+                            <p>Pronta in ${r.prep_time} min</p>
+                            <a href="recipe_detail.php?id=${r.id}" style="text-decoration:none;">
+                                <button class="btn-details">Dettagli</button>
+                            </a>
+                        </div>`;
+                });
+
+                html += '</div>';
+
+                // === PAGINAZIONE COMPLETA ===
+                if (data.pages > 1) {
+                    html += '<div class="pagination">';
+                    if (data.page > 1) {
+                        html += `<button class="page-btn" onclick="search(${data.page - 1})">Indietro</button>`;
+                    }
+                    html += `<span class="page-info">Pagina ${data.page} di ${data.pages}</span>`;
+                    if (data.page < data.pages) {
+                        html += `<button class="page-btn" onclick="search(${data.page + 1})">Avanti</button>`;
+                    }
+                    html += '</div>';
+                }
+
+                els.results.innerHTML = html;
+            })
+            .catch(() => {
+                els.results.innerHTML = '<p class="no-recipes">Errore di connessione. Riprova.</p>';
+            });
     }
 
-    document.addEventListener('click', function(e) {
-        if (!input.contains(e.target) && !suggestionsBox.contains(e.target)) {
-            suggestionsBox.innerHTML = '';
+    // === POST GENERICO ===
+    function post(action, data, callback) {
+        const form = new FormData();
+        for (const key in data) form.append(key, data[key]);
+
+        fetch(`dashboard.php?ajax=${action}`, { method: 'POST', body: form })
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) {
+                    updateTags(res.ingredients);
+                    els.searchBtn.disabled = res.ingredients.length === 0;
+                    if (callback) callback();
+                }
+            });
+    }
+
+    // === AGGIORNA TAG ===
+    function updateTags(ingredients) {
+        if (!ingredients.length) {
+            els.tags.innerHTML = '<p class="no-ingredients">Aggiungi ingredienti per cercare ricette!</p>';
+            return;
+        }
+        els.tags.innerHTML = ingredients.map(ing =>
+            `<span class="tag" data-name="${ing}">${ing} <span class="remove-tag">×</span></span>`
+        ).join('');
+    }
+
+    // === CHIUDI SUGGERIMENTI ===
+    document.addEventListener('click', e => {
+        if (!els.input.contains(e.target) && !els.suggestions.contains(e.target)) {
+            els.suggestions.innerHTML = '';
         }
     });
 </script>

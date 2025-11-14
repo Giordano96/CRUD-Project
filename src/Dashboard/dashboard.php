@@ -1,122 +1,145 @@
 <?php
-// DEBUG: Abilita errori
+// dashboard.php - Versione semplificata, pulita e funzionale
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require "../DbConnector.php";
-global $pdo; // CRITICO: $pdo ora è accessibile
+global $pdo;
 
 session_start();
 
+// --- AUTENTICAZIONE ---
 if (!isset($_SESSION["user_id"])) {
+    if (isset($_GET['ajax'])) {
+        http_response_code(401);
+        exit(json_encode(['error' => 'Non autenticato']));
+    }
     header("Location: Login/login.php");
     exit;
 }
 
 $user_id = $_SESSION["user_id"];
 
-// === PAGINAZIONE ===
-$page = max(1, (int)($_GET['page'] ?? 1));
-$per_page = 10;
-$offset = ($page - 1) * $per_page;
+// Inizializza ingredienti selezionati
+$_SESSION['selected_ingredients'] ??= [];
 
-// === AGGIUNGI INGREDIENTE ===
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["ingredient"])) {
-    $ingredient_name = trim($_POST["ingredient"]);
+// --- ENDPOINT AJAX ---
+if (isset($_GET['ajax'])) {
+    header('Content-Type: application/json');
+    $action = $_GET['ajax'];
 
-    if (!empty($ingredient_name)) {
-        try {
-            // Cerca ID ingrediente
-            $stmt = $pdo->prepare("SELECT id FROM ingredient WHERE name = :name");
-            $stmt->bindParam(":name", $ingredient_name, PDO::PARAM_STR);
-            $stmt->execute();
-            $result = $stmt->fetch();
-
-            if ($result) {
-                $ingredient_id = $result["id"];
-
-                // Aggiungi o incrementa quantità
-                $stmt = $pdo->prepare("
-                    INSERT INTO inventory (user_id, ingredient_id, quantity) 
-                    VALUES (:user_id, :ingredient_id, 1)
-                    ON DUPLICATE KEY UPDATE quantity = quantity + 1
-                ");
-                $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-                $stmt->bindParam(":ingredient_id", $ingredient_id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-        } catch (Exception $e) {
-            error_log("Errore aggiunta ingrediente: " . $e->getMessage());
-        }
-    }
-    // Redirect per evitare duplicati
-    header("Location: dashboard.php?page=$page");
-    exit;
-}
-
-// === AVVIA RICERCA RICETTE ===
-$search_triggered = ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["search"]));
-$suggested_recipes = [];
-$total_recipes = 0;
-$total_pages = 1;
-
-if ($search_triggered) {
     try {
-// === CONTA RICETTE TOTALI ===
-        $count_stmt = $pdo->prepare("
-    SELECT COUNT(DISTINCT r.id) 
-    FROM recipe r
-    JOIN recipe_ingredient ri ON r.id = ri.recipe_id
-    JOIN inventory inv ON ri.ingredient_id = inv.ingredient_id
-    WHERE inv.user_id = :user_id AND inv.quantity > 0
-");
-        $count_stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-        $count_stmt->execute();
-        $total_recipes = (int)$count_stmt->fetchColumn();
-        $total_pages = max(1, ceil($total_recipes / $per_page));
+        // 1. Suggerimenti
+        if ($action === 'suggest' && !empty($_GET['q'])) {
+            $q = "%" . trim($_GET['q']) . "%";
+            $stmt = $pdo->prepare("SELECT name FROM ingredient WHERE name LIKE ? ORDER BY name LIMIT 10");
+            $stmt->execute([$q]);
+            exit(json_encode($stmt->fetchAll(PDO::FETCH_COLUMN)));
+        }
 
-// === CARICA RICETTE PAGINATE ===
-        $stmt = $pdo->prepare("
-    SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time
-    FROM recipe r
-    JOIN recipe_ingredient ri ON r.id = ri.recipe_id
-    JOIN inventory inv ON ri.ingredient_id = inv.ingredient_id
-    WHERE inv.user_id = :user_id AND inv.quantity > 0
-    ORDER BY r.id DESC
-    LIMIT :limit OFFSET :offset
-");
-        $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-        $stmt->bindParam(":limit", $per_page, PDO::PARAM_INT);
-        $stmt->bindParam(":offset", $offset, PDO::PARAM_INT);
-        $stmt->execute();
-        $suggested_recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // 2. Aggiungi ingrediente
+        if ($action === 'add' && !empty($_POST['ingredient'])) {
+            $name = trim($_POST['ingredient']);
+            $stmt = $pdo->prepare("SELECT 1 FROM ingredient WHERE name = ?");
+            $stmt->execute([$name]);
+            if ($stmt->fetch() && !in_array($name, $_SESSION['selected_ingredients'])) {
+                $_SESSION['selected_ingredients'][] = $name;
+            }
+            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+        }
+
+        // 3. Rimuovi ingrediente
+        if ($action === 'remove' && !empty($_POST['ingredient'])) {
+            $name = $_POST['ingredient'];
+            $_SESSION['selected_ingredients'] = array_values(array_filter(
+                $_SESSION['selected_ingredients'],
+                fn($i) => $i !== $name
+            ));
+            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+        }
+
+        // 4. Carica da inventario
+        if ($action === 'load_inventory') {
+            $stmt = $pdo->prepare("
+                SELECT i.name 
+                FROM inventory inv 
+                JOIN ingredient i ON inv.ingredient_id = i.id 
+                WHERE inv.user_id = ? AND inv.quantity > 0
+                ORDER BY i.name
+            ");
+            $stmt->execute([$user_id]);
+            $inventory = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            $_SESSION['selected_ingredients'] = array_values(array_unique(
+                array_merge($_SESSION['selected_ingredients'], $inventory)
+            ));
+
+            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+        }
+
+// --- CERCA RICETTE (ESATTAMENTE TUTTI GLI INGREDIENTI) ---
+        if ($action === 'search') {
+            $ingredients = $_SESSION['selected_ingredients'];
+            if (empty($ingredients)) {
+                exit(json_encode(['recipes' => [], 'total' => 0, 'pages' => 1, 'page' => 1]));
+            }
+
+            $page = max(1, (int)($_GET['page'] ?? 1));
+            $per_page = 12;
+            $offset = ($page - 1) * $per_page;
+
+            $count = count($ingredients);
+            $placeholders = str_repeat('?,', $count - 1) . '?';
+
+            // Conta ricette che hanno ESATTAMENTE tutti gli ingredienti
+            $count_stmt = $pdo->prepare("
+        SELECT COUNT(DISTINCT r.id)
+        FROM recipe r
+        JOIN recipe_ingredient ri ON r.id = ri.recipe_id
+        JOIN ingredient i ON ri.ingredient_id = i.id
+        WHERE i.name IN ($placeholders)
+        GROUP BY r.id
+        HAVING COUNT(DISTINCT i.name) = ?
+    ");
+            $count_stmt->execute(array_merge($ingredients, [$count]));
+            $total = $count_stmt->rowCount();
+            $pages = max(1, ceil($total / $per_page));
+
+            // Ricette con ESATTAMENTE tutti gli ingredienti
+            $stmt = $pdo->prepare("
+        SELECT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time
+        FROM recipe r
+        JOIN recipe_ingredient ri ON r.id = ri.recipe_id
+        JOIN ingredient i ON ri.ingredient_id = i.id
+        WHERE i.name IN ($placeholders)
+        GROUP BY r.id, r.name, r.image_url, r.prep_time
+        HAVING COUNT(DISTINCT i.name) = ?
+        ORDER BY r.id DESC
+        LIMIT ? OFFSET ?
+    ");
+            $stmt->execute(array_merge($ingredients, [$count, $per_page, $offset]));
+            $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            exit(json_encode([
+                'recipes' => $recipes,
+                'total' => $total,
+                'pages' => $pages,
+                'page' => $page
+            ]));
+        }
     } catch (Exception $e) {
-        error_log("Errore ricerca ricette: " . $e->getMessage());
+        http_response_code(500);
+        exit(json_encode(['error' => $e->getMessage()]));
     }
 }
-// === CARICA SEMPRE: username + ingredienti utente ===
-try {
-    $stmt = $pdo->prepare("SELECT username FROM user WHERE id = :id");
-    $stmt->bindParam(":id", $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $user = $stmt->fetch();
-    $username = $user["username"] ?? "Utente";
 
-    $stmt = $pdo->prepare("
-        SELECT DISTINCT i.name 
-        FROM inventory inv 
-        JOIN ingredient i ON inv.ingredient_id = i.id 
-        WHERE inv.user_id = :user_id AND inv.quantity > 0
-        ORDER BY i.name
-    ");
-    $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $user_ingredients = $stmt->fetchAll(PDO::FETCH_COLUMN);
-} catch (Exception $e) {
-    $username = "Utente";
-    $user_ingredients = [];
-    error_log("Errore caricamento dati utente: " . $e->getMessage());
-}
+// --- CARICA DATI INIZIALI ---
+$stmt = $pdo->prepare("SELECT username FROM user WHERE id = ?");
+$stmt->execute([$user_id]);
+$username = $stmt->fetchColumn() ?: "Utente";
+
+$user_ingredients = $_SESSION['selected_ingredients'];
+sort($user_ingredients);
 
 include "dashboard_view.php";
 ?>
