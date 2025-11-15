@@ -1,4 +1,4 @@
-/* styles.css - Versione pulita e essenziale */
+/* styles.css - Versione ottimizzata */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-family: 'Inter', sans-serif; font-size: 16px; color: #1d170c; background: #fcfaf8; }
 body { min-height: 100vh; background: #fcfaf8; }
@@ -47,7 +47,7 @@ h1 { font-size: 2.25rem; font-weight: 900; margin-bottom: 2rem; }
 }
 .page-btn:hover { background: #e69500; }
 
-/* Form ricerca */
+/* Form */
 .ingredient-search {
     display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; position: relative;
 }
@@ -72,7 +72,7 @@ h1 { font-size: 2.25rem; font-weight: 900; margin-bottom: 2rem; }
 .suggestion:hover { background: #fdf9f3; }
 .suggestion:last-child { border-bottom: none; }
 
-/* Tag ingredienti */
+/* Tag */
 .selected-ingredients { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0; min-height: 2rem; }
 .no-ingredients { color: #a17f45; font-style: italic; font-size: .95rem; }
 .tag {

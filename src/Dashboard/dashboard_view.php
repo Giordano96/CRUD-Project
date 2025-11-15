@@ -64,7 +64,7 @@
 
     let timer;
 
-    // === SUGGERIMENTI ===
+    // Suggerimenti
     els.input.addEventListener('input', () => {
         clearTimeout(timer);
         const q = els.input.value.trim();
@@ -86,7 +86,7 @@
         els.suggestions.innerHTML = '';
     };
 
-    // === AGGIUNGI / RIMUOVI / INVENTARIO ===
+    // Azioni
     els.addBtn.onclick = () => {
         const name = els.input.value.trim();
         if (!name) return;
@@ -102,9 +102,9 @@
 
     els.addInvBtn.onclick = () => post('load_inventory', {});
 
-    // === CERCA RICETTE CON PAGINAZIONE ===
     els.searchBtn.onclick = () => search(1);
 
+    // Ricerca con paginazione
     function search(page = 1) {
         els.results.innerHTML = '<p style="text-align:center; color:#a17f45;">Caricamento...</p>';
 
@@ -133,7 +133,6 @@
 
                 html += '</div>';
 
-                // === PAGINAZIONE COMPLETA ===
                 if (data.pages > 1) {
                     html += '<div class="pagination">';
                     if (data.page > 1) {
@@ -153,7 +152,7 @@
             });
     }
 
-    // === POST GENERICO ===
+    // POST generico
     function post(action, data, callback) {
         const form = new FormData();
         for (const key in data) form.append(key, data[key]);
@@ -169,7 +168,7 @@
             });
     }
 
-    // === AGGIORNA TAG ===
+    // Aggiorna tag
     function updateTags(ingredients) {
         if (!ingredients.length) {
             els.tags.innerHTML = '<p class="no-ingredients">Aggiungi ingredienti per cercare ricette!</p>';
@@ -180,7 +179,7 @@
         ).join('');
     }
 
-    // === CHIUDI SUGGERIMENTI ===
+    // Chiudi suggerimenti
     document.addEventListener('click', e => {
         if (!els.input.contains(e.target) && !els.suggestions.contains(e.target)) {
             els.suggestions.innerHTML = '';

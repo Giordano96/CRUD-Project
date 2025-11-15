@@ -1,7 +1,11 @@
-/* Reset */
+/* ============================================================= */
+/*  STYLES ESCLUSIVI PER LA PAGINA FAVORITES                     */
+/* ============================================================= */
+
+/* Reset di base (necessario per coerenza) */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Base */
+/* Tipografia e sfondo */
 html {
     font-family: 'Inter', 'Noto Sans', sans-serif;
     font-size: 16px;
@@ -14,10 +18,9 @@ body { background-color: #fcfaf8; min-height: 100vh; }
 .main-container {
     display: flex;
     min-height: 100vh;
-    background-color: #fcfaf8;
 }
 
-/* Sidebar */
+/* Sidebar (solo la parte visibile in Favorites) */
 .sidebar {
     width: 260px;
     background-color: #f4efe6;
@@ -30,10 +33,13 @@ body { background-color: #fcfaf8; min-height: 100vh; }
 .sidebar ul { list-style: none; }
 .sidebar li { margin-bottom: 1rem; }
 .sidebar a {
-    display: flex; align-items: center; gap: .75rem;
-    color: #1d170c; text-decoration: none;
-    font-weight: 500; font-size: 1rem;
-    padding: .75rem 1rem; border-radius: .5rem;
+    display: block;
+    color: #1d170c;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: .75rem 1rem;
+    border-radius: .5rem;
     transition: all .2s ease;
 }
 .sidebar a:hover,
@@ -48,9 +54,7 @@ main {
     padding: 2.5rem 3rem;
     max-width: 960px;
     margin-left: 260px;
-    background-color: #fcfaf8;
 }
-
 h1 {
     font-size: 2.25rem;
     font-weight: 900;
@@ -58,52 +62,40 @@ h1 {
     margin-bottom: 2rem;
 }
 
-/* ===== TAGS ===== */
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin-bottom: 1.5rem;
-}
-.tag {
-    background: #ffe4b8;
-    color: #5a3c00;
-    padding: .4rem .8rem;
-    border-radius: .5rem;
-    font-size: .9rem;
-    font-weight: 600;
-}
-
-/* ===== FAVORITES BOX (uguale tabella inventario) ===== */
+/* Contenitore ricette */
 .recipe-box {
     background: #fff;
     border: 1px solid #eaddc6;
     border-radius: .5rem;
     padding: 1.5rem;
     box-shadow: 0 1px 3px rgba(0,0,0,.05);
-    margin-top: 1rem;
 }
-
 .recipe-box h2 {
     font-size: 1.3rem;
     font-weight: 800;
     margin-bottom: 1rem;
 }
+.recipe-count {
+    font-weight: normal;
+    font-size: .9rem;
+    color: #5a4b32;
+}
 
-/* ===== GRID ===== */
+/* Grid ricette */
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.2rem;
 }
 
-/* ===== CARD ===== */
+/* Card ricetta */
 .recipe-card {
     background: #fdf9f3;
     border: 1px solid #eaddc6;
     border-radius: .5rem;
     padding: 1rem;
     text-align: center;
+    transition: opacity .3s ease;
 }
 .recipe-card img {
     width: 100%;
@@ -111,6 +103,7 @@ h1 {
     object-fit: cover;
     border-radius: .4rem;
     margin-bottom: .6rem;
+    background: #f4efe6;
 }
 .recipe-card h3 {
     font-size: 1rem;
@@ -122,27 +115,89 @@ h1 {
     color: #5a4b32;
 }
 
-/* Responsive adattato */
+/* Bottoni */
+.btn-details,
+.remove-favorite,
+.page-btn {
+    border: none;
+    border-radius: .5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Dettagli */
+.btn-details {
+    background: #1d170c;
+    color: white;
+    padding: .5rem 1rem;
+    font-size: .875rem;
+    margin-top: .5rem;
+}
+.btn-details:hover { background: #0f0a03; }
+
+/* Rimuovi dai preferiti */
+.remove-favorite {
+    background: #d32f2f;
+    color: white;
+    padding: .4rem .7rem;
+    font-size: .8rem;
+    margin-top: .5rem;
+}
+.remove-favorite:hover { background: #b71c1c; }
+.remove-favorite:disabled {
+    background: #999;
+    cursor: not-allowed;
+    opacity: .7;
+}
+
+/* Paginazione */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .75rem;
+    margin: 2rem 0;
+    font-size: .95rem;
+}
+.page-btn {
+    background: #ffa200;
+    color: white;
+    padding: .5rem 1rem;
+}
+.page-btn:hover { background: #e69500; }
+.page-info {
+    color: #1d170c;
+    font-weight: 500;
+}
+
+/* Messaggi vuoti / errori */
+.no-recipes {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #a17f45;
+    font-style: italic;
+    background: #fdf9f3;
+    border-radius: .5rem;
+    margin: 1rem 0;
+    font-size: .95rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .main-container { flex-direction: column; }
     .sidebar {
         position: static;
         width: 100%;
         padding: 1.5rem;
-        border-right: none;
         border-bottom: 1px solid #eaddc6;
     }
-    main {
-        margin-left: 0;
-        padding: 1.5rem;
-    }
+    main { margin-left: 0; padding: 1.5rem; }
+    .recipe-grid { grid-template-columns: 1fr; }
+    .pagination { flex-wrap: wrap; }
 }
 
-button, input[type="submit"] {
-    background: #ffa200; color: #fff;
-    border: none; padding: .75rem 1.5rem;
-    font-weight: 700; font-size: 1rem;
-    border-radius: .5rem; cursor: pointer;
-    transition: background .2s;
-}
-button:hover, input[type="submit"]:hover { background: #e69000; }
+/* Lazy loading immagini */
+img { background: #f4efe6; object-fit: cover; }
