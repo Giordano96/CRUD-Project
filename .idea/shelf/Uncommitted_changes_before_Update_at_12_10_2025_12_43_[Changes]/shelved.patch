@@ -1,0 +1,294 @@
+Index: data/base_ingredients.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\r\nimport re\r\nfrom collections import Counter\r\n\r\n# Mappatura statica degli ingredienti base, estesa con più ingredienti comuni\r\nbase_ingredients_map = {\r\n    'butter': 'butter',\r\n    'unsalted butter': 'butter',\r\n    'salted butter': 'butter',\r\n    'apples': 'apple',\r\n    'granny smith apples': 'apple',\r\n    'macintosh apples': 'apple',\r\n    'sugar': 'sugar',\r\n    'white sugar': 'sugar',\r\n    'brown sugar': 'sugar',\r\n    'granulated sugar': 'sugar',\r\n    'powdered sugar': 'sugar',\r\n    'confectioners\\' sugar': 'sugar',\r\n    'cranberries': 'cranberries',\r\n    'fresh cranberries': 'cranberries',\r\n    'dried cranberries': 'cranberries',\r\n    'pastry': 'pastry',\r\n    'pie crust': 'pastry',\r\n    'puff pastry': 'pastry',\r\n    'frozen puff pastry': 'pastry',\r\n    'doublecrust pie pastry': 'pastry',\r\n    'egg': 'egg',\r\n    'eggs': 'egg',\r\n    'egg white': 'egg',\r\n    'cream': 'cream',\r\n    'heavy cream': 'cream',\r\n    'whipping cream': 'cream',\r\n    'whipped cream': 'cream',\r\n    'ice cream': 'cream',\r\n    'flour': 'flour',\r\n    'all-purpose flour': 'flour',\r\n    'whole wheat flour': 'flour',\r\n    'water': 'water',\r\n    'cinnamon': 'cinnamon',\r\n    'ground cinnamon': 'cinnamon',\r\n    'salt': 'salt',\r\n    'kosher salt': 'salt',\r\n    'oil': 'oil',\r\n    'olive oil': 'oil',\r\n    'vegetable oil': 'oil',\r\n    'milk': 'milk',\r\n    'whole milk': 'milk',\r\n    'chicken': 'chicken',\r\n    'chicken breast': 'chicken',\r\n    'chicken thighs': 'chicken',\r\n    'cheese': 'cheese',\r\n    'cheddar cheese': 'cheese',\r\n    'parmesan cheese': 'cheese',\r\n    'vanilla': 'vanilla',\r\n    'vanilla extract': 'vanilla',\r\n    'lemon': 'lemon',\r\n    'lemon juice': 'lemon',\r\n    'onion': 'onion',\r\n    'garlic': 'garlic',\r\n    'pepper': 'pepper',\r\n    'black pepper': 'pepper',\r\n    'bell pepper': 'pepper',\r\n    'tomato': 'tomato',\r\n    'tomatoes': 'tomato',\r\n    'potato': 'potato',\r\n    'potatoes': 'potato',\r\n    'carrot': 'carrot',\r\n    'carrots': 'carrot',\r\n    'honey': 'honey',\r\n    'vinegar': 'vinegar',\r\n    'balsamic vinegar': 'vinegar',\r\n    'baking powder': 'baking powder',\r\n    'baking soda': 'baking soda',\r\n    'chili powder': 'chili powder',\r\n    'prunes': 'prune',\r\n    'shrimp': 'shrimp',\r\n    'medium shrimp': 'shrimp',\r\n    'spinach': 'spinach',\r\n    'frozen chopped spinach': 'spinach',\r\n    'red lentils': 'lentil',\r\n    'chuck roast': 'beef',\r\n    'papaya': 'papaya',\r\n    'peach': 'peach',\r\n    'fresh peach': 'peach',\r\n    'thyme': 'thyme',\r\n    'fresh thyme': 'thyme',\r\n    'fresh thyme leaves': 'thyme',\r\n    'cumin': 'cumin',\r\n    'basil': 'basil',\r\n    'basil leaves': 'basil',\r\n    'fruit cocktail': 'fruit cocktail',\r\n    'gin': 'gin',\r\n    'apricot': 'apricot',\r\n    'fresh apricot': 'apricot',\r\n    'bread crumbs': 'bread crumbs',\r\n    'seasoned bread crumbs': 'bread crumbs',\r\n    'jello': 'jello',\r\n    'cherry jell-o': 'jello',\r\n    'jicama': 'jicama',\r\n    'cabbage': 'cabbage',\r\n    'cherries': 'cherry',\r\n    'fresh cherries': 'cherry',\r\n    'mozzarella': 'mozzarella',\r\n    'fresh mozzarella': 'mozzarella',\r\n    'pork ribs': 'pork',\r\n    'countrystyle pork ribs': 'pork',\r\n    'figs': 'fig',\r\n    'canned figs': 'fig',\r\n    'prickly pears': 'prickly pear',\r\n    'harissa': 'harissa',\r\n    'berries': 'berry',\r\n    'seasonal berries': 'berry',\r\n    'grapes': 'grape',\r\n    'green grapes': 'grape',\r\n    'tomatillos': 'tomatillo',\r\n    'fresh tomatillos': 'tomatillo',\r\n    'oats': 'oats',\r\n    'quick cooking oats': 'oats',\r\n    'chocolate chips': 'chocolate chip',\r\n    'mango': 'mango',\r\n    'minced mango': 'mango',\r\n    'almonds': 'almond',\r\n    'celery': 'celery',\r\n    'corn syrup': 'corn syrup',\r\n    'light corn syrup': 'corn syrup',\r\n    'clove': 'clove',\r\n    'whole cloves': 'clove',\r\n    'allspice': 'allspice',\r\n    'whole allspice': 'allspice',\r\n    'maple syrup': 'maple syrup',\r\n    'coconut': 'coconut',\r\n    'flaked coconut': 'coconut',\r\n    'shredded coconut': 'coconut',\r\n    'unsweetened shredded coconut': 'coconut',\r\n    'beef bouillon': 'beef bouillon',\r\n    'beef bouillon powder': 'beef bouillon',\r\n    'cocoa powder': 'cocoa powder',\r\n    'unsweetened cocoa powder': 'cocoa powder',\r\n    'cayenne pepper': 'cayenne pepper',\r\n    'chicken broth': 'chicken broth',\r\n    'rice': 'rice',\r\n    'white rice': 'rice',\r\n    'walnut': 'walnut',\r\n    'walnuts': 'walnut',\r\n    'chopped walnuts': 'walnut',\r\n    'corn flakes': 'corn flakes',\r\n    'corn flakes cereal': 'corn flakes',\r\n    'crushed corn flakes': 'corn flakes',\r\n    'rice cereal': 'rice cereal',\r\n    'crispy rice cereal': 'rice cereal',\r\n    'banana': 'banana',\r\n    'bananas': 'banana',\r\n    'pineapple': 'pineapple',\r\n    'crushed pineapple': 'pineapple',\r\n    'almond flour': 'almond flour',\r\n    'blanched almond flour': 'almond flour',\r\n    'chia seeds': 'chia seeds',\r\n    'cashew': 'cashew',\r\n    'cashews': 'cashew',\r\n    'raw cashews': 'cashew',\r\n    'espresso': 'espresso',\r\n    'cold espresso': 'espresso',\r\n    'cornstarch': 'cornstarch',\r\n    'nutmeg': 'nutmeg',\r\n    'ground nutmeg': 'nutmeg',\r\n    'pecan': 'pecan',\r\n    'pecans': 'pecan',\r\n    'pecan halves': 'pecan',\r\n    'raisin': 'raisin',\r\n    'raisins': 'raisin',\r\n    'golden raisins': 'raisin',\r\n    'golden raisin': 'raisin',\r\n    'date': 'date',\r\n    'dates': 'date',\r\n    'chopped dates': 'date',\r\n    'pitted dates': 'date',\r\n    'curry': 'curry',\r\n    'curry powder': 'curry',\r\n    'apple cider': 'apple cider',\r\n    'bottle apple cider': 'apple cider',\r\n    'noodles': 'noodles',\r\n    'roasted noodles': 'noodles',\r\n    'grapeseed oil': 'oil',\r\n    'sea salt': 'salt',\r\n    'medjool dates': 'date',\r\n    'basmati rice': 'rice',\r\n    'saffron threads': 'saffron',\r\n    'boiling water': 'water',\r\n    'boiled water': 'water',\r\n}\r\n\r\n# Lista di parole da rimuovere (estesa per eliminare non-ingredienti)\r\nremoval_words = [\r\n    'cored', 'sliced', 'peeled', 'chopped', 'diced', 'minced', 'grated', 'beaten', 'whipped', 'fresh', 'dried', 'packed',\r\n    'medium', 'small', 'large', 'ground', 'crushed', 'pureed', 'halved', 'quartered', 'finely', 'coarsely', 'melted',\r\n    'softened', 'room temperature', 'to taste', 'for dusting', 'and', 'or', 'as needed', 'lightly', 'thawed', 'optional',\r\n    'other', 'firm', 'soft-textured', 'that fall apart when cooked', 'frozen', 'sheet', 'package', 'still cold', 'white',\r\n    'sweetened', 'into', 'rings', 'inch', 'thick', 'country style', 'seasoned', 'but', 'ice', 'allpurpose', 'quick cooking',\r\n    'crisp', 'doublecrust', 'cup', 'tablespoon', 'teaspoon', 'ounce', 'oz', 'pound', 'lb', 'divided', 'heated', 'skinless',\r\n    'boneless', 'rinsed', 'drained', 'whole', 'sticks', 'stalks', 'bottle', 'can', 'roasted', 'unsalted', 'salted', 'cold',\r\n    'hot', 'boiling', 'roughly', 'pitted', 'raw', 'boiled', 'cubed', 'more', 'handles', 'quarter', 'rounds', 'wooden',\r\n    'chopsticks', 'for', 'with', 'from', 'in', 'the', 'a', 'an', 'of', 'at', 'by', 'on'\r\n]\r\n\r\n# Pattern per rimuovere quantità, unità, descrizioni, etc.\r\nremoval_pattern = r'\\b(?:' + '|'.join(removal_words) + r')\\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\\d+/\\d+|\\d*\\.?\\d*\\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\\([^)]*\\)|-|:|;|,'\r\n\r\n\r\ndef generate_dynamic_mapping(all_ingredients, min_freq=1):\r\n    \"\"\"Genera una mappatura dinamica per ingredienti frequenti.\"\"\"\r\n    dynamic_map = {}\r\n    ingredient_counts = Counter(all_ingredients)\r\n    common_ingredients = [ing for ing, count in ingredient_counts.items() if count >= min_freq]\r\n\r\n    for ingredient in common_ingredients:\r\n        # Pulisci l'ingrediente senza introdurre spazi tra le lettere\r\n        cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()\r\n        # Normalizza spazi multipli\r\n        cleaned = ' '.join(cleaned.split()).strip()\r\n        if cleaned and cleaned not in base_ingredients_map.values() and cleaned not in dynamic_map.values():\r\n            # Correggi termini concatenati (esteso con più correzioni)\r\n            cleaned = (cleaned.replace('brownsugar', 'brown sugar')\r\n                       .replace('grannysmithapples', 'apple')\r\n                       .replace('macintoshapples', 'apple')\r\n                       .replace('puffpastry', 'pastry')\r\n                       .replace('creamcream', 'cream')\r\n                       .replace('doublecrustpiepastry', 'pastry')\r\n                       .replace('unsaltedbutter', 'butter')\r\n                       .replace('allpurposeflour', 'flour')\r\n                       .replace('bakingpowder', 'baking powder')\r\n                       .replace('bakingsoda', 'baking soda')\r\n                       .replace('currypowder', 'curry powder')\r\n                       .replace('maplesyrup', 'maple syrup')\r\n                       .replace('lightcornsyrup', 'corn syrup')\r\n                       .replace('cornsyrup', 'corn syrup')\r\n                       .replace('wholeallspice', 'allspice')\r\n                       .replace('wholecloves', 'clove')\r\n                       .replace('flakedcoconut', 'coconut')\r\n                       .replace('shreddedcoconut', 'coconut')\r\n                       .replace('beefbouillonpowder', 'beef bouillon')\r\n                       .replace('cocoapowder', 'cocoa powder')\r\n                       .replace('cayennepepper', 'cayenne pepper')\r\n                       .replace('chickenbroth', 'chicken broth')\r\n                       .replace('whiterice', 'rice')\r\n                       .replace('cornflakescereal', 'corn flakes')\r\n                       .replace('crushedcornflakes', 'corn flakes')\r\n                       .replace('crispyricecereal', 'rice cereal')\r\n                       .replace('stalkscelery', 'celery')\r\n                       .replace('pecanhalves', 'pecan')\r\n                       .replace('goldpotatoes', 'potato')\r\n                       .replace('medjool', 'date')\r\n                       .replace('basmati', 'rice')\r\n                       .replace('saffronthreads', 'saffron')\r\n                       .replace('grapeseedoil', 'oil')\r\n                       .replace('goldenraisins', 'raisin')\r\n                       .replace('woodenchopsticksforhandles', '')\r\n                       .replace('quarterrounds', ''))\r\n            dynamic_map[ingredient] = cleaned\r\n\r\n    return dynamic_map\r\n\r\n\r\ndef normalize_ingredient_name(ingredient_str):\r\n    \"\"\"Normalizza il nome dell'ingrediente, mappandolo al nome base.\"\"\"\r\n    ingredient_str = ingredient_str.lower().strip()\r\n    for base_name, normalized_name in base_ingredients_map.items():\r\n        if base_name in ingredient_str:\r\n            return normalized_name\r\n    # Rimuovi descrizioni, frazioni, quantità, unità, parentesi e caratteri speciali\r\n    cleaned = re.sub(removal_pattern, '', ingredient_str, flags=re.IGNORECASE).strip()\r\n    # Normalizza spazi multipli\r\n    cleaned = ' '.join(cleaned.split()).strip()\r\n    # Correggi termini concatenati (esteso)\r\n    cleaned = (cleaned.replace('brownsugar', 'brown sugar')\r\n               .replace('grannysmithapples', 'apple')\r\n               .replace('macintoshapples', 'apple')\r\n               .replace('puffpastry', 'pastry')\r\n               .replace('creamcream', 'cream')\r\n               .replace('doublecrustpiepastry', 'pastry')\r\n               .replace('unsaltedbutter', 'butter')\r\n               .replace('allpurposeflour', 'flour')\r\n               .replace('bakingpowder', 'baking powder')\r\n               .replace('bakingsoda', 'baking soda')\r\n               .replace('currypowder', 'curry powder')\r\n               .replace('maplesyrup', 'maple syrup')\r\n               .replace('lightcornsyrup', 'corn syrup')\r\n               .replace('cornsyrup', 'corn syrup')\r\n               .replace('wholeallspice', 'allspice')\r\n               .replace('wholecloves', 'clove')\r\n               .replace('flakedcoconut', 'coconut')\r\n               .replace('shreddedcoconut', 'coconut')\r\n               .replace('beefbouillonpowder', 'beef bouillon')\r\n               .replace('cocoapowder', 'cocoa powder')\r\n               .replace('cayennepepper', 'cayenne pepper')\r\n               .replace('chickenbroth', 'chicken broth')\r\n               .replace('whiterice', 'rice')\r\n               .replace('cornflakescereal', 'corn flakes')\r\n               .replace('crushedcornflakes', 'corn flakes')\r\n               .replace('crispyricecereal', 'rice cereal')\r\n               .replace('stalkscelery', 'celery')\r\n               .replace('pecanhalves', 'pecan')\r\n               .replace('goldpotatoes', 'potato')\r\n               .replace('medjool', 'date')\r\n               .replace('basmati', 'rice')\r\n               .replace('saffronthreads', 'saffron')\r\n               .replace('grapeseedoil', 'oil')\r\n               .replace('goldenraisins', 'raisin')\r\n               .replace('woodenchopsticksforhandles', '')\r\n               .replace('quarterrounds', ''))\r\n    return cleaned if cleaned else None\r\n\r\n\r\ndef parse_ingredients(ingredients_str):\r\n    \"\"\"Estrae e normalizza gli ingredienti, restituendo una stringa separata da virgole.\"\"\"\r\n    if not isinstance(ingredients_str, str) or not ingredients_str.strip():\r\n        return \"\"\r\n\r\n    ingredients = [i.strip() for i in ingredients_str.split(',')]\r\n    normalized = []\r\n    for ingredient in ingredients:\r\n        cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()\r\n        cleaned = ' '.join(cleaned.split()).strip()\r\n        normalized_name = normalize_ingredient_name(cleaned)\r\n        if normalized_name and normalized_name not in normalized:\r\n            normalized.append(normalized_name)\r\n\r\n    return \", \".join(normalized)\r\n\r\n\r\ndef extract_all_ingredients(df):\r\n    \"\"\"Estrae tutti gli ingredienti unici dal dataset.\"\"\"\r\n    all_ingredients = []\r\n    for ingredients_str in df['ingredients']:\r\n        if not isinstance(ingredients_str, str):\r\n            continue\r\n        ingredients = [i.strip() for i in ingredients_str.split(',')]\r\n        for ingredient in ingredients:\r\n            cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()\r\n            cleaned = ' '.join(cleaned.split()).strip()\r\n            if cleaned:\r\n                all_ingredients.append(cleaned.lower())\r\n\r\n    return all_ingredients\r\n\r\n\r\ndef check_mapping_coverage(all_ingredients):\r\n    \"\"\"Verifica quali ingredienti non sono coperti dalla mappatura.\"\"\"\r\n    unmapped_ingredients = []\r\n    for ingredient in set(all_ingredients):\r\n        normalized = normalize_ingredient_name(ingredient)\r\n        if normalized and normalized not in base_ingredients_map.values():\r\n            if not any(base_name in ingredient for base_name in base_ingredients_map):\r\n                unmapped_ingredients.append(ingredient)\r\n\r\n    return unmapped_ingredients\r\n\r\n\r\n# Leggi l'intero dataset\r\ndf = pd.read_csv(\"recipes.csv\")\r\n\r\n# Estrai tutti gli ingredienti unici\r\nall_ingredients = extract_all_ingredients(df)\r\n\r\n# Genera una mappatura dinamica per ingredienti frequenti\r\ndynamic_map = generate_dynamic_mapping(all_ingredients, min_freq=1)\r\nbase_ingredients_map.update(dynamic_map)\r\n\r\n# Verifica la copertura della mappatura aggiornata\r\nunmapped_ingredients = check_mapping_coverage(all_ingredients)\r\n\r\n# Crea la colonna base_ingredients\r\ndf['base_ingredients'] = df['ingredients'].apply(parse_ingredients)\r\n\r\n# Salva il DataFrame in un nuovo file CSV\r\ndf.to_csv(\"recipes.csv\", index=False)\r\n\r\n# Stampa statistiche\r\nprint(f\"Totale ricette processate: {len(df)}\")\r\nprint(f\"Ricette con base_ingredients vuota: {len(df[df['base_ingredients'] == ''])}\")\r\nprint(f\"Totale ingredienti unici trovati: {len(set(all_ingredients))}\")\r\nprint(f\"Ingredienti non coperti dalla mappatura aggiornata: {len(unmapped_ingredients)}\")\r\nif unmapped_ingredients:\r\n    print(\"Esempi di ingredienti non coperti (primi 10):\")\r\n    print(unmapped_ingredients[:10])\r\nelse:\r\n    print(\"Tutti gli ingredienti sono coperti dalla mappatura aggiornata.\")\r\n\r\n# Stampa le prime tre righe per verifica\r\nprint(\"\\nPrime tre righe di 'base_ingredients':\")\r\nfor index, row in df.head(3).iterrows():\r\n    print(f\"Ricetta: {row['recipe_name']}\")\r\n    print(f\"base_ingredients: {row['base_ingredients']}\")\r\n\r\n# Stampa i primi 10 ingredienti della mappatura dinamica aggiunti:\r\nprint(\"\\nPrimi 10 ingredienti della mappatura dinamica aggiunti:\")\r\nfor k, v in list(dynamic_map.items())[:10]:\r\n    print(f\"{k} -> {v}\")
+===================================================================
+diff --git a/data/base_ingredients.py b/data/base_ingredients.py
+--- a/data/base_ingredients.py	(revision 7aa0457f75f93982293dce43047abbd115c8fc3d)
++++ b/data/base_ingredients.py	(date 1759514940498)
+@@ -2,7 +2,7 @@
+ import re
+ from collections import Counter
+ 
+-# Mappatura statica degli ingredienti base, estesa con più ingredienti comuni
++# Mappatura statica degli ingredienti base
+ base_ingredients_map = {
+     'butter': 'butter',
+     'unsalted butter': 'butter',
+@@ -120,90 +120,36 @@
+     'mango': 'mango',
+     'minced mango': 'mango',
+     'almonds': 'almond',
+-    'celery': 'celery',
++    'date': 'date',
++    'dates': 'date',
++    'walnut': 'walnut',
++    'walnuts': 'walnut',
++    'pecan': 'pecan',
++    'pecans': 'pecan',
++    'cashew': 'cashew',
++    'cashews': 'cashew',
++    'raisin': 'raisin',
++    'raisins': 'raisin',
++    'coconut': 'coconut',
++    'coconut oil': 'coconut oil',
+     'corn syrup': 'corn syrup',
+-    'light corn syrup': 'corn syrup',
+-    'clove': 'clove',
+-    'whole cloves': 'clove',
+-    'allspice': 'allspice',
+-    'whole allspice': 'allspice',
++    'chia seeds': 'chia seed',
+     'maple syrup': 'maple syrup',
+-    'coconut': 'coconut',
+-    'flaked coconut': 'coconut',
+-    'shredded coconut': 'coconut',
+-    'unsweetened shredded coconut': 'coconut',
+-    'beef bouillon': 'beef bouillon',
+-    'beef bouillon powder': 'beef bouillon',
+     'cocoa powder': 'cocoa powder',
+-    'unsweetened cocoa powder': 'cocoa powder',
+-    'cayenne pepper': 'cayenne pepper',
+-    'chicken broth': 'chicken broth',
+     'rice': 'rice',
+-    'white rice': 'rice',
+-    'walnut': 'walnut',
+-    'walnuts': 'walnut',
+-    'chopped walnuts': 'walnut',
+-    'corn flakes': 'corn flakes',
+-    'corn flakes cereal': 'corn flakes',
+-    'crushed corn flakes': 'corn flakes',
+-    'rice cereal': 'rice cereal',
+-    'crispy rice cereal': 'rice cereal',
++    'noodles': 'noodle',
++    'saffron threads': 'saffron',
++    'allspice': 'allspice',
++    'cloves': 'clove',
+     'banana': 'banana',
+-    'bananas': 'banana',
+     'pineapple': 'pineapple',
+-    'crushed pineapple': 'pineapple',
+-    'almond flour': 'almond flour',
+-    'blanched almond flour': 'almond flour',
+-    'chia seeds': 'chia seeds',
+-    'cashew': 'cashew',
+-    'cashews': 'cashew',
+-    'raw cashews': 'cashew',
++    'beef bouillon powder': 'beef bouillon',
++    'cayenne pepper': 'cayenne pepper',
+     'espresso': 'espresso',
+-    'cold espresso': 'espresso',
+     'cornstarch': 'cornstarch',
+     'nutmeg': 'nutmeg',
+-    'ground nutmeg': 'nutmeg',
+-    'pecan': 'pecan',
+-    'pecans': 'pecan',
+-    'pecan halves': 'pecan',
+-    'raisin': 'raisin',
+-    'raisins': 'raisin',
+-    'golden raisins': 'raisin',
+-    'golden raisin': 'raisin',
+-    'date': 'date',
+-    'dates': 'date',
+-    'chopped dates': 'date',
+-    'pitted dates': 'date',
+-    'curry': 'curry',
+-    'curry powder': 'curry',
+-    'apple cider': 'apple cider',
+-    'bottle apple cider': 'apple cider',
+-    'noodles': 'noodles',
+-    'roasted noodles': 'noodles',
+-    'grapeseed oil': 'oil',
+-    'sea salt': 'salt',
+-    'medjool dates': 'date',
+-    'basmati rice': 'rice',
+-    'saffron threads': 'saffron',
+-    'boiling water': 'water',
+-    'boiled water': 'water',
++    'banana': 'banana',
+ }
+-
+-# Lista di parole da rimuovere (estesa per eliminare non-ingredienti)
+-removal_words = [
+-    'cored', 'sliced', 'peeled', 'chopped', 'diced', 'minced', 'grated', 'beaten', 'whipped', 'fresh', 'dried', 'packed',
+-    'medium', 'small', 'large', 'ground', 'crushed', 'pureed', 'halved', 'quartered', 'finely', 'coarsely', 'melted',
+-    'softened', 'room temperature', 'to taste', 'for dusting', 'and', 'or', 'as needed', 'lightly', 'thawed', 'optional',
+-    'other', 'firm', 'soft-textured', 'that fall apart when cooked', 'frozen', 'sheet', 'package', 'still cold', 'white',
+-    'sweetened', 'into', 'rings', 'inch', 'thick', 'country style', 'seasoned', 'but', 'ice', 'allpurpose', 'quick cooking',
+-    'crisp', 'doublecrust', 'cup', 'tablespoon', 'teaspoon', 'ounce', 'oz', 'pound', 'lb', 'divided', 'heated', 'skinless',
+-    'boneless', 'rinsed', 'drained', 'whole', 'sticks', 'stalks', 'bottle', 'can', 'roasted', 'unsalted', 'salted', 'cold',
+-    'hot', 'boiling', 'roughly', 'pitted', 'raw', 'boiled', 'cubed', 'more', 'handles', 'quarter', 'rounds', 'wooden',
+-    'chopsticks', 'for', 'with', 'from', 'in', 'the', 'a', 'an', 'of', 'at', 'by', 'on'
+-]
+-
+-# Pattern per rimuovere quantità, unità, descrizioni, etc.
+-removal_pattern = r'\b(?:' + '|'.join(removal_words) + r')\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+|\d*\.?\d*\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\([^)]*\)|-|:|;|,'
+ 
+ 
+ def generate_dynamic_mapping(all_ingredients, min_freq=1):
+@@ -214,11 +160,13 @@
+ 
+     for ingredient in common_ingredients:
+         # Pulisci l'ingrediente senza introdurre spazi tra le lettere
+-        cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()
++        cleaned = re.sub(
++            r'\b(cored|sliced|peeled|chopped|diced|minced|grated|beaten|whipped|fresh|dried|packed|medium|small|large|ground|crushed|pureed|halved|quartered|finely|coarsely|melted|softened|room temperature|to taste|for dusting|and|or|as needed|lightly|thawed|optional|other|firm|soft-textured|that fall apart when cooked|frozen|sheet|package|still cold|white|sweetened|into|rings|inch|thick|country\s*style|seasoned|but|ice|allpurpose|quick\s*cooking|crisp|doublecrust|cup|tablespoon|teaspoon|ounce|oz|pound|lb|pitted|slivered|flaked|raw|roasted|blanched|tart|boiling|cold|espresso|highquality|unsweetened|medjool|roma|plum|beef|bouillon|powder|stems|removed|golden|drained|handles|chopsticks|wooden|light|rice|cereal|krispies|pinch|can|condensed|squeeze|left|whole|more|divided|sifted|shredded|needed|diamond crystal|quarter rounds|roughly)\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+|\d*\.?\d*\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\([^)]*\)|-|:|;|,',
++            '', ingredient).strip()
+         # Normalizza spazi multipli
+         cleaned = ' '.join(cleaned.split()).strip()
+         if cleaned and cleaned not in base_ingredients_map.values() and cleaned not in dynamic_map.values():
+-            # Correggi termini concatenati (esteso con più correzioni)
++            # Correggi termini concatenati
+             cleaned = (cleaned.replace('brownsugar', 'brown sugar')
+                        .replace('grannysmithapples', 'apple')
+                        .replace('macintoshapples', 'apple')
+@@ -226,35 +174,7 @@
+                        .replace('creamcream', 'cream')
+                        .replace('doublecrustpiepastry', 'pastry')
+                        .replace('unsaltedbutter', 'butter')
+-                       .replace('allpurposeflour', 'flour')
+-                       .replace('bakingpowder', 'baking powder')
+-                       .replace('bakingsoda', 'baking soda')
+-                       .replace('currypowder', 'curry powder')
+-                       .replace('maplesyrup', 'maple syrup')
+-                       .replace('lightcornsyrup', 'corn syrup')
+-                       .replace('cornsyrup', 'corn syrup')
+-                       .replace('wholeallspice', 'allspice')
+-                       .replace('wholecloves', 'clove')
+-                       .replace('flakedcoconut', 'coconut')
+-                       .replace('shreddedcoconut', 'coconut')
+-                       .replace('beefbouillonpowder', 'beef bouillon')
+-                       .replace('cocoapowder', 'cocoa powder')
+-                       .replace('cayennepepper', 'cayenne pepper')
+-                       .replace('chickenbroth', 'chicken broth')
+-                       .replace('whiterice', 'rice')
+-                       .replace('cornflakescereal', 'corn flakes')
+-                       .replace('crushedcornflakes', 'corn flakes')
+-                       .replace('crispyricecereal', 'rice cereal')
+-                       .replace('stalkscelery', 'celery')
+-                       .replace('pecanhalves', 'pecan')
+-                       .replace('goldpotatoes', 'potato')
+-                       .replace('medjool', 'date')
+-                       .replace('basmati', 'rice')
+-                       .replace('saffronthreads', 'saffron')
+-                       .replace('grapeseedoil', 'oil')
+-                       .replace('goldenraisins', 'raisin')
+-                       .replace('woodenchopsticksforhandles', '')
+-                       .replace('quarterrounds', ''))
++                       .replace('allpurposeflour', 'flour'))
+             dynamic_map[ingredient] = cleaned
+ 
+     return dynamic_map
+@@ -267,10 +187,12 @@
+         if base_name in ingredient_str:
+             return normalized_name
+     # Rimuovi descrizioni, frazioni, quantità, unità, parentesi e caratteri speciali
+-    cleaned = re.sub(removal_pattern, '', ingredient_str, flags=re.IGNORECASE).strip()
++    cleaned = re.sub(
++        r'\b(cored|sliced|peeled|chopped|diced|minced|grated|beaten|whipped|fresh|dried|packed|medium|small|large|ground|crushed|pureed|halved|quartered|finely|coarsely|melted|softened|room temperature|to taste|for dusting|and|or|as needed|lightly|thawed|optional|other|firm|soft-textured|that fall apart when cooked|frozen|sheet|package|still cold|white|sweetened|into|rings|inch|thick|country\s*style|seasoned|but|ice|allpurpose|quick\s*cooking|crisp|doublecrust|cup|tablespoon|teaspoon|ounce|oz|pound|lb|pitted|slivered|flaked|raw|roasted|blanched|tart|boiling|cold|espresso|highquality|unsweetened|medjool|roma|plum|beef|bouillon|powder|stems|removed|golden|drained|handles|chopsticks|wooden|light|rice|cereal|krispies|pinch|can|condensed|squeeze|left|whole|more|divided|sifted|shredded|needed|diamond crystal|quarter rounds|roughly)\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+|\d*\.?\d*\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\([^)]*\)|-|:|;|,',
++        '', ingredient_str).strip()
+     # Normalizza spazi multipli
+     cleaned = ' '.join(cleaned.split()).strip()
+-    # Correggi termini concatenati (esteso)
++    # Correggi termini concatenati
+     cleaned = (cleaned.replace('brownsugar', 'brown sugar')
+                .replace('grannysmithapples', 'apple')
+                .replace('macintoshapples', 'apple')
+@@ -278,35 +200,7 @@
+                .replace('creamcream', 'cream')
+                .replace('doublecrustpiepastry', 'pastry')
+                .replace('unsaltedbutter', 'butter')
+-               .replace('allpurposeflour', 'flour')
+-               .replace('bakingpowder', 'baking powder')
+-               .replace('bakingsoda', 'baking soda')
+-               .replace('currypowder', 'curry powder')
+-               .replace('maplesyrup', 'maple syrup')
+-               .replace('lightcornsyrup', 'corn syrup')
+-               .replace('cornsyrup', 'corn syrup')
+-               .replace('wholeallspice', 'allspice')
+-               .replace('wholecloves', 'clove')
+-               .replace('flakedcoconut', 'coconut')
+-               .replace('shreddedcoconut', 'coconut')
+-               .replace('beefbouillonpowder', 'beef bouillon')
+-               .replace('cocoapowder', 'cocoa powder')
+-               .replace('cayennepepper', 'cayenne pepper')
+-               .replace('chickenbroth', 'chicken broth')
+-               .replace('whiterice', 'rice')
+-               .replace('cornflakescereal', 'corn flakes')
+-               .replace('crushedcornflakes', 'corn flakes')
+-               .replace('crispyricecereal', 'rice cereal')
+-               .replace('stalkscelery', 'celery')
+-               .replace('pecanhalves', 'pecan')
+-               .replace('goldpotatoes', 'potato')
+-               .replace('medjool', 'date')
+-               .replace('basmati', 'rice')
+-               .replace('saffronthreads', 'saffron')
+-               .replace('grapeseedoil', 'oil')
+-               .replace('goldenraisins', 'raisin')
+-               .replace('woodenchopsticksforhandles', '')
+-               .replace('quarterrounds', ''))
++               .replace('allpurposeflour', 'flour'))
+     return cleaned if cleaned else None
+ 
+ 
+@@ -315,10 +209,28 @@
+     if not isinstance(ingredients_str, str) or not ingredients_str.strip():
+         return ""
+ 
+-    ingredients = [i.strip() for i in ingredients_str.split(',')]
++    parts = ingredients_str.split(',')
++    ingredients = []
++    current = ''
++    for part in parts:
++        part = part.strip()
++        if re.match(r'^\d*\.?\d*|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+', part):
++            if current:
++                ingredients.append(current)
++            current = part
++        else:
++            if current:
++                current += ' ' + part
++            else:
++                current = part
++    if current:
++        ingredients.append(current)
++
+     normalized = []
+     for ingredient in ingredients:
+-        cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()
++        cleaned = re.sub(
++            r'\b(cored|sliced|peeled|chopped|diced|minced|grated|beaten|whipped|fresh|dried|packed|medium|small|large|ground|crushed|pureed|halved|quartered|finely|coarsely|melted|softened|room temperature|to taste|for dusting|and|or|as needed|lightly|thawed|optional|other|firm|soft-textured|that fall apart when cooked|frozen|sheet|package|still cold|white|sweetened|into|rings|inch|thick|country\s*style|seasoned|but|ice|allpurpose|quick\s*cooking|crisp|doublecrust|cup|tablespoon|teaspoon|ounce|oz|pound|lb|pitted|slivered|flaked|raw|roasted|blanched|tart|boiling|cold|espresso|highquality|unsweetened|medjool|roma|plum|beef|bouillon|powder|stems|removed|golden|drained|handles|chopsticks|wooden|light|rice|cereal|krispies|pinch|can|condensed|squeeze|left|whole|more|divided|sifted|shredded|needed|diamond crystal|quarter rounds|roughly)\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+|\d*\.?\d*\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\([^)]*\)|-|:|;|,',
++            '', ingredient, flags=re.IGNORECASE).strip()
+         cleaned = ' '.join(cleaned.split()).strip()
+         normalized_name = normalize_ingredient_name(cleaned)
+         if normalized_name and normalized_name not in normalized:
+@@ -333,9 +245,27 @@
+     for ingredients_str in df['ingredients']:
+         if not isinstance(ingredients_str, str):
+             continue
+-        ingredients = [i.strip() for i in ingredients_str.split(',')]
++        parts = ingredients_str.split(',')
++        ingredients = []
++        current = ''
++        for part in parts:
++            part = part.strip()
++            if re.match(r'^\d*\.?\d*|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+', part):
++                if current:
++                    ingredients.append(current)
++                current = part
++            else:
++                if current:
++                    current += ' ' + part
++                else:
++                    current = part
++        if current:
++            ingredients.append(current)
++
+         for ingredient in ingredients:
+-            cleaned = re.sub(removal_pattern, '', ingredient, flags=re.IGNORECASE).strip()
++            cleaned = re.sub(
++                r'\b(cored|sliced|peeled|chopped|diced|minced|grated|beaten|whipped|fresh|dried|packed|medium|small|large|ground|crushed|pureed|halved|quartered|finely|coarsely|melted|softened|room temperature|to taste|for dusting|and|or|as needed|lightly|thawed|optional|other|firm|soft-textured|that fall apart when cooked|frozen|sheet|package|still cold|white|sweetened|into|rings|inch|thick|country\s*style|seasoned|but|ice|allpurpose|quick\s*cooking|crisp|doublecrust|cup|tablespoon|teaspoon|ounce|oz|pound|lb|pitted|slivered|flaked|raw|roasted|blanched|tart|boiling|cold|espresso|highquality|unsweetened|medjool|roma|plum|beef|bouillon|powder|stems|removed|golden|drained|handles|chopsticks|wooden|light|rice|cereal|krispies|pinch|can|condensed|squeeze|left|whole|more|divided|sifted|shredded|needed|diamond crystal|quarter rounds|roughly)\b|[½¼¾⅓⅔⅛⅜⅝⅞]|\d+/\d+|\d*\.?\d*\s*(?:tablespoons?|teaspoons?|cups?|ounces?|oz|pounds?|lb|inches?|inch)?|\([^)]*\)|-|:|;|,',
++                '', ingredient, flags=re.IGNORECASE).strip()
+             cleaned = ' '.join(cleaned.split()).strip()
+             if cleaned:
+                 all_ingredients.append(cleaned.lower())
