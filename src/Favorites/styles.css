@@ -1,203 +1,116 @@
-/* ============================================================= */
-/*  STYLES ESCLUSIVI PER LA PAGINA FAVORITES                     */
-/* ============================================================= */
-
-/* Reset di base (necessario per coerenza) */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Tipografia e sfondo */
-html {
-    font-family: 'Inter', 'Noto Sans', sans-serif;
-    font-size: 16px;
-    color: #1d170c;
-    background-color: #fcfaf8;
+/* Unified with login CSS: predictable sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
-body { background-color: #fcfaf8; min-height: 100vh; }
 
-/* Layout principale */
-.main-container {
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff; /* keep white as requested */
+    color: #333;
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
-/* Sidebar (solo la parte visibile in Favorites) */
-.sidebar {
-    width: 260px;
-    background-color: #f4efe6;
-    padding: 2rem 1.5rem;
-    position: fixed;
-    left: 0; top: 0; bottom: 0;
-    border-right: 1px solid #eaddc6;
-    z-index: 10;
-}
-.sidebar ul { list-style: none; }
-.sidebar li { margin-bottom: 1rem; }
-.sidebar a {
-    display: block;
-    color: #1d170c;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: .75rem 1rem;
-    border-radius: .5rem;
-    transition: all .2s ease;
-}
-.sidebar a:hover,
-.sidebar a.active {
-    background-color: #ffa200;
-    color: #fff;
-}
-
-/* Main content */
-main {
-    flex: 1;
-    padding: 2.5rem 3rem;
-    max-width: 960px;
-    margin-left: 260px;
-}
-h1 {
-    font-size: 2.25rem;
-    font-weight: 900;
-    color: #1d170c;
-    margin-bottom: 2rem;
-}
-
-/* Contenitore ricette */
-.recipe-box {
-    background: #fff;
-    border: 1px solid #eaddc6;
-    border-radius: .5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,.05);
-}
-.recipe-box h2 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-}
-.recipe-count {
-    font-weight: normal;
-    font-size: .9rem;
-    color: #5a4b32;
-}
-
-/* Grid ricette */
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.2rem;
-}
-
-/* Card ricetta */
-.recipe-card {
-    background: #fdf9f3;
-    border: 1px solid #eaddc6;
-    border-radius: .5rem;
-    padding: 1rem;
+.header {
+    background-color: #f9f9f9;
+    padding: 12px 16px;
     text-align: center;
-    transition: opacity .3s ease;
+    font-size: 20px;
+    color: #EF8A37; /* orange consistent with login */
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
-.recipe-card img {
+
+.header .back-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+.content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.recipe {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.recipe img {
     width: 100%;
     height: 120px;
     object-fit: cover;
-    border-radius: .4rem;
-    margin-bottom: .6rem;
-    background: #f4efe6;
-}
-.recipe-card h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: .2rem;
-}
-.recipe-card p {
-    font-size: .85rem;
-    color: #5a4b32;
+    display: block;
 }
 
-/* Bottoni */
-.btn-details,
-.remove-favorite,
-.page-btn {
-    border: none;
-    border-radius: .5rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background .2s ease;
-    text-decoration: none;
-    display: inline-block;
+.recipe-title {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 8px 12px;
 }
 
-/* Dettagli */
-.btn-details {
-    background: #1d170c;
-    color: white;
-    padding: .5rem 1rem;
-    font-size: .875rem;
-    margin-top: .5rem;
-}
-.btn-details:hover { background: #0f0a03; }
-
-/* Rimuovi dai preferiti */
-.remove-favorite {
-    background: #d32f2f;
-    color: white;
-    padding: .4rem .7rem;
-    font-size: .8rem;
-    margin-top: .5rem;
-}
-.remove-favorite:hover { background: #b71c1c; }
-.remove-favorite:disabled {
-    background: #999;
-    cursor: not-allowed;
-    opacity: .7;
-}
-
-/* Paginazione */
-.pagination {
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    z-index: 50;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: .75rem;
-    margin: 2rem 0;
-    font-size: .95rem;
-}
-.page-btn {
-    background: #ffa200;
-    color: white;
-    padding: .5rem 1rem;
-}
-.page-btn:hover { background: #e69500; }
-.page-info {
-    color: #1d170c;
-    font-weight: 500;
+    color: #173822;
+    font-size: 12px;
+    cursor: pointer;
+    gap: 4px;
 }
 
-/* Messaggi vuoti / errori */
-.no-recipes {
-    text-align: center;
-    padding: 2rem 1rem;
-    color: #a17f45;
-    font-style: italic;
-    background: #fdf9f3;
-    border-radius: .5rem;
-    margin: 1rem 0;
-    font-size: .95rem;
+.nav-icon {
+    font-size: 22px;
+    line-height: 1;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .main-container { flex-direction: column; }
-    .sidebar {
-        position: static;
-        width: 100%;
-        padding: 1.5rem;
-        border-bottom: 1px solid #eaddc6;
+/* Responsiveness and small-screen tweaks */
+@media (max-width: 480px) {
+    .content {
+        padding: 14px;
     }
-    main { margin-left: 0; padding: 1.5rem; }
-    .recipe-grid { grid-template-columns: 1fr; }
-    .pagination { flex-wrap: wrap; }
+    .recipe img {
+        height: 110px;
+    }
+    .recipes {
+        padding-bottom: 70px;
+    }
 }
-
-/* Lazy loading immagini */
-img { background: #f4efe6; object-fit: cover; }
