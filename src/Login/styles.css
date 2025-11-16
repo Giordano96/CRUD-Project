@@ -4,105 +4,137 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background-image: url('BackgroundLogin.png'); /* Placeholder white */
+    min-height: 100vh;
+    font-family: 'Inter', 'Noto Sans', Arial, sans-serif;
+    background-image: url('BackgroundLogin.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent for glassmorphism */
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 20px;
-    padding: 20px;
-    width: 250px;
+    padding: 30px 20px;
+    width: 280px;
+    max-width: 90%;
     text-align: center;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    position: relative; /* To help with positioning */
-    min-height: 500px; /* To prevent resizing on tab switch */
-}
-
-.logo {
-    /* Logo to be added later */
-    height: 100px; /* Placeholder space */
-    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    min-height: 520px;
+    margin: 20px;
 }
 
 .tabs {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
     position: absolute;
-    top: 25px; /* Adjust based on logo height + padding */
-    left: 40px;
-    right: 40px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
 }
 
 .tabs span {
     font-size: 18px;
-    color: #333;
+    color: #173822;
     cursor: pointer;
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
+    padding: 8px 0;
+    border-bottom: 3px solid transparent;
     flex: 1;
-    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .tabs span.active {
-    border-bottom: 2px solid #ff7f00; /* Orange color */
-    font-weight: bold;
+    border-bottom: 3px solid #ff7f00;
+    font-weight: 700;
+    color: #173822;
 }
 
 .form {
     display: none;
-    margin-top: 60px; /* Space for tabs */
+    margin-top: 90px;
+    padding: 0 10px;
 }
 
 .form.active {
     display: block;
-    margin-top: 100px;
 }
 
 label {
     display: block;
-    text-align: center; /* center labels to match inputs */
+    text-align: left;
     font-size: 14px;
     color: #173822;
-    margin: 15px 0 5px;
+    margin: 12px 0 6px;
+    font-weight: 500;
 }
 
 input {
     display: block;
-    width: calc(100% - 24px); /* keep full look but account for padding */
-    max-width: 260px; /* optional: keeps inputs from touching container edges */
+    width: 100%;
     padding: 12px;
-    margin: 10px auto; /* centers inputs horizontally */
+    margin: 8px 0;
     border: none;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     font-size: 16px;
     box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 2px #ff7f00;
 }
 
 button {
-    width: 50%;
+    width: 60%;
     padding: 12px;
-    background-color: #EF8A37; /* Orange */
+    background-color: #EF8A37;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
-}
-
-span {
-    color: #173822;
+    margin: 25px auto 10px;
+    display: block;
+    transition: background 0.3s ease;
 }
 
 button:hover {
     background-color: #e67300;
 }
+
 .login-button {
-    margin-top: 30px;
+    margin-top: 35px;
+}
+
+/* Messaggio di errore */
+.error-message {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #d8000c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+    .container {
+        width: 260px;
+        padding: 25px 15px;
+    }
+    .tabs span {
+        font-size: 16px;
+    }
 }

@@ -1,81 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />    <title>My Secret Chef - Home</title>
+    <title>My Secret Chef - Home</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <div class="header">MySecretChef</div>
+
 <div class="content">
     <div class="cooking-question">What are we cooking today?</div>
-    <div class="search-container">
 
-        <input type="text" class="search-input" placeholder="Search Ingredients">
+    <div class="search-container">
+        <span class="material-symbols-outlined search-icon"></span>
+        <input type="text" id="ingredient-input" class="search-input" placeholder="Insert Ingredients" autocomplete="off">
+        <div id="suggestions" class="suggestions-box"></div>
     </div>
+
     <div class="buttons">
-        <button class="button">Add Ingredient</button>
-        <button class="button secondary">Add from Inventory</button>
+        <button id="add-btn" class="button">Add Ingredient</button>
+        <button id="add-inventory-btn" class="button secondary">Add from Inventory</button>
     </div>
-    <div class="tags">
-        <div class="tag">Tomato <span class="tag-close">&times;</span></div>
-        <div class="tag">Basil <span class="tag-close">&times;</span></div>
+
+    <div class="tags" id="selected-tags">
+        <?php if (empty($user_ingredients)): ?>
+            <div class="no-ingredients">Aggiungi ingredienti per cercare ricette!</div>
+        <?php else: foreach ($user_ingredients as $ing): ?>
+            <div class="tag" data-name="<?php echo htmlspecialchars($ing); ?>">
+                <?php echo htmlspecialchars($ing); ?> <span class="tag-close">×</span>
+            </div>
+        <?php endforeach; endif; ?>
     </div>
-    <div class="recommended">Recommended Recipes</div>
-    <div class="recipes">
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Caprese Salad">
-            <div class="recipe-title">Caprese Salad</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Margherita Pizza">
-            <div class="recipe-title">Margherita Pizza</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Spaghetti Carbonara"> <!-- Replace with actual image -->
-            <div class="recipe-title">Spaghetti Carbonara</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Tiramisu"> <!-- Replace with actual image -->
-            <div class="recipe-title">Tiramisu</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Risotto"> <!-- Replace with actual image -->
-            <div class="recipe-title">Risotto</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Bruschetta"> <!-- Replace with actual image -->
-            <div class="recipe-title">Bruschetta</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Spaghetti Carbonara"> <!-- Replace with actual image -->
-            <div class="recipe-title">Spaghetti Carbonara</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Tiramisu"> <!-- Replace with actual image -->
-            <div class="recipe-title">Tiramisu</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Risotto"> <!-- Replace with actual image -->
-            <div class="recipe-title">Risotto</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
-        <div class="recipe">
-            <img src="img/garlic_bread.png" alt="Bruschetta"> <!-- Replace with actual image -->
-            <div class="recipe-title">Bruschetta</div>
-            <div class="recipe-subtitle">All ingredients available</div>
-        </div>
+
+    <div id="recipe-results">
+        <div style="text-align:center; color:#999; padding:1rem;">Aggiungi ingredienti e vedi le ricette suggerite!</div>
+    </div>
+
+    <div id="loading" style="display:none; text-align:center; padding:1.5rem; color:#999;">
+        Caricamento ricette...
     </div>
 </div>
+
 <div class="bottom-nav">
     <div class="nav-item">
         <span class="material-symbols-outlined">view_cozy</span>
@@ -90,5 +58,206 @@
         Favorites
     </div>
 </div>
+
+<script>
+    const els = {
+        input: document.getElementById('ingredient-input'),
+        suggestions: document.getElementById('suggestions'),
+        addBtn: document.getElementById('add-btn'),
+        addInvBtn: document.getElementById('add-inventory-btn'),
+        results: document.getElementById('recipe-results'),
+        tags: document.getElementById('selected-tags'),
+        loading: document.getElementById('loading')
+    };
+
+    let timer;
+    let currentPage = 1;
+    let isLoading = false;
+    let hasMore = true;
+
+    function showLoading() {
+        els.loading.style.display = 'block';
+        isLoading = true;
+    }
+
+    function hideLoading() {
+        els.loading.style.display = 'none';
+        isLoading = false;
+    }
+
+    function resetInfiniteScroll() {
+        currentPage = 1;
+        hasMore = true;
+        els.results.innerHTML = '';
+    }
+
+    // --- RICERCA INGREDIENTI ---
+    els.input.addEventListener('input', () => {
+        clearTimeout(timer);
+        const q = els.input.value.trim();
+        if (!q) {
+            els.suggestions.innerHTML = '';
+            return;
+        }
+
+        timer = setTimeout(() => {
+            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(data => {
+                    els.suggestions.innerHTML = data.length
+                        ? data.map(ing => `<div class="suggestion" onclick="selectIng('${ing}')">${ing}</div>`).join('')
+                        : '<div class="suggestion">Nessun ingrediente trovato</div>';
+                })
+                .catch(() => {
+                    els.suggestions.innerHTML = '<div class="suggestion">Errore di connessione</div>';
+                });
+        }, 200);
+    });
+
+    window.selectIng = (name) => {
+        els.input.value = name;
+        els.suggestions.innerHTML = '';
+    };
+
+    // --- AZIONI INGREDIENTI ---
+    els.addBtn.onclick = () => {
+        const name = els.input.value.trim();
+        if (!name) return;
+        post('add', { ingredient: name }, () => {
+            els.input.value = '';
+            resetInfiniteScroll();
+            search();
+        });
+    };
+
+    els.tags.onclick = (e) => {
+        if (e.target.classList.contains('tag-close')) {
+            const name = e.target.parentElement.dataset.name;
+            post('remove', { ingredient: name }, () => {
+                resetInfiniteScroll();
+                search();
+            });
+        }
+    };
+
+    els.addInvBtn.onclick = () => {
+        post('load_inventory', {}, () => {
+            resetInfiniteScroll();
+            search();
+        });
+    };
+
+    // --- RICERCA RICETTE ---
+    function search(page = 1) {
+        if (isLoading || !hasMore) return;
+        if (page === 1) {
+            els.results.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Caricamento...</div>';
+        } else {
+            showLoading();
+        }
+
+        fetch(`dashboard.php?ajax=search&page=${page}`)
+            .then(r => r.json())
+            .then(data => {
+                hideLoading();
+
+                if (!data.recipes?.length) {
+                    if (page === 1) {
+                        els.results.innerHTML = '<div class="no-recipes">Nessuna ricetta trovata con questi ingredienti.</div>';
+                    }
+                    hasMore = false;
+                    return;
+                }
+
+                let html = '';
+                if (page === 1) {
+                    html += `<div class="recommended">Recommended Recipes <span style="font-weight:normal; font-size:14px; color:#EF8A37;">(${data.total} found)</span></div>`;
+                    html += '<div class="recipes">';
+                }
+
+                data.recipes.forEach(r => {
+                    html += `
+                        <div class="recipe">
+                            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
+                            <div class="recipe-content">
+                                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
+                                    <input type="hidden" name="id" value="${r.id}">
+                                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
+                                        <div class="recipe-title">${r.name}</div>
+                                    </button>
+                                </form>
+                                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
+                            </div>
+                        </div>`;
+                });
+
+                if (page === 1) {
+                    els.results.innerHTML = html + '</div>';
+                } else {
+                    const container = els.results.querySelector('.recipes');
+                    container.insertAdjacentHTML('beforeend', html);
+                }
+
+                hasMore = data.page < data.pages;
+                currentPage = data.page;
+            })
+            .catch(() => {
+                hideLoading();
+                if (page === 1) {
+                    els.results.innerHTML = '<div class="no-recipes">Errore di connessione. Riprova.</div>';
+                }
+            });
+    }
+
+    // --- INFINITE SCROLL ---
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            if (scrollTop + clientHeight >= scrollHeight - 300 && hasMore && !isLoading) {
+                search(currentPage + 1);
+            }
+        }, 100);
+    });
+
+    // --- POST GENERICO ---
+    function post(action, data, callback) {
+        const form = new FormData();
+        for (const key in data) form.append(key, data[key]);
+
+        fetch(`dashboard.php?ajax=${action}`, { method: 'POST', body: form })
+            .then(r => r.json())
+            .then(res => {
+                if (res.success) {
+                    updateTags(res.ingredients);
+                    if (callback) callback();
+                }
+            })
+            .catch(() => alert('Errore di rete. Riprova.'));
+    }
+
+    function updateTags(ingredients) {
+        if (!ingredients.length) {
+            els.tags.innerHTML = '<div class="no-ingredients">Aggiungi ingredienti per cercare ricette!</div>';
+            return;
+        }
+        els.tags.innerHTML = ingredients.map(ing =>
+            `<div class="tag" data-name="${ing}">${ing} <span class="tag-close">×</span></div>`
+        ).join('');
+    }
+
+    document.addEventListener('click', e => {
+        if (!els.input.contains(e.target) && !els.suggestions.contains(e.target)) {
+            els.suggestions.innerHTML = '';
+        }
+    });
+
+    if (els.tags.querySelectorAll('.tag').length > 0) {
+        resetInfiniteScroll();
+        search(1);
+    }
+</script>
+
 </body>
 </html>
