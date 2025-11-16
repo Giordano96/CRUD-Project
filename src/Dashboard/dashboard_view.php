@@ -45,15 +45,15 @@
 </div>
 
 <div class="bottom-nav">
-    <div class="nav-item">
+    <div class="nav-item active" onclick="location.href='dashboard.php'">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
-    <div class="nav-item">
+    <div class="nav-item" onclick="location.href='inventory_view.php'">
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
-    <div class="nav-item">
+    <div class="nav-item" onclick="location.href='favorites.php'">
         <span class="material-symbols-outlined">favorite</span>
         Favorites
     </div>
@@ -176,19 +176,23 @@
                 }
 
                 data.recipes.forEach(r => {
+
                     html += `
-                        <div class="recipe">
-                            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
-                            <div class="recipe-content">
-                                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
-                                    <input type="hidden" name="id" value="${r.id}">
-                                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
-                                        <div class="recipe-title">${r.name}</div>
-                                    </button>
-                                </form>
-                                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
-                            </div>
-                        </div>`;
+        <div class="recipe">
+            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
+            <div class="recipe-content">
+                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
+                    <input type="hidden" name="recipe_id" value="${r.id}">
+                    <?php foreach ($_SESSION['selected_ingredients'] as $ing): ?>
+                        <input type="hidden" name="selected_ingredients[]" value="<?php echo htmlspecialchars($ing); ?>">
+                    <?php endforeach; ?>
+                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
+                        <div class="recipe-title">${r.name}</div>
+                    </button>
+                </form>
+                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
+            </div>
+        </div>`;
                 });
 
                 if (page === 1) {

@@ -14,7 +14,7 @@ if (!isset($_SESSION["user_id"])) {
         http_response_code(401);
         exit(json_encode(['error' => 'Non autenticato']));
     }
-    header("Location: Login/login.php");
+    header("Location: ../Login/login.php");
     exit;
 }
 
@@ -83,7 +83,7 @@ if (isset($_GET['ajax'])) {
             }
 
             $page = max(1, (int)($_GET['page'] ?? 1));
-            $per_page = 12;
+            $per_page = 10;
             $offset = ($page - 1) * $per_page;
             $placeholders = str_repeat('?,', count($ingredients) - 1) . '?';
 

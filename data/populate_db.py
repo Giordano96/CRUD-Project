@@ -72,33 +72,56 @@ for index, row in df.iterrows():
     # Parse ingredients_parsed
     parsed_str = row['ingredients_parsed']
     if pd.notna(parsed_str):
-        pattern = r"quantity: (\d+\.?\d*) unit: ([\w]+) ingredient: (.*?)(?= quantity:|$)"
+        pattern = r"quantity: (\d+\.?\d*) unit: ([\w]+) ingredient: (.*?)(?= quantity:| $)"
         parsed_items = re.findall(pattern, parsed_str)
 
         # Get tags list
         tags_list = [tag.strip() for tag in row['tags'].split(',')] if pd.notna(row['tags']) else []
 
-        for tag in tags_list:
-            matching_parsed = []
-            for q_str, u, ing in parsed_items:
-                if tag.lower() in ing.lower():
-                    q = float(q_str)
-                    matching_parsed.append((q, u))
+        # Crea un dizionario: ingrediente_parte → (quantity, unit)
+        parsed_dict = {}
+        for q_str, unit, ingredient in parsed_items:
+            ingredient = ingredient.strip()
+            q = float(q_str)
+            # Somma quantità se stesso ingrediente appare più volte
+            if ingredient in parsed_dict:
+                parsed_dict[ingredient] = (parsed_dict[ingredient][0] + q, unit)
+            else:
+                parsed_dict[ingredient] = (q, unit)
 
-            if matching_parsed:
-                units = set(u for _, u in matching_parsed)
-                if len(units) > 1:
-                    continue  # Skip if different units
-                total_q = sum(q for q, _ in matching_parsed)
-                unit = matching_parsed[0][1]
-                allowed_units = ['bottle', 'can', 'cans', 'jar', 'jars', 'package', 'piece', 'g', 'ml']
-                if unit not in allowed_units:
-                    continue
+        # Ora associa ogni tag a UN SOLO ingrediente parsed (match esatto o per parola intera)
+        for tag in tags_list:
+            tag_lower = tag.lower()
+            matched_ingredient = None
+            matched_qty = 0
+            matched_unit = None
+
+            # Cerca match esatto prima
+            for ing, (q, u) in parsed_dict.items():
+                if tag_lower == ing.lower():
+                    matched_ingredient = ing
+                    matched_qty = q
+                    matched_unit = u
+                    break
+
+            # Se non c'è match esatto, cerca per parola intera (evita "ice" in "ice cream")
+            if not matched_ingredient:
+                for ing, (q, u) in parsed_dict.items():
+                    ing_words = [w.strip() for w in ing.split()]
+                    tag_words = tag_lower.split()
+                    if all(word in [w.lower() for w in ing_words] for word in tag_words):
+                        if len(tag_words) == len(ing_words):  # match completo
+                            matched_ingredient = ing
+                            matched_qty = q
+                            matched_unit = u
+                            break
+
+            if matched_ingredient and matched_unit in ['bottle','can','cans','jar','jars','package','piece','g','ml']:
                 if tag in ingredient_dict:
                     cursor.execute("""
                         INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit)
                         VALUES (%s, %s, %s, %s)
-                    """, (recipe_id, ingredient_dict[tag], total_q, unit))
+                    """, (recipe_id, ingredient_dict[tag], matched_qty, matched_unit))
     conn.commit()
 
 # Close connection

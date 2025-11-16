@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="upgraded dashboard and add favorites backend">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="lik new frontend with upgraded backend of dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/login_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/login_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,7 @@
       <workItem from="1763130108243" duration="8538000" />
       <workItem from="1763152403230" duration="1287000" />
       <workItem from="1763194716997" duration="9627000" />
-      <workItem from="1763288961175" duration="6157000" />
+      <workItem from="1763288961175" duration="12297000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -208,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763222540145</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="lik new frontend with upgraded backend of dashboard">
+      <option name="closed" value="true" />
+      <created>1763295219332</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763295219332</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +241,7 @@
     <MESSAGE value="implemented part o dashboard.php, logout.php" />
     <MESSAGE value="upgraded dashboard" />
     <MESSAGE value="upgraded dashboard and add favorites backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="upgraded dashboard and add favorites backend" />
+    <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="lik new frontend with upgraded backend of dashboard" />
   </component>
 </project>
