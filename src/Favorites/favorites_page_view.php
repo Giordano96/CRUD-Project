@@ -1,63 +1,71 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preferiti – MySecretChef</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,box,favorite,view_cozy" />
+    <title>My Secret Chef - Favorites</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="main-container">
-
-    <nav class="sidebar">
-        <ul>
-            <li><a href="dashboard_view.php"><span>🏠</span> Home</a></li>
-            <li><a href="inventory_view.php"><span>📋</span> Inventario</a></li>
-            <li><a href="recipes.php"><span>🍝</span> Ricette</a></li>
-            <li><a href="favorites_page_view.php" class="active"><span>❤️</span> Preferiti</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <h1>I tuoi Preferiti</h1>
-        <div class="recipe-box">
-            <h2>Ricette salvate</h2>
-            <div class="recipe-grid">
-                <div class="recipe-card">
-                    <img src="img/pomo_basilico.png" alt="">
-                    <h3>Pasta al Pomodoro</h3>
-                    <p>Pronta in 20 min</p>
-                    <br>
-                    <button>Dettagli</button>
-                </div>
-
-                <div class="recipe-card">
-                    <img src="img/garlic_bread.png" alt="">
-                    <h3>Baracca</h3>
-                    <p>Pronta in 15 min</p>
-                    <br>
-                    <button>Dettagli</button>
-                </div>
-
-                <div class="recipe-card">
-                    <img src="img/tiramisu.png" alt="">
-                    <h3>Tiramisù</h3>
-                    <p>Dolce classico italiano</p>
-                    <br>
-                    <button>Dettagli</button>
-                </div>
-
-                <div class="recipe-card">
-                    <img src="img/pesto.png" alt="">
-                    <h3>Pasta al Pesto</h3>
-                    <p>Pronta in 18 min</p>
-                    <br>
-                    <button>Dettagli</button>
-                </div>
-            </div>
+<div class="header">
+    <span class="material-symbols-outlined back-icon">arrow_back</span>
+    My Favorites
+</div>
+<div class="content">
+    <div class="recipes">
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Spicy Chickpea Curry">
+            <div class="recipe-title">Spicy Chickpea Curry</div>
         </div>
-    </main>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Lemon Herb Roasted Chicken">
+            <div class="recipe-title">Lemon Herb Roasted Chicken</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Vegetable Stir-Fry with Tofu">
+            <div class="recipe-title">Vegetable Stir-Fry with Tofu</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Creamy Tomato Pasta">
+            <div class="recipe-title">Creamy Tomato Pasta</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Grilled Salmon with Asparagus">
+            <div class="recipe-title">Grilled Salmon with Asparagus</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+
+    </div>
+</div>
+<div class="bottom-nav">
+    <div class="nav-item">
+        <span class="material-symbols-outlined">view_cozy</span>
+        Home
+    </div>
+    <div class="nav-item">
+        <span class="material-symbols-outlined">box</span>
+        Inventory
+    </div>
+    <div class="nav-item">
+        <span class="material-symbols-outlined">favorite</span>
+        Favorites
+    </div>
 </div>
 </body>
 </html>

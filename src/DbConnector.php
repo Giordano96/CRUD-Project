@@ -1,25 +1,24 @@
 <?php
+$host = 'localhost';
+$dbname = 'MySecretChef';
+$user = 'root';
+$password = '';
 
-declare(strict_types=1);
-
-class DbConnector
-{
-    private string $servername;
-    private string $username;
-    private string $password;
-    private string $dbname;
-
-    public function __construct(string $servername, string $username, string $password, string $dbname)
-    {
-        $this->servername = $servername;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
-    }
-
-    public function prepare(string $query): PDOStatement
-    {
-        $connection = new PDO("mysql:host={$this->servername};dbname={$this->dbname}", $this->username, $this->password);
-        return $connection->prepare($query);
-    }
+try {
+    global $pdo;
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $user,
+        $password,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false
+        ]
+    );
+} catch (PDOException $e) {
+    // In produzione, logga l'errore, non mostrarlo
+    error_log("Errore connessione DB: " . $e->getMessage());
+    die("Errore di connessione al database. Riprova più tardi.");
 }
+?>

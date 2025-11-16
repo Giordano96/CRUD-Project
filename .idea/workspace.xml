@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="Added front-end pages by alessio parlani and jonathan panico">
-      <change afterPath="$PROJECT_DIR$/data/duplicate_recipes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="populated_db.py and db fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sign/signup.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sign/signup_view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sign/styles.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="LorenzoUccellani" />
+        <entry key="$PROJECT_DIR$" value="Dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,41 +43,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.Ingredients_List.executor": "Run",
-    "Python.base_ingredients.executor": "Run",
-    "Python.clean_ingredients.executor": "Run",
-    "Python.controllo_ingrediente_cleaned_2.executor": "Run",
-    "Python.count_categories.executor": "Run",
-    "Python.count_nutrients.executor": "Run",
-    "Python.count_unit.executor": "Run",
-    "Python.describe_categories.executor": "Run",
-    "Python.duplicate_recipes.executor": "Run",
-    "Python.ingredients_parse.executor": "Run",
-    "Python.morecleaning.executor": "Run",
-    "Python.populate_db.executor": "Run",
-    "Python.recipe_categories_parse.executor": "Run",
-    "Python.recipe_nutrients_parse.executor": "Run",
-    "Python.single_ingredients.executor": "Run",
-    "Python.solo_ingredient.executor": "Run",
-    "Python.time__servings.executor": "Run",
-    "Python.try_unit.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "LorenzoUccellani",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src/Sign",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.fileTypes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,
+    &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,
+    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
+    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,
+    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lolly/PycharmProjects/CRUD-Project/data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
@@ -96,7 +100,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
       </set>
     </attachedChunks>
   </component>
@@ -108,6 +113,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1758831181403</updated>
+      <workItem from="1763130108243" duration="8538000" />
+      <workItem from="1763152403230" duration="1287000" />
+      <workItem from="1763194716997" duration="9627000" />
+      <workItem from="1763288961175" duration="12297000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -165,7 +174,55 @@
       <option name="project" value="LOCAL" />
       <updated>1762106382094</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated">
+      <option name="closed" value="true" />
+      <created>1762727526461</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762727526461</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implemented part o dashboard.php, logout.php">
+      <option name="closed" value="true" />
+      <created>1762729595622</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762729595622</updated>
+    </task>
+    <task id="LOCAL-00010" summary="upgraded dashboard">
+      <option name="closed" value="true" />
+      <created>1763145937622</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763145937622</updated>
+    </task>
+    <task id="LOCAL-00011" summary="upgraded dashboard and add favorites backend">
+      <option name="closed" value="true" />
+      <created>1763222540145</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763222540145</updated>
+    </task>
+    <task id="LOCAL-00012" summary="lik new frontend with upgraded backend of dashboard">
+      <option name="closed" value="true" />
+      <created>1763295219332</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763295219332</updated>
+    </task>
+    <task id="LOCAL-00013" summary="populated_db.py and db fixed">
+      <option name="closed" value="true" />
+      <created>1763314346596</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763314346596</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +243,12 @@
     <MESSAGE value="modify base_ingredients.py" />
     <MESSAGE value="recipes_cleaned.csv" />
     <MESSAGE value="Added front-end pages by alessio parlani and jonathan panico" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added front-end pages by alessio parlani and jonathan panico" />
+    <MESSAGE value="fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated" />
+    <MESSAGE value="implemented part o dashboard.php, logout.php" />
+    <MESSAGE value="upgraded dashboard" />
+    <MESSAGE value="upgraded dashboard and add favorites backend" />
+    <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
+    <MESSAGE value="populated_db.py and db fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="populated_db.py and db fixed" />
   </component>
 </project>
