@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="populated_db.py and db fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sign/signup.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sign/signup_view.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sign/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="5ab4ac02-bb94-46f5-bc4f-7696f652e078" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -83,11 +88,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\data" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_nutrients" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_categories" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\CRUD-Project\src" />
@@ -249,6 +254,8 @@
     <MESSAGE value="upgraded dashboard and add favorites backend" />
     <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
     <MESSAGE value="populated_db.py and db fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="populated_db.py and db fixed" />
+    <MESSAGE value="Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql" />
+    <MESSAGE value="merge LorenzoUccellani branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge LorenzoUccellani branch" />
   </component>
 </project>

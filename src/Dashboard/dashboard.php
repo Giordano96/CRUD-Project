@@ -1,5 +1,5 @@
 <?php
-// dashboard.php - Versione FULL AJAX + RICERCA "ALMENOUNO"
+// dashboard.php - CSRF TOKEN RIUTILIZZABILE
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,7 +8,6 @@ global $pdo;
 
 session_start();
 
-// --- AUTENTICAZIONE ---
 if (!isset($_SESSION["user_id"])) {
     if (isset($_GET['ajax'])) {
         http_response_code(401);
@@ -21,13 +20,17 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 $_SESSION['selected_ingredients'] ??= [];
 
-// --- ENDPOINT AJAX ---
+// --- CSRF TOKEN (una volta per sessione) ---
+if (!isset($_SESSION["csrf_token"])) {
+    $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
+}
+$csrf_token = $_SESSION["csrf_token"];
+
 if (isset($_GET['ajax'])) {
     header('Content-Type: application/json');
     $action = $_GET['ajax'];
 
     try {
-        // 1. SUGGERIMENTI
         if ($action === 'suggest' && !empty($_GET['q'])) {
             $q = "%" . trim($_GET['q']) . "%";
             $stmt = $pdo->prepare("SELECT name FROM ingredient WHERE name LIKE ? ORDER BY name LIMIT 10");
@@ -35,7 +38,15 @@ if (isset($_GET['ajax'])) {
             exit(json_encode($stmt->fetchAll(PDO::FETCH_COLUMN)));
         }
 
-        // 2. AGGIUNGI INGREDIENTE
+        // === POST CON CSRF (token NON consumato) ===
+        $valid_post_actions = ['add', 'remove', 'load_inventory'];
+        if (in_array($action, $valid_post_actions)) {
+            if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+                exit(json_encode(['error' => 'Invalid CSRF token']));
+            }
+            // TOKEN RIMANE VALIDO - NON RIGENERARE
+        }
+
         if ($action === 'add' && !empty($_POST['ingredient'])) {
             $name = trim($_POST['ingredient']);
             $stmt = $pdo->prepare("SELECT 1 FROM ingredient WHERE name = ?");
@@ -46,7 +57,6 @@ if (isset($_GET['ajax'])) {
             exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
         }
 
-        // 3. RIMUOVI INGREDIENTE
         if ($action === 'remove' && !empty($_POST['ingredient'])) {
             $name = $_POST['ingredient'];
             $_SESSION['selected_ingredients'] = array_values(array_filter(
@@ -56,11 +66,9 @@ if (isset($_GET['ajax'])) {
             exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
         }
 
-        // 4. CARICA DA INVENTARIO
         if ($action === 'load_inventory') {
             $stmt = $pdo->prepare("
-                SELECT i.name 
-                FROM inventory inv 
+                SELECT i.name FROM inventory inv 
                 JOIN ingredient i ON inv.ingredient_id = i.id 
                 WHERE inv.user_id = ? AND inv.quantity > 0
                 ORDER BY i.name
@@ -75,7 +83,6 @@ if (isset($_GET['ajax'])) {
             exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
         }
 
-        // 5. CERCA RICETTE - ALMENO UN INGREDIENTE
         if ($action === 'search') {
             $ingredients = $_SESSION['selected_ingredients'];
             if (empty($ingredients)) {
@@ -87,28 +94,12 @@ if (isset($_GET['ajax'])) {
             $offset = ($page - 1) * $per_page;
             $placeholders = str_repeat('?,', count($ingredients) - 1) . '?';
 
-            // Conta totale ricette con almeno un ingrediente
-            $count_stmt = $pdo->prepare("
-                SELECT COUNT(DISTINCT r.id)
-                FROM recipe r
-                JOIN recipe_ingredient ri ON r.id = ri.recipe_id
-                JOIN ingredient i ON ri.ingredient_id = i.id
-                WHERE i.name IN ($placeholders)
-            ");
+            $count_stmt = $pdo->prepare("SELECT COUNT(DISTINCT r.id) FROM recipe r JOIN recipe_ingredient ri ON r.id = ri.recipe_id JOIN ingredient i ON ri.ingredient_id = i.id WHERE i.name IN ($placeholders)");
             $count_stmt->execute($ingredients);
             $total = (int)$count_stmt->fetchColumn();
             $pages = max(1, ceil($total / $per_page));
 
-            // Ricette
-            $stmt = $pdo->prepare("
-                SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time
-                FROM recipe r
-                JOIN recipe_ingredient ri ON r.id = ri.recipe_id
-                JOIN ingredient i ON ri.ingredient_id = i.id
-                WHERE i.name IN ($placeholders)
-                ORDER BY r.id DESC
-                LIMIT ? OFFSET ?
-            ");
+            $stmt = $pdo->prepare("SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time FROM recipe r JOIN recipe_ingredient ri ON r.id = ri.recipe_id JOIN ingredient i ON ri.ingredient_id = i.id WHERE i.name IN ($placeholders) ORDER BY r.id DESC LIMIT ? OFFSET ?");
             $stmt->execute(array_merge($ingredients, [$per_page, $offset]));
             $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -126,7 +117,6 @@ if (isset($_GET['ajax'])) {
     }
 }
 
-// --- DATI INIZIALI ---
 $stmt = $pdo->prepare("SELECT username FROM user WHERE id = ?");
 $stmt->execute([$user_id]);
 $username = $stmt->fetchColumn() ?: "Utente";

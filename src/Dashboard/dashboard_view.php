@@ -44,8 +44,11 @@
     </div>
 </div>
 
+<!-- CSRF TOKEN -->
+<input type="hidden" id="csrf-token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
 <div class="bottom-nav">
-    <div class="nav-item active" onclick="location.href='dashboard.php'">
+    <div class="nav-item active">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
@@ -53,7 +56,7 @@
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
-    <div class="nav-item" onclick="location.href='favorites.php'">
+    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
         <span class="material-symbols-outlined">favorite</span>
         Favorites
     </div>
@@ -67,7 +70,8 @@
         addInvBtn: document.getElementById('add-inventory-btn'),
         results: document.getElementById('recipe-results'),
         tags: document.getElementById('selected-tags'),
-        loading: document.getElementById('loading')
+        loading: document.getElementById('loading'),
+        csrf: document.getElementById('csrf-token')
     };
 
     let timer;
@@ -119,7 +123,29 @@
         els.suggestions.innerHTML = '';
     };
 
-    // --- AZIONI INGREDIENTI ---
+    // --- POST GENERICO CON CSRF ---
+    function post(action, data, callback) {
+        const form = new FormData();
+        form.append('csrf_token', els.csrf.value);
+        for (const key in data) form.append(key, data[key]);
+
+        fetch(`dashboard.php?ajax=${action}`, { method: 'POST', body: form })
+            .then(r => r.json())
+            .then(res => {
+                if (res.error === 'Invalid CSRF token') {
+                    alert('Token di sicurezza non valido. Ricaricamento...');
+                    location.reload();
+                    return;
+                }
+                if (res.success) {
+                    updateTags(res.ingredients);
+                    if (callback) callback();
+                }
+            })
+            .catch(() => alert('Errore di rete. Riprova.'));
+    }
+
+    // --- AZIONI ---
     els.addBtn.onclick = () => {
         const name = els.input.value.trim();
         if (!name) return;
@@ -163,7 +189,12 @@
 
                 if (!data.recipes?.length) {
                     if (page === 1) {
-                        els.results.innerHTML = '<div class="no-recipes">Nessuna ricetta trovata con questi ingredienti.</div>';
+                        // Se non ci sono ingredienti → messaggio iniziale
+                        if (els.tags.querySelectorAll('.tag').length === 0) {
+                            els.results.innerHTML = '<div style="text-align:center; color:#999; padding:1rem;">Aggiungi ingredienti e vedi le ricette suggerite!</div>';
+                        } else {
+                            els.results.innerHTML = '<div class="no-recipes">Nessuna ricetta trovata con questi ingredienti.</div>';
+                        }
                     }
                     hasMore = false;
                     return;
@@ -176,23 +207,22 @@
                 }
 
                 data.recipes.forEach(r => {
-
                     html += `
-        <div class="recipe">
-            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
-            <div class="recipe-content">
-                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
-                    <input type="hidden" name="recipe_id" value="${r.id}">
-                    <?php foreach ($_SESSION['selected_ingredients'] as $ing): ?>
-                        <input type="hidden" name="selected_ingredients[]" value="<?php echo htmlspecialchars($ing); ?>">
-                    <?php endforeach; ?>
-                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
-                        <div class="recipe-title">${r.name}</div>
-                    </button>
-                </form>
-                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
-            </div>
-        </div>`;
+                        <div class="recipe">
+                            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
+                            <div class="recipe-content">
+                                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
+                                    <input type="hidden" name="recipe_id" value="${r.id}">
+                                    <?php foreach ($_SESSION['selected_ingredients'] as $ing): ?>
+                                        <input type="hidden" name="selected_ingredients[]" value="<?php echo htmlspecialchars($ing); ?>">
+                                    <?php endforeach; ?>
+                                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
+                                        <div class="recipe-title">${r.name}</div>
+                                    </button>
+                                </form>
+                                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
+                            </div>
+                        </div>`;
                 });
 
                 if (page === 1) {
@@ -224,22 +254,6 @@
             }
         }, 100);
     });
-
-    // --- POST GENERICO ---
-    function post(action, data, callback) {
-        const form = new FormData();
-        for (const key in data) form.append(key, data[key]);
-
-        fetch(`dashboard.php?ajax=${action}`, { method: 'POST', body: form })
-            .then(r => r.json())
-            .then(res => {
-                if (res.success) {
-                    updateTags(res.ingredients);
-                    if (callback) callback();
-                }
-            })
-            .catch(() => alert('Errore di rete. Riprova.'));
-    }
 
     function updateTags(ingredients) {
         if (!ingredients.length) {
