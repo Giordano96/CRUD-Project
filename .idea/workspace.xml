@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="lik new frontend with upgraded backend of dashboard">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_11_2025_12_21__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
-    </list>
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="populated_db.py and db fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763295219332</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="populated_db.py and db fixed">
+      <option name="closed" value="true" />
+      <created>1763314346596</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763314346596</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +241,7 @@
     <MESSAGE value="upgraded dashboard" />
     <MESSAGE value="upgraded dashboard and add favorites backend" />
     <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="lik new frontend with upgraded backend of dashboard" />
+    <MESSAGE value="populated_db.py and db fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="populated_db.py and db fixed" />
   </component>
 </project>
