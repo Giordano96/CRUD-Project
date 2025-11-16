@@ -15,27 +15,27 @@
 <div class="content">
     <div class="recipes">
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Spicy Chickpea Curry">
+            <img src="img/garlic_bread.png" alt="Spicy Chickpea Curry">
             <div class="recipe-title">Spicy Chickpea Curry</div>
         </div>
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Lemon Herb Roasted Chicken">
+            <img src="img/garlic_bread.png" alt="Lemon Herb Roasted Chicken">
             <div class="recipe-title">Lemon Herb Roasted Chicken</div>
         </div>
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Vegetable Stir-Fry with Tofu">
+            <img src="img/garlic_bread.png" alt="Vegetable Stir-Fry with Tofu">
             <div class="recipe-title">Vegetable Stir-Fry with Tofu</div>
         </div>
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Creamy Tomato Pasta">
+            <img src="img/garlic_bread.png" alt="Creamy Tomato Pasta">
             <div class="recipe-title">Creamy Tomato Pasta</div>
         </div>
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Grilled Salmon with Asparagus">
+            <img src="img/garlic_bread.png" alt="Grilled Salmon with Asparagus">
             <div class="recipe-title">Grilled Salmon with Asparagus</div>
         </div>
         <div class="recipe">
-            <img src="img/spaghetti_fung.png" alt="Quinoa Salad with Avocado">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
             <div class="recipe-title">Quinoa Salad with Avocado</div>
         </div>
     </div>
