@@ -1,131 +1,195 @@
-import pandas as pd
+import csv
 import mysql.connector
 import re
+from difflib import SequenceMatcher
+import logging
 
-# Connect to the database
-conn = mysql.connector.connect(
-    host='localhost',
-    user='root',  # Change to your username
-    password='',  # Change to your password
-    database='mysecretchef'
+# === CONFIGURAZIONE LOG (opzionale) ===
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# === CONNESSIONE DATABASE ===
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",        # Cambia se necessario
+    password="",        # Inserisci password
+    database="mysecretchef",
+    port=3306,
+    autocommit=False
 )
-cursor = conn.cursor()
+cursor = db.cursor()
 
-# Step 1: Populate nutrient table
+# === FUNZIONI DI SUPPORTO ===
+def normalize(s):
+    """Rimuove caratteri non alfabetici e converte in minuscolo"""
+    return re.sub(r'[^a-z]', '', s.lower())
+
+def similarity(a, b):
+    """Calcola somiglianza tra due stringhe"""
+    return SequenceMatcher(None, a, b).ratio()
+
+def best_match_tag(full_ing, tags):
+    """Trova il tag più simile a full_ing tra i tags"""
+    full_norm = normalize(full_ing)
+    words = full_norm.split()
+    last_word = words[-1] if words else ""
+
+    best_tag = None
+    best_score = 0
+
+    for tag in tags:
+        tag_norm = normalize(tag)
+        score = 0
+
+        # 1. Sottostringa esatta
+        if tag_norm in full_norm:
+            score = 1.0
+        else:
+            # 2. Somiglianza con ultima parola o frase completa
+            score = max(
+                similarity(tag_norm, last_word),
+                similarity(tag_norm, full_norm)
+            )
+
+        if score > best_score and score >= 0.6:
+            best_score = score
+            best_tag = tag
+
+    return best_tag
+
+# === 1. POPOLA TABELLA NUTRIENT ===
 nutrient_names = [
-    'Total Fat', 'Saturated Fat', 'Total Carbohydrate',
-    'Dietary Fiber', 'Total Sugars', 'Protein'
+    "Total Fat", "Saturated Fat", "Total Carbohydrate",
+    "Dietary Fiber", "Total Sugars", "Protein"
 ]
+
+logger.info("Inserimento nutrienti...")
 for name in nutrient_names:
     cursor.execute("INSERT IGNORE INTO nutrient (name) VALUES (%s)", (name,))
-conn.commit()
+db.commit()
 
-# Get nutrient ids
+# Recupera ID nutrienti
+nutrient_ids = {}
 cursor.execute("SELECT id, name FROM nutrient")
-nutrient_dict = {row[1]: row[0] for row in cursor.fetchall()}
+for nid, name in cursor.fetchall():
+    nutrient_ids[name] = nid
 
-# Step 2: Read the CSV
-df = pd.read_csv('recipes_cleaned.csv')
-
-# Step 3: Collect unique ingredients from tags
+# === 2. RACCOLTA INGREDIENTI UNIVOCI DA TAGS ===
+logger.info("Raccolta ingredienti univoci da tags...")
 unique_ingredients = set()
-for tags in df['tags']:
-    if pd.notna(tags):
-        unique_ingredients.update([tag.strip() for tag in tags.split(',')])
 
-# Insert unique ingredients
-for ing in unique_ingredients:
+with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        if row["tags"]:
+            tags = [t.strip() for t in row["tags"].split(",") if t.strip()]
+            unique_ingredients.update(tags)
+
+# === 3. INSERISCI INGREDIENTI UNIVOCI ===
+logger.info(f"Inserimento {len(unique_ingredients)} ingredienti univoci...")
+for ing in sorted(unique_ingredients):
     cursor.execute("INSERT IGNORE INTO ingredient (name) VALUES (%s)", (ing,))
-conn.commit()
+db.commit()
 
-# Get ingredient ids
+# Recupera ID ingredienti
+ingredient_ids = {}
 cursor.execute("SELECT id, name FROM ingredient")
-ingredient_dict = {row[1]: row[0] for row in cursor.fetchall()}
+for iid, name in cursor.fetchall():
+    ingredient_ids[name] = iid
 
-# Step 4: Populate recipe, recipe_nutrient, recipe_ingredient
-for index, row in df.iterrows():
-    # Insert recipe
-    cursor.execute("""
-        INSERT INTO recipe (name, instructions, category, image_url, prep_time)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (row['recipe_name'], row['directions'], row['category'], row['img_src'], row['total_mins']))
-    recipe_id = cursor.lastrowid
-    conn.commit()
+# === 4. POPOLA RICETTE, NUTRIENTI E INGREDIENTI ===
+logger.info("Popolamento ricette, nutrienti e ingredienti...")
+with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
+    reader = csv.DictReader(f)
+    recipe_count = 0
 
-    # Parse and insert recipe_nutrient
-    if pd.notna(row['nutrition']):
-        nutrition_str = row['nutrition']
-        nutrients = {}
-        for part in nutrition_str.split(','):
-            if ':' in part:
-                name, value = part.split(':', 1)
-                nutrients[name.strip()] = int(float(value.strip()))  # Since decimal(10,0)
+    for row in reader:
+        recipe_count += 1
+        if recipe_count % 50 == 0:
+            logger.info(f"Elaborate {recipe_count} ricette...")
 
-        for nut_name, value in nutrients.items():
-            if nut_name in nutrient_dict:
-                cursor.execute("""
-                    INSERT INTO recipe_nutrient (recipe_id, nutrient_id, value)
-                    VALUES (%s, %s, %s)
-                """, (recipe_id, nutrient_dict[nut_name], value))
-    conn.commit()
+        # --- RICETTA ---
+        name = row["recipe_name"].strip()
+        instructions = row["directions"].strip()
+        category = row["category"]
+        image_url = row["img_src"]
+        prep_time = int(row["total_mins"]) if row["total_mins"].strip() else None
 
-    # Parse ingredients_parsed
-    parsed_str = row['ingredients_parsed']
-    if pd.notna(parsed_str):
-        pattern = r"quantity: (\d+\.?\d*) unit: ([\w]+) ingredient: (.*?)(?= quantity:| $)"
-        parsed_items = re.findall(pattern, parsed_str)
+        cursor.execute("""
+            INSERT INTO recipe (name, instructions, category, image_url, prep_time)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (name, instructions, category, image_url, prep_time))
+        recipe_id = cursor.lastrowid
 
-        # Get tags list
-        tags_list = [tag.strip() for tag in row['tags'].split(',')] if pd.notna(row['tags']) else []
+        # --- NUTRIENTI ---
+        nutrition_str = row["nutrition"]
+        nut_values = {}
+        if nutrition_str:
+            for part in nutrition_str.split(","):
+                if ":" in part:
+                    k, v = part.split(":", 1)
+                    k = k.strip()
+                    try:
+                        v = float(v.strip())
+                    except:
+                        v = 0
+                    nut_values[k] = v
 
-        # Crea un dizionario: ingrediente_parte → (quantity, unit)
-        parsed_dict = {}
-        for q_str, unit, ingredient in parsed_items:
-            ingredient = ingredient.strip()
-            q = float(q_str)
-            # Somma quantità se stesso ingrediente appare più volte
-            if ingredient in parsed_dict:
-                parsed_dict[ingredient] = (parsed_dict[ingredient][0] + q, unit)
-            else:
-                parsed_dict[ingredient] = (q, unit)
+        for nut_name in nutrient_names:
+            value = nut_values.get(nut_name, 0)
+            nut_id = nutrient_ids[nut_name]
+            cursor.execute("""
+                INSERT INTO recipe_nutrient (recipe_id, nutrient_id, value)
+                VALUES (%s, %s, %s)
+            """, (recipe_id, nut_id, value))
 
-        # Ora associa ogni tag a UN SOLO ingrediente parsed (match esatto o per parola intera)
-        for tag in tags_list:
-            tag_lower = tag.lower()
-            matched_ingredient = None
-            matched_qty = 0
-            matched_unit = None
+        # --- INGREDIENTI PARSED + MATCHING ---
+        tags = [t.strip() for t in row["tags"].split(",") if t.strip()]
+        parsed = re.findall(r"quantity: ([\d.]+) unit: (\S+) ingredient: (.*?)(?= quantity:|$)", row["ingredients_parsed"])
 
-            # Cerca match esatto prima
-            for ing, (q, u) in parsed_dict.items():
-                if tag_lower == ing.lower():
-                    matched_ingredient = ing
-                    matched_qty = q
-                    matched_unit = u
-                    break
+        ingredient_dict = {}
 
-            # Se non c'è match esatto, cerca per parola intera (evita "ice" in "ice cream")
-            if not matched_ingredient:
-                for ing, (q, u) in parsed_dict.items():
-                    ing_words = [w.strip() for w in ing.split()]
-                    tag_words = tag_lower.split()
-                    if all(word in [w.lower() for w in ing_words] for word in tag_words):
-                        if len(tag_words) == len(ing_words):  # match completo
-                            matched_ingredient = ing
-                            matched_qty = q
-                            matched_unit = u
-                            break
+        for quant_str, unit, full_ing in parsed:
+            full_ing = full_ing.strip()
+            if not full_ing or not tags:
+                continue
+            try:
+                quantity = float(quant_str)
+            except:
+                continue
 
-            if matched_ingredient and matched_unit in ['bottle','can','cans','jar','jars','package','piece','g','ml']:
-                if tag in ingredient_dict:
-                    cursor.execute("""
-                        INSERT INTO recipe_ingredient (recipe_id, ingredient_id, quantity, unit)
-                        VALUES (%s, %s, %s, %s)
-                    """, (recipe_id, ingredient_dict[tag], matched_qty, matched_unit))
-    conn.commit()
+            # Trova il miglior tag
+            best_tag = best_match_tag(full_ing, tags)
+            if not best_tag or best_tag not in ingredient_ids:
+                continue
 
-# Close connection
+            if best_tag not in ingredient_dict:
+                ingredient_dict[best_tag] = {"quantity": 0, "unit": unit, "raws": []}
+
+            entry = ingredient_dict[best_tag]
+            if entry["unit"] != unit:
+                continue  # Unità diverse: salta (o converti in futuro)
+
+            entry["quantity"] += quantity
+            entry["raws"].append(full_ing)
+
+        # --- INSERISCI recipe_ingredient ---
+        for tag, entry in ingredient_dict.items():
+            quantity = round(entry["quantity"], 2)
+            unit = entry["unit"]
+            raw_ingredient = ", ".join(entry["raws"])[:30]  # max 30 caratteri
+            ing_id = ingredient_ids[tag]
+
+            cursor.execute("""
+                INSERT INTO recipe_ingredient
+                (recipe_id, ingredient_id, raw_ingredient, quantity, unit)
+                VALUES (%s, %s, %s, %s, %s)
+            """, (recipe_id, ing_id, raw_ingredient, quantity, unit))
+
+    db.commit()
+    logger.info(f"Popolamento completato: {recipe_count} ricette inserite.")
+
+# === CHIUSURA ===
 cursor.close()
-conn.close()
-
-print("Database populated successfully.")
+db.close()
+logger.info("Connessione chiusa. Database popolato con successo!")
