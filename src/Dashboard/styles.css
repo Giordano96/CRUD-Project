@@ -201,8 +201,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
+    padding-bottom: 90px;
 }
-
 /* CARD RICETTA */
 .recipe {
     background-color: #fff;

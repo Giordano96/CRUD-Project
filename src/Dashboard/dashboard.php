@@ -83,7 +83,7 @@ if (isset($_GET['ajax'])) {
             }
 
             $page = max(1, (int)($_GET['page'] ?? 1));
-            $per_page = 10;
+            $per_page = 15;
             $offset = ($page - 1) * $per_page;
             $placeholders = str_repeat('?,', count($ingredients) - 1) . '?';
 
