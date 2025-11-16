@@ -38,6 +38,19 @@
             <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
             <div class="recipe-title">Quinoa Salad with Avocado</div>
         </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+        <div class="recipe">
+            <img src="img/garlic_bread.png" alt="Quinoa Salad with Avocado">
+            <div class="recipe-title">Quinoa Salad with Avocado</div>
+        </div>
+
     </div>
 </div>
 <div class="bottom-nav">
