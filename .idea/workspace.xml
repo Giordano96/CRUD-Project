@@ -5,17 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="added csrf-token in dashboard and favorites">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_19_38_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_19_38__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_23_52_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_23_52__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Favorites/favorites.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/edit_ingredient.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/edit_ingredient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/handle_inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/handle_inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/BackgroundLogin.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/BackgroundLogin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/login_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/logout.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763328871931</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="minor updates">
+      <option name="closed" value="true" />
+      <created>1763420190656</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763420190656</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +280,7 @@
     <MESSAGE value="Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql" />
     <MESSAGE value="merge LorenzoUccellani branch" />
     <MESSAGE value="added csrf-token in dashboard and favorites" />
-    <option name="LAST_COMMIT_MESSAGE" value="added csrf-token in dashboard and favorites" />
+    <MESSAGE value="minor updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor updates" />
   </component>
 </project>

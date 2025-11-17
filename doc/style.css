@@ -30,7 +30,7 @@ body {
     min-height: 370px;
 }
 
-/* Tab in alto (Login / Registrati) */
+/* Tab in alto (Login_Sign / Registrati) */
 .tabs {
     display: flex;
     justify-content: space-around;
