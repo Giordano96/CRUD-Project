@@ -3,7 +3,7 @@ require 'DbConnector.php';
 session_start();
 
 if (!isset($_SESSION['user_id']) || !isset($_GET['ingredient_id'])) {
-    header('Location: login.php');
+    header('Location: login_sign.php');
 }
 
 $conn = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
@@ -26,7 +26,7 @@ if (!$item) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifica Ingrediente - MySecretChef</title>
-    <link rel="stylesheet" href="../Login/styles.css">
+    <link rel="stylesheet" href="../Login_Sign/styles.css">
 </head>
 <body>
 <div class="main-container">

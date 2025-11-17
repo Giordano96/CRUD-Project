@@ -16,7 +16,7 @@ if (!isset($_SESSION["user_id"])) {
         echo json_encode(['error' => 'Not authenticated']);
         exit;
     }
-    header("Location: ../Login/login.php");
+    header("Location: ../Login_Sign/login_sign.php");
     exit;
 }
 

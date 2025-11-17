@@ -3,7 +3,7 @@ require 'DbConnector.php';
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: login_sign.php');
 }
 
 $conn = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
