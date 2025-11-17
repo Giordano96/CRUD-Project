@@ -1,9 +1,3 @@
-/* ==================================================================
-   STYLES.CSS – VERSIONE MINIMALE PER favorites_page_view.php
-   - Solo regole necessarie alla pagina Preferiti
-   - Back icon RIMOSSA (nessuna regola .back-icon)
-   - Uniforme con dashboard (grid, card, bottom nav, ecc.)
-   ================================================================== */
 
 /* Reset e layout base */
 *,
@@ -61,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: relative; /* per il pulsante remove */
+    position: relative;
 }
 
 .recipe img {
@@ -89,6 +83,7 @@ body {
     transition: color 0.2s ease;
     line-height: 1.3;
     word-break: break-word;
+    text-align: center;
 }
 
 .recipe-title:hover {

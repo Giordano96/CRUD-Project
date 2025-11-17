@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+    <meta charset=" bUTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Secret Chef - Preferiti</title>
+    <title>My Secret Chef - Favorites</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="header">I miei Preferiti</div>
+<div class="header">My Favorites</div>
 
 <div class="content">
-    <div id="recipe-results">
-        <div style="text-align:center; color:#999; padding:2rem;">Caricamento preferiti...</div>
+    <!-- Recipe grid container -->
+    <div id="recipeResults">
+        <div style="text-align:center; color:#999; padding:2rem;">Loading your favorites...</div>
     </div>
-    <div id="loading-fav">Caricamento...</div>
 </div>
 
-<!-- CSRF TOKEN -->
-<input type="hidden" id="csrf-token" value="<?php echo $_SESSION['csrf_token']; ?>">
+<!-- Hidden CSRF token -->
+<input type="hidden" id="csrfToken" value="<?= $_SESSION['csrf_token'] ?>">
 
+<!-- Bottom navigation -->
 <div class="bottom-nav">
     <div class="nav-item" onclick="location.href='../Dashboard/dashboard.php'">
         <span class="material-symbols-outlined">view_cozy</span>
@@ -37,130 +38,128 @@
 </div>
 
 <script>
-    const els = {
-        results: document.getElementById('recipe-results'),
-        loading: document.getElementById('loading-fav'),
-        csrf: document.getElementById('csrf-token')
-    };
+    // ==================== DOM ELEMENTS ====================
+    const recipeResults = document.getElementById('recipeResults');
+    const csrfToken = document.getElementById('csrfToken').value;
 
+    // ==================== STATE ====================
     let currentPage = 1;
+    let hasMoreRecipes = true;
     let isLoading = false;
-    let hasMore = true;
 
-    function showLoading() {
-        els.loading.style.display = 'block';
-        isLoading = true;
-    }
-
-    function hideLoading() {
-        els.loading.style.display = 'none';
-        isLoading = false;
-    }
-
-    function reset() {
+    // ==================== RESET SEARCH ====================
+    function resetSearch() {
         currentPage = 1;
-        hasMore = true;
-        els.results.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Caricamento preferiti...</div>';
+        hasMoreRecipes = true;
+        recipeResults.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Loading favorites...</div>';
     }
 
-    function search(page = 1) {
-        if (isLoading || !hasMore) return;
+    // ==================== LOAD FAVORITES ====================
+    function loadFavorites(page = 1) {
+        if (isLoading || !hasMoreRecipes) return;
+
         if (page === 1) {
-            els.results.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Caricamento...</div>';
-        } else {
-            showLoading();
+            recipeResults.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Loading...</div>';
         }
+
+        isLoading = true;
 
         fetch(`favorites.php?ajax=search&page=${page}`)
             .then(r => r.json())
             .then(data => {
-                hideLoading();
+                isLoading = false;
 
-                if (!data.recipes?.length) {
+                // No favorites
+                if (!data.recipes || data.recipes.length === 0) {
                     if (page === 1) {
-                        els.results.innerHTML = '<div class="no-favorites">Nessun preferito salvato.</div>';
+                        recipeResults.innerHTML = '<div class="no-favorites">You have no saved favorites yet.</div>';
                     }
-                    hasMore = false;
+                    hasMoreRecipes = false;
                     return;
                 }
 
                 let html = '';
                 if (page === 1) {
-                    html += `<div class="recipes">`;
+                    html += '<div class="recipes">';
                 }
 
-                data.recipes.forEach(r => {
+                data.recipes.forEach(recipe => {
+                    const imageUrl = recipe.image_url || 'img/garlic_bread.png';
                     html += `
                         <div class="recipe" style="position:relative;">
-                            <button class="recipe-remove" onclick="removeFav(${r.id}, event)">×</button>
-                            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
+                            <button class="recipe-remove" onclick="removeFavorite(${recipe.id}, event)" title="Remove from favorites">×</button>
+                            <img src="${imageUrl}" alt="${recipe.name}">
                             <div class="recipe-content">
-                                <form action="recipe_detail.php" method="POST" style="margin:0;padding:0;">
-                                    <input type="hidden" name="recipe_id" value="${r.id}">
-                                    <button type="submit" style="all:unset; cursor:pointer; width:100%; text-align:center;">
-                                        <div class="recipe-title">${r.name}</div>
+                                <form action="recipe_detail.php" method="POST">
+                                    <input type="hidden" name="recipe_id" value="${recipe.id}">
+                                    <button type="submit" style="all:unset; cursor:pointer; width:100%; text-align:left;">
+                                        <div class="recipe-title">${recipe.name}</div>
                                     </button>
                                 </form>
-                                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
+                                <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
                             </div>
                         </div>`;
                 });
 
                 if (page === 1) {
-                    els.results.innerHTML = html + '</div>';
+                    recipeResults.innerHTML = html + '</div>';
                 } else {
-                    const container = els.results.querySelector('.recipes');
-                    container.insertAdjacentHTML('beforeend', html);
+                    document.querySelector('.recipes').insertAdjacentHTML('beforeend', html);
                 }
 
-                hasMore = data.page < data.pages;
+                hasMoreRecipes = data.page < data.pages;
                 currentPage = data.page;
             })
             .catch(() => {
-                hideLoading();
+                isLoading = false;
                 if (page === 1) {
-                    els.results.innerHTML = '<div class="no-favorites">Errore di connessione.</div>';
+                    recipeResults.innerHTML = '<div class="no-favorites">Connection error. Please try again.</div>';
                 }
             });
     }
 
-    function removeFav(recipeId, e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // ==================== REMOVE FAVORITE ====================
+    function removeFavorite(recipeId, event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-        if (!confirm('Rimuovere dai preferiti?')) return;
+        const formData = new FormData();
+        formData.append('recipe_id', recipeId);
+        formData.append('csrf_token', csrfToken);
 
-        const form = new FormData();
-        form.append('recipe_id', recipeId);
-        form.append('csrf_token', els.csrf.value);
-
-        fetch('favorites.php?ajax=remove', { method: 'POST', body: form })
+        fetch('favorites.php?ajax=remove', {
+            method: 'POST',
+            body: formData
+        })
             .then(r => r.json())
-            .then(res => {
-                if (res.error === 'Invalid CSRF token') {
-                    alert('Token di sicurezza non valido. Ricaricamento...');
+            .then(response => {
+                if (response.error === 'Invalid CSRF token') {
+                    alert('Session expired. Reloading page...');
                     location.reload();
                     return;
                 }
-                if (res.success) {
-                    reset();
-                    search(1);
+                if (response.success) {
+                    resetSearch();
+                    loadFavorites(1);
                 }
-            });
+            })
+            .catch(() => alert('Failed to remove. Please try again.'));
     }
 
+    // ==================== INFINITE SCROLL ====================
     let scrollTimeout;
     window.addEventListener('scroll', () => {
-        if (scrollTimeout) clearTimeout(scrollTimeout);
+        clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-            if (scrollTop + clientHeight >= scrollHeight - 300 && hasMore && !isLoading) {
-                search(currentPage + 1);
+            const distanceFromBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+            if (distanceFromBottom < 400 && hasMoreRecipes && !isLoading) {
+                loadFavorites(currentPage + 1);
             }
         }, 100);
     });
 
-    search(1);
+    // ==================== START ====================
+    loadFavorites(1);
 </script>
 
 </body>

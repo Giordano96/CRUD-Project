@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="populated_db.py and db fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="added csrf-token in dashboard and favorites">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_19_38_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_19_38__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_23_52_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_11_2025_23_52__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Favorites/favorites.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_view.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Favorites/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +125,7 @@
       <workItem from="1763152403230" duration="1287000" />
       <workItem from="1763194716997" duration="9627000" />
       <workItem from="1763288961175" duration="12297000" />
+      <workItem from="1763411307178" duration="6389000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -227,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763314346596</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added csrf-token in dashboard and favorites">
+      <option name="closed" value="true" />
+      <created>1763328871931</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763328871931</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +268,7 @@
     <MESSAGE value="populated_db.py and db fixed" />
     <MESSAGE value="Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql" />
     <MESSAGE value="merge LorenzoUccellani branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge LorenzoUccellani branch" />
+    <MESSAGE value="added csrf-token in dashboard and favorites" />
+    <option name="LAST_COMMIT_MESSAGE" value="added csrf-token in dashboard and favorites" />
   </component>
 </project>

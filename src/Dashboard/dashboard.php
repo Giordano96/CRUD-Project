@@ -1,5 +1,6 @@
 <?php
-// dashboard.php - CSRF TOKEN RIUTILIZZABILE
+// dashboard.php - Main page of MySecretChef
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -8,121 +9,186 @@ global $pdo;
 
 session_start();
 
+// --- Check if user is logged in ---
 if (!isset($_SESSION["user_id"])) {
     if (isset($_GET['ajax'])) {
         http_response_code(401);
-        exit(json_encode(['error' => 'Non autenticato']));
+        echo json_encode(['error' => 'Not authenticated']);
+        exit;
     }
     header("Location: ../Login/login.php");
     exit;
 }
 
-$user_id = $_SESSION["user_id"];
-$_SESSION['selected_ingredients'] ??= [];
+$userId = $_SESSION["user_id"];
 
-// --- CSRF TOKEN (una volta per sessione) ---
+// List of currently selected ingredients (stored in session)
+if (!isset($_SESSION['selected_ingredients'])) {
+    $_SESSION['selected_ingredients'] = [];
+}
+$selectedIngredients = &$_SESSION['selected_ingredients'];
+
+// --- CSRF Token (one per session) ---
 if (!isset($_SESSION["csrf_token"])) {
     $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
 }
-$csrf_token = $_SESSION["csrf_token"];
+$csrfToken = $_SESSION["csrf_token"];
 
+// -------------------------------------------------
+// AJAX HANDLER
+// -------------------------------------------------
 if (isset($_GET['ajax'])) {
     header('Content-Type: application/json');
     $action = $_GET['ajax'];
 
     try {
+        // 1. Autocomplete suggestions
         if ($action === 'suggest' && !empty($_GET['q'])) {
-            $q = "%" . trim($_GET['q']) . "%";
-            $stmt = $pdo->prepare("SELECT name FROM ingredient WHERE name LIKE ? ORDER BY name LIMIT 10");
-            $stmt->execute([$q]);
-            exit(json_encode($stmt->fetchAll(PDO::FETCH_COLUMN)));
+            $query = "%" . trim($_GET['q']) . "%";
+            $stmt = $pdo->prepare("SELECT name FROM ingredient WHERE name LIKE :query ORDER BY name LIMIT 10");
+            $stmt->bindValue(':query', $query);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            echo json_encode($results);
+            exit;
         }
 
-        // === POST CON CSRF (token NON consumato) ===
-        $valid_post_actions = ['add', 'remove', 'load_inventory'];
-        if (in_array($action, $valid_post_actions)) {
-            if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-                exit(json_encode(['error' => 'Invalid CSRF token']));
+        // All POST actions require CSRF validation
+        $postActions = ['add', 'remove', 'load_inventory'];
+        if (in_array($action, $postActions)) {  // CORRETTO: era "recurse(in_array(...))" → errore!
+            if (empty($_POST['csrf_token']) || !hash_equals($csrfToken, $_POST['csrf_token'])) {
+                echo json_encode(['error' => 'Invalid CSRF token']);
+                exit;
             }
-            // TOKEN RIMANE VALIDO - NON RIGENERARE
         }
 
+        // 2. Add manually typed ingredient
         if ($action === 'add' && !empty($_POST['ingredient'])) {
             $name = trim($_POST['ingredient']);
-            $stmt = $pdo->prepare("SELECT 1 FROM ingredient WHERE name = ?");
-            $stmt->execute([$name]);
-            if ($stmt->fetch() && !in_array($name, $_SESSION['selected_ingredients'])) {
-                $_SESSION['selected_ingredients'][] = $name;
+
+            $stmt = $pdo->prepare("SELECT 1 FROM ingredient WHERE name = :name");
+            $stmt->bindValue(':name', $name);
+            $stmt->execute();
+            if ($stmt->fetchColumn() && !in_array($name, $selectedIngredients)) {
+                $selectedIngredients[] = $name;
             }
-            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+
+            echo json_encode([
+                'success' => true,
+                'ingredients' => $selectedIngredients
+            ]);
+            exit;
         }
 
+        // 3. Remove ingredient from selection
         if ($action === 'remove' && !empty($_POST['ingredient'])) {
             $name = $_POST['ingredient'];
-            $_SESSION['selected_ingredients'] = array_values(array_filter(
-                $_SESSION['selected_ingredients'],
-                fn($i) => $i !== $name
-            ));
-            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+            $selectedIngredients = array_values(array_filter($selectedIngredients, fn($i) => $i !== $name));
+
+            echo json_encode([
+                'success' => true,
+                'ingredients' => $selectedIngredients
+            ]);
+            exit;
         }
 
+        // 4. Load all ingredients from user's inventory
         if ($action === 'load_inventory') {
             $stmt = $pdo->prepare("
-                SELECT i.name FROM inventory inv 
+                SELECT i.name 
+                FROM inventory inv
                 JOIN ingredient i ON inv.ingredient_id = i.id 
-                WHERE inv.user_id = ? AND inv.quantity > 0
+                WHERE inv.user_id = :userId AND inv.quantity > 0
                 ORDER BY i.name
             ");
-            $stmt->execute([$user_id]);
+            $stmt->bindValue(':userId', $userId);
+            $stmt->execute();
             $inventory = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-            $_SESSION['selected_ingredients'] = array_values(array_unique(
-                array_merge($_SESSION['selected_ingredients'], $inventory)
-            ));
+            $selectedIngredients = array_values(array_unique(array_merge($selectedIngredients, $inventory)));
 
-            exit(json_encode(['success' => true, 'ingredients' => $_SESSION['selected_ingredients']]));
+            echo json_encode([
+                'success' => true,
+                'ingredients' => $selectedIngredients
+            ]);
+            exit;
         }
 
+        // 5. Search recipes using selected ingredients
         if ($action === 'search') {
-            $ingredients = $_SESSION['selected_ingredients'];
-            if (empty($ingredients)) {
-                exit(json_encode(['recipes' => [], 'total' => 0, 'pages' => 1, 'page' => 1]));
+            if (empty($selectedIngredients)) {
+                echo json_encode(['recipes' => [], 'total' => 0, 'pages' => 1, 'page' => 1]);
+                exit;
             }
 
             $page = max(1, (int)($_GET['page'] ?? 1));
-            $per_page = 15;
-            $offset = ($page - 1) * $per_page;
-            $placeholders = str_repeat('?,', count($ingredients) - 1) . '?';
+            $perPage = 15;
+            $offset = ($page - 1) * $perPage;
 
-            $count_stmt = $pdo->prepare("SELECT COUNT(DISTINCT r.id) FROM recipe r JOIN recipe_ingredient ri ON r.id = ri.recipe_id JOIN ingredient i ON ri.ingredient_id = i.id WHERE i.name IN ($placeholders)");
-            $count_stmt->execute($ingredients);
-            $total = (int)$count_stmt->fetchColumn();
-            $pages = max(1, ceil($total / $per_page));
+            // Build dynamic IN clause with named placeholders
+            $inPlaceholders = '';
+            $params = [];
+            foreach ($selectedIngredients as $index => $ingredient) {
+                $key = ":ing$index";
+                $inPlaceholders .= ($index === 0 ? '' : ', ') . $key;
+                $params[$key] = $ingredient;
+            }
 
-            $stmt = $pdo->prepare("SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time FROM recipe r JOIN recipe_ingredient ri ON r.id = ri.recipe_id JOIN ingredient i ON ri.ingredient_id = i.id WHERE i.name IN ($placeholders) ORDER BY r.id DESC LIMIT ? OFFSET ?");
-            $stmt->execute(array_merge($ingredients, [$per_page, $offset]));
+            // Count total matching recipes
+            $countSql = "
+                SELECT COUNT(DISTINCT r.id) 
+                FROM recipe r 
+                JOIN recipe_ingredient ri ON r.id = ri.recipe_id 
+                JOIN ingredient i ON ri.ingredient_id = i.id 
+                WHERE i.name IN ($inPlaceholders)
+            ";
+            $countStmt = $pdo->prepare($countSql);
+            foreach ($params as $key => $value) {
+                $countStmt->bindValue($key, $value);
+            }
+            $countStmt->execute();
+            $total = (int)$countStmt->fetchColumn();
+            $totalPages = max(1, ceil($total / $perPage));
+
+            // Fetch recipes for current page
+            $sql = "
+                SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time
+                FROM recipe r 
+                JOIN recipe_ingredient ri ON r.id = ri.recipe_id 
+                JOIN ingredient i ON ri.ingredient_id = i.id 
+                WHERE i.name IN ($inPlaceholders)
+                ORDER BY r.id DESC 
+                LIMIT :limit OFFSET :offset
+            ";
+
+            $stmt = $pdo->prepare($sql);
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value);
+            }
+            $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
             $recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            exit(json_encode([
+            echo json_encode([
                 'recipes' => $recipes,
-                'total' => $total,
-                'pages' => $pages,
-                'page' => $page
-            ]));
+                'total'   => $total,
+                'pages'   => $totalPages,
+                'page'    => $page
+            ]);
+            exit;
         }
 
     } catch (Exception $e) {
         http_response_code(500);
-        exit(json_encode(['error' => $e->getMessage()]));
+        echo json_encode(['error' => 'Server error: ' . $e->getMessage()]);
     }
+    exit;
 }
 
-$stmt = $pdo->prepare("SELECT username FROM user WHERE id = ?");
-$stmt->execute([$user_id]);
-$username = $stmt->fetchColumn() ?: "Utente";
-
-$user_ingredients = $_SESSION['selected_ingredients'];
-sort($user_ingredients);
+// Prepare data for view
+$currentIngredients = $selectedIngredients;
+sort($currentIngredients);
 
 include "dashboard_view.php";
 ?>
