@@ -1,4 +1,5 @@
-/* Unified with login CSS: predictable sizing */
+
+/* Reset e layout base */
 *,
 *::before,
 *::after {
@@ -9,34 +10,24 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #fff; /* keep white as requested */
+    background-color: #fff;
     color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Header (senza back icon) */
 .header {
     background-color: #f9f9f9;
     padding: 12px 16px;
     text-align: center;
     font-size: 20px;
-    color: #EF8A37; /* orange consistent with login */
+    color: #EF8A37;
     border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
 }
 
-.header .back-icon {
-    position: absolute;
-    left: 16px;
-    font-size: 24px;
-    color: #333;
-    cursor: pointer;
-}
-
+/* Content */
 .content {
     padding: 20px;
     flex: 1;
@@ -46,12 +37,14 @@ body {
     width: 100%;
 }
 
+/* Grid ricette */
 .recipes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
 }
 
+/* Card ricetta */
 .recipe {
     background-color: #fff;
     border-radius: 12px;
@@ -59,6 +52,10 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     text-align: center;
     border: 1px solid rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 .recipe img {
@@ -68,12 +65,87 @@ body {
     display: block;
 }
 
+.recipe-content {
+    padding: 8px 8px 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Titolo cliccabile */
 .recipe-title {
     font-size: 16px;
     color: #333;
-    margin: 10px 8px 12px;
+    margin: 0 0 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    line-height: 1.3;
+    word-break: break-word;
+    text-align: center;
 }
 
+.recipe-title:hover {
+    color: #EF8A37;
+}
+
+/* Sottotitolo */
+.recipe-subtitle {
+    font-size: 13px;
+    color: #EF8A37;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Pulsante rimuovi preferito */
+.recipe-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: #EF8A37;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    font-weight: bold;
+}
+
+.recipe-remove:hover {
+    background: #EF8A37;
+    color: white;
+}
+
+/* Loading */
+#loading-fav {
+    text-align: center;
+    padding: 1.5rem;
+    color: #999;
+    font-style: italic;
+    display: none;
+}
+
+/* Messaggio vuoto */
+.no-favorites {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+    font-style: italic;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin: 1rem 0;
+    font-size: 15px;
+}
+
+/* Bottom navigation */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -97,12 +169,20 @@ body {
     gap: 4px;
 }
 
+.nav-item.active {
+    color: #EF8A37;
+}
+
+.nav-item.active .nav-icon {
+    color: #EF8A37;
+}
+
 .nav-icon {
     font-size: 22px;
     line-height: 1;
 }
 
-/* Responsiveness and small-screen tweaks */
+/* Responsive (mobile) */
 @media (max-width: 480px) {
     .content {
         padding: 14px;

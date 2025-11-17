@@ -14,38 +14,48 @@
 <div class="content">
     <div class="cooking-question">What are we cooking today?</div>
 
+    <!-- Ingredient search bar -->
     <div class="search-container">
-        <span class="material-symbols-outlined search-icon"></span>
-        <input type="text" id="ingredient-input" class="search-input" placeholder="Insert Ingredients" autocomplete="off">
-        <div id="suggestions" class="suggestions-box"></div>
+        <input type="text" id="ingredientInput" class="search-input" placeholder="Enter ingredients..." autocomplete="off">
+        <div id="suggestionsList" class="suggestions-box"></div>
     </div>
 
     <div class="buttons">
-        <button id="add-btn" class="button">Add Ingredient</button>
-        <button id="add-inventory-btn" class="button secondary">Add from Inventory</button>
+        <button id="addButton" class="button">Add Ingredient</button>
+        <button id="loadInventoryButton" class="button secondary">Add from Inventory</button>
     </div>
 
-    <div class="tags" id="selected-tags">
-        <?php if (empty($user_ingredients)): ?>
-            <div class="no-ingredients">Aggiungi ingredienti per cercare ricette!</div>
-        <?php else: foreach ($user_ingredients as $ing): ?>
-            <div class="tag" data-name="<?php echo htmlspecialchars($ing); ?>">
-                <?php echo htmlspecialchars($ing); ?> <span class="tag-close">×</span>
-            </div>
-        <?php endforeach; endif; ?>
+    <!-- Selected ingredients tags -->
+    <div class="tags" id="tagsContainer">
+        <?php if (empty($currentIngredients)): ?>
+            <div class="no-ingredients">Add ingredients to search for recipes!</div>
+        <?php else: ?>
+            <?php foreach ($currentIngredients as $ing): ?>
+                <div class="tag" data-name="<?= htmlspecialchars($ing) ?>">
+                    <?= htmlspecialchars($ing) ?> <span class="tag-close">×</span>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 
-    <div id="recipe-results">
-        <div style="text-align:center; color:#999; padding:1rem;">Aggiungi ingredienti e vedi le ricette suggerite!</div>
+    <!-- Recipe results -->
+    <div id="recipeResults">
+        <div style="text-align:center; color:#999; padding:1rem;">
+            Add ingredients to see suggested recipes!
+        </div>
     </div>
 
-    <div id="loading" style="display:none; text-align:center; padding:1.5rem; color:#999;">
-        Caricamento ricette...
+    <div id="loadingSpinner" style="display:none; text-align:center; padding:1.5rem; color:#999;">
+        Loading recipes...
     </div>
 </div>
 
+<!-- Hidden CSRF token -->
+<input type="hidden" id="csrfToken" value="<?= $_SESSION['csrf_token'] ?>">
+
+<!-- Bottom navigation -->
 <div class="bottom-nav">
-    <div class="nav-item active" onclick="location.href='dashboard.php'">
+    <div class="nav-item active">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
@@ -53,105 +63,169 @@
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
-    <div class="nav-item" onclick="location.href='favorites.php'">
+    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
         <span class="material-symbols-outlined">favorite</span>
         Favorites
     </div>
 </div>
 
 <script>
-    const els = {
-        input: document.getElementById('ingredient-input'),
-        suggestions: document.getElementById('suggestions'),
-        addBtn: document.getElementById('add-btn'),
-        addInvBtn: document.getElementById('add-inventory-btn'),
-        results: document.getElementById('recipe-results'),
-        tags: document.getElementById('selected-tags'),
-        loading: document.getElementById('loading')
-    };
+    // ==================== DOM ELEMENTS ====================
+    const ingredientInput = document.getElementById('ingredientInput');
+    const suggestionsList = document.getElementById('suggestionsList');
+    const addButton = document.getElementById('addButton');
+    const loadInventoryButton = document.getElementById('loadInventoryButton');
+    const recipeResults = document.getElementById('recipeResults');
+    const tagsContainer = document.getElementById('tagsContainer');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const csrfToken = document.getElementById('csrfToken').value;
 
-    let timer;
+    // ==================== STATE VARIABLES ====================
     let currentPage = 1;
+    let hasMoreRecipes = true;
     let isLoading = false;
-    let hasMore = true;
+    let searchTimer;
 
-    function showLoading() {
-        els.loading.style.display = 'block';
-        isLoading = true;
+    // ==================== UTILITY FUNCTIONS ====================
+
+    // Send POST request with CSRF protection
+    function sendPostRequest(action, data = {}, callback = null) {
+        const formData = new FormData();
+        formData.append('csrf_token', csrfToken);
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+        fetch(`dashboard.php?ajax=${action}`, {
+            method: 'POST',
+            body: formData
+        })
+            .then(r => r.json())
+            .then(response => {
+                if (response.error === 'Invalid CSRF token') {
+                    alert('Session expired. Reloading...');
+                    location.reload();
+                    return;
+                }
+                if (response.success) {
+                    updateTags(response.ingredients || []);
+                    if (callback) callback();
+                }
+            })
+            .catch(() => alert('Network error. Please try again.'));
     }
 
-    function hideLoading() {
-        els.loading.style.display = 'none';
-        isLoading = false;
-    }
-
-    function resetInfiniteScroll() {
-        currentPage = 1;
-        hasMore = true;
-        els.results.innerHTML = '';
-    }
-
-    // --- RICERCA INGREDIENTI ---
-    els.input.addEventListener('input', () => {
-        clearTimeout(timer);
-        const q = els.input.value.trim();
-        if (!q) {
-            els.suggestions.innerHTML = '';
+    // Update selected ingredient tags
+    function updateTags(ingredients) {
+        ingredients.sort();
+        if (ingredients.length === 0) {
+            tagsContainer.innerHTML = '<div class="no-ingredients">Add ingredients to search for recipes!</div>';
             return;
         }
 
-        timer = setTimeout(() => {
-            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(q)}`)
+        const html = ingredients.map(name => `
+        <div class="tag" data-name="${name}">
+            ${name} <span class="tag-close">×</span>
+        </div>
+    `).join('');
+        tagsContainer.innerHTML = html;
+    }
+
+    // Show/hide loading spinner
+    function showLoading() {
+        loadingSpinner.style.display = 'block';
+        isLoading = true;
+    }
+    function hideLoading() {
+        loadingSpinner.style.display = 'none';
+        isLoading = false;
+    }
+
+    // Reset infinite scroll state
+    function resetSearch() {
+        currentPage = 1;
+        hasMoreRecipes = true;
+        recipeResults.innerHTML = '';
+    }
+
+    // ==================== AUTOCOMPLETE ====================
+    ingredientInput.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        const query = ingredientInput.value.trim();
+
+        if (query === '') {
+            suggestionsList.innerHTML = '';
+            return;
+        }
+
+        searchTimer = setTimeout(() => {
+            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(query)}`)
                 .then(r => r.json())
-                .then(data => {
-                    els.suggestions.innerHTML = data.length
-                        ? data.map(ing => `<div class="suggestion" onclick="selectIng('${ing}')">${ing}</div>`).join('')
-                        : '<div class="suggestion">Nessun ingrediente trovato</div>';
+                .then(list => {
+                    if (list.length === 0) {
+                        suggestionsList.innerHTML = '<div class="suggestion">No ingredients found</div>';
+                    } else {
+                        suggestionsList.innerHTML = list.map(name =>
+                            `<div class="suggestion" onclick="selectIngredient('${name}')">${name}</div>`
+                        ).join('');
+                    }
                 })
                 .catch(() => {
-                    els.suggestions.innerHTML = '<div class="suggestion">Errore di connessione</div>';
+                    suggestionsList.innerHTML = '<div class="suggestion">Connection error</div>';
                 });
-        }, 200);
+        }, 250);
     });
 
-    window.selectIng = (name) => {
-        els.input.value = name;
-        els.suggestions.innerHTML = '';
+    // Select suggestion from dropdown
+    window.selectIngredient = function(name) {
+        ingredientInput.value = name;
+        suggestionsList.innerHTML = '';
     };
 
-    // --- AZIONI INGREDIENTI ---
-    els.addBtn.onclick = () => {
-        const name = els.input.value.trim();
-        if (!name) return;
-        post('add', { ingredient: name }, () => {
-            els.input.value = '';
-            resetInfiniteScroll();
-            search();
+    // Close suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!ingredientInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+            suggestionsList.innerHTML = '';
+        }
+    });
+
+    // ==================== BUTTON ACTIONS ====================
+    addButton.addEventListener('click', () => {
+        const ingredient = ingredientInput.value.trim();
+        if (!ingredient) return;
+
+        sendPostRequest('add', { ingredient }, () => {
+            ingredientInput.value = '';
+            resetSearch();
+            searchRecipes();
         });
-    };
+    });
 
-    els.tags.onclick = (e) => {
+    loadInventoryButton.addEventListener('click', () => {
+        sendPostRequest('load_inventory', {}, () => {
+            resetSearch();
+            searchRecipes();
+        });
+    });
+
+    // Remove tag when clicking X
+    tagsContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('tag-close')) {
-            const name = e.target.parentElement.dataset.name;
-            post('remove', { ingredient: name }, () => {
-                resetInfiniteScroll();
-                search();
+            const tag = e.target.parentElement;
+            const name = tag.dataset.name;
+            sendPostRequest('remove', { ingredient: name }, () => {
+                resetSearch();
+                searchRecipes();
             });
         }
-    };
+    });
 
-    els.addInvBtn.onclick = () => {
-        post('load_inventory', {}, () => {
-            resetInfiniteScroll();
-            search();
-        });
-    };
+    // ==================== SEARCH RECIPES ====================
+    function searchRecipes(page = 1) {
+        if (isLoading || !hasMoreRecipes) return;
 
-    // --- RICERCA RICETTE ---
-    function search(page = 1) {
-        if (isLoading || !hasMore) return;
         if (page === 1) {
-            els.results.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Caricamento...</div>';
+            recipeResults.innerHTML = '<div style="text-align:center; color:#999; padding:2rem;">Loading...</div>';
         } else {
             showLoading();
         }
@@ -161,11 +235,15 @@
             .then(data => {
                 hideLoading();
 
-                if (!data.recipes?.length) {
+                if (!data.recipes || data.recipes.length === 0) {
                     if (page === 1) {
-                        els.results.innerHTML = '<div class="no-recipes">Nessuna ricetta trovata con questi ingredienti.</div>';
+                        if (tagsContainer.querySelectorAll('.tag').length === 0) {
+                            recipeResults.innerHTML = '<div style="text-align:center; color:#999; padding:1rem;">Add ingredients to see suggested recipes!</div>';
+                        } else {
+                            recipeResults.innerHTML = '<div class="no-recipes">No recipes found with these ingredients.</div>';
+                        }
                     }
-                    hasMore = false;
+                    hasMoreRecipes = false;
                     return;
                 }
 
@@ -175,92 +253,58 @@
                     html += '<div class="recipes">';
                 }
 
-                data.recipes.forEach(r => {
-
+                data.recipes.forEach(recipe => {
                     html += `
-        <div class="recipe">
-            <img src="${r.image_url || 'img/garlic_bread.png'}" alt="${r.name}">
-            <div class="recipe-content">
-                <form action="recipe_detail.php" method="POST" style="margin:0; padding:0;">
-                    <input type="hidden" name="recipe_id" value="${r.id}">
-                    <?php foreach ($_SESSION['selected_ingredients'] as $ing): ?>
-                        <input type="hidden" name="selected_ingredients[]" value="<?php echo htmlspecialchars($ing); ?>">
-                    <?php endforeach; ?>
-                    <button type="submit" style="all:unset; cursor:pointer; display:block; width:100%; text-align:center;">
-                        <div class="recipe-title">${r.name}</div>
-                    </button>
-                </form>
-                <div class="recipe-subtitle">Ready in ${r.prep_time} min</div>
-            </div>
-        </div>`;
+                    <div class="recipe">
+                        <img src="${recipe.image_url}" alt="${recipe.name}">
+                        <div class="recipe-content">
+                            <form action="recipe_detail.php" method="POST">
+                                <input type="hidden" name="recipe_id" value="${recipe.id}">
+                                <button type="submit" style="all:unset; cursor:pointer; width:100%; text-align:left;">
+                                    <div class="recipe-title">${recipe.name}</div>
+                                </button>
+                            </form>
+                            <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
+                        </div>
+                    </div>`;
                 });
 
                 if (page === 1) {
-                    els.results.innerHTML = html + '</div>';
+                    recipeResults.innerHTML = html + '</div>';
                 } else {
-                    const container = els.results.querySelector('.recipes');
-                    container.insertAdjacentHTML('beforeend', html);
+                    document.querySelector('.recipes').insertAdjacentHTML('beforeend', html);
                 }
 
-                hasMore = data.page < data.pages;
+                hasMoreRecipes = data.page < data.pages;
                 currentPage = data.page;
             })
             .catch(() => {
                 hideLoading();
                 if (page === 1) {
-                    els.results.innerHTML = '<div class="no-recipes">Errore di connessione. Riprova.</div>';
+                    recipeResults.innerHTML = '<div class="no-recipes">Connection error. Please try again.</div>';
                 }
             });
     }
 
-    // --- INFINITE SCROLL ---
+    // ==================== INFINITE SCROLL ====================
     let scrollTimeout;
     window.addEventListener('scroll', () => {
-        if (scrollTimeout) clearTimeout(scrollTimeout);
+        clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-            if (scrollTop + clientHeight >= scrollHeight - 300 && hasMore && !isLoading) {
-                search(currentPage + 1);
+            const distanceFromBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+            if (distanceFromBottom < 400 && hasMoreRecipes && !isLoading) {
+                searchRecipes(currentPage + 1);
             }
         }, 100);
     });
 
-    // --- POST GENERICO ---
-    function post(action, data, callback) {
-        const form = new FormData();
-        for (const key in data) form.append(key, data[key]);
-
-        fetch(`dashboard.php?ajax=${action}`, { method: 'POST', body: form })
-            .then(r => r.json())
-            .then(res => {
-                if (res.success) {
-                    updateTags(res.ingredients);
-                    if (callback) callback();
-                }
-            })
-            .catch(() => alert('Errore di rete. Riprova.'));
-    }
-
-    function updateTags(ingredients) {
-        if (!ingredients.length) {
-            els.tags.innerHTML = '<div class="no-ingredients">Aggiungi ingredienti per cercare ricette!</div>';
-            return;
-        }
-        els.tags.innerHTML = ingredients.map(ing =>
-            `<div class="tag" data-name="${ing}">${ing} <span class="tag-close">×</span></div>`
-        ).join('');
-    }
-
-    document.addEventListener('click', e => {
-        if (!els.input.contains(e.target) && !els.suggestions.contains(e.target)) {
-            els.suggestions.innerHTML = '';
+    // ==================== INITIAL LOAD ====================
+    document.addEventListener('DOMContentLoaded', () => {
+        if (tagsContainer.querySelectorAll('.tag').length > 0) {
+            resetSearch();
+            searchRecipes(1);
         }
     });
-
-    if (els.tags.querySelectorAll('.tag').length > 0) {
-        resetInfiniteScroll();
-        search(1);
-    }
 </script>
 
 </body>
