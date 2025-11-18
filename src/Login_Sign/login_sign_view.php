@@ -51,7 +51,7 @@ a
 
         <label>Confirm password</label>
         <input type="password" name="confirm_password" required>
-a
+
         <button type="submit">Sign up</button>
     </form>
 </div>
