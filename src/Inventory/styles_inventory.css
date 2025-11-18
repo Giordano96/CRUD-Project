@@ -1,0 +1,240 @@
+/* styles_inventory.css – Uniformato al 100% con styles.css della dashboard */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HEADER (identico alla dashboard) */
+.header {
+    background-color: #f9f9f9;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 20px;
+    color: #EF8A37;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.back-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #173822;
+    cursor: pointer;
+}
+
+/* CONTENT (identico alla dashboard) */
+.content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 90px;
+}
+
+/* BARRA DI RICERCA (esattamente come dashboard) */
+.search-container {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 42px;   /* spazio per icona search */
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: rgba(255,255,255,0.95);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #EF8A37;
+    box-shadow: 0 0 0 3px rgba(239, 138, 55, 0.15);
+}
+
+
+/* Tendina suggerimenti (identica alla dashboard) */
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.suggestions-box div {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+}
+
+.suggestions-box div:hover {
+    background-color: #f9f9f9;
+}
+
+.suggestions-box div:last-child {
+    border-bottom: none;
+}
+
+/* Form aggiunta ingrediente */
+.add-form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-date {
+    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background-color: rgba(255,255,255,0.95);
+    font-size: 16px;
+}
+
+/* Pulsante Add (identico a .button della dashboard) */
+.add-btn {
+    padding: 12px 16px;
+    background-color: #EF8A37;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: center;
+    width: 80%;
+}
+
+.add-btn:hover:not(:disabled) {
+    background-color: #e67300;
+}
+
+.add-btn:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+/* Lista ingredienti (stile cards simile alle ricette) */
+.ingredients-list {
+    margin-top: 20px;
+}
+
+.ingredient-row {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+    padding: 16px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredient-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.expiry-value {
+    font-size: 14px;
+    color: #EF8A37;
+    font-weight: 500;
+}
+
+.delete-inline-btn {
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Messaggio dispensa vuota */
+.no-ingredients {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #999;
+    font-style: italic;
+    font-size: 15px;
+}
+
+/* BOTTOM NAV (identica alla dashboard) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    z-index: 50;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #173822;
+    font-size: 12px;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.nav-item.active {
+    color: #EF8A37;
+}
+
+.nav-item .material-symbols-outlined {
+    font-size: 24px;
+}
+
+/* Responsive (identico alla dashboard) */
+@media (max-width: 480px) {
+    .content {
+        padding: 14px;
+    }
+    .search-input {
+        font-size: 15px;
+        padding: 10px 36px 10px 40px;
+    }
+    .add-btn {
+        width: 100%;
+    }
+}

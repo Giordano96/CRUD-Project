@@ -27,7 +27,7 @@
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
-    <div class="nav-item" onclick="location.href='inventory_view.php'">
+    <div class="nav-item" onclick="location.href='../Inventory/inventory.php'">
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
