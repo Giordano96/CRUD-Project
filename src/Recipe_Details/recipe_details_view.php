@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,box,favorite,view_cozy" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>My Secret Chef - Recipe details</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="header">
-        MySecretChef
+<div class="header">
+    <div class="logo-container">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
     </div>
+    <div class="logout-icon">
+        <span class="material-symbols-outlined">logout</span>
+    </div>
+</div>
 
     <img src="img/pasta.png" class="recipe-img" alt="Recipe Image">
 
@@ -79,15 +84,15 @@
     </div>
 
     <div class="bottom-nav">
-        <div class="nav-item" onclick="location.href='../Dashboard/dashboard.php'">
+        <div class="nav-item">
             <span class="material-symbols-outlined">view_cozy</span>
             Home
         </div>
-        <div class="nav-item" onclick="location.href='../Inventory/inventory_view.php'">
+        <div class="nav-item">
             <span class="material-symbols-outlined">box</span>
             Inventory
         </div>
-        <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
+        <div class="nav-item">
             <span class="material-symbols-outlined">favorite</span>
             Favorites
         </div>

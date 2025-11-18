@@ -4,12 +4,20 @@
     <meta charset=" bUTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Favorites</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="header">My Favorites</div>
+<div class="header">
+    <div class="logo-container">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+    </div>
+    <div class="logout-icon">
+        <span class="material-symbols-outlined">logout</span>
+    </div>
+</div>
+
 
 <div class="content">
     <!-- Recipe grid container -->

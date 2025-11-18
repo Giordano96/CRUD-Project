@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Home</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="header"><img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo"></div>
+<div class="header">
+    <div class="logo-container">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+    </div>
+    <div class="logout-icon">
+        <span class="material-symbols-outlined">logout</span>
+    </div>
+</div>
 
 <div class="content">
     <div class="cooking-question">What are we cooking today?</div>
