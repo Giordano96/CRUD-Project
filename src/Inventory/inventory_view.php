@@ -6,14 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,box,favorite,view_cozy" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
     <title>Inventory - MySecretChef</title>
     <link rel="stylesheet" href="styles_inventory.css">
 </head>
 <body>
 
 <div class="header">
-    <span class="back-icon">&#8592;</span>
     MySecretChef
 </div>
 
@@ -54,16 +53,16 @@
     </div>
 </div>
 
-<div class="bottom-nav"">
-    <div class="nav-item">
+<div class="bottom-nav">
+    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.php'">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
-    <div class="nav-item">
+    <div class="nav-item active">
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
-    <div class="nav-item">
+    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
         <span class="material-symbols-outlined">favorite</span>
         Favorites
     </div>
