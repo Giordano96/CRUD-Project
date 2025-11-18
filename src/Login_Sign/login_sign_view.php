@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>My Secret Chef - Login / Sign Up</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>My Secret Chef - Login / Sign Up</title>
+    </head>
 <body>
 <div class="container">
-
     <div class="tabs">
         <span class="<?php echo $active_tab === 'login' ? 'active' : ''; ?>" onclick="showForm('login')">Login</span>
         <span class="<?php echo $active_tab === 'signup' ? 'active' : ''; ?>" onclick="showForm('signup')">Sign up</span>
@@ -18,7 +17,6 @@
     <form id="login" class="form <?php echo $active_tab === 'login' ? 'active' : ''; ?>" method="post" action="login_sign.php">
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
         <input type="hidden" name="action" value="login">
-
         <?php if (!empty($error) && $active_tab === 'login'): ?>
             <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
@@ -56,7 +54,6 @@
         <button type="submit">Sign up</button>
     </form>
 </div>
-
 <script>
     function showForm(formType) {
         const tabs = document.querySelectorAll('.tabs span');
