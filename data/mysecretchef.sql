@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Nov 16, 2025 alle 18:26
+-- Creato il: Nov 18, 2025 alle 17:10
 -- Versione del server: 9.1.0
 -- Versione PHP: 8.3.14
 
@@ -542,7 +542,6 @@ DROP TABLE IF EXISTS `inventory`;
 CREATE TABLE IF NOT EXISTS `inventory` (
   `user_id` int NOT NULL,
   `ingredient_id` int NOT NULL,
-  `quantity` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `expiration_date` date DEFAULT NULL,
   PRIMARY KEY (`user_id`,`ingredient_id`),
   UNIQUE KEY `unique_user_ingredient` (`user_id`,`ingredient_id`),
@@ -12894,7 +12893,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` char(60) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `user`

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="header">MySecretChef</div>
+<div class="header"><img src="../img/MySecretChef_Logo.png" width="25%">  </div>
 
 <div class="content">
     <div class="cooking-question">What are we cooking today?</div>
