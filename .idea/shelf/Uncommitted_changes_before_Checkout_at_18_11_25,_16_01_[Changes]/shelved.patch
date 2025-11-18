@@ -1,0 +1,352 @@
+Index: src/Inventory/inventory_view.php
+===================================================================
+diff --git a/src/Inventory/inventory_view.php b/src/Inventory/inventory_view.php
+deleted file mode 100644
+--- a/src/Inventory/inventory_view.php	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
++++ /dev/null	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
+@@ -1,95 +0,0 @@
+-<?php
+-require 'DbConnector.php';
+-session_start();
+-
+-if (!isset($_SESSION['user_id'])) {
+-    header('Location: login_sign.php');
+-}
+-
+-$conn = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
+-
+-if (!isset($_SESSION['csrf_token'])) {
+-    $_SESSION['csrf_token'] = hash('sha256', rand());
+-}
+-
+-$stmt = $conn->prepare("SELECT id, name FROM ingredient ORDER BY name");
+-$stmt->execute();
+-$ingredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+-
+-$stmt = $conn->prepare("SELECT i.ingredient_id, ing.name, i.quantity, i.expiration_date FROM inventory i JOIN ingredient ing ON i.ingredient_id = ing.id WHERE i.user_id = :user_id");
+-$stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+-$stmt->execute();
+-$inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+-?>
+-<html>
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Il tuo Inventario - MySecretChef</title>
+-    <link rel="stylesheet" href="styleInventory.css">
+-</head>
+-<body>
+-<div class="main-container">
+-    <nav class="sidebar">
+-        <ul>
+-            <li><a href="home.php"><span>&#x1F3E0;</span> Home</a></li>
+-            <li><a href="handle_inventory.php" class="active"><span>&#x1F4CB;</span> Inventario</a></li>
+-            <li><a href="recipes.php"><span>&#x1F372;</span> Ricette</a></li>
+-            <li><a href="favorites.php"><span>&#x2764;&#xFE0F;</span> Preferiti</a></li>
+-            <li><a href="profile.php"><span>&#x1F464;</span> Profilo</a></li>
+-        </ul>
+-    </nav>
+-    <main>
+-        <h1>Il tuo Inventario</h1>
+-        <form method="post" action="handle_inventory.php" class="add-form">
+-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+-            <input type="hidden" name="action" value="add">
+-            <input list="ingredients_list" name="ingredient_id" placeholder="Cerca ingrediente" required>
+-            <datalist id="ingredients_list">
+-                <?php foreach ($ingredients as $ingredient): ?>
+-                    <option value="<?php echo $ingredient['id']; ?>"><?php echo htmlspecialchars($ingredient['name']); ?></option>
+-                <?php endforeach; ?>
+-            </datalist>
+-            <input name="quantity" placeholder="Quantità" required>
+-            <input type="date" name="expiration_date" placeholder="Data di scadenza">
+-            <button type="submit">+ Aggiungi ingrediente</button>
+-        </form>
+-        <select class="category-filter">
+-            <option>Tutte le categorie</option>
+-        </select>
+-        <table class="inventory-table">
+-            <thead>
+-            <tr>
+-                <th>Nome ingrediente</th>
+-                <th>Quantità</th>
+-                <th>Scadenza</th>
+-                <th>Azioni</th>
+-            </tr>
+-            </thead>
+-            <tbody>
+-            <?php if (empty($inventory)): ?>
+-                <tr><td colspan="4">Nessun ingrediente nell'inventario.</td></tr>
+-            <?php else: ?>
+-                <?php foreach ($inventory as $item): ?>
+-                    <tr>
+-                        <td><?php echo htmlspecialchars($item['name']); ?></td>
+-                        <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+-                        <td><?php echo htmlspecialchars($item['expiration_date']); ?></td>
+-                        <td>
+-                            <a href="edit_inventory.php?ingredient_id=<?php echo $item['ingredient_id']; ?>">Modifica</a> /
+-                            <form method="post" action="handle_inventory.php" style="display:inline;">
+-                                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+-                                <input type="hidden" name="action" value="delete">
+-                                <input type="hidden" name="ingredient_id" value="<?php echo $item['ingredient_id']; ?>">
+-                                <button type="submit">Elimina</button>
+-                            </form>
+-                        </td>
+-                    </tr>
+-                <?php endforeach; ?>
+-            <?php endif; ?>
+-            </tbody>
+-        </table>
+-    </main>
+-</div>
+-</body>
+-</html>
+\ No newline at end of file
+Index: src/Inventory/edit_ingredient.php
+===================================================================
+diff --git a/src/Inventory/edit_ingredient.php b/src/Inventory/edit_ingredient.php
+deleted file mode 100644
+--- a/src/Inventory/edit_ingredient.php	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
++++ /dev/null	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
+@@ -1,55 +0,0 @@
+-<?php
+-require 'DbConnector.php';
+-session_start();
+-
+-if (!isset($_SESSION['user_id']) || !isset($_GET['ingredient_id'])) {
+-    header('Location: login_sign.php');
+-}
+-
+-$conn = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
+-
+-$ingredient_id = $_GET['ingredient_id'];
+-$user_id = $_SESSION['user_id'];
+-
+-$stmt = $conn->prepare("SELECT i.quantity, i.expiration_date, ing.name FROM inventory i JOIN ingredient ing ON i.ingredient_id = ing.id WHERE i.user_id = :user_id AND i.ingredient_id = :ingredient_id");
+-$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+-$stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
+-$stmt->execute();
+-$item = $stmt->fetch(PDO::FETCH_ASSOC);
+-
+-if (!$item) {
+-    header('Location: inventory_view.php');
+-}
+-?>
+-<html>
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Modifica Ingrediente - MySecretChef</title>
+-    <link rel="stylesheet" href="../Login_Sign/styles.css">
+-</head>
+-<body>
+-<div class="main-container">
+-    <nav class="sidebar">
+-        <ul>
+-            <li><a href="home.php"><span>&#x1F3E0;</span> Home</a></li>
+-            <li><a href="handle_inventory.php" class="active"><span>&#x1F4CB;</span> Inventario</a></li>
+-            <li><a href="recipes.php"><span>&#x1F372;</span> Ricette</a></li>
+-            <li><a href="favorites.php"><span>&#x2764;&#xFE0F;</span> Preferiti</a></li>
+-            <li><a href="profile.php"><span>&#x1F464;</span> Profilo</a></li>
+-        </ul>
+-    </nav>
+-    <main>
+-        <h1>Modifica <?php echo htmlspecialchars($item['name']); ?></h1>
+-        <form method="post" action="handle_inventory.php" class="edit-form">
+-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+-            <input type="hidden" name="action" value="update">
+-            <input type="hidden" name="ingredient_id" value="<?php echo $ingredient_id; ?>">
+-            <input name="quantity" value="<?php echo htmlspecialchars($item['quantity']); ?>" placeholder="Quantità" required>
+-            <input type="date" name="expiration_date" value="<?php echo htmlspecialchars($item['expiration_date']); ?>">
+-            <button type="submit">Salva Modifiche</button>
+-        </form>
+-    </main>
+-</div>
+-</body>
+-</html>
+Index: src/Inventory/handle_inventory.php
+===================================================================
+diff --git a/src/Inventory/handle_inventory.php b/src/Inventory/handle_inventory.php
+deleted file mode 100644
+--- a/src/Inventory/handle_inventory.php	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
++++ /dev/null	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
+@@ -1,52 +0,0 @@
+-<?php
+-require 'DbConnector.php';
+-session_start();
+-
+-if (!isset($_SESSION['user_id'])) {
+-    header('Location: login_sign.php');
+-}
+-
+-$conn = new DbConnector('localhost', 'root', 'root', 'MySecretChef');
+-
+-if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+-    die('Invalid CSRF token.');
+-}
+-
+-$user_id = $_SESSION['user_id'];
+-
+-if (isset($_POST['action'])) {
+-    $action = $_POST['action'];
+-
+-    if ($action === 'add') {
+-        $ingredient_id = $_POST['ingredient_id'];
+-        $quantity      = $_POST['quantity'];
+-        $expiration_date = $_POST['expiration_date'] ?: null;
+-
+-        $stmt = $conn->prepare("INSERT INTO inventory (user_id, ingredient_id, quantity, expiration_date) VALUES (:user_id, :ingredient_id, :quantity, :expiration_date)");
+-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+-        $stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
+-        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+-        $stmt->bindParam(':expiration_date', $expiration_date, PDO::PARAM_STR);
+-        $stmt->execute();
+-    } elseif ($action === 'delete') {
+-        $ingredient_id = $_POST['ingredient_id'];
+-
+-        $stmt = $conn->prepare("DELETE FROM inventory WHERE user_id = :user_id AND ingredient_id = :ingredient_id");
+-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+-        $stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
+-        $stmt->execute();
+-    } elseif ($action === 'update') {
+-        $ingredient_id = $_POST['ingredient_id'];
+-        $quantity      = $_POST['quantity'];
+-        $expiration_date = $_POST['expiration_date'] ?: null;
+-
+-        $stmt = $conn->prepare("UPDATE inventory SET quantity = :quantity, expiration_date = :expiration_date WHERE user_id = :user_id AND ingredient_id = :ingredient_id");
+-        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+-        $stmt->bindParam(':expiration_date', $expiration_date, PDO::PARAM_STR);
+-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+-        $stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
+-        $stmt->execute();
+-    }
+-}
+-
+-header('Location: inventory_view.php');
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"update image for testing in favorites page\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Dashboard/dashboard_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Dashboard/dashboard_view.php\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ComposerSettings\">\n    <execution />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"Dev\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Giordano96&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/Giordano96/CRUD-Project.git&quot;,\n    &quot;accountId&quot;: &quot;ada2cf99-ab9f-4095-aa3b-d9034857b9da&quot;\n  }\n}</component>\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"PHP\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"33Cq0jnsInvyWmDZsuNJci1j6zt\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,\n    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,\n    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,\n    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,\n    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,\n    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,\n    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,\n    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;Giordano&quot;,\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/CRUD-Project/src/Favorites/img&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"C:\\xampp\\htdocs\\CRUD-Project\\src\\Favorites\\img\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_time\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_nutrients\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\xampp\\htdocs\\CRUD-Project\\src\\Login\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Login\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Inventory\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112\" />\n        <option value=\"bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"\" />\n      <created>1758831181403</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1758831181403</updated>\n      <workItem from=\"1762807352801\" duration=\"5000\" />\n      <workItem from=\"1762807398573\" duration=\"1000\" />\n      <workItem from=\"1763217484441\" duration=\"11805000\" />\n      <workItem from=\"1763284121131\" duration=\"1990000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759503642366</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759503642366</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505383026</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505383026</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505765776</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505765777</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759506397512</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759506397512</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440948559</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440948559</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440956920</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440956920</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added front-end pages by alessio parlani and jonathan panico\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762106382094</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762106382094</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"create loginh and dashboard frontend\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763230910864</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763230910864</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"create loginh and dashboard frontend\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763231019706</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763231019706</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"create favorites page frontend\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763286186901</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763286186901</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"update image for testing in favorites page\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763286316094</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763286316094</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"update image for testing in favorites page\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763286596880</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763286596880</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"13\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"modify base_ingredients.py\" />\n    <MESSAGE value=\"recipes_cleaned.csv\" />\n    <MESSAGE value=\"Added front-end pages by alessio parlani and jonathan panico\" />\n    <MESSAGE value=\"created login and home html\" />\n    <MESSAGE value=\"Add files via upload&#10;&#10;Documentazione aggiornata al 2 novembre\" />\n    <MESSAGE value=\"create loginh and dashboard frontend\" />\n    <MESSAGE value=\"create favorites page frontend\" />\n    <MESSAGE value=\"update image for testing in favorites page\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update image for testing in favorites page\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
++++ b/.idea/workspace.xml	(date 1763477953537)
+@@ -5,8 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="update image for testing in favorites page">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -26,7 +25,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="Dev" />
++        <entry key="$PROJECT_DIR$" value="AlessioParlani" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -52,42 +51,42 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;Giordano&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/CRUD-Project/src/Favorites/img&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "Python.Ingredients_List.executor": "Run",
++    "Python.base_ingredients.executor": "Run",
++    "Python.clean_ingredients.executor": "Run",
++    "Python.controllo_ingrediente_cleaned_2.executor": "Run",
++    "Python.count_categories.executor": "Run",
++    "Python.count_nutrients.executor": "Run",
++    "Python.count_unit.executor": "Run",
++    "Python.describe_categories.executor": "Run",
++    "Python.ingredients_parse.executor": "Run",
++    "Python.morecleaning.executor": "Run",
++    "Python.populate_db.executor": "Run",
++    "Python.recipe_categories_parse.executor": "Run",
++    "Python.recipe_nutrients_parse.executor": "Run",
++    "Python.single_ingredients.executor": "Run",
++    "Python.solo_ingredient.executor": "Run",
++    "Python.time__servings.executor": "Run",
++    "Python.try_unit.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "Dev",
++    "ignore.virus.scanning.warn.message": "true",
++    "last_opened_file_path": "C:/xampp/htdocs/CRUD-Project/src/Favorites/img",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.fileTypes",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\xampp\htdocs\CRUD-Project\src\Favorites\img" />
+Index: .idea/php.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"MessDetectorOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PHPCSFixerOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PHPCodeSnifferOptionsConfiguration\">\n    <option name=\"highlightLevel\" value=\"WARNING\" />\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PhpProjectSharedConfiguration\" php_language_level=\"8.3\">\n    <option name=\"suggestChangeDefaultLanguageLevel\" value=\"false\" />\n  </component>\n  <component name=\"PhpStanOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PsalmOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/php.xml b/.idea/php.xml
+--- a/.idea/php.xml	(revision 5c73de8c17f39a0a7f69d5cfbe60fc4160e3708b)
++++ b/.idea/php.xml	(date 1763477913566)
+@@ -13,6 +13,9 @@
+   <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
+     <option name="suggestChangeDefaultLanguageLevel" value="false" />
+   </component>
++  <component name="PhpProjectSharedConfiguration" php_language_level="7.4">
++    <option name="suggestChangeDefaultLanguageLevel" value="false" />
++  </component>
+   <component name="PhpStanOptionsConfiguration">
+     <option name="transferred" value="true" />
+   </component>

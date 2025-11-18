@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="update image for testing in favorites page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="AlessioParlani" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,42 +51,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,
-    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,
-    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,
-    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,
-    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,
-    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,
-    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
-    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
-    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,
-    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,
-    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,
-    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,
-    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Giordano&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/CRUD-Project/src/Favorites/img&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.Ingredients_List.executor": "Run",
+    "Python.base_ingredients.executor": "Run",
+    "Python.clean_ingredients.executor": "Run",
+    "Python.controllo_ingrediente_cleaned_2.executor": "Run",
+    "Python.count_categories.executor": "Run",
+    "Python.count_nutrients.executor": "Run",
+    "Python.count_unit.executor": "Run",
+    "Python.describe_categories.executor": "Run",
+    "Python.ingredients_parse.executor": "Run",
+    "Python.morecleaning.executor": "Run",
+    "Python.populate_db.executor": "Run",
+    "Python.recipe_categories_parse.executor": "Run",
+    "Python.recipe_nutrients_parse.executor": "Run",
+    "Python.single_ingredients.executor": "Run",
+    "Python.solo_ingredient.executor": "Run",
+    "Python.time__servings.executor": "Run",
+    "Python.try_unit.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/xampp/htdocs/CRUD-Project/src/Favorites/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\CRUD-Project\src\Favorites\img" />
