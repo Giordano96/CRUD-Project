@@ -17,7 +17,7 @@
     <form id="login" class="form <?php echo $active_tab === 'login' ? 'active' : ''; ?>" method="post" action="login_sign.php">
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
         <input type="hidden" name="action" value="login">
-a
+
         <?php if (!empty($error) && $active_tab === 'login'): ?>
             <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
