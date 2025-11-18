@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="update image for testing in favorites page">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="Added front-end pages by alessio parlani and jonathan panico">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
     </list>
 =======
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="Added front-end pages by alessio parlani and jonathan panico" />
@@ -29,24 +30,14 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="LorenzoUccellani" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Giordano96&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Giordano96/CRUD-Project.git&quot;,
-    &quot;accountId&quot;: &quot;ada2cf99-ab9f-4095-aa3b-d9034857b9da&quot;
-  }
-}</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="ada2cf99-ab9f-4095-aa3b-d9034857b9da" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -82,14 +73,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Dev",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/xampp/htdocs/CRUD-Project/src/Favorites/img",
+    "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src/Sign",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
-    "vue.rearranger.settings.migration": "true"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
 =======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -129,25 +118,24 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\CRUD-Project\src\Favorites\img" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_nutrients" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_categories" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\CRUD-Project\src\Login" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
+      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112" />
-        <option value="bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112" />
+        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
       </set>
     </attachedChunks>
   </component>
@@ -159,10 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1758831181403</updated>
-      <workItem from="1762807352801" duration="5000" />
-      <workItem from="1762807398573" duration="1000" />
-      <workItem from="1763217484441" duration="11805000" />
-      <workItem from="1763284121131" duration="1990000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -220,47 +204,7 @@
       <option name="project" value="LOCAL" />
       <updated>1762106382094</updated>
     </task>
-    <task id="LOCAL-00008" summary="create loginh and dashboard frontend">
-      <option name="closed" value="true" />
-      <created>1763230910864</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1763230910864</updated>
-    </task>
-    <task id="LOCAL-00009" summary="create loginh and dashboard frontend">
-      <option name="closed" value="true" />
-      <created>1763231019706</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1763231019706</updated>
-    </task>
-    <task id="LOCAL-00010" summary="create favorites page frontend">
-      <option name="closed" value="true" />
-      <created>1763286186901</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1763286186901</updated>
-    </task>
-    <task id="LOCAL-00011" summary="update image for testing in favorites page">
-      <option name="closed" value="true" />
-      <created>1763286316094</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1763286316094</updated>
-    </task>
-    <task id="LOCAL-00012" summary="update image for testing in favorites page">
-      <option name="closed" value="true" />
-      <created>1763286596880</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1763286596880</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,11 +225,6 @@
     <MESSAGE value="modify base_ingredients.py" />
     <MESSAGE value="recipes_cleaned.csv" />
     <MESSAGE value="Added front-end pages by alessio parlani and jonathan panico" />
-    <MESSAGE value="created login and home html" />
-    <MESSAGE value="Add files via upload&#10;&#10;Documentazione aggiornata al 2 novembre" />
-    <MESSAGE value="create loginh and dashboard frontend" />
-    <MESSAGE value="create favorites page frontend" />
-    <MESSAGE value="update image for testing in favorites page" />
-    <option name="LAST_COMMIT_MESSAGE" value="update image for testing in favorites page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added front-end pages by alessio parlani and jonathan panico" />
   </component>
 </project>
