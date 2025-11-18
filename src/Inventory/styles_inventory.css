@@ -1,0 +1,164 @@
+/* styles_inventory.css */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FDFBF6;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.header {
+    background-color: #F5F2EB;
+    padding: 16px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #EF8A37;
+    position: relative;
+    border-bottom: 1px solid #e5e0d8;
+}
+
+.back-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #173822;
+}
+
+.inventory-wrapper {
+    padding: 18px;
+    padding-bottom: 100px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #F5F2EB;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin-left: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.add-btn {
+    background-color: #EF8A37;
+    border: none;
+    padding: 12px 22px;
+    margin-top: 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    width: 30%;
+    align-self: center;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 26px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px 2px;
+}
+
+.ingredients-list {
+    margin-top: 10px;
+}
+
+.ingredient-row {
+    background: white;
+    padding: 16px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ingredient-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transition: left 0.25s ease;
+    position: relative;
+    left: 0;
+}
+
+.ingredient-row.swiped .ingredient-content {
+    left: -160px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    z-index: 50;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #173822;
+    font-size: 12px;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.nav-icon {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.delete-inline-btn {
+    margin-top: 6px;
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 10px;
+    cursor: pointer;
+    width: auto;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.add-date {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    background-color: #F5F2EB;
+}
+
+
