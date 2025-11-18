@@ -58,16 +58,16 @@
     </div>
 </div>
 
-<div class="bottom-nav"">
-    <div class="nav-item">
+<div class="bottom-nav">
+    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.php'">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
-    <div class="nav-item">
+    <div class="nav-item active">
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
-    <div class="nav-item">
+    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
         <span class="material-symbols-outlined">favorite</span>
         Favorites
     </div>

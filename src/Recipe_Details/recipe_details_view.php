@@ -83,20 +83,20 @@
 
     </div>
 
-    <div class="bottom-nav">
-        <div class="nav-item">
-            <span class="material-symbols-outlined">view_cozy</span>
-            Home
-        </div>
-        <div class="nav-item">
-            <span class="material-symbols-outlined">box</span>
-            Inventory
-        </div>
-        <div class="nav-item">
-            <span class="material-symbols-outlined">favorite</span>
-            Favorites
-        </div>
+<div class="bottom-nav">
+    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.html'">
+        <span class="material-symbols-outlined">view_cozy</span>
+        Home
     </div>
+    <div class="nav-item" onclick="location.href='../Inventory/inventory.html'">
+        <span class="material-symbols-outlined">box</span>
+        Inventory
+    </div>
+    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
+        <span class="material-symbols-outlined">favorite</span>
+        Favorites
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
