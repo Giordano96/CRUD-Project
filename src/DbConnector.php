@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'MySecretChef';
+$dbname = 'mysecretchef';
 $user = 'root';
 $password = '';
 

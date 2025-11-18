@@ -1,7 +1,7 @@
 <?php
 require "../DbConnector.php";
 global $pdo;
-
+global $active_tab;
 session_start();
 
 // Redirect se già loggato
