@@ -17,16 +17,29 @@ body {
     min-height: 100vh;
 }
 
-/* Header (senza back icon) */
 .header {
-    display: flex;                 /* mette i figli in riga */
-    justify-content: space-between; /* logo a sinistra, logout a destra */
-    align-items: center;           /* centra verticalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 15px;
     height: 70px;
     background-color: #fff;
     border-bottom: 1px solid #eee;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.page-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 600;
+    color: #173822;
+    white-space: nowrap;
 }
 
 .logo-container img {

@@ -1,4 +1,4 @@
-/* styles_inventory.css – Uniformato al 100% con styles.css della dashboard */
+/* styles_inventory.css – ora 100% coerente con styles_dashboard.css */
 
 *,
 *::before,
@@ -17,28 +17,41 @@ body {
     min-height: 100vh;
 }
 
-/* HEADER (identico alla dashboard) */
 .header {
-    background-color: #f9f9f9;
-    padding: 12px 16px;
-    text-align: center;
-    font-size: 20px;
-    color: #EF8A37;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    height: 70px;
+    background-color: #fff;
     border-bottom: 1px solid #eee;
-    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-
-.back-icon {
+.page-title {
     position: absolute;
-    left: 16px;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 600;
     color: #173822;
-    cursor: pointer;
+    white-space: nowrap;
 }
 
-/* CONTENT (identico alla dashboard) */
+.logo-container img {
+    height: clamp(50px, 8vw, 70px);
+    width: auto;
+}
+
+.logout-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: #173822;
+}
+
 .content {
     padding: 20px;
     flex: 1;
@@ -49,7 +62,6 @@ body {
     padding-bottom: 90px;
 }
 
-/* BARRA DI RICERCA (esattamente come dashboard) */
 .search-container {
     position: relative;
     margin-bottom: 14px;
@@ -57,94 +69,77 @@ body {
 
 .search-input {
     width: 100%;
-    padding: 12px 40px 12px 42px;   /* spazio per icona search */
+    padding: 12px 16px 12px 44px;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 12px;
     font-size: 16px;
     background-color: rgba(255,255,255,0.95);
+    box-sizing: border-box;
     outline: none;
-    transition: all 0.2s ease;
 }
 
-.search-input:focus {
-    border-color: #EF8A37;
-    box-shadow: 0 0 0 3px rgba(239, 138, 55, 0.15);
-}
-
-
-/* Tendina suggerimenti (identica alla dashboard) */
 .suggestions-box {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: white;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.1);
     border-top: none;
     border-radius: 0 0 12px 12px;
-    max-height: 300px;
+    max-height: 200px;
     overflow-y: auto;
-    z-index: 100;
-    display: none;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.suggestions-box div {
+.suggestion {
     padding: 12px 16px;
+    font-size: 15px;
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
-    font-size: 15px;
+    transition: background 0.15s;
 }
 
-.suggestions-box div:hover {
+.suggestion:hover {
     background-color: #f9f9f9;
 }
 
-.suggestions-box div:last-child {
+.suggestion:last-child {
     border-bottom: none;
 }
 
-/* Form aggiunta ingrediente */
-.add-form {
-    margin-top: 10px;
+/* BOTTONI IDENTICI */
+.buttons {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
 }
 
-.add-date {
-    padding: 12px 16px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    background-color: rgba(255,255,255,0.95);
-    font-size: 16px;
-}
-
-/* Pulsante Add (identico a .button della dashboard) */
-.add-btn {
-    padding: 12px 16px;
+.button {
+    padding: 10px 16px;
     background-color: #EF8A37;
     color: white;
     border: none;
     border-radius: 12px;
     font-size: 16px;
-    font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
-    align-self: center;
-    width: 80%;
+    flex: 1 1 200px;
+    text-align: center;
 }
 
-.add-btn:hover:not(:disabled) {
+.button:hover:not(:disabled) {
     background-color: #e67300;
 }
 
-.add-btn:disabled {
+.button:disabled {
     background-color: #bbb;
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
-/* Lista ingredienti (stile cards simile alle ricette) */
+/* Lista ingredienti */
 .ingredients-list {
     margin-top: 20px;
 }
@@ -169,7 +164,7 @@ body {
 }
 
 .expiry-value {
-    font-size: 14px;
+    font-size: 13px;
     color: #EF8A37;
     font-weight: 500;
 }
@@ -184,16 +179,17 @@ body {
     cursor: pointer;
 }
 
-/* Messaggio dispensa vuota */
 .no-ingredients {
     text-align: center;
-    padding: 3rem 1rem;
+    padding: 1.5rem;
     color: #999;
     font-style: italic;
+    background: #f9f9f9;
+    border-radius: 12px;
+    margin: 1rem 0;
     font-size: 15px;
 }
 
-/* BOTTOM NAV (identica alla dashboard) */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -225,16 +221,78 @@ body {
     font-size: 24px;
 }
 
-/* Responsive (identico alla dashboard) */
+#addIngredientForm {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 12px;
+    margin: 16px 0;
+    border: 1px solid #eee;
+}
+
+.expiration-container {
+    margin-bottom: 12px;
+}
+
+.expiration-label {
+    display: block;
+    font-size: 14px;
+    color: #173822;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.add-date {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background-color: white;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.add-date:focus {
+    border-color: #EF8A37;
+    box-shadow: 0 0 0 3px rgba(239, 138, 55, 0.15);
+}
+
+.add-ingredient-section {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 12px;
+    margin: 16px 0 20px;
+    border: 1px solid #eee;
+}
+
+.expiration-label {
+    display: block;
+    font-size: 14px;
+    color: #173822;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.add-date {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background-color: white;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+.add-date:focus {
+    border-color: #EF8A37;
+    box-shadow: 0 0 0 3px rgba(239, 138, 55, 0.15);
+}
+
+/* Responsività mobile - IDENTICA alla Dashboard */
 @media (max-width: 480px) {
-    .content {
-        padding: 14px;
-    }
     .search-input {
+        padding: 10px 36px 10px 10px;   /* ← Stessa regola della Dashboard */
         font-size: 15px;
-        padding: 10px 36px 10px 40px;
-    }
-    .add-btn {
-        width: 100%;
     }
 }

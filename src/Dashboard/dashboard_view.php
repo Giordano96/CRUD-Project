@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Home</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_dashboard.css">
 </head>
 <body>
 
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
-    <div class="logout-icon">
+    <div class="page-title">Home</div>
+    <div class="logout-icon" onclick="location.href='../logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="buttons">
-        <button id="addButton" class="button">Add Ingredient</button>
+        <button id="addButton" class="button disabled">Add Ingredient</button>
         <button id="loadInventoryButton" class="button secondary">Add from Inventory</button>
     </div>
 
@@ -93,10 +93,108 @@
     let hasMoreRecipes = true;
     let isLoading = false;
     let searchTimer;
+    let isIngredientValid = false;  // ← Unica variabile di controllo
 
-    // ==================== UTILITY FUNCTIONS ====================
+    // ==================== GESTIONE STATO BOTTONE ====================
+    function updateAddButtonState() {
+        if (isIngredientValid && ingredientInput.value.trim() !== '') {
+            addButton.disabled = false;
+            addButton.classList.remove('disabled');
+        } else {
+            addButton.disabled = true;
+            addButton.classList.add('disabled');
+        }
+    }
 
-    // Send POST request with CSRF protection
+    // Inizializzazione: bottone disabilitato
+    updateAddButtonState();
+
+    // ==================== AUTOCOMPLETE ====================
+    ingredientInput.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        const query = ingredientInput.value.trim();
+
+        // Se l'utente cancella tutto → invalida e disabilita
+        if (query === '') {
+            suggestionsList.innerHTML = '';
+            isIngredientValid = false;
+            updateAddButtonState();
+            return;
+        }
+
+        // Qualsiasi digitazione manuale invalida la selezione precedente
+        isIngredientValid = false;
+        updateAddButtonState();
+
+        searchTimer = setTimeout(() => {
+            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(query)}`)
+                .then(r => r.json())
+                .then(list => {
+                    if (list.length === 0) {
+                        suggestionsList.innerHTML = '<div class="suggestion">No ingredients found</div>';
+                    } else {
+                        suggestionsList.innerHTML = list.map(name =>
+                            `<div class="suggestion" onclick="selectIngredient('${name.replace(/'/g, "\\'")}')">${name}</div>`
+                        ).join('');
+                    }
+                })
+                .catch(() => {
+                    suggestionsList.innerHTML = '<div class="suggestion">Connection error</div>';
+                });
+        }, 250);
+    });
+
+    // Selezione da tendina → ingrediente valido
+    window.selectIngredient = function(name) {
+        ingredientInput.value = name;
+        suggestionsList.innerHTML = '';
+        isIngredientValid = true;
+        updateAddButtonState();
+    };
+
+    // Chiudi suggerimenti cliccando fuori
+    document.addEventListener('click', (e) => {
+        if (!ingredientInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+            suggestionsList.innerHTML = '';
+        }
+    });
+
+    // ==================== BUTTON ACTIONS ====================
+    addButton.addEventListener('click', () => {
+        const ingredient = ingredientInput.value.trim();
+        if (!ingredient || !isIngredientValid) {
+            return; // Silenziosamente ignorato (o puoi mettere alert se preferisci)
+        }
+
+        sendPostRequest('add', { ingredient }, () => {
+            ingredientInput.value = '';
+            isIngredientValid = false;
+            updateAddButtonState();
+            resetSearch();
+            searchRecipes();
+        });
+    });
+
+    loadInventoryButton.addEventListener('click', () => {
+        sendPostRequest('load_inventory', {}, () => {
+            resetSearch();
+            searchRecipes();
+        });
+    });
+
+    // Rimozione tag
+    tagsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('tag-close')) {
+            const tag = e.target.parentElement;
+            const name = tag.dataset.name;
+            sendPostRequest('remove', { ingredient: name }, () => {
+                resetSearch();
+                searchRecipes();
+            });
+        }
+    });
+
+    // ==================== UTILITY FUNCTIONS (invariate) ====================
     function sendPostRequest(action, data = {}, callback = null) {
         const formData = new FormData();
         formData.append('csrf_token', csrfToken);
@@ -123,23 +221,20 @@
             .catch(() => alert('Network error. Please try again.'));
     }
 
-    // Update selected ingredient tags
     function updateTags(ingredients) {
         ingredients.sort();
         if (ingredients.length === 0) {
             tagsContainer.innerHTML = '<div class="no-ingredients">Add ingredients to search for recipes!</div>';
             return;
         }
-
         const html = ingredients.map(name => `
-        <div class="tag" data-name="${name}">
-            ${name} <span class="tag-close">×</span>
-        </div>
-    `).join('');
+            <div class="tag" data-name="${name}">
+                ${name} <span class="tag-close">×</span>
+            </div>
+        `).join('');
         tagsContainer.innerHTML = html;
     }
 
-    // Show/hide loading spinner
     function showLoading() {
         loadingSpinner.style.display = 'block';
         isLoading = true;
@@ -149,86 +244,13 @@
         isLoading = false;
     }
 
-    // Reset infinite scroll state
     function resetSearch() {
         currentPage = 1;
         hasMoreRecipes = true;
         recipeResults.innerHTML = '';
     }
 
-    // ==================== AUTOCOMPLETE ====================
-    ingredientInput.addEventListener('input', () => {
-        clearTimeout(searchTimer);
-        const query = ingredientInput.value.trim();
-
-        if (query === '') {
-            suggestionsList.innerHTML = '';
-            return;
-        }
-
-        searchTimer = setTimeout(() => {
-            fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(query)}`)
-                .then(r => r.json())
-                .then(list => {
-                    if (list.length === 0) {
-                        suggestionsList.innerHTML = '<div class="suggestion">No ingredients found</div>';
-                    } else {
-                        suggestionsList.innerHTML = list.map(name =>
-                            `<div class="suggestion" onclick="selectIngredient('${name}')">${name}</div>`
-                        ).join('');
-                    }
-                })
-                .catch(() => {
-                    suggestionsList.innerHTML = '<div class="suggestion">Connection error</div>';
-                });
-        }, 250);
-    });
-
-    // Select suggestion from dropdown
-    window.selectIngredient = function(name) {
-        ingredientInput.value = name;
-        suggestionsList.innerHTML = '';
-    };
-
-    // Close suggestions when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!ingredientInput.contains(e.target) && !suggestionsList.contains(e.target)) {
-            suggestionsList.innerHTML = '';
-        }
-    });
-
-    // ==================== BUTTON ACTIONS ====================
-    addButton.addEventListener('click', () => {
-        const ingredient = ingredientInput.value.trim();
-        if (!ingredient) return;
-
-        sendPostRequest('add', { ingredient }, () => {
-            ingredientInput.value = '';
-            resetSearch();
-            searchRecipes();
-        });
-    });
-
-    loadInventoryButton.addEventListener('click', () => {
-        sendPostRequest('load_inventory', {}, () => {
-            resetSearch();
-            searchRecipes();
-        });
-    });
-
-    // Remove tag when clicking X
-    tagsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('tag-close')) {
-            const tag = e.target.parentElement;
-            const name = tag.dataset.name;
-            sendPostRequest('remove', { ingredient: name }, () => {
-                resetSearch();
-                searchRecipes();
-            });
-        }
-    });
-
-    // ==================== SEARCH RECIPES ====================
+    // ==================== SEARCH RECIPES & INFINITE SCROLL (invariati) ====================
     function searchRecipes(page = 1) {
         if (isLoading || !hasMoreRecipes) return;
 
@@ -294,7 +316,7 @@
             });
     }
 
-    // ==================== INFINITE SCROLL ====================
+    // Infinite scroll
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
@@ -306,7 +328,7 @@
         }, 100);
     });
 
-    // ==================== INITIAL LOAD ====================
+    // Caricamento iniziale
     document.addEventListener('DOMContentLoaded', () => {
         if (tagsContainer.querySelectorAll('.tag').length > 0) {
             resetSearch();

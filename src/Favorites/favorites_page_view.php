@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Favorites</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_favorites.css">
 </head>
 <body>
 
@@ -13,7 +13,8 @@
     <div class="logo-container">
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
     </div>
-    <div class="logout-icon">
+    <div class="page-title">My Favorites</div>
+    <div class="logout-icon" onclick="location.href='../logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>

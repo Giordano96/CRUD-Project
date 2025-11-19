@@ -4,46 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Inventory</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=box,favorite,view_cozy" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles_inventory.css">
 </head>
 <body>
 
 <div class="header">
-    My Inventory
+    <div class="logo-container">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+    </div>
+    <div class="page-title">My Inventory</div>
+    <div class="logout-icon" onclick="location.href='../logout.php'">
+        <span class="material-symbols-outlined">logout</span>
+    </div>
 </div>
 
-<div class="inventory-wrapper">
+<div class="content">
 
-    <!-- BARRA DI RICERCA IDENTICA AL DASHBOARD -->
+    <!-- BARRA DI RICERCA (identica alla dashboard) -->
     <div class="search-container">
-        <input type="text" id="ingredientInput" class="search-input" placeholder="Search ingredient..." autocomplete="off">
+        <input type="text" id="ingredientInput" class="search-input" placeholder="Enter ingredients..." autocomplete="off">
         <div id="suggestionsList" class="suggestions-box"></div>
     </div>
 
-    <!-- Form aggiunta -->
-    <form method="POST" class="add-form" id="addForm">
+    <!-- FORM DATA + BOTTONE ADD → SEMPRE VISIBILE -->
+    <div class="add-ingredient-section">
+        <div class="expiration-container">
+            <label for="expirationDate" class="expiration-label">Expiration date (optional)</label>
+            <input type="date" id="expirationDate" class="add-date">
+        </div>
+
+        <div class="buttons">
+            <button id="addButton" class="button" disabled>Add Ingredient</button>
+        </div>
+    </div>
+
+    <!-- Form nascosto per invio POST -->
+    <form method="POST" id="hiddenAddForm" style="display:none;">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
         <input type="hidden" name="action" value="add">
-        <input type="hidden" name="ingredient_id" id="selectedIngredientId" value="">
-
-        <input type="date" name="expiration_date" class="add-date">
-
-        <button type="submit" class="add-btn" id="addBtn" disabled>Add to Pantry</button>
+        <input type="hidden" name="ingredient_id" id="hiddenIngredientId">
+        <input type="hidden" name="expiration_date" id="hiddenExpirationDate">
     </form>
 
     <!-- Lista ingredienti -->
     <div class="ingredients-list">
         <?php if (empty($inventoryItems)): ?>
-            <div style="text-align:center; padding:80px 20px; color:#999;">
-                <p>Your pantry is empty</p>
-                <p>Add ingredients using the search bar above</p>
+            <div class="no-ingredients">
+                Your inventory is empty<br>Add ingredients using the search bar above
             </div>
         <?php else: foreach ($inventoryItems as $item): ?>
             <div class="ingredient-row">
                 <div class="ingredient-left">
                     <span class="ingredient-name"><?= htmlspecialchars($item['ingredient_name']) ?></span>
-                    <form method="POST" style="display:inline;" onsubmit="return confirm('Remove from pantry?')">
+                    <form method="POST" style="display:inline;">
                         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="ingredient_id" value="<?= $item['ingredient_id'] ?>">
@@ -75,55 +89,85 @@
 </div>
 
 <script>
-    const input = document.getElementById('ingredientInput');
-    const list = document.getElementById('suggestionsList');
-    const hiddenId = document.getElementById('selectedIngredientId');
-    const addBtn = document.getElementById('addBtn');
+    const ingredientInput = document.getElementById('ingredientInput');
+    const suggestionsList = document.getElementById('suggestionsList');
+    const addButton = document.getElementById('addButton');
+    const expirationDateInput = document.getElementById('expirationDate');
+    const hiddenIngredientId = document.getElementById('hiddenIngredientId');
+    const hiddenExpirationDate = document.getElementById('hiddenExpirationDate');
+    const hiddenForm = document.getElementById('hiddenAddForm');
 
-    input.addEventListener('input', function() {
-        const q = this.value.trim();
-        if (q.length < 2) {
-            list.innerHTML = '';
-            list.style.display = 'none';
-            hiddenId.value = '';
-            addBtn.disabled = true;
+    let searchTimer;
+
+    // RICERCA DALLA PRIMA LETTERA (come Dashboard)
+    ingredientInput.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        const query = ingredientInput.value.trim();
+
+        if (query === '') {
+            suggestionsList.innerHTML = '';
             return;
         }
 
-        fetch(`inventory.php?ajax=search&q=${encodeURIComponent(q)}`)
-            .then(r => r.json())
-            .then(data => {
-                list.innerHTML = '';
-                if (!data.length) {
-                    list.style.display = 'none';
-                    return;
-                }
-                data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'suggestion-item';
-                    div.textContent = item.name;
-                    div.onclick = () => {
-                        input.value = item.name;
-                        hiddenId.value = item.id;
-                        list.style.display = 'none';
-                        addBtn.disabled = false;
-                    };
-                    list.appendChild(div);
+        searchTimer = setTimeout(() => {
+            fetch(`inventory.php?ajax=search&q=${encodeURIComponent(query)}`)
+                .then(r => r.json())
+                .then(items => {
+                    suggestionsList.innerHTML = '';
+                    if (!items || items.length === 0) {
+                        suggestionsList.innerHTML = '<div class="suggestion">No ingredients found</div>';
+                        return;
+                    }
+
+                    items.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion';
+                        div.textContent = item.name;
+                        div.onclick = () => {
+                            ingredientInput.value = item.name;
+                            hiddenIngredientId.value = item.id;
+                            suggestionsList.innerHTML = '';
+                            addButton.disabled = false;  // Abilita bottone solo dopo selezione
+                            expirationDateInput.focus();
+                        };
+                        suggestionsList.appendChild(div);
+                    });
+                })
+                .catch(() => {
+                    suggestionsList.innerHTML = '<div class="suggestion">Connection error</div>';
                 });
-                list.style.display = 'block';
-            });
+        }, 250);
     });
 
-    document.addEventListener('click', e => {
-        if (!e.target.closest('.search-container')) {
-            list.style.display = 'none';
+    // Chiudi suggerimenti cliccando fuori
+    document.addEventListener('click', (e) => {
+        if (!ingredientInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+            suggestionsList.innerHTML = '';
         }
     });
 
-    document.getElementById('addForm').addEventListener('submit', e => {
-        if (!hiddenId.value) {
-            e.preventDefault();
+    // Aggiungi ingrediente
+    addButton.addEventListener('click', () => {
+        if (!hiddenIngredientId.value) {
             alert('Please select an ingredient from the list');
+            return;
+        }
+
+        hiddenExpirationDate.value = expirationDateInput.value || '';
+        hiddenForm.submit();
+    });
+
+    // Permetti Invio sulla data per aggiungere
+    expirationDateInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !addButton.disabled) {
+            addButton.click();
+        }
+    });
+
+    // Se l'utente cancella manualmente l'input → disabilita bottone
+    ingredientInput.addEventListener('input', () => {
+        if (ingredientInput.value === '' || !hiddenIngredientId.value) {
+            addButton.disabled = true;
         }
     });
 </script>
