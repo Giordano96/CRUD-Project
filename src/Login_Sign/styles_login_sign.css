@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Inter', 'Noto Sans', Arial, sans-serif;
+    background-image: url('BackgroundLogin.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 280px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    min-height: 520px;
+    margin: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.tabs span {
+    font-size: 18px;
+    color: #173822;
+    cursor: pointer;
+    padding: 8px 0;
+    border-bottom: 3px solid transparent;
+    flex: 1;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tabs span.active {
+    border-bottom: 3px solid #ff7f00;
+    font-weight: 700;
+    color: #173822;
+}
+
+.form {
+    display: none;
+    margin-top: 90px;
+    padding: 0 10px;
+}
+
+.form.active {
+    display: block;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    color: #173822;
+    margin: 12px 0 6px;
+    font-weight: 500;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 2px #ff7f00;
+}
+
+button {
+    width: 60%;
+    padding: 12px;
+    background-color: #EF8A37;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 25px auto 10px;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #e67300;
+}
+
+.login-button {
+    margin-top: 35px;
+}
+
+/* Messaggio di errore */
+.error-message {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #d8000c;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+    .container {
+        width: 260px;
+        padding: 25px 15px;
+    }
+    .tabs span {
+        font-size: 16px;
+    }
+}

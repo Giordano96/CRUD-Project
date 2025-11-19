@@ -1,0 +1,116 @@
+/* Header generale */
+
+/* fine header*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Sfondo caldo e accogliente */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fff5e4, #ffe1b6);
+}
+
+/* Box principale */
+.container-credentials {
+    background-color: #fffdf8;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 340px;
+    transition: 0.3s;
+    animation: fadeIn 0.8s ease;
+    min-height: 370px;
+}
+
+/* Tab in alto (Login_Sign / Registrati) */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    font-weight: 600;
+    color: #888;
+}
+
+.tabs button.active {
+    color: #ff7b00;
+    border-color: #ffb347;
+}
+
+/* Form */
+.form {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.form.active {
+    display: block;
+}
+
+/* Input */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ffd6a5;
+    border-radius: 10px;
+    background-color: #fff9f2;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #ffaf00;
+    box-shadow: 0 0 5px rgba(255, 175, 0, 0.5);
+    outline: none;
+}
+
+/* Bottone */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #ff9100, #ffb347);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ffa931, #ffd36b);
+    transform: scale(1.05);
+}
+
+/* Animazione */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

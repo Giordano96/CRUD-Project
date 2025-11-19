@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script_credentials.js" defer></script>
+    <title>Login | Ricette Gustose</title>
+  </head>
+  <header class="site-header">
+  </header>
+  <body>
+  <div class="container-credentials">
+      <div class="tabs">
+        <button id="loginTab" class="active">Login</button>
+        <button id="registerTab">Registrati</button>
+      </div>
+      <!-- Form di Login_Sign -->
+      <form id="loginForm" class="form active" method="post" action="">
+        <input type="text" name="username" placeholder="Inserisci il nome utente" required><br>
+        <input type="password" name="password" placeholder="Inserisci la password" required>
+        <button type="submit">Accedi</button>
+      </form>
+      <!-- Form di Registrazione -->
+      <form id="registerForm" class="form" method="post" action="">
+        <input type="text" name="newUsername" placeholder="Scegli un nome utente" required><br>
+        <input type="email" name="email" placeholder="Inserisci la tua email" required><br>
+        <input type="password" name="newPassword" placeholder="Crea una password" required>
+        <button type="submit">Registrati</button>
+      </form>
+    </div>
+    <footer></footer>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"Added front-end pages by alessio parlani and jonathan panico\">\n      <change afterPath=\"$PROJECT_DIR$/src/Inventory/DbConnector.php\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Login/DbConnector.php\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/Sign/DbConnector.php\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ComposerSettings\">\n    <execution />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"LorenzoUccellani\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"33Cq0jnsInvyWmDZsuNJci1j6zt\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"Python.Ingredients_List.executor\": \"Run\",\n    \"Python.base_ingredients.executor\": \"Run\",\n    \"Python.clean_ingredients.executor\": \"Run\",\n    \"Python.controllo_ingrediente_cleaned_2.executor\": \"Run\",\n    \"Python.count_categories.executor\": \"Run\",\n    \"Python.count_nutrients.executor\": \"Run\",\n    \"Python.count_unit.executor\": \"Run\",\n    \"Python.describe_categories.executor\": \"Run\",\n    \"Python.ingredients_parse.executor\": \"Run\",\n    \"Python.morecleaning.executor\": \"Run\",\n    \"Python.populate_db.executor\": \"Run\",\n    \"Python.recipe_categories_parse.executor\": \"Run\",\n    \"Python.recipe_nutrients_parse.executor\": \"Run\",\n    \"Python.single_ingredients.executor\": \"Run\",\n    \"Python.solo_ingredient.executor\": \"Run\",\n    \"Python.time__servings.executor\": \"Run\",\n    \"Python.try_unit.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"Dev\",\n    \"ignore.virus.scanning.warn.message\": \"true\",\n    \"last_opened_file_path\": \"C:/wamp64/www/CRUD-Project/src/Sign\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"settings.editor.selected.configurable\": \"preferences.fileTypes\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_time\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_nutrients\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_categories\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Login\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Inventory\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\n      <recent name=\"$PROJECT_DIR$/data/count_categories_nutrients\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"\" />\n      <created>1758831181403</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1758831181403</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759503642366</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759503642366</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505383026</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505383026</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505765776</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505765777</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759506397512</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759506397512</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440948559</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440948559</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440956920</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440956920</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added front-end pages by alessio parlani and jonathan panico\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762106382094</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762106382094</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"8\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"modify base_ingredients.py\" />\n    <MESSAGE value=\"recipes_cleaned.csv\" />\n    <MESSAGE value=\"Added front-end pages by alessio parlani and jonathan panico\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added front-end pages by alessio parlani and jonathan panico\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 281e41ec3afec42fcb4276ca7456ab265f860e89)
++++ b/.idea/workspace.xml	(date 1763118044403)
+@@ -4,10 +4,39 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="Added front-end pages by alessio parlani and jonathan panico">
+-      <change afterPath="$PROJECT_DIR$/src/Inventory/DbConnector.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Login/DbConnector.php" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/Sign/DbConnector.php" afterDir="false" />
++    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_10_25,_12_35_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_10_25__12_35__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_13_35_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_13_35__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_13_36_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_13_36__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_17_19_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_17_19__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_17_21_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_17_21__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_18_02_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_18_02__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_18_11_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_10_2025_18_11__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_10_2025_01_39_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_10_2025_01_39__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_25_10_2025_01_40_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_25_10_2025_01_40__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_10_25,_14_10_[Changes]1/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_10_25__14_10__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_25,_12_36_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_25,_12_48_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_25__12_36__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_10_25__12_48__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_10_2025_18_03_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_10_2025_18_03__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -32,6 +61,18 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "AleParla"
++  }
++}]]></component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/Giordano96/CRUD-Project.git",
++    "accountId": "d949b00c-0765-499f-8ea1-701aa6c662bb"
++  }
++}]]></component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 7
+ }</component>
+@@ -64,14 +105,16 @@
+     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+     "RunOnceActivity.git.unshallow": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "Dev",
++    "git-widget-placeholder": "AlessioParlani",
+     "ignore.virus.scanning.warn.message": "true",
+     "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src/Sign",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+     "node.js.selected.package.tslint": "(autodetect)",
+-    "settings.editor.selected.configurable": "preferences.fileTypes"
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.fileTypes",
++    "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+   <component name="RecentsManager">
+@@ -93,7 +136,8 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
++        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PS-251.23774.466" />
++        <option value="bundled-php-predefined-a98d8de5180a-aaeaa8632555-com.jetbrains.php.sharedIndexes-PS-251.23774.466" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -105,6 +149,7 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1758831181403</updated>
++      <workItem from="1763112042730" duration="712000" />
+     </task>
+     <task id="LOCAL-00001" summary="modify base_ingredients.py">
+       <option name="closed" value="true" />

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="adapted inventory">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login_Sign/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="5ab4ac02-bb94-46f5-bc4f-7696f652e078" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="33Cq0jnsInvyWmDZsuNJci1j6zt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,
+    &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,
+    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
+    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,
+    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,
+    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src" />
+      <recent name="C:\wamp64\www\CRUD-Project\data" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
+      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="" />
+      <created>1758831181403</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758831181403</updated>
+      <workItem from="1763130108243" duration="8538000" />
+      <workItem from="1763152403230" duration="1287000" />
+      <workItem from="1763194716997" duration="9627000" />
+      <workItem from="1763288961175" duration="12297000" />
+      <workItem from="1763411307178" duration="6389000" />
+    </task>
+    <task id="LOCAL-00001" summary="modify base_ingredients.py">
+      <option name="closed" value="true" />
+      <created>1759503642366</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759503642366</updated>
+    </task>
+    <task id="LOCAL-00002" summary="modify base_ingredients.py">
+      <option name="closed" value="true" />
+      <created>1759505383026</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759505383026</updated>
+    </task>
+    <task id="LOCAL-00003" summary="modify base_ingredients.py">
+      <option name="closed" value="true" />
+      <created>1759505765776</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759505765777</updated>
+    </task>
+    <task id="LOCAL-00004" summary="modify base_ingredients.py">
+      <option name="closed" value="true" />
+      <created>1759506397512</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759506397512</updated>
+    </task>
+    <task id="LOCAL-00005" summary="recipes_cleaned.csv">
+      <option name="closed" value="true" />
+      <created>1760440948559</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760440948559</updated>
+    </task>
+    <task id="LOCAL-00006" summary="recipes_cleaned.csv">
+      <option name="closed" value="true" />
+      <created>1760440956920</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760440956920</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added front-end pages by alessio parlani and jonathan panico">
+      <option name="closed" value="true" />
+      <created>1762106382094</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762106382094</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated">
+      <option name="closed" value="true" />
+      <created>1762727526461</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762727526461</updated>
+    </task>
+    <task id="LOCAL-00009" summary="implemented part o dashboard.php, logout.php">
+      <option name="closed" value="true" />
+      <created>1762729595622</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762729595622</updated>
+    </task>
+    <task id="LOCAL-00010" summary="upgraded dashboard">
+      <option name="closed" value="true" />
+      <created>1763145937622</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763145937622</updated>
+    </task>
+    <task id="LOCAL-00011" summary="upgraded dashboard and add favorites backend">
+      <option name="closed" value="true" />
+      <created>1763222540145</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763222540145</updated>
+    </task>
+    <task id="LOCAL-00012" summary="lik new frontend with upgraded backend of dashboard">
+      <option name="closed" value="true" />
+      <created>1763295219332</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1763295219332</updated>
+    </task>
+    <task id="LOCAL-00013" summary="populated_db.py and db fixed">
+      <option name="closed" value="true" />
+      <created>1763314346596</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1763314346596</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added csrf-token in dashboard and favorites">
+      <option name="closed" value="true" />
+      <created>1763328871931</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1763328871931</updated>
+    </task>
+    <task id="LOCAL-00015" summary="minor updates">
+      <option name="closed" value="true" />
+      <created>1763420190656</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1763420190656</updated>
+    </task>
+    <task id="LOCAL-00016" summary="adapted inventory">
+      <option name="closed" value="true" />
+      <created>1763507747443</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763507747443</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modify base_ingredients.py" />
+    <MESSAGE value="recipes_cleaned.csv" />
+    <MESSAGE value="Added front-end pages by alessio parlani and jonathan panico" />
+    <MESSAGE value="fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated" />
+    <MESSAGE value="implemented part o dashboard.php, logout.php" />
+    <MESSAGE value="upgraded dashboard" />
+    <MESSAGE value="upgraded dashboard and add favorites backend" />
+    <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
+    <MESSAGE value="populated_db.py and db fixed" />
+    <MESSAGE value="Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql" />
+    <MESSAGE value="merge LorenzoUccellani branch" />
+    <MESSAGE value="added csrf-token in dashboard and favorites" />
+    <MESSAGE value="minor updates" />
+    <MESSAGE value="adapted inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="adapted inventory" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
