@@ -200,15 +200,6 @@ body {
     color: #EF8A37;
 }
 
-.nav-item.active .nav-icon {
-    color: #EF8A37;
-}
-
-.nav-icon {
-    font-size: 22px;
-    line-height: 1;
-}
-
 /* Responsive (mobile) */
 @media (max-width: 480px) {
     .content {
