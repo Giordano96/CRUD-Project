@@ -1,0 +1,901 @@
+Index: src/Recipe_Details/recipe_details_view.php
+===================================================================
+diff --git a/src/Recipe_Details/recipe_details_view.php b/src/Recipe_Details/recipe_details_view.php
+deleted file mode 100644
+--- a/src/Recipe_Details/recipe_details_view.php	(revision 5364add897a6c69246bafbc373dc667f017f60c4)
++++ /dev/null	(revision 5364add897a6c69246bafbc373dc667f017f60c4)
+@@ -1,102 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="it">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+-    <title>My Secret Chef - Recipe details</title>
+-    <link rel="stylesheet" href="styles.css">
+-</head>
+-
+-<body>
+-<div class="header">
+-    <div class="logo-container">
+-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+-    </div>
+-    <div class="logout-icon">
+-        <span class="material-symbols-outlined">logout</span>
+-    </div>
+-</div>
+-
+-    <img src="img/pasta.png" class="recipe-img" alt="Recipe Image">
+-
+-    <div class="recipe-header">
+-        <h2>Pasta rossa</h2>
+-        <div class="recipe-info">
+-            10 min
+-        </div>
+-    </div>
+-
+-    <div class="tabs">
+-        <div class="tab active">Ingredients</div>
+-        <div class="tab">Procedure</div>
+-        <div class="tab">Nutrition</div>
+-    </div>
+-
+-    <div class="content">
+-
+-        <div id="ingredients-section" class="tab-section active-tab">
+-            <div class="ingredients-title">Ingredients</div>
+-
+-            <div class="ingredient-item">
+-                <input type="checkbox" class="ingredient-checkbox">
+-                Pasta (spaghetti o penne) — 200 g
+-            </div>
+-
+-            <div class="ingredient-item">
+-                <input type="checkbox" class="ingredient-checkbox">
+-                Pomodori pelati o passata di pomodoro — 300 g
+-            </div>
+-
+-            <div class="ingredient-item">
+-                <input type="checkbox" class="ingredient-checkbox">
+-                Basilico fresco — circa 6-8 foglie
+-            </div>
+-
+-            <div class="ingredient-item">
+-                <input type="checkbox" class="ingredient-checkbox">
+-                Olio extravergine d’oliva — 2 cucchiai
+-            </div>
+-
+-            <div class="ingredient-item">
+-                <input type="checkbox" class="ingredient-checkbox">
+-                Sale — quanto basta
+-            </div>
+-        </div>
+-
+-        <div id="procedure-section" class="tab-section">
+-            <h3>Procedure</h3>
+-            <p>Bollire la pasta in acqua salata.</p>
+-            <p>Preparare un soffritto leggero con olio e aglio.</p>
+-            <p>Aggiungere la passata di pomodoro, sale e pepe.</p>
+-            <p>Cuocere per 10 minuti e aggiungere basilico fresco.</p>
+-            <p>Scolare la pasta e unirla al sugo.</p>
+-        </div>
+-
+-        <div id="nutrition-section" class="tab-section">
+-            <h3>Nutrition</h3>
+-            <p>Calorie: ~450 kcal a porzione</p>
+-            <p>Carboidrati: 75 g</p>
+-            <p>Proteine: 12 g</p>
+-            <p>Grassi: 10 g</p>
+-        </div>
+-
+-    </div>
+-
+-<div class="bottom-nav">
+-    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.html'">
+-        <span class="material-symbols-outlined">view_cozy</span>
+-        Home
+-    </div>
+-    <div class="nav-item" onclick="location.href='../Inventory/inventory.html'">
+-        <span class="material-symbols-outlined">box</span>
+-        Inventory
+-    </div>
+-    <div class="nav-item" onclick="location.href='../Favorites/favorites.php'">
+-        <span class="material-symbols-outlined">favorite</span>
+-        Favorites
+-    </div>
+-</div>
+-    <script src="script.js"></script>
+-</body>
+-</html>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"adapted inventory\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Dashboard/dashboard_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Dashboard/dashboard_view.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Dashboard/styles.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Dashboard/styles_dashboard.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Favorites/favorites_page_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Favorites/favorites_page_view.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Favorites/styles.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Favorites/styles_favorites.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Inventory/inventory_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Inventory/inventory_view.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Inventory/styles_inventory.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Inventory/styles_inventory.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Login_Sign/login_sign_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Login_Sign/login_sign_view.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Login_Sign/styles.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Dev\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GithubDefaultAccount\">\r\n    <option name=\"defaultAccountId\" value=\"5ab4ac02-bb94-46f5-bc4f-7696f652e078\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"33Cq0jnsInvyWmDZsuNJci1j6zt\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/src&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\data\" />\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\r\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\" />\r\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\\cleaning_time\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Login\" />\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Inventory\" />\r\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\r\n      <recent name=\"$PROJECT_DIR$/data/count_categories_nutrients\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13\" />\r\n        <option value=\"bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"\" />\r\n      <created>1758831181403</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1758831181403</updated>\r\n      <workItem from=\"1763130108243\" duration=\"8538000\" />\r\n      <workItem from=\"1763152403230\" duration=\"1287000\" />\r\n      <workItem from=\"1763194716997\" duration=\"9627000\" />\r\n      <workItem from=\"1763288961175\" duration=\"12297000\" />\r\n      <workItem from=\"1763411307178\" duration=\"6389000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"modify base_ingredients.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759503642366</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759503642366</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"modify base_ingredients.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759505383026</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759505383026</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"modify base_ingredients.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759505765776</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759505765777</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"modify base_ingredients.py\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1759506397512</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1759506397512</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"recipes_cleaned.csv\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760440948559</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760440948559</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"recipes_cleaned.csv\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1760440956920</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1760440956920</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Added front-end pages by alessio parlani and jonathan panico\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762106382094</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762106382094</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762727526461</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762727526461</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"implemented part o dashboard.php, logout.php\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762729595622</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762729595622</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"upgraded dashboard\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763145937622</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763145937622</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"upgraded dashboard and add favorites backend\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763222540145</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763222540145</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"lik new frontend with upgraded backend of dashboard\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763295219332</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763295219332</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"populated_db.py and db fixed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763314346596</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763314346596</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"added csrf-token in dashboard and favorites\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763328871931</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763328871931</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"minor updates\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763420190656</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763420190656</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"adapted inventory\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763507747443</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763507747443</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"17\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"modify base_ingredients.py\" />\r\n    <MESSAGE value=\"recipes_cleaned.csv\" />\r\n    <MESSAGE value=\"Added front-end pages by alessio parlani and jonathan panico\" />\r\n    <MESSAGE value=\"fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated\" />\r\n    <MESSAGE value=\"implemented part o dashboard.php, logout.php\" />\r\n    <MESSAGE value=\"upgraded dashboard\" />\r\n    <MESSAGE value=\"upgraded dashboard and add favorites backend\" />\r\n    <MESSAGE value=\"lik new frontend with upgraded backend of dashboard\" />\r\n    <MESSAGE value=\"populated_db.py and db fixed\" />\r\n    <MESSAGE value=\"Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql\" />\r\n    <MESSAGE value=\"merge LorenzoUccellani branch\" />\r\n    <MESSAGE value=\"added csrf-token in dashboard and favorites\" />\r\n    <MESSAGE value=\"minor updates\" />\r\n    <MESSAGE value=\"adapted inventory\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"adapted inventory\" />\r\n  </component>\r\n  <component name=\"github-copilot-workspace\">\r\n    <instructionFileLocations>\r\n      <option value=\".github/instructions\" />\r\n    </instructionFileLocations>\r\n    <promptFileLocations>\r\n      <option value=\".github/prompts\" />\r\n    </promptFileLocations>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5364add897a6c69246bafbc373dc667f017f60c4)
++++ b/.idea/workspace.xml	(date 1763591720469)
+@@ -4,16 +4,11 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="adapted inventory">
++    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="removed outdated files">
++      <change afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Favorites/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles.css" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -49,51 +44,51 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,
+-    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/src&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "Python.Ingredients_List.executor": "Run",
++    "Python.base_ingredients.executor": "Run",
++    "Python.clean_ingredients.executor": "Run",
++    "Python.controllo_ingrediente_cleaned_2.executor": "Run",
++    "Python.count_categories.executor": "Run",
++    "Python.count_nutrients.executor": "Run",
++    "Python.count_unit.executor": "Run",
++    "Python.describe_categories.executor": "Run",
++    "Python.duplicate_recipes.executor": "Run",
++    "Python.ingredients_parse.executor": "Run",
++    "Python.ingredients_tags_check.executor": "Run",
++    "Python.morecleaning.executor": "Run",
++    "Python.populate_db.executor": "Run",
++    "Python.recipe_categories_parse.executor": "Run",
++    "Python.recipe_nutrients_parse.executor": "Run",
++    "Python.single_ingredients.executor": "Run",
++    "Python.solo_ingredient.executor": "Run",
++    "Python.time__servings.executor": "Run",
++    "Python.try_unit.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "LorenzoUccellani",
++    "ignore.virus.scanning.warn.message": "true",
++    "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src/Recipe_Details",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.fileTypes",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\wamp64\www\CRUD-Project\src\Recipe_Details" />
+       <recent name="C:\wamp64\www\CRUD-Project\src" />
+       <recent name="C:\wamp64\www\CRUD-Project\data" />
+       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
+       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
+-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\wamp64\www\CRUD-Project\src" />
+@@ -253,7 +248,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1763507747443</updated>
+     </task>
+-    <option name="localTasksCounter" value="17" />
++    <task id="LOCAL-00017" summary="removed outdated files">
++      <option name="closed" value="true" />
++      <created>1763589583760</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1763589583760</updated>
++    </task>
++    <task id="LOCAL-00018" summary="removed outdated files">
++      <option name="closed" value="true" />
++      <created>1763589593101</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1763589593101</updated>
++    </task>
++    <option name="localTasksCounter" value="19" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -285,7 +296,8 @@
+     <MESSAGE value="added csrf-token in dashboard and favorites" />
+     <MESSAGE value="minor updates" />
+     <MESSAGE value="adapted inventory" />
+-    <option name="LAST_COMMIT_MESSAGE" value="adapted inventory" />
++    <MESSAGE value="removed outdated files" />
++    <option name="LAST_COMMIT_MESSAGE" value="removed outdated files" />
+   </component>
+   <component name="github-copilot-workspace">
+     <instructionFileLocations>
+Index: src/Recipe_Details/recipe_details.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Recipe_Details/recipe_details.php b/src/Recipe_Details/recipe_details.php
+new file mode 100644
+--- /dev/null	(date 1763592062638)
++++ b/src/Recipe_Details/recipe_details.php	(date 1763592062638)
+@@ -0,0 +1,232 @@
++<?php
++require '../DbConnector.php';
++session_start();
++
++$user_id = 1; // TODO: $_SESSION['user_id']
++
++// Genera CSRF token separati se non esistono
++if (!isset($_SESSION['csrf_token_add'])) {
++    $_SESSION['csrf_token_add'] = md5(uniqid(rand(), TRUE));
++}
++if (!isset($_SESSION['csrf_token_delete'])) {
++    $_SESSION['csrf_token_delete'] = md5(uniqid(rand(), TRUE));
++}
++
++// === GESTIONE ELIMINAZIONE ===
++if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['ingredient_id'])) {
++    if (!isset($_POST['csrf_token_delete']) || $_POST['csrf_token_delete'] !== $_SESSION['csrf_token_delete']) {
++        die('Invalid CSRF token for delete');
++    }
++    $ingredient_id = (int)$_POST['ingredient_id'];
++    $stmt = $pdo->prepare("DELETE FROM inventory WHERE user_id = :user_id AND ingredient_id = :ingredient_id");
++    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
++    $stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
++    $stmt->execute();
++    header('Location: inventory_view.php');
++    exit;
++}
++
++// === GESTIONE INSERIMENTO ===
++if (isset($_POST['action']) && $_POST['action'] === 'add' && isset($_POST['ingredient_id'])) {
++    if (!isset($_POST['csrf_token_add']) || $_POST['csrf_token_add'] !== $_SESSION['csrf_token_add']) {
++        die('Invalid CSRF token for add');
++    }
++    $ingredient_id = (int)$_POST['ingredient_id'];
++    $expiration_date = !empty($_POST['expiration_date']) ? $_POST['expiration_date'] : null;
++
++    // Controllo se già esiste
++    $check_stmt = $pdo->prepare("SELECT COUNT(*) FROM inventory WHERE user_id = :user_id AND ingredient_id = :ingredient_id");
++    $check_stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
++    $check_stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
++    $check_stmt->execute();
++    if ($check_stmt->fetchColumn() > 0) {
++        // Aggiorna
++        $stmt = $pdo->prepare("UPDATE inventory SET expiration_date = :expiration_date WHERE user_id = :user_id AND ingredient_id = :ingredient_id");
++    } else {
++        // Inserisci
++        $stmt = $pdo->prepare("INSERT INTO inventory (user_id, ingredient_id, expiration_date) VALUES (:user_id, :ingredient_id, :expiration_date)");
++    }
++    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
++    $stmt->bindParam(':ingredient_id', $ingredient_id, PDO::PARAM_INT);
++    $stmt->bindValue(':expiration_date', $expiration_date, $expiration_date === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
++    $stmt->execute();
++    header('Location: inventory_view.php');
++    exit;
++}
++
++// === RICERCA AJAX ===
++if (isset($_GET['ajax_search'])) {
++    header('Content-Type: application/json');
++    $q = trim($_GET['ajax_search']);
++    if (strlen($q) < 2) {
++        echo json_encode([]);
++        exit;
++    }
++    $stmt = $pdo->prepare("SELECT id, name FROM ingredient WHERE name LIKE :term ORDER BY name LIMIT 15");
++    $stmt->execute([':term' => '%' . $q . '%']);
++    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
++    exit;
++}
++
++// === CARICA INVENTARIO ===
++$stmt = $pdo->prepare("
++    SELECT inv.ingredient_id, inv.expiration_date, i.name AS ingredient_name
++    FROM inventory inv
++    JOIN ingredient i ON inv.ingredient_id = i.id
++    WHERE inv.user_id = :user_id
++    ORDER BY inv.expiration_date ASC
++");
++$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
++$stmt->execute();
++$inventory_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
++?>
++
++<!DOCTYPE html>
++<html lang="it">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_back,box,favorite,view_cozy" />
++    <title>Dispensa - MySecretChef</title>
++    <link rel="stylesheet" href="styles.css">
++    <style>
++        .autocomplete-wrapper { position: relative; }
++        #autocomplete-list {
++            position: absolute;
++            top: 100%;
++            left: 0;
++            right: 0;
++            background: white;
++            border: 1px solid #ddd;
++            border-top: none;
++            max-height: 300px;
++            overflow-y: auto;
++            z-index: 999;
++            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
++            display: none;
++        }
++        .autocomplete-item {
++            padding: 16px;
++            cursor: pointer;
++            border-bottom: 1px solid #f0f0f0;
++        }
++        .autocomplete-item:hover { background-color: #fdf8f0; }
++    </style>
++</head>
++<body>
++
++<div class="header">
++    <span class="back-icon" onclick="history.back()">Back</span>
++    MySecretChef
++</div>
++
++<div class="inventory-wrapper">
++
++    <div class="autocomplete-wrapper">
++        <div class="search-bar">
++            <input type="text" id="searchInput" placeholder="Search ingredients" autocomplete="off">
++        </div>
++        <div id="autocomplete-list"></div>
++    </div>
++
++    <form class="add-form" method="POST">
++        <input type="hidden" name="action" value="add">
++        <input type="hidden" name="csrf_token_add" value="<?= $_SESSION['csrf_token_add'] ?>">
++        <input type="hidden" name="ingredient_id" id="selectedIngredientId" value="">
++        <input type="date" name="expiration_date" class="add-date">
++        <button class="add-btn" type="submit">Add</button>
++    </form>
++
++    <div class="table-header">
++        <span>Ingredients</span>
++        <span class="expiry-title">Expiring date</span>
++    </div>
++
++    <div class="ingredients-list">
++        <?php if (empty($inventory_items)): ?>
++            <div style="text-align:center; padding:60px 20px; color:#999; font-size:15px;">
++                La tua dispensa è vuota
++            </div>
++        <?php else: foreach ($inventory_items as $item): ?>
++            <div class="ingredient-row">
++                <div class="ingredient-left">
++                    <span class="ingredient-name"><?= htmlspecialchars($item['ingredient_name']) ?></span>
++                    <form method="POST" style="display:inline;">
++                        <input type="hidden" name="action" value="delete">
++                        <input type="hidden" name="csrf_token_delete" value="<?= $_SESSION['csrf_token_delete'] ?>">
++                        <input type="hidden" name="ingredient_id" value="<?= $item['ingredient_id'] ?>">
++                        <button type="submit" class="delete-inline-btn">
++                            Delete
++                        </button>
++                    </form>
++                </div>
++                <span class="expiry-value">
++                    <?= $item['expiration_date'] ? date('d/m/Y', strtotime($item['expiration_date'])) : 'N/A' ?>
++                </span>
++            </div>
++        <?php endforeach; endif; ?>
++    </div>
++</div>
++
++<div class="bottom-nav">
++    <div class="nav-item" onclick="location.href='../Dashboard/dashboard_view.php'">
++        <span class="material-symbols-outlined">view_cozy</span>
++        Home
++    </div>
++    <div class="nav-item active">
++        <span class="material-symbols-outlined">box</span>
++        Inventory
++    </div>
++    <div class="nav-item" onclick="location.href='../Favorites/favorites_page_view.php'">
++        <span class="material-symbols-outlined">favorite</span>
++        Favorites
++    </div>
++</div>
++
++<script>
++    const input = document.getElementById('searchInput');
++    const list = document.getElementById('autocomplete-list');
++    const hiddenId = document.getElementById('selectedIngredientId');
++
++    input.addEventListener('input', function() {
++        const q = this.value.trim();
++
++        if (q.length < 2) {
++            list.style.display = 'none';
++            list.innerHTML = '';
++            return;
++        }
++
++        fetch(`?ajax_search=${encodeURIComponent(q)}`)
++            .then(r => r.json())
++            .then(data => {
++                list.innerHTML = '';
++                if (data.length === 0) {
++                    list.style.display = 'none';
++                    return;
++                }
++
++                data.forEach(item => {
++                    const div = document.createElement('div');
++                    div.className = 'autocomplete-item';
++                    div.textContent = item.name;
++                    div.onclick = () => {
++                        input.value = item.name;
++                        hiddenId.value = item.id;
++                        list.style.display = 'none';
++                    };
++                    list.appendChild(div);
++                });
++                list.style.display = 'block';
++            });
++    });
++
++    document.addEventListener('click', e => {
++        if (!e.target.closest('.autocomplete-wrapper')) {
++            list.style.display = 'none';
++        }
++    });
++</script>
++
++</body>
++</html>
+\ No newline at end of file
+Index: src/Recipe_Details/styles.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/* styles_inventory.css - MySecretChef Inventory (100% conforme alla tua guida) */\r\n\r\n/* Reset e base */\r\n* { margin: 0; padding: 0; box-sizing: border-box; }\r\nhtml {\r\n    font-family: 'Inter', 'Noto Sans', sans-serif;\r\n    font-size: 16px;\r\n    line-height: 1.5;\r\n    color: #1d170c;\r\n    background-color: #fcfaf8;\r\n}\r\nbody { background-color: #fcfaf8; min-height: 100vh; }\r\n\r\n/* Layout principale */\r\n.main-container { display: flex; min-height: 100vh; background-color: #fcfaf8; }\r\n\r\n/* Sidebar */\r\n.sidebar {\r\n    width: 260px;\r\n    background-color: #f4efe6;\r\n    padding: 2rem 1.5rem;\r\n    position: fixed;\r\n    left: 0; top: 0; bottom: 0;\r\n    border-right: 1px solid #eaddc6;\r\n    z-index: 10;\r\n}\r\n.sidebar ul { list-style: none; }\r\n.sidebar li { margin-bottom: 1rem; }\r\n.sidebar a {\r\n    display: flex; align-items: center; gap: .75rem;\r\n    color: #1d170c; text-decoration: none;\r\n    font-weight: 500; font-size: 1rem;\r\n    padding: .75rem 1rem; border-radius: .5rem;\r\n    transition: all .2s ease;\r\n}\r\n.sidebar a:hover, .sidebar a.active { background-color: #ffa200; color: #fff; }\r\n\r\n/* Main */\r\nmain {\r\n    flex: 1; padding: 2.5rem 3rem;\r\n    max-width: 960px; margin-left: 260px;\r\n    background-color: #fcfaf8;\r\n}\r\nh1 {\r\n    font-size: 2.25rem; font-weight: 900;\r\n    color: #1d170c; margin-bottom: 2rem;\r\n    line-height: 1.1;\r\n}\r\n\r\n/* Form aggiunta */\r\n.add-form {\r\n    background: #fff; padding: 1.5rem;\r\n    border-radius: .5rem; border: 1px solid #eaddc6;\r\n    margin-bottom: 2rem; display: flex;\r\n    flex-wrap: wrap; gap: .75rem; align-items: center;\r\n    box-shadow: 0 1px 3px rgba(0,0,0,.05);\r\n}\r\n.add-form input, .add-form select, .add-form datalist {\r\n    padding: .75rem 1rem; border: 1px solid #eaddc6;\r\n    border-radius: .5rem; background: #f4efe6;\r\n    font-size: 1rem; font-family: inherit;\r\n    flex: 1; min-width: 180px;\r\n}\r\n.add-form input:focus, .add-form select:focus {\r\n    outline: none; border-color: #ffa200;\r\n    box-shadow: 0 0 0 3px rgba(255,162,0,.15);\r\n}\r\n\r\n/* Pulsanti */\r\nbutton, input[type=\"submit\"] {\r\n    background: #ffa200; color: #fff;\r\n    border: none; padding: .75rem 1.5rem;\r\n    font-weight: 700; font-size: 1rem;\r\n    border-radius: .5rem; cursor: pointer;\r\n    transition: background .2s;\r\n}\r\nbutton:hover, input[type=\"submit\"]:hover { background: #e69000; }\r\n\r\n/* Tabella */\r\n.inventory-table {\r\n    width: 100%; border-collapse: collapse;\r\n    background: #fff; border-radius: .5rem;\r\n    overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.05);\r\n    margin-top: 1rem;\r\n}\r\n.inventory-table th {\r\n    background: #f4efe6; text-align: left;\r\n    padding: 1rem; font-weight: 700;\r\n    color: #1d170c; font-size: .875rem;\r\n    text-transform: uppercase; letter-spacing: .05em;\r\n}\r\n.inventory-table td {\r\n    padding: 1rem; border-top: 1px solid #eaddc6;\r\n    font-size: 1rem;\r\n}\r\n.inventory-table tr:hover { background: #fdf9f3; }\r\n.inventory-table a {\r\n    color: #ffa200; text-decoration: none;\r\n    font-weight: 500; margin-right: .5rem;\r\n}\r\n.inventory-table a:hover { text-decoration: underline; }\r\n\r\n/* Filtro */\r\n.category-filter {\r\n    padding: .75rem 1rem; border: 1px solid #eaddc6;\r\n    border-radius: .5rem; background: #f4efe6;\r\n    font-family: inherit; font-size: 1rem;\r\n    margin-bottom: 1.5rem; width: 100%; max-width: 300px;\r\n}\r\n\r\n/* Form delete inline */\r\n.delete-form-inline { display: inline; margin: 0; }\r\n\r\n/* Responsive */\r\n@media (max-width: 768px) {\r\n    .main-container { flex-direction: column; }\r\n    .sidebar { position: static; width: 100%; padding: 1.5rem; border-right: none; border-bottom: 1px solid #eaddc6; }\r\n    main { margin-left: 0; padding: 1.5rem; }\r\n    .add-form { flex-direction: column; }\r\n    .add-form input { min-width: 100%; }\r\n}\r\n\r\n/* Box ricette come tabella inventario */\r\n.recipe-box {\r\n    background: #fff;\r\n    border: 1px solid #eaddc6;\r\n    border-radius: .5rem;\r\n    padding: 1.5rem;\r\n    box-shadow: 0 1px 3px rgba(0,0,0,.05);\r\n    margin-top: 1rem;\r\n}\r\n\r\n.recipe-box h2 {\r\n    font-size: 1.3rem;\r\n    font-weight: 800;\r\n    margin-bottom: 1rem;\r\n}\r\n\r\n/* Grid ricette */\r\n.recipe-grid {\r\n    display: grid;\r\n    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));\r\n    gap: 1.2rem;\r\n}\r\n\r\n/* Card ricetta */\r\n.recipe-card {\r\n    background: #fdf9f3;\r\n    border: 1px solid #eaddc6;\r\n    border-radius: .5rem;\r\n    padding: 1rem;\r\n    text-align: center;\r\n}\r\n\r\n.recipe-card img {\r\n    width: 100%;\r\n    height: 120px;\r\n    object-fit: cover;\r\n    border-radius: .4rem;\r\n    margin-bottom: .6rem;\r\n}\r\n\r\n.recipe-card h3 {\r\n    font-size: 1rem;\r\n    font-weight: 700;\r\n    margin-bottom: .2rem;\r\n}\r\n\r\n.recipe-card p {\r\n    font-size: .85rem;\r\n    color: #5a4b32;\r\n}\r\n\r\n/* Recipe hero image */\r\n.recipe-hero {\r\n    width: 100%;\r\n    height: 260px;\r\n    border-radius: .5rem;\r\n    object-fit: cover;\r\n    margin-bottom: 1rem;\r\n}\r\n\r\n/* Ingredient list checkboxes */\r\n.ingredients-list {\r\n    list-style: none;\r\n    padding-left: 0;\r\n    margin-bottom: 1.5rem;\r\n}\r\n.ingredients-list li {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: .5rem;\r\n    margin-bottom: .5rem;\r\n}\r\n.ingredients-list input[type=checkbox] {\r\n    width: 18px;\r\n    height: 18px;\r\n}\r\n\r\n/* Procedure list */\r\n.procedure-list {\r\n    padding-left: 1.2rem;\r\n    margin-bottom: 1rem;\r\n}\r\n.procedure-list li {\r\n    margin-bottom: .45rem;\r\n    font-size: .95rem;\r\n}\r\n\r\n/* Prep time */\r\n.prep-time {\r\n    font-size: .9rem;\r\n    color: #a17445;\r\n    margin-bottom: 1rem;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Recipe_Details/styles.css b/src/Recipe_Details/styles.css
+--- a/src/Recipe_Details/styles.css	(revision 5364add897a6c69246bafbc373dc667f017f60c4)
++++ b/src/Recipe_Details/styles.css	(date 1763589409028)
+@@ -1,215 +1,205 @@
+-/* styles_inventory.css - MySecretChef Inventory (100% conforme alla tua guida) */
+-
+-/* Reset e base */
+-* { margin: 0; padding: 0; box-sizing: border-box; }
+-html {
+-    font-family: 'Inter', 'Noto Sans', sans-serif;
+-    font-size: 16px;
+-    line-height: 1.5;
+-    color: #1d170c;
+-    background-color: #fcfaf8;
+-}
+-body { background-color: #fcfaf8; min-height: 100vh; }
+-
+-/* Layout principale */
+-.main-container { display: flex; min-height: 100vh; background-color: #fcfaf8; }
+-
+-/* Sidebar */
+-.sidebar {
+-    width: 260px;
+-    background-color: #f4efe6;
+-    padding: 2rem 1.5rem;
+-    position: fixed;
+-    left: 0; top: 0; bottom: 0;
+-    border-right: 1px solid #eaddc6;
+-    z-index: 10;
+-}
+-.sidebar ul { list-style: none; }
+-.sidebar li { margin-bottom: 1rem; }
+-.sidebar a {
+-    display: flex; align-items: center; gap: .75rem;
+-    color: #1d170c; text-decoration: none;
+-    font-weight: 500; font-size: 1rem;
+-    padding: .75rem 1rem; border-radius: .5rem;
+-    transition: all .2s ease;
+-}
+-.sidebar a:hover, .sidebar a.active { background-color: #ffa200; color: #fff; }
+-
+-/* Main */
+-main {
+-    flex: 1; padding: 2.5rem 3rem;
+-    max-width: 960px; margin-left: 260px;
+-    background-color: #fcfaf8;
+-}
+-h1 {
+-    font-size: 2.25rem; font-weight: 900;
+-    color: #1d170c; margin-bottom: 2rem;
+-    line-height: 1.1;
+-}
+-
+-/* Form aggiunta */
+-.add-form {
+-    background: #fff; padding: 1.5rem;
+-    border-radius: .5rem; border: 1px solid #eaddc6;
+-    margin-bottom: 2rem; display: flex;
+-    flex-wrap: wrap; gap: .75rem; align-items: center;
+-    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+-}
+-.add-form input, .add-form select, .add-form datalist {
+-    padding: .75rem 1rem; border: 1px solid #eaddc6;
+-    border-radius: .5rem; background: #f4efe6;
+-    font-size: 1rem; font-family: inherit;
+-    flex: 1; min-width: 180px;
+-}
+-.add-form input:focus, .add-form select:focus {
+-    outline: none; border-color: #ffa200;
+-    box-shadow: 0 0 0 3px rgba(255,162,0,.15);
+-}
+-
+-/* Pulsanti */
+-button, input[type="submit"] {
+-    background: #ffa200; color: #fff;
+-    border: none; padding: .75rem 1.5rem;
+-    font-weight: 700; font-size: 1rem;
+-    border-radius: .5rem; cursor: pointer;
+-    transition: background .2s;
+-}
+-button:hover, input[type="submit"]:hover { background: #e69000; }
+-
+-/* Tabella */
+-.inventory-table {
+-    width: 100%; border-collapse: collapse;
+-    background: #fff; border-radius: .5rem;
+-    overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.05);
+-    margin-top: 1rem;
++*,
++*::before,
++*::after {
++    box-sizing: border-box;
+ }
+-.inventory-table th {
+-    background: #f4efe6; text-align: left;
+-    padding: 1rem; font-weight: 700;
+-    color: #1d170c; font-size: .875rem;
+-    text-transform: uppercase; letter-spacing: .05em;
+-}
+-.inventory-table td {
+-    padding: 1rem; border-top: 1px solid #eaddc6;
+-    font-size: 1rem;
+-}
+-.inventory-table tr:hover { background: #fdf9f3; }
+-.inventory-table a {
+-    color: #ffa200; text-decoration: none;
+-    font-weight: 500; margin-right: .5rem;
+-}
+-.inventory-table a:hover { text-decoration: underline; }
+ 
+-/* Filtro */
+-.category-filter {
+-    padding: .75rem 1rem; border: 1px solid #eaddc6;
+-    border-radius: .5rem; background: #f4efe6;
+-    font-family: inherit; font-size: 1rem;
+-    margin-bottom: 1.5rem; width: 100%; max-width: 300px;
++body {
++    margin: 0;
++    padding: 0;
++    font-family: Arial, sans-serif;
++    background-color: #F5F2EB;
++    color: #333;
++    display: flex;
++    flex-direction: column;
++    min-height: 100vh;
+ }
+ 
+-/* Form delete inline */
+-.delete-form-inline { display: inline; margin: 0; }
+-
+-/* Responsive */
+-@media (max-width: 768px) {
+-    .main-container { flex-direction: column; }
+-    .sidebar { position: static; width: 100%; padding: 1.5rem; border-right: none; border-bottom: 1px solid #eaddc6; }
+-    main { margin-left: 0; padding: 1.5rem; }
+-    .add-form { flex-direction: column; }
+-    .add-form input { min-width: 100%; }
++.header {
++    background-color: #F5F2EB;
++    padding: 12px 16px;
++    text-align: center;
++    font-size: 20px;
++    color: #EF8A37;
++    border-bottom: 1px solid #eee;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    position: relative;
+ }
+ 
+-/* Box ricette come tabella inventario */
+-.recipe-box {
+-    background: #fff;
+-    border: 1px solid #eaddc6;
+-    border-radius: .5rem;
+-    padding: 1.5rem;
+-    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+-    margin-top: 1rem;
++.header .back-icon {
++    position: absolute;
++    left: 16px;
++    font-size: 24px;
++    color: #333;
++    cursor: pointer;
++    text-decoration: none;
+ }
+ 
+-.recipe-box h2 {
+-    font-size: 1.3rem;
+-    font-weight: 800;
+-    margin-bottom: 1rem;
++.content {
++    padding: 20px;
++    flex: 1;
++    overflow-y: auto;
++    max-width: 1000px;
++    margin: 0 auto;
++    width: 100%;
+ }
+ 
+-/* Grid ricette */
+-.recipe-grid {
++.recipes {
+     display: grid;
+-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+-    gap: 1.2rem;
++    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
++    gap: 15px;
+ }
+ 
+-/* Card ricetta */
+-.recipe-card {
+-    background: #fdf9f3;
+-    border: 1px solid #eaddc6;
+-    border-radius: .5rem;
+-    padding: 1rem;
++.recipe {
++    background-color: #fff;
++    border-radius: 12px;
++    overflow: hidden;
+     text-align: center;
++    border: 1px solid rgba(0,0,0,0.05);
++    cursor: pointer;
++    transition: 0.25s;
++}
++
++.recipe:hover {
++    transform: scale(1.03);
+ }
+ 
+-.recipe-card img {
++.recipe img {
+     width: 100%;
+-    height: 120px;
++    height: 140px;
+     object-fit: cover;
+-    border-radius: .4rem;
+-    margin-bottom: .6rem;
++}
++
++.recipe-title {
++    font-size: 16px;
++    color: #333;
++    margin: 10px 8px 12px;
++}
++
++.bottom-nav {
++    position: fixed;
++    bottom: 0;
++    left: 0;
++    right: 0;
++    background-color: #f9f9f9;
++    display: flex;
++    justify-content: space-around;
++    padding: 10px 0 8px;
++    border-top: 1px solid #eee;
++    z-index: 50;
+ }
+ 
+-.recipe-card h3 {
+-    font-size: 1rem;
+-    font-weight: 700;
+-    margin-bottom: .2rem;
++.nav-item {
++    display: flex;
++    flex-direction: column;
++    align-items: center;
++    color: #173822;
++    font-size: 12px;
++    text-decoration: none;
++    cursor: pointer;
++    gap: 4px;
+ }
+ 
+-.recipe-card p {
+-    font-size: .85rem;
+-    color: #5a4b32;
++.nav-icon {
++    font-size: 22px;
++    line-height: 1;
+ }
+ 
+-/* Recipe hero image */
+-.recipe-hero {
++.recipe-img {
+     width: 100%;
+-    height: 260px;
+-    border-radius: .5rem;
++    height: 220px;
+     object-fit: cover;
+-    margin-bottom: 1rem;
++}
++
++.recipe-header {
++    padding: 14px 18px;
++    border-bottom: 1px solid #eee;
++    background: #fff;
+ }
+ 
+-/* Ingredient list checkboxes */
+-.ingredients-list {
+-    list-style: none;
+-    padding-left: 0;
+-    margin-bottom: 1.5rem;
++.recipe-header h2 {
++    margin: 6px 0;
++    font-size: 22px;
++    color: #333;
+ }
+-.ingredients-list li {
++
++.recipe-info {
++    font-size: 14px;
++    color: #888;
++    margin-bottom: 12px;
++}
++
++.tabs {
++    display: flex;
++    justify-content: space-around;
++    border-bottom: 1px solid #eee;
++    background: #fff;
++}
++
++.tab {
++    flex: 1;
++    padding: 12px;
++    text-align: center;
++    cursor: pointer;
++    font-size: 14px;
++    color: #888;
++}
++
++.tab.active {
++    border-bottom: 3px solid #EF8A37;
++    font-weight: bold;
++    color: #EF8A37;
++}
++
++.ingredients-title {
++    font-size: 16px;
++    font-weight: bold;
++    margin: 18px 0 12px;
++}
++
++.ingredient-item {
+     display: flex;
+     align-items: center;
+-    gap: .5rem;
+-    margin-bottom: .5rem;
++    gap: 10px;
++    margin: 10px 0;
++    font-size: 15px;
++}
++
++.ingredient-checkbox {
++    width: 20px;
++    height: 20px;
++    border: 2px solid #EF8A37;
++    border-radius: 4px;
++    cursor: pointer;
++    appearance: none;
++    background: transparent;
++    transition: 0.2s;
+ }
+-.ingredients-list input[type=checkbox] {
+-    width: 18px;
+-    height: 18px;
++
++.ingredient-checkbox:checked {
++    background: #EF8A37;
++    border-color: #EF8A37;
+ }
+ 
+-/* Procedure list */
+-.procedure-list {
+-    padding-left: 1.2rem;
+-    margin-bottom: 1rem;
++@media (max-width: 480px) {
++    .content {
++        padding: 14px;
++    }
++    .recipe img {
++        height: 110px;
++    }
++    .recipes {
++        padding-bottom: 70px;
++    }
+ }
+-.procedure-list li {
+-    margin-bottom: .45rem;
+-    font-size: .95rem;
++
++.tab-section {
++    display: none;
+ }
+ 
+-/* Prep time */
+-.prep-time {
+-    font-size: .9rem;
+-    color: #a17445;
+-    margin-bottom: 1rem;
++.tab-section.active-tab {
++    display: block;
+ }
++

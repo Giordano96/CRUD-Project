@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="adapted inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/BackgroundLogin.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/BackgroundLogin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +35,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;jonathanpanico05&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Giordano96/CRUD-Project.git&quot;,
-    &quot;accountId&quot;: &quot;3d8186d7-fa3b-4348-875f-8f4ad262db18&quot;
-  }
-}</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="5ab4ac02-bb94-46f5-bc4f-7696f652e078" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -77,9 +72,9 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;JonathanPanico&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/php/frontend_page_giusta&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -98,18 +93,18 @@
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src\Dashboard" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
-      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PS-251.28774.14" />
-        <option value="bundled-php-predefined-a98d8de5180a-e5747d4f5a45-com.jetbrains.php.sharedIndexes-PS-251.28774.14" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
       </set>
     </attachedChunks>
   </component>
@@ -126,8 +121,7 @@
       <workItem from="1763194716997" duration="9627000" />
       <workItem from="1763288961175" duration="12297000" />
       <workItem from="1763411307178" duration="6389000" />
-      <workItem from="1763631672263" duration="79000" />
-      <workItem from="1763631765793" duration="1419000" />
+      <workItem from="1763630287634" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
