@@ -1,13 +1,16 @@
 services:
+ 
   web:
-    image: php:8.2-apache
-    container_name: php_web
-    ports:
-      - "8080:80"
-    volumes:
-      - ./src:/var/www/html
-    depends_on:
-      - db
+      image: php:8.2-apache
+      container_name: php_web
+      ports:
+        - "8080:80"
+      volumes:
+        - ./src:/var/www/html
+      depends_on:
+        - db
+
+
 
   db:
     image: mariadb:11
