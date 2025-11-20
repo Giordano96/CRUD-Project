@@ -60,12 +60,15 @@
             <div class="ingredient-item">
                 <input type="checkbox" class="ingredient-checkbox" <?= $found ? 'checked' : 'disabled' ?>>
                 <?php if ($quantita): ?>
-                    <p><?= htmlspecialchars($nome) ?> <?= htmlspecialchars($quantita) ?></p>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($nome) ?> <?= htmlspecialchars($quantita) ?>
+                    </p>
                 <?php else: ?>
-                    <p><?= htmlspecialchars($ing) ?></p>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($ing) ?>
+                    </p>
                 <?php endif; ?>
-            </div>
-        <?php endforeach; ?>
+            </div>        <?php endforeach; ?>
     </div>
 
     <!-- ==================== PROCEDURA ==================== -->
@@ -116,19 +119,6 @@
         });
     });
 
-    // Checkbox con effetto barrato
-    document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
-        cb.addEventListener('change', function() {
-            const p = this.nextElementSibling;
-            if (this.checked) {
-                p.style.textDecoration = 'line-through';
-                p.style.color = '#999';
-            } else {
-                p.style.textDecoration = 'none';
-                p.style.color = '#333';
-            }
-        });
-    });
 </script>
 
 </body>
