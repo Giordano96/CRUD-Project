@@ -18,14 +18,21 @@
     <div class="logo-container">
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
-    <div class="page-title"><?= htmlspecialchars($item['recipe_name']) ?></div>
+    <div class="page-title">Recipe details</div>
     <div class="logout-icon" onclick="location.href='../logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
 
 <!-- Immagine principale della ricetta -->
-<img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
+<div class="image-container">
+    <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
+    <span class="favorite-icon material-symbols-outlined">favorite</span>
+</div>
+
+<div>
+    <p style= "text-align: center" class="recipe-title"><?= htmlspecialchars($item['recipe_name']) ?></p>
+</div>
 
 <!-- Tabs -->
 <div class="tabs">
@@ -70,7 +77,11 @@
 
     <!-- ==================== PROCEDURA ==================== -->
     <div id="procedure-section" class="tab-section">
-        <h3>Procedura</h3>
+        <h3>Procedure</h3>
+        <div class="prep-time">
+            <strong>Prep Time: <?= htmlspecialchars($item['prep_time']) ?> mins</strong>
+        </div>
+        <br>
         <div style="line-height:1.8; color:#444;">
             <?= nl2br(htmlspecialchars($item['instructions'])) ?>
         </div>
