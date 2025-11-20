@@ -19,7 +19,7 @@
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
     <div class="page-title"><?= htmlspecialchars($item['recipe_name']) ?></div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
@@ -43,7 +43,7 @@
 
         <?php foreach ($ingredients as $ing):
             $ing = trim($ing);
-            preg_match('/^([\d.,\s]+(?:\s*(di|g|kg|ml|l|cl|dl|cucchiaio|cucchiaini|pizzico|q\.?b\.?|qb|fogli[ae]|spicchi?o|teste?))?)\s*-?\s*(.+)$/i', $ing, $m);
+            preg_match('/^([\d.,\s]+(?:\s*(piece|g|ml|package|jars|jar|cans|can|bottle|))?)\s*-?\s*(.+)$/i', $ing, $m);
             $quantita = $m[1] ?? '';
             $nome     = trim($m[3] ?? $ing);
 
@@ -60,7 +60,7 @@
             <div class="ingredient-item">
                 <input type="checkbox" class="ingredient-checkbox" <?= $found ? 'checked' : 'disabled' ?>>
                 <?php if ($quantita): ?>
-                    <p><?= htmlspecialchars($nome) ?> — <?= htmlspecialchars($quantita) ?></p>
+                    <p><?= htmlspecialchars($nome) ?> <?= htmlspecialchars($quantita) ?></p>
                 <?php else: ?>
                     <p><?= htmlspecialchars($ing) ?></p>
                 <?php endif; ?>

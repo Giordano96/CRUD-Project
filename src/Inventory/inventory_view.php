@@ -14,7 +14,7 @@
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
     </div>
     <div class="page-title">My Inventory</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
