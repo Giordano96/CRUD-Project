@@ -43,7 +43,7 @@
 
         <?php foreach ($ingredients as $ing):
             $ing = trim($ing);
-            preg_match('/^([\d.,\s]+(?:\s*(di|g|kg|ml|l|cl|dl|cucchiaio|cucchiaini|pizzico|q\.?b\.?|qb|fogli[ae]|spicchi?o|teste?))?)\s*-?\s*(.+)$/i', $ing, $m);
+            preg_match('/^([\d.,\s]+(?:\s*(piece|g|ml|package|jars|jar|cans|can|bottle|))?)\s*-?\s*(.+)$/i', $ing, $m);
             $quantita = $m[1] ?? '';
             $nome     = trim($m[3] ?? $ing);
 
