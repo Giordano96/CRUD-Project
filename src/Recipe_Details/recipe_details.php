@@ -1,5 +1,5 @@
 <?php
-require '../DbConnector.php';
+require "../utility/DbConnector.php";
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
@@ -45,8 +45,6 @@ if (!$item) {
 $ingredients = $item['ingredients'] ? explode(', ', $item['ingredients']) : [];
 $nutrients   = $item['nutrients']   ? explode(', ', $item['nutrients'])   : [];
 
-// Inventario dell'utente (user_id 1 per ora - da rendere dinamico)
-$user_id = 1; // <-- $_SESSION['user_id'] quando autenticato
 
 $stmt = $pdo->prepare("
     SELECT i.name AS ingrediente

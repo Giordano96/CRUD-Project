@@ -1,53 +1,36 @@
-# Importa la libreria pandas per la gestione dei file CSV
 import pandas as pd
-
-# Importa il modulo re per l'uso di espressioni regolari
 import re
 
-# Lista dei macronutrienti da estrarre (in grammi)
-macronutrients = [
-    "Total Fat",
-    "Saturated Fat",
-    "Total Carbohydrate",
-    "Dietary Fiber",
-    "Total Sugars",
-    "Protein"
-]
-
-
-# Funzione per analizzare la stringa della colonna nutrition ed estrarre i macronutrienti in grammi
 def parse_nutrition(nutrition_str):
-    # Inizializza un dizionario per i macronutrienti con valore predefinito 0
-    macro_dict = {macro: 0 for macro in macronutrients}
-
-    # Gestisce stringhe di nutrition mancanti o non valide
     if not isinstance(nutrition_str, str):
-        return ", ".join([f"{macro}: {value}g" for macro, value in macro_dict.items()])
+        return "Total Fat: 0, Saturated Fat: 0, Total Carbohydrate: 0, Dietary Fiber: 0, Total Sugars: 0, Protein: 0"
 
-    # Pattern regex per identificare il nome del nutriente e il valore in grammi (es. "Total Fat 18g")
-    pattern = r"(\w+(?:\s+\w+)*)\s+(\d+\.?\d*)g"
+    result = {k: 0 for k in ["Total Fat", "Saturated Fat", "Total Carbohydrate", "Dietary Fiber", "Total Sugars", "Protein"]}
 
-    # Trova tutte le corrispondenze del pattern nella stringa di nutrition
-    matches = re.findall(pattern, nutrition_str)
+    pattern = r"(Total\s+Fat|Saturated\s+Fat|Total\s+Carbohydrate|Dietary\s+Fiber|Total\s+Sugars?|Sugars?|Protein)[\s:]*(\d+\.?\d*)\s*g"
+    matches = re.finditer(pattern, nutrition_str, re.IGNORECASE)
 
-    # Elabora ogni corrispondenza trovata
-    for nutrient, value in matches:
-        # Include solo i macronutrienti specificati e converte il valore in intero
-        if nutrient in macronutrients:
-            macro_dict[nutrient] = (float(value))  # Converte in intero per uniformità
+    for match in matches:
+        nutrient = match.group(1).strip()
+        value = float(match.group(2))
 
-    # Formatte l'output come stringa (es. "Total Fat: 18, Saturated Fat: 7, ...")
-    return ", ".join([f"{macro}: {value}" for macro, value in macro_dict.items()])
+        if re.match(r"Total\s+Fat", nutrient, re.IGNORECASE):
+            result["Total Fat"] = value
+        elif re.match(r"Saturated\s+Fat", nutrient, re.IGNORECASE):
+            result["Saturated Fat"] = value
+        elif re.match(r"Total\s+Carbohydrate", nutrient, re.IGNORECASE):
+            result["Total Carbohydrate"] = value
+        elif re.match(r"Dietary\s+Fiber|Fiber", nutrient, re.IGNORECASE):
+            result["Dietary Fiber"] = value
+        elif re.match(r"Total\s+Sugars?|Sugars?", nutrient, re.IGNORECASE):
+            result["Total Sugars"] = value
+        elif "Protein" in nutrient:
+            result["Protein"] = value
 
+    return ", ".join([f"{k}: {v}" for k, v in result.items()])
 
-# Legge il file CSV recipes.csv in un DataFrame
+# Carica e processa
 df = pd.read_csv("recipes_cleaned.csv")
-
-# Applica la funzione parse_nutrition alla colonna nutrition
 df['nutrition'] = df['nutrition'].apply(parse_nutrition)
-
-# Sovrascrive il file CSV originale con i dati aggiornati
 df.to_csv("recipes_cleaned.csv", index=False)
 
-# Stampa un messaggio di conferma dell'aggiornamento del file CSV
-print("Aggiornato 'recipes_cleaned.csv' con la colonna nutrition normalizzata")

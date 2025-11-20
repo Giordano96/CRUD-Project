@@ -10,7 +10,6 @@ from pathlib import Path
 # CONFIGURAZIONE
 # ----------------------------------------------------------------------
 CSV_PATH = Path('recipes_cleaned.csv')
-BACKUP_SUFFIX = '.bak'  # sarà: recipes_cleaned.csv.bak
 
 # ----------------------------------------------------------------------
 # FUNZIONE PRINCIPALE
@@ -44,14 +43,6 @@ def clean_csv_in_place(csv_path: Path) -> None:
         return
 
     print(f"Duplicati trovati: {len(duplicates):,}")
-
-    # Mostra i primi 10 duplicati
-    print("\nDuplicati (prime 10 occorrenze):")
-    print("-" * 55)
-    for name, count in duplicates.head(10).items():
-        print(f"{count:>3} ×  {name}")
-    if len(duplicates) > 10:
-        print(f"    ... e altri {len(duplicates) - 10}")
 
     # Rimuovi duplicati
     print("\nRimozione duplicati (mantenuta la prima occorrenza)...")

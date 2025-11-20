@@ -18,6 +18,7 @@
     <div class="logo-container">
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
+    
     <div class="page-title">Recipe details</div>
     <div class="logout-icon" onclick="location.href='../logout.php'">
         <span class="material-symbols-outlined">logout</span>
@@ -50,7 +51,7 @@
 
         <?php foreach ($ingredients as $ing):
             $ing = trim($ing);
-            preg_match('/^([\d.,\s]+(?:\s*(di|g|kg|ml|l|cl|dl|cucchiaio|cucchiaini|pizzico|q\.?b\.?|qb|fogli[ae]|spicchi?o|teste?))?)\s*-?\s*(.+)$/i', $ing, $m);
+            preg_match('/^([\d.,\s]+(?:\s*(piece|g|ml|package|jars|jar|cans|can|bottle|))?)\s*-?\s*(.+)$/i', $ing, $m);
             $quantita = $m[1] ?? '';
             $nome     = trim($m[3] ?? $ing);
 
@@ -67,12 +68,15 @@
             <div class="ingredient-item">
                 <input type="checkbox" class="ingredient-checkbox" <?= $found ? 'checked' : 'disabled' ?>>
                 <?php if ($quantita): ?>
-                    <p><?= htmlspecialchars($nome) ?> — <?= htmlspecialchars($quantita) ?></p>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($nome) ?> <?= htmlspecialchars($quantita) ?>
+                    </p>
                 <?php else: ?>
-                    <p><?= htmlspecialchars($ing) ?></p>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($ing) ?>
+                    </p>
                 <?php endif; ?>
-            </div>
-        <?php endforeach; ?>
+            </div>        <?php endforeach; ?>
     </div>
 
     <!-- ==================== PROCEDURA ==================== -->
@@ -127,19 +131,6 @@
         });
     });
 
-    // Checkbox con effetto barrato
-    document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
-        cb.addEventListener('change', function() {
-            const p = this.nextElementSibling;
-            if (this.checked) {
-                p.style.textDecoration = 'line-through';
-                p.style.color = '#999';
-            } else {
-                p.style.textDecoration = 'none';
-                p.style.color = '#333';
-            }
-        });
-    });
 </script>
 
 </body>
