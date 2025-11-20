@@ -2,7 +2,7 @@
 $host = 'db';
 $dbname = 'mysecretchef';
 $user = 'root';
-$password = '';
+$password = 'root';
 
 try {
     global $pdo;
