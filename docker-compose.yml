@@ -20,6 +20,7 @@ services:
       MARIADB_PASSWORD: userpass
     volumes:
       - db_data:/var/lib/mysql
+      - ./data:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
