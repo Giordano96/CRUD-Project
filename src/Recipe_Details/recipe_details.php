@@ -170,4 +170,4 @@ $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
     document.getElementById("Favorites").onclick = function() {
         window.location.href = "../Favorites/favorites_page_view.php"; // Sostituisci con il tuo URL
     };
-</script>
+</script>//
