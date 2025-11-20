@@ -95,16 +95,17 @@ if (isset($_GET['ajax'])) {
         // 4. Load all ingredients from user's inventory
         if ($action === 'load_inventory') {
             $stmt = $pdo->prepare("
-                SELECT i.name 
-                FROM inventory inv
-                JOIN ingredient i ON inv.ingredient_id = i.id 
-                WHERE inv.user_id = :userId AND inv.quantity > 0
-                ORDER BY i.name
-            ");
+        SELECT i.name 
+        FROM inventory inv
+        JOIN ingredient i ON inv.ingredient_id = i.id 
+        WHERE inv.user_id = :userId
+        ORDER BY i.name
+    ");
             $stmt->bindValue(':userId', $userId);
             $stmt->execute();
             $inventory = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
+            // Aggiunge tutti gli ingredienti dell'inventario (anche se duplicati con quelli già selezionati)
             $selectedIngredients = array_values(array_unique(array_merge($selectedIngredients, $inventory)));
 
             echo json_encode([
@@ -113,7 +114,6 @@ if (isset($_GET['ajax'])) {
             ]);
             exit;
         }
-
         // 5. Search recipes using selected ingredients
         if ($action === 'search') {
             if (empty($selectedIngredients)) {
