@@ -7,13 +7,53 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Leggi e valida l'ID dalla URL
+// Gestione AJAX per il cuore (deve stare all'inizio!)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_favorite'])) {
+    header('Content-Type: application/json');
+
+    $recipe_id = (int)($_POST['recipe_id'] ?? 0);
+    $user_id = $_SESSION['user_id'];
+
+    if ($recipe_id <= 0) {
+        echo json_encode(['success' => false]);
+        exit;
+    }
+
+    // Controlla se esiste già
+    $check = $pdo->prepare("SELECT 1 FROM favorites WHERE user_id = ? AND recipe_id = ?");
+    $check->execute([$user_id, $recipe_id]);
+    $exists = $check->fetchColumn() !== false;
+
+    if ($exists) {
+        $pdo->prepare("DELETE FROM favorites WHERE user_id = ? AND recipe_id = ?")
+            ->execute([$user_id, $recipe_id]);
+        $new_state = false;
+    } else {
+        $pdo->prepare("INSERT INTO favorites (user_id, recipe_id) VALUES (?, ?)")
+            ->execute([$user_id, $recipe_id]);
+        $new_state = true;
+    }
+
+    echo json_encode(['success' => true, 'is_favorite' => $new_state]);
+    exit;
+}
+
+// --- Qui continua la logica normale della pagina ---
 $recipe_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($recipe_id <= 0) {
     die('ID ricetta non valido');
 }
 
 $user_id = $_SESSION['user_id'];
+
+// Verifica se è già nei preferiti
+$is_favorite = false;
+$check_fav = $pdo->prepare("SELECT 1 FROM favorites WHERE user_id = ? AND recipe_id = ?");
+$check_fav->execute([$user_id, $recipe_id]);
+if ($check_fav->fetchColumn()) {
+    $is_favorite = true;
+}
+
 // Query principale: dettagli ricetta + ingredienti + nutrienti
 $stmt = $pdo->prepare("
     SELECT 
@@ -45,7 +85,7 @@ if (!$item) {
 $ingredients = $item['ingredients'] ? explode(', ', $item['ingredients']) : [];
 $nutrients   = $item['nutrients']   ? explode(', ', $item['nutrients'])   : [];
 
-
+// Inventario utente
 $stmt = $pdo->prepare("
     SELECT i.name AS ingrediente
     FROM inventory inv
@@ -53,7 +93,7 @@ $stmt = $pdo->prepare("
     WHERE inv.user_id = ?
 ");
 $stmt->execute([$user_id]);
-$inventory = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);  // solo nomi ingredienti in inventario
+$inventory = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
 // Passa tutto alla vista
 require 'recipe_details_view.php';

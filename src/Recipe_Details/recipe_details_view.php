@@ -28,12 +28,12 @@
 <!-- Immagine principale della ricetta -->
 <div class="image-container">
     <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
-    <div class="icon-wrap" id="fav">
-        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24">
-            <use href="heart-regular-full.svg"></use>
+    <div class="icon-wrap <?= $is_favorite ? 'active' : '' ?>" id="fav" data-recipe-id="<?= $recipe_id ?>">
+        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <use href="../img/heart-regular-full.svg"></use>
         </svg>
-        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24">
-            <use href="heart-solid-full.svg"></use>
+        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <use href="../img/heart-solid-full.svg"></use>
         </svg>
     </div>
 </div>
@@ -125,25 +125,34 @@
 </div>
 
 <script>
-    // Gestione tab (identica alla dashboard)
-    const tabs = document.querySelectorAll('.tab');
-    const sections = document.querySelectorAll('.tab-section');
-
-    tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            sections.forEach(s => s.classList.remove('active-tab'));
-            tab.classList.add('active');
-            sections[index].classList.add('active-tab');
-        });
-    });
-
     const fav = document.getElementById('fav');
 
-    fav.addEventListener('click', () => {
-        fav.classList.toggle('active');
+    fav.addEventListener('click', function () {
+        const recipeId = this.dataset.recipeId;
+        const wasActive = this.classList.contains('active');
+
+        // Cambio visivo immediato
+        this.classList.toggle('active');
+
+        fetch('', {  // '' = stessa pagina (recipe_details.php)
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'toggle_favorite=1&recipe_id=' + recipeId
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success || data.is_favorite === wasActive) {
+                    // Errore: ripristina stato precedente
+                    fav.classList.toggle('active');
+                    alert('Errore nel salvataggio del preferito');
+                }
+            })
+            .catch(() => {
+                // Errore di rete
+                fav.classList.toggle('active');
+                alert('Errore di connessione');
+            });
     });
 </script>
-
 </body>
 </html>
