@@ -115,7 +115,7 @@ $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
 
             <div class="ingredient-item">
-                <input type="checkbox" <?= $found ? 'checked disabled' : '' ?> class="ingredient-checkbox">
+                <input type="checkbox" <?= $found ? 'checked' : 'disabled' ?> class="ingredient-checkbox">
 
                 <?php if ($quantita): ?>
                     <p><?= htmlspecialchars($nome) ?> — <?= htmlspecialchars($quantita) ?></p>
@@ -170,4 +170,4 @@ $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
     document.getElementById("Favorites").onclick = function() {
         window.location.href = "../Favorites/favorites_page_view.php"; // Sostituisci con il tuo URL
     };
-</script>//
+</script>
