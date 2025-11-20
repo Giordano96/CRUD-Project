@@ -1,5 +1,5 @@
 <?php
-require '../DbConnector.php';
+require "../utility/DbConnector.php";
 session_start();
 
 if (!isset($_SESSION['user_id'])) {

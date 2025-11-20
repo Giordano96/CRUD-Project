@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="adapted inventory">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="fixed add from inventory">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DbConnector.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/DbConnector.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/logout.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +42,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "LorenzoUccellani"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Giordano96/CRUD-Project.git",
-    "accountId": "135eb39f-11d9-44b8-b62e-f9b3976b3c16"
-  }
-}]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="5ab4ac02-bb94-46f5-bc4f-7696f652e078" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -81,7 +81,6 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Dev",
     "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "C:/wamp64/www/CRUD-Project/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -89,7 +88,6 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.fileTypes",
-    "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -102,18 +100,18 @@
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src\utility" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Dashboard" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
-      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.26830.95" />
-        <option value="bundled-php-predefined-a98d8de5180a-9b563d34894c-com.jetbrains.php.sharedIndexes-PS-252.26830.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +129,7 @@
       <workItem from="1763288961175" duration="12297000" />
       <workItem from="1763411307178" duration="6389000" />
       <workItem from="1763630287634" duration="2544000" />
+      <workItem from="1763662541898" duration="4368000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -260,7 +259,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763507747443</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fixed add from inventory">
+      <option name="closed" value="true" />
+      <created>1763639087733</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763639087733</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixed add from inventory">
+      <option name="closed" value="true" />
+      <created>1763639121760</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763639121760</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,8 +307,8 @@
     <MESSAGE value="added csrf-token in dashboard and favorites" />
     <MESSAGE value="minor updates" />
     <MESSAGE value="adapted inventory" />
-    <MESSAGE value="adapted recipe_details.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="adapted recipe_details.php" />
+    <MESSAGE value="fixed add from inventory" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed add from inventory" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
