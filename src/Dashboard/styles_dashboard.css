@@ -1,4 +1,8 @@
-/* Unified with login CSS: predictable sizing */
+/* ==================================================================
+   styles_dashboard.css – Versione aggiornata e definitiva
+   Compatibile con le ultime modifiche (link diretto, hover, ecc.)
+   ================================================================== */
+
 *,
 *::before,
 *::after {
@@ -16,6 +20,7 @@ body {
     min-height: 100vh;
 }
 
+/* ==================== HEADER ==================== */
 .header {
     display: flex;
     justify-content: space-between;
@@ -52,6 +57,7 @@ body {
     color: #173822;
 }
 
+/* ==================== CONTENT ==================== */
 .content {
     padding: 20px;
     flex: 1;
@@ -59,15 +65,40 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     width: 100%;
+    padding-bottom: 80px; /* spazio per bottom nav */
 }
 
 .cooking-question {
     font-size: 18px;
-    color: #173822; /* dark green */
-    margin-bottom: 10px;
+    color: #173822;
+    margin-bottom: 12px;
     text-align: left;
+    font-weight: 600;
 }
-/* === AUTOCOMPLETE DROPDOWN === */
+
+/* ==================== SEARCH & AUTOCOMPLETE ==================== */
+.search-container {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 16px 14px 44px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 14px;
+    font-size: 16px;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+
+.search-input:focus {
+    border-color: #EF8A37;
+    box-shadow: 0 4px 15px rgba(239, 138, 55, 0.15);
+}
+
 .suggestions-box {
     position: absolute;
     top: 100%;
@@ -76,155 +107,223 @@ body {
     background: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-top: none;
-    border-radius: 0 0 12px 12px;
-    max-height: 200px;
+    border-radius: 0 0 14px 14px;
+    max-height: 220px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: block !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .suggestion {
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 15px;
     cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f5f5f5;
     transition: background 0.15s;
 }
 
 .suggestion:hover {
-    background-color: #f9f9f9;
+    background-color: #fff8f0;
 }
 
 .suggestion:last-child {
     border-bottom: none;
 }
 
-.search-container {
-    position: relative;
-    margin-bottom: 14px;
-}
-
-.search-input {
-    width: 100%;
-    padding: 12px 16px 12px 44px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    font-size: 16px;
-    background-color: rgba(255,255,255,0.95);
-    box-sizing: border-box;
-    outline: none;
-}
-
-
+/* ==================== BUTTONS ==================== */
 .buttons {
     display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
 }
 
 .button {
-    padding: 10px 16px;
-    background-color: #EF8A37;
-    color: white;
+    padding: 12px 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    flex: 1 1 200px;
-    text-align: center;
+    flex: 1 1 180px;
+    transition: all 0.2s;
+    min-width: 140px;
 }
 
-.button:hover {
+.button {
+    background-color: #EF8A37;
+    color: white;
+}
+
+.button:hover:not(.disabled) {
     background-color: #e67300;
+    transform: translateY(-1px);
 }
 
 .button.secondary {
     background-color: #173822;
 }
 
-.button.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
+.button.secondary:hover {
+    background-color: #0f2418;
 }
 
+.button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ==================== TAGS ==================== */
 .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .tag {
     background-color: #f0f0f0;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
     color: #333;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .tag-close {
     cursor: pointer;
     color: #999;
-    font-weight: 600;
+    font-weight: bold;
+    font-size: 18px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
 }
 
+.tag-close:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+.no-ingredients {
+    color: #999;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+/* ==================== RECIPES GRID ==================== */
 .recommended {
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 700;
     color: #173822;
-    margin-bottom: 12px;
-    font-weight: 600;
+    margin: 24px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #EF8A37;
+    display: inline-block;
+}
+
+.recommended span {
+    font-weight: normal;
+    font-size: 15px;
+    color: #EF8A37;
 }
 
 .recipes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+}
+
+/* Card ricetta con link */
+.recipe-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.recipe-link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.16);
 }
 
 .recipe {
-    background-color: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.04);
+    display: flex;
+    height: 110px;
+    background: white;
+    cursor: pointer;
 }
 
 .recipe img {
-    width: 100%;
-    height: 120px;
+    width: 110px;
+    height: 100%;
     object-fit: cover;
-    display: block;
+    flex-shrink: 0;
+}
+
+.recipe-content {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
 }
 
 .recipe-title {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 8px 4px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+    line-height: 1.3;
 }
 
 .recipe-subtitle {
-    font-size: 13px;
+    font-size: 14px;
     color: #EF8A37;
-    margin-bottom: 12px;
+    font-weight: 600;
 }
 
+/* Messaggi vuoti */
+.no-recipes {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: #999;
+    font-size: 17px;
+    background: #f9f9f9;
+    border-radius: 16px;
+    margin: 20px 0;
+}
+
+/* ==================== BOTTOM NAV ==================== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 12px 0;
     border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     z-index: 50;
 }
 
@@ -235,34 +334,26 @@ body {
     color: #173822;
     font-size: 12px;
     cursor: pointer;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 .nav-item.active {
     color: #EF8A37;
 }
 
-/* Responsiveness and small-screen tweaks */
+.nav-item .material-symbols-outlined {
+    font-size: 26px;
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 480px) {
-    .content {
-        padding: 14px;
-    }
-    .cooking-question {
-        font-size: 16px;
-    }
-    .search-input {
-        padding: 10px 36px 10px 10px;
-        font-size: 15px;
-    }
-    .button {
-        font-size: 15px;
-        padding: 10px;
-        flex-basis: 100%;
-    }
-    .recipe img {
-        height: 110px;
-    }
-    .recipes {
-        padding-bottom: 70px;
-    }
+    .content { padding: 14px; }
+    .cooking-question { font-size: 17px; }
+    .recipes { grid-template-columns: 1fr; }
+    .recipe { height: 100px; }
+    .recipe img { width: 100px; }
+    .button { font-size: 15px; padding: 11px; }
+    .recommended { font-size: 18px; }
 }

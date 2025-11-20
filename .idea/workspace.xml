@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="adapted inventory">
-      <change afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/styles_inventory.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/ChatGPT Image 24 ott 2025, 14_55_56.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/pasta.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_fung.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_pest.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_pomo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/img/spaghetti_vongo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,11 +93,11 @@
       <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src\Dashboard" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
-      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -130,6 +121,7 @@
       <workItem from="1763194716997" duration="9627000" />
       <workItem from="1763288961175" duration="12297000" />
       <workItem from="1763411307178" duration="6389000" />
+      <workItem from="1763630287634" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
