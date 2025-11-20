@@ -15,7 +15,7 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: mydb
+      MARIADB_DATABASE: mysecretchef
       MARIADB_USER: user
       MARIADB_PASSWORD: userpass
     volumes:

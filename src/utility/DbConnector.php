@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost';
+$host = 'db';
 $dbname = 'mysecretchef';
 $user = 'root';
 $password = '';
