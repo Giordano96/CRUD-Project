@@ -6,10 +6,13 @@
     box-sizing: border-box;
 }
 
+* {
+    font-family: 'Plus Jakarta Sans';
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     background-color: #F6F4E9;
     color: #333;
     display: flex;
@@ -109,6 +112,13 @@ body {
     border-bottom: none;
 }
 
+.delete-and-expire-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 5px;
+}
+
 /* BOTTONI IDENTICI */
 .buttons {
     display: flex;
@@ -153,6 +163,7 @@ body {
     padding: 16px 14px;
     margin-bottom: 12px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
@@ -177,6 +188,7 @@ body {
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
+    justify-items: right;
 }
 
 .no-ingredients {

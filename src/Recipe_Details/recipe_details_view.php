@@ -18,9 +18,9 @@
     <div class="logo-container">
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
-    
+
     <div class="page-title">Recipe details</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
@@ -28,7 +28,14 @@
 <!-- Immagine principale della ricetta -->
 <div class="image-container">
     <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
-    <span class="favorite-icon material-symbols-outlined">favorite</span>
+    <div class="icon-wrap" id="fav">
+        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24">
+            <use href="heart-regular-full.svg"></use>
+        </svg>
+        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24">
+            <use href="heart-solid-full.svg"></use>
+        </svg>
+    </div>
 </div>
 
 <div>
@@ -131,6 +138,11 @@
         });
     });
 
+    const fav = document.getElementById('fav');
+
+    fav.addEventListener('click', () => {
+        fav.classList.toggle('active');
+    });
 </script>
 
 </body>

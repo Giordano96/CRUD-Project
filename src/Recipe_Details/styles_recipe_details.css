@@ -76,21 +76,31 @@ body {
     position: absolute;
     bottom: 20px;
     right: 12px;
-    font-size: 36px;
-    color: #d9534f;
     background-color: #fff;
     border-radius: 50%;
     padding: 6px;
     cursor: pointer;
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s ease-in-out;
+    width: 48px;
+    height: 48px;
 }
 
-.favorite-icon:hover {
-    transform: scale(1.2);
-    color: red;
+.icon-wrap {
+    cursor: pointer;
 }
 
+.icon-fill {
+    display: none;
+}
+
+.icon-wrap.active .icon-outline {
+    display: none;
+}
+
+.icon-wrap.active .icon-fill {
+    display: block;
+}
 
 /* ==================== TABS ==================== */
 .tabs {
