@@ -22,6 +22,12 @@
         <?php if (!empty($error) && $active_tab === 'login'): ?>
             <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
+        <!-- SUCCESS MESSAGE -->
+        <?php if (!empty($success) && $active_tab === 'login'): ?>
+            <div class="success-message">
+                <?php echo htmlspecialchars($success); ?>
+            </div>
+        <?php endif; ?>
 
         <label>Email</label>
         <input type="email" name="email" required value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
@@ -32,12 +38,6 @@
         <button class="login-button" type="submit">Login</button>
     </form>
 
-    <!-- SUCCESS MESSAGE -->
-    <?php if (!empty($success) && $active_tab === 'login'): ?>
-        <div class="success-message">
-            <?php echo htmlspecialchars($success); ?>
-        </div>
-    <?php endif; ?>
 
     <!-- SIGNUP FORM -->
     <form id="signup" class="form <?php echo $active_tab === 'signup' ? 'active' : ''; ?>" method="post" action="login_sign.php">

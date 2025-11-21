@@ -86,7 +86,6 @@ body {
     transition: transform 0.2s ease-in-out;
     width: 48px;
     height: 48px;
-    z-index: 200;
 }
 
 .icon-wrap {

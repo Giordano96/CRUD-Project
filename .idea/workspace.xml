@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="organized directory src">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="small ui changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
@@ -279,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763733301628</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="small ui changes">
+      <option name="closed" value="true" />
+      <created>1763739185976</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1763739185976</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
