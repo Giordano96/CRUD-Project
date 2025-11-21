@@ -1,6 +1,5 @@
 <?php
 require "../utility/DbConnector.php";
-global $active_tab;
 session_start();
 
 // Redirect se già loggato
@@ -15,7 +14,9 @@ if (!isset($_SESSION["csrf_token"])) {
 }
 $csrf_token = $_SESSION["csrf_token"];
 
+// Variabili per il template
 $error = "";
+$success = "";           // <-- Nuovo: messaggio di successo
 $active_tab = "login"; // default
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($_POST["csrf_token"]) || !hash_equals($csrf_token, $_POST["csrf_token"])) {
         $error = "Invalid security token.";
     } else {
-        $action = $_POST["action"] ?? "login";  // default = login
+        $action = $_POST["action"] ?? "login";
 
         if ($action === "signup") {
             // ====================== REGISTRAZIONE ======================
@@ -50,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if ($check->fetch()) {
                         $error = "This email is already registered.";
                     } else {
-                        // Registrazione
+                        // Registrazione riuscita
                         $hashed = password_hash($password, PASSWORD_DEFAULT);
                         $stmt = $pdo->prepare("INSERT INTO user (username, email, password) VALUES (:username, :email, :password)");
                         $stmt->bindValue(':username', $username);
@@ -58,24 +59,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $stmt->bindValue(':password', $hashed);
                         $stmt->execute();
 
-                        // Login_Sign automatico dopo registrazione
-                        $userStmt = $pdo->prepare("SELECT id FROM user WHERE email = :email");
-                        $userStmt->bindValue(':email', $email);
-                        $userStmt->execute();
-                        $user = $userStmt->fetch(PDO::FETCH_ASSOC);
+                        $success = "Registration successful! You can now log in.";
+                        $active_tab = "login";  // Torna al login
 
-                        $_SESSION["user_id"] = $user["id"];
+                        // Rigenera token di sicurezza
                         $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
-
-                        header("Location: ../Dashboard/dashboard.php");
-                        exit;
+                        $csrf_token = $_SESSION["csrf_token"];
                     }
                 } catch (Exception $e) {
                     $error = "Registration failed. Please try again.";
                 }
             }
-
-        } else {
+        }
+        else {
             // ====================== LOGIN ======================
             $active_tab = "login";
 
@@ -100,16 +96,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $error = "Incorrect email or password.";
                     }
                 } catch (Exception $e) {
-                    $error = "Login_Sign failed. Please try again.";
+                    $error = "Login failed. Please try again.";
                 }
             }
         }
 
-        // Rigenera token dopo un tentativo fallito
-        $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
-        $csrf_token = $_SESSION["csrf_token"];
+        // In caso di errore nel login/signup, rigenera comunque il token
+        if (empty($success)) {
+            $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
+            $csrf_token = $_SESSION["csrf_token"];
+        }
     }
 }
 
+// Passa le variabili al template
 include "login_sign_view.php";
 ?>

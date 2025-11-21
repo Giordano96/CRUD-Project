@@ -9,10 +9,12 @@
     </head>
 <body>
 <div class="container">
+    <!-- SUCCESS MESSAGE -->
     <div class="tabs">
         <span class="<?php echo $active_tab === 'login' ? 'active' : ''; ?>" onclick="showForm('login')">Login</span>
         <span class="<?php echo $active_tab === 'signup' ? 'active' : ''; ?>" onclick="showForm('signup')">Sign up</span>
     </div>
+
 
     <!-- LOGIN FORM -->
     <form id="login" class="form <?php echo $active_tab === 'login' ? 'active' : ''; ?>" method="post" action="login_sign.php">
@@ -30,6 +32,13 @@
 
         <button class="login-button" type="submit">Login</button>
     </form>
+
+    <!-- SUCCESS MESSAGE -->
+    <?php if (!empty($success)): ?>
+        <div class="success-message">
+            <?php echo htmlspecialchars($success); ?>
+        </div>
+    <?php endif; ?>
 
     <!-- SIGNUP FORM -->
     <form id="signup" class="form <?php echo $active_tab === 'signup' ? 'active' : ''; ?>" method="post" action="login_sign.php">
