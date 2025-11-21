@@ -7,8 +7,7 @@
 
     <!-- Icone Material -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-
-    <!-- Stile unificato (usa lo stesso file della dashboard per coerenza totale) -->
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
     <link rel="stylesheet" href="styles_recipe_details.css">
 </head>
 <body>
@@ -29,15 +28,14 @@
 <div class="image-container">
     <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
     <div class="icon-wrap <?= $is_favorite ? 'active' : '' ?>" id="fav" data-recipe-id="<?= $recipe_id ?>">
-        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24">
             <use href="../img/heart-regular-full.svg"></use>
         </svg>
-        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24">
             <use href="../img/heart-solid-full.svg"></use>
         </svg>
     </div>
 </div>
-
 <div>
     <p style= "text-align: center" class="recipe-title"><?= htmlspecialchars($item['recipe_name']) ?></p>
 </div>
@@ -125,34 +123,50 @@
 </div>
 
 <script>
-    const fav = document.getElementById('fav');
+    // Gestione tab
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.tab-section');
 
-    fav.addEventListener('click', function () {
-        const recipeId = this.dataset.recipeId;
-        const wasActive = this.classList.contains('active');
-
-        // Cambio visivo immediato
-        this.classList.toggle('active');
-
-        fetch('', {  // '' = stessa pagina (recipe_details.php)
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'toggle_favorite=1&recipe_id=' + recipeId
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success || data.is_favorite === wasActive) {
-                    // Errore: ripristina stato precedente
-                    fav.classList.toggle('active');
-                    alert('Errore nel salvataggio del preferito');
-                }
-            })
-            .catch(() => {
-                // Errore di rete
-                fav.classList.toggle('active');
-                alert('Errore di connessione');
-            });
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active-tab'));
+            tab.classList.add('active');
+            sections[index].classList.add('active-tab');
+        });
     });
+
+    // Toggle preferiti (AJAX verso lo stesso file)
+    const fav = document.getElementById('fav');
+    if (fav) {
+        fav.addEventListener('click', async function () {
+            const recipeId = this.dataset.recipeId;
+
+            // UI ottimistica
+            this.classList.toggle('active');
+
+            const formData = new FormData();
+            formData.append('action', 'toggle_favorite');
+            formData.append('recipe_id', recipeId);
+
+            try {
+                const response = await fetch('', {  // '' = stessa pagina
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    this.classList.toggle('active'); // rollback
+                    alert('Errore: non è stato possibile aggiornare i preferiti');
+                }
+            } catch (e) {
+                this.classList.toggle('active'); // rollback
+                alert('Errore di connessione');
+            }
+        });
+    }
 </script>
 </body>
 </html>

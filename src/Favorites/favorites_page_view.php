@@ -99,7 +99,9 @@
 
                     html += `
                         <div class="recipe" style="position:relative;">
-                            <button class="recipe-remove" onclick="removeFavorite(${recipe.id}, event)" title="Remove from favorites">×</button>
+                            <button class="recipe-remove" onclick="removeFavorite(${recipe.id}, event)" title="Remove from favorites">
+                                <span class="material-symbols-outlined">Cancel</span>
+                            </button>
                             <a href="${detailUrl}" class="recipe-link">
                                 <img src="${imageUrl}" alt="${recipe.name}">
                                 <div class="recipe-content">

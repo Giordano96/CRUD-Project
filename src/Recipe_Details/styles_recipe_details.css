@@ -1,7 +1,6 @@
 /* ==================================================================
-   styles_recipe_details.css – Stile UNIFICATO e FINALE
-   Header, bottom nav, colori e tipografia identici alla dashboard
-   Cuore preferiti con animazione, feedback e stato corretto
+   styles.css – Stile UNIFICATO per recipe_details.php
+   Header, bottom nav, colori e tipografia 100% uguali alla dashboard
    ================================================================== */
 
 *,
@@ -12,7 +11,7 @@
     padding: 0;
 }
 * {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans';
 }
 
 body {
@@ -63,14 +62,13 @@ body {
     color: #173822;
 }
 
-/* ==================== IMMAGINE RICETTA + CUORE PREFERITI ==================== */
+/* ==================== IMMAGINE RICETTA ==================== */
 .recipe-img {
     width: 100%;
     height: 240px;
     object-fit: cover;
     border-bottom: 4px solid #EF8A37;
 }
-
 .image-container {
     position: relative;
     width: 100%;
@@ -82,63 +80,28 @@ body {
     right: 12px;
     background-color: #fff;
     border-radius: 50%;
-    padding: 8px;
+    padding: 6px;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-    transition: all 0.25s ease;
-    width: 52px;
-    height: 52px;
-    z-index: 10;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+    width: 48px;
+    height: 48px;
 }
 
-/* Effetto pressione */
-.favorite-icon:active {
-    transform: scale(0.9);
-}
-
-/* Stile SVG cuore */
-.icon-outline,
-.icon-fill {
-    width: 100%;
-    height: 100%;
-    fill: none;
-    stroke: #EF8A37;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.icon-wrap {
+    cursor: pointer;
 }
 
 .icon-fill {
     display: none;
-    fill: #EF8A37;
-    stroke: #EF8A37;
 }
 
-/* Stato attivo */
 .icon-wrap.active .icon-outline {
     display: none;
 }
 
 .icon-wrap.active .icon-fill {
-    display: block !important;
-    animation: heartbeat 0.7s ease-in-out;
-}
-
-/* Animazione quando aggiungi ai preferiti */
-@keyframes heartbeat {
-    0%   { transform: scale(1); }
-    20%  { transform: scale(1.25); }
-    40%  { transform: scale(1.1); }
-    60%  { transform: scale(1.35); }
-    100% { transform: scale(1); }
-}
-
-/* Hover solo su dispositivi con mouse */
-@media (hover: hover) and (pointer: fine) {
-    .favorite-icon:hover {
-        transform: scale(1.12);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    }
+    display: block;
 }
 
 /* ==================== TABS ==================== */
@@ -213,6 +176,7 @@ body {
     padding: 10px;
     text-align: center;
 }
+
 
 /* ==================== INGREDIENTI ==================== */
 .ingredient-item {
@@ -296,9 +260,4 @@ body {
     .content { padding: 16px; }
     .ingredient-item { font-size: 15px; }
     .tab { font-size: 15px; padding: 14px; }
-    .favorite-icon {
-        width: 48px;
-        height: 48px;
-        padding: 7px;
-    }
 }
