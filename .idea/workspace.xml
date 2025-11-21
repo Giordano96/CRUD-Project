@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="organized directory src">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "LorenzoUccellani",
+    "git-widget-placeholder": "Dev",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/wamp64/www/CRUD-Project/data/cleaning_nutrients",
     "node.js.detected.package.eslint": "true",

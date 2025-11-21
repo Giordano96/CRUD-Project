@@ -52,7 +52,7 @@
 
     <!-- ==================== INGREDIENTI ==================== -->
     <div id="ingredients-section" class="tab-section active-tab">
-        <div class="ingredients-title">Ingredienti</div>
+        <div class="ingredients-title">Ingredients</div>
 
         <?php foreach ($ingredients as $ing):
             $ing = trim($ing);
@@ -98,7 +98,7 @@
 
     <!-- ==================== NUTRIZIONE ==================== -->
     <div id="nutrition-section" class="tab-section">
-        <h3>Valori Nutrizionali</h3>
+        <h3>Nutritional Values</h3>
         <?php foreach ($nutrients as $nutrient): ?>
             <p><?= htmlspecialchars($nutrient) ?></p>
         <?php endforeach; ?>

@@ -1,0 +1,19 @@
+Index: src/DbConnector.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\n$host = 'localhost';\n$dbname = 'mysecretchef';\n$user = 'root';\n$password = '';\n\ntry {\n    global $pdo;\n    $pdo = new PDO(\n        \"mysql:host=$host;dbname=$dbname;charset=utf8mb4\",\n        $user,\n        $password,\n        [\n            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,\n            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,\n            PDO::ATTR_EMULATE_PREPARES => false\n        ]\n    );\n} catch (PDOException $e) {\n    // In produzione, logga l'errore, non mostrarlo\n    error_log(\"Errore connessione DB: \" . $e->getMessage());\n    die(\"Errore di connessione al database. Riprova più tardi.\");\n}\n?>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/DbConnector.php b/src/DbConnector.php
+--- a/src/DbConnector.php	(revision e24b476b8cb6a88683d97e18d7c07322c882e28d)
++++ b/src/DbConnector.php	(date 1763650545408)
+@@ -2,7 +2,7 @@
+ $host = 'localhost';
+ $dbname = 'mysecretchef';
+ $user = 'root';
+-$password = '';
++$password = 'root';
+ 
+ try {
+     global $pdo;
