@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="organized directory src">
+      <change beforePath="$PROJECT_DIR$/.idea/CRUD-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CRUD-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/styles_login_sign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +64,7 @@
     "Python.populate_db.executor": "Run",
     "Python.recipe_categories_parse.executor": "Run",
     "Python.recipe_nutrients_parse.executor": "Run",
+    "Python.recipes_to_metric.executor": "Run",
     "Python.single_ingredients.executor": "Run",
     "Python.solo_ingredient.executor": "Run",
     "Python.time__servings.executor": "Run",
@@ -69,7 +75,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "LorenzoUccellani",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/wamp64/www/CRUD-Project/data/cleaning_nutrients",
+    "last_opened_file_path": "/Applications/MAMP/htdocs/CRUD-Project/data",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,11 +87,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/data/cleaning_time" />
+      <recent name="$PROJECT_DIR$/data/cleaning_nutrients" />
+      <recent name="$PROJECT_DIR$/data/cleaning_categories" />
       <recent name="C:\wamp64\www\CRUD-Project\data\cleaning_nutrients" />
-      <recent name="C:\wamp64\www\CRUD-Project\src" />
-      <recent name="C:\wamp64\www\CRUD-Project\data" />
-      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\CRUD-Project\src\img" />

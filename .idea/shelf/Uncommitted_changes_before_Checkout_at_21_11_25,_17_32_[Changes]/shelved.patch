@@ -1,0 +1,158 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"small ui changes\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Login_Sign/login_sign_view.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Login_Sign/login_sign_view.php\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ComposerSettings\">\n    <execution />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Python Script\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"LorenzoUccellani\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"33Cq0jnsInvyWmDZsuNJci1j6zt\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;Python.Ingredients_List.executor&quot;: &quot;Run&quot;,\n    &quot;Python.base_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.clean_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.controllo_ingrediente_cleaned_2.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_categories.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_nutrients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.count_unit.executor&quot;: &quot;Run&quot;,\n    &quot;Python.describe_categories.executor&quot;: &quot;Run&quot;,\n    &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,\n    &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,\n    &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,\n    &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,\n    &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.recipe_nutrients_parse.executor&quot;: &quot;Run&quot;,\n    &quot;Python.single_ingredients.executor&quot;: &quot;Run&quot;,\n    &quot;Python.solo_ingredient.executor&quot;: &quot;Run&quot;,\n    &quot;Python.time__servings.executor&quot;: &quot;Run&quot;,\n    &quot;Python.try_unit.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;Dev&quot;,\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/data/cleaning_nutrients&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\data\\cleaning_nutrients\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\data\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Sign\" />\n      <recent name=\"C:\\Users\\lolly\\PycharmProjects\\CRUD-Project\\data\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\img\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\utility\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Dashboard\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\" />\n      <recent name=\"C:\\wamp64\\www\\CRUD-Project\\src\\Login\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-python-sdk-164cda30dcd9-0af03a5fa574-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26830.99\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b58851ae-b358-4c5c-bcdc-7d18e7cf4039\" name=\"Changes\" comment=\"\" />\n      <created>1758831181403</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1758831181403</updated>\n      <workItem from=\"1763130108243\" duration=\"8538000\" />\n      <workItem from=\"1763152403230\" duration=\"1287000\" />\n      <workItem from=\"1763194716997\" duration=\"9627000\" />\n      <workItem from=\"1763288961175\" duration=\"12297000\" />\n      <workItem from=\"1763411307178\" duration=\"6389000\" />\n      <workItem from=\"1763630287634\" duration=\"2544000\" />\n      <workItem from=\"1763662541898\" duration=\"5750000\" />\n      <workItem from=\"1763669945610\" duration=\"2509000\" />\n      <workItem from=\"1763721756132\" duration=\"1874000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759503642366</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759503642366</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505383026</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505383026</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759505765776</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759505765777</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"modify base_ingredients.py\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759506397512</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759506397512</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440948559</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440948559</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"recipes_cleaned.csv\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760440956920</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760440956920</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Added front-end pages by alessio parlani and jonathan panico\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762106382094</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762106382094</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762727526461</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762727526461</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"implemented part o dashboard.php, logout.php\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1762729595622</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1762729595622</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"upgraded dashboard\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763145937622</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763145937622</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"upgraded dashboard and add favorites backend\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763222540145</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763222540145</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"lik new frontend with upgraded backend of dashboard\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763295219332</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763295219332</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"populated_db.py and db fixed\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763314346596</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763314346596</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"added csrf-token in dashboard and favorites\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763328871931</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763328871931</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"minor updates\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763420190656</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763420190656</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"adapted inventory\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763507747443</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763507747443</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"fixed add from inventory\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763639087733</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763639087733</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"fixed add from inventory\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763639121760</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763639121760</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"organized directory src\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763668384256</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763668384256</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"small ui changes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763733301628</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763733301628</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"small ui changes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1763739185976</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1763739185976</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"22\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"modify base_ingredients.py\" />\n    <MESSAGE value=\"recipes_cleaned.csv\" />\n    <MESSAGE value=\"Added front-end pages by alessio parlani and jonathan panico\" />\n    <MESSAGE value=\"fixed populate_db.py and removed duplicates from recipes_cleaned.csv, added db populated\" />\n    <MESSAGE value=\"implemented part o dashboard.php, logout.php\" />\n    <MESSAGE value=\"upgraded dashboard\" />\n    <MESSAGE value=\"upgraded dashboard and add favorites backend\" />\n    <MESSAGE value=\"lik new frontend with upgraded backend of dashboard\" />\n    <MESSAGE value=\"populated_db.py and db fixed\" />\n    <MESSAGE value=\"Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql\" />\n    <MESSAGE value=\"merge LorenzoUccellani branch\" />\n    <MESSAGE value=\"added csrf-token in dashboard and favorites\" />\n    <MESSAGE value=\"minor updates\" />\n    <MESSAGE value=\"adapted inventory\" />\n    <MESSAGE value=\"fixed add from inventory\" />\n    <MESSAGE value=\"organized directory src\" />\n    <MESSAGE value=\"fixed add favorites button in recipe details\" />\n    <MESSAGE value=\"small ui changes\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"small ui changes\" />\n  </component>\n  <component name=\"github-copilot-workspace\">\n    <instructionFileLocations>\n      <option value=\".github/instructions\" />\n    </instructionFileLocations>\n    <promptFileLocations>\n      <option value=\".github/prompts\" />\n    </promptFileLocations>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ddc993f0de384965b8302cb2515d519bd140038b)
++++ b/.idea/workspace.xml	(date 1763741385905)
+@@ -5,9 +5,8 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="small ui changes">
++      <change afterPath="$PROJECT_DIR$/data/missing.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login_Sign/login_sign_view.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,6 +53,7 @@
+     &quot;Python.duplicate_recipes.executor&quot;: &quot;Run&quot;,
+     &quot;Python.ingredients_parse.executor&quot;: &quot;Run&quot;,
+     &quot;Python.ingredients_tags_check.executor&quot;: &quot;Run&quot;,
++    &quot;Python.missing.executor&quot;: &quot;Run&quot;,
+     &quot;Python.morecleaning.executor&quot;: &quot;Run&quot;,
+     &quot;Python.populate_db.executor&quot;: &quot;Run&quot;,
+     &quot;Python.recipe_categories_parse.executor&quot;: &quot;Run&quot;,
+@@ -287,7 +287,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1763739185976</updated>
+     </task>
+-    <option name="localTasksCounter" value="22" />
++    <task id="LOCAL-00022" summary="successful registration fixed">
++      <option name="closed" value="true" />
++      <created>1763739769094</created>
++      <option name="number" value="00022" />
++      <option name="presentableId" value="LOCAL-00022" />
++      <option name="project" value="LOCAL" />
++      <updated>1763739769094</updated>
++    </task>
++    <option name="localTasksCounter" value="23" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -323,7 +331,8 @@
+     <MESSAGE value="organized directory src" />
+     <MESSAGE value="fixed add favorites button in recipe details" />
+     <MESSAGE value="small ui changes" />
+-    <option name="LAST_COMMIT_MESSAGE" value="small ui changes" />
++    <MESSAGE value="successful registration fixed" />
++    <option name="LAST_COMMIT_MESSAGE" value="successful registration fixed" />
+   </component>
+   <component name="github-copilot-workspace">
+     <instructionFileLocations>
+Index: data/missing.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/missing.py b/data/missing.py
+new file mode 100644
+--- /dev/null	(date 1763741827316)
++++ b/data/missing.py	(date 1763741827316)
+@@ -0,0 +1,91 @@
++# filename: save_missing_ingredients_to_txt.py
++
++import csv
++import re
++from collections import Counter
++from datetime import datetime
++
++CSV_FILE = "recipes_cleaned.csv"
++OUTPUT_FILE = "ingredienti_mancanti.txt"
++
++print("Analisi in corso... salvataggio in corso su ingredienti_mancanti.txt\n")
++
++missing_counter = Counter()
++recipes_with_missing = 0
++total_recipes = 0
++results = []
++
++# Intestazione del file di output
++results.append("=" * 90)
++results.append("INGREDIENTI MANCANTI IN ingredients_parsed MA PRESENTI IN tags")
++results.append(f"Generato il: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
++results.append(f"File analizzato: {CSV_FILE}")
++results.append("=" * 90)
++results.append("")
++
++with open(CSV_FILE, "r", encoding="utf-8") as f:
++    reader = csv.DictReader(f)
++
++    for row in reader:
++        total_recipes += 1
++        recipe_name = row["recipe_name"].strip()
++        tags_str = row["tags"].strip()
++        ingredients_parsed = row["ingredients_parsed"]
++
++        if not tags_str:
++            continue
++
++        # Estrai tag
++        tags = {t.strip().lower() for t in tags_str.split(",") if t.strip()}
++
++        # Estrai ingredienti da ingredients_parsed
++        parsed_ingredients = {
++            match.strip().lower()
++            for match in re.findall(r"ingredient:\s*(.*?)(?=quantity:|$)", ingredients_parsed, re.IGNORECASE)
++            if match.strip()
++        }
++
++        # Trova mancanti
++        missing_in_recipe = []
++        for tag in tags:
++            tag_clean = tag.lower()
++            found = any(
++                tag_clean in parsed.lower() or parsed.lower() in tag_clean
++                for parsed in parsed_ingredients
++            )
++            if not found:
++                missing_in_recipe.append(tag)
++                missing_counter[tag] += 1
++
++        if missing_in_recipe:
++            recipes_with_missing += 1
++            results.append(f"RICETTA: {recipe_name}")
++            results.append(f"   → Ingredienti mancanti in ingredients_parsed: {', '.join(sorted(missing_in_recipe))}")
++            results.append("-" * 90)
++
++# === RIEPILOGO FINALE ===
++results.append("")
++results.append("RIEPILOGO FINALE")
++results.append("=" * 90)
++results.append(f"Ricette totali analizzate:               {total_recipes}")
++results.append(f"Ricette con ingredienti mancanti:        {recipes_with_missing}")
++results.append(f"Percentuale con problemi:                 {recipes_with_missing / total_recipes * 100:.1f}%")
++results.append("")
++results.append("TOP 30 INGREDIENTI PIÙ FREQUENTEMENTE MANCANTI")
++results.append("-" * 70)
++for ingredient, count in missing_counter.most_common(30):
++    results.append(f"{ingredient:30} → {count:4} volte")
++
++results.append("")
++results.append(f"Totale ingredienti unici mancanti: {len(missing_counter)}")
++results.append("")
++results.append("Fine del report.")
++
++# === SALVA SU FILE ===
++with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
++    f.write("\n".join(results))
++
++print(f"Analisi completata!")
++print(f"Risultati salvati in: {OUTPUT_FILE}")
++print(
++    f"→ {recipes_with_missing} ricette su {total_recipes} hanno ingredienti mancanti ({recipes_with_missing / total_recipes * 100:.1f}%)")
+\ No newline at end of file

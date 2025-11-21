@@ -12,9 +12,9 @@ logger = logging.getLogger(__name__)
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="",
+    password="root",
     database="mysecretchef",
-    port=3306,
+    port=8889,
     autocommit=False
 )
 cursor = db.cursor()
