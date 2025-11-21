@@ -25,29 +25,34 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 ## 📌 Milestones (to modify)
 - ✅ Project research  
 - ✅ Dataset research  
-- 🔄 Preliminary dataset analysis (EDA)  
-- ⏳ Data cleaning and preparation  
-- ⏳ CRUD functionality implementation  
-- ⏳ Pantry–dataset–recipes integration  
+- ✅ Preliminary dataset analysis (EDA)  
+- ✅ Data cleaning and preparation  
+- ✅ CRUD functionality implementation  
+- ✅ Pantry–dataset–recipes integration
+- ✅ containerize using docker 
+- ⏳ CI|CD implementation
+- ⏳ Tableu report
 - ⏳ Testing and documentation  
 
 ---
 
-## 🛠️ Technologies (to modify)
-- **Backend:** Python (Flask/Django or FastAPI)  
-- **Database:** SQLite / PostgreSQL  
+## 🛠️ Technologies 
+- **Backend:**  PHP
+- **Database:** MariaDb (phpMyAdmin)  
 - **Frontend:** HTML, CSS, JavaScript  
-- **Data Analysis:** Pandas, NumPy, Matplotlib/Seaborn  
+- **Data Analysis:** Python  
+- **Container:** Docker, Docker Desktop
 
 ---
 
-## 📖 Repository Structure (to modify)
+## 📖 Repository Structure 
 ```
-├── data/             # Dataset and related files
-├── notebooks/        # EDA and prototype notebooks
-├── src/              # Web-app source code
-├── docs/             # Documentation
-└── README.md         # This file
+├── data/               # Dataset and related files
+├── src/                # Web-app source code
+├── docs/               # Documentation
+├── docker-compose.yml  # Docker
+├── Dockerfile          # Docker
+└── README.md           # This file
 ```
 
 ---
@@ -58,16 +63,20 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 - Technical advisor:
 - Marco  
 - Team members:
-- Giordano Sancricca (Referent)
-- Lorenzo Uccellani 
-- Alessio Parlani
-- Jhonatan Panico
-- Giorgio Leonard Dahore
-- Carlo Perella
+- Giordano Sancricca (PM)
+- Lorenzo Uccellani (Backend Supervisor)
+- Alessio Parlani (Frontend Supervisor)
+- Jhonatan Panico (UI and Frontend)
+- Giorgio Leonard Dahore (Backend)
+- Carlo Perella (Documentation)
 
 ---
 
-## 🚀 Next Steps
-1. Complete dataset exploratory analysis.  
-2. Define database schema and CRUD functionalities.  
-3. Integrate recipe suggestion logic based on available ingredients.  
+## 🚀 How to use
+1. Download Docker Desktop and open it
+2. Clone the repository
+3. Open a terminal inside the dir CRUD-Project and use the command docker-compose up -d
+4. Open the browser and go to localhost:8080 to interact with the app
+5. localhost:8081 to interact with the DB 
+(WARNING if your porrt 8080 or 8081 are busy you must change port to connect to the services)
+
