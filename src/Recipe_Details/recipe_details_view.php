@@ -28,13 +28,10 @@
 <div class="image-container">
     <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
     <div class="icon-wrap <?= $is_favorite ? 'active' : '' ?>" id="fav" data-recipe-id="<?= $recipe_id ?>">
-        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24">
-            <use href="../img/heart-regular-full.svg"></use>
-        </svg>
-        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24">
-            <use href="../img/heart-solid-full.svg"></use>
-        </svg>
+        <img src="../img/heart-regular-full.svg" class="favorite-icon icon-outline">
+        <img src="../img/heart-solid-full.svg" class="favorite-icon icon-fill">
     </div>
+
 </div>
 <div>
     <p style= "text-align: center" class="recipe-title"><?= htmlspecialchars($item['recipe_name']) ?></p>
