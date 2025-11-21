@@ -7,8 +7,7 @@
 
     <!-- Icone Material -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-
-    <!-- Stile unificato (usa lo stesso file della dashboard per coerenza totale) -->
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
     <link rel="stylesheet" href="styles_recipe_details.css">
 </head>
 <body>
@@ -18,14 +17,28 @@
     <div class="logo-container">
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
-    <div class="page-title"><?= htmlspecialchars($item['recipe_name']) ?></div>
+
+    <div class="page-title">Recipe details</div>
     <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
 
 <!-- Immagine principale della ricetta -->
-<img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
+<div class="image-container">
+    <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
+    <div class="icon-wrap <?= $is_favorite ? 'active' : '' ?>" id="fav" data-recipe-id="<?= $recipe_id ?>">
+        <svg class="favorite-icon icon-outline" viewBox="0 0 24 24">
+            <use href="../img/heart-regular-full.svg"></use>
+        </svg>
+        <svg class="favorite-icon icon-fill" viewBox="0 0 24 24">
+            <use href="../img/heart-solid-full.svg"></use>
+        </svg>
+    </div>
+</div>
+<div>
+    <p style= "text-align: center" class="recipe-title"><?= htmlspecialchars($item['recipe_name']) ?></p>
+</div>
 
 <!-- Tabs -->
 <div class="tabs">
@@ -73,7 +86,11 @@
 
     <!-- ==================== PROCEDURA ==================== -->
     <div id="procedure-section" class="tab-section">
-        <h3>Procedura</h3>
+        <h3>Procedure</h3>
+        <div class="prep-time">
+            <strong>Prep Time: <?= htmlspecialchars($item['prep_time']) ?> mins</strong>
+        </div>
+        <br>
         <div style="line-height:1.8; color:#444;">
             <?= nl2br(htmlspecialchars($item['instructions'])) ?>
         </div>
@@ -106,7 +123,7 @@
 </div>
 
 <script>
-    // Gestione tab (identica alla dashboard)
+    // Gestione tab
     const tabs = document.querySelectorAll('.tab');
     const sections = document.querySelectorAll('.tab-section');
 
@@ -119,7 +136,37 @@
         });
     });
 
-</script>
+    // Toggle preferiti (AJAX verso lo stesso file)
+    const fav = document.getElementById('fav');
+    if (fav) {
+        fav.addEventListener('click', async function () {
+            const recipeId = this.dataset.recipeId;
 
+            // UI ottimistica
+            this.classList.toggle('active');
+
+            const formData = new FormData();
+            formData.append('action', 'toggle_favorite');
+            formData.append('recipe_id', recipeId);
+
+            try {
+                const response = await fetch('', {  // '' = stessa pagina
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    this.classList.toggle('active'); // rollback
+                    alert('Errore: non è stato possibile aggiornare i preferiti');
+                }
+            } catch (e) {
+                this.classList.toggle('active'); // rollback
+                alert('Errore di connessione');
+            }
+        });
+    }
+</script>
 </body>
 </html>

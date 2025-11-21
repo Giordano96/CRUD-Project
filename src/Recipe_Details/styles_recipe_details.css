@@ -10,10 +10,12 @@
     margin: 0;
     padding: 0;
 }
+* {
+    font-family: 'Plus Jakarta Sans';
+}
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #F6F4E9;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -66,6 +68,40 @@ body {
     height: 240px;
     object-fit: cover;
     border-bottom: 4px solid #EF8A37;
+}
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.favorite-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+    width: 48px;
+    height: 48px;
+}
+
+.icon-wrap {
+    cursor: pointer;
+}
+
+.icon-fill {
+    display: none;
+}
+
+.icon-wrap.active .icon-outline {
+    display: none;
+}
+
+.icon-wrap.active .icon-fill {
+    display: block;
 }
 
 /* ==================== TABS ==================== */
@@ -131,6 +167,16 @@ body {
     border-bottom: 2px solid #EF8A37;
     display: inline-block;
 }
+
+.recipe-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #173822;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+
 
 /* ==================== INGREDIENTI ==================== */
 .ingredient-item {
@@ -205,14 +251,6 @@ body {
     font-weight: 500;
     transition: color 0.2s;
 }
-
-.nav-item .material-symbols-outlined {
-    font-size: 26px;
-}
-
-.nav-item:nth-child(1) { color: #999; }      /* Home (non attivo) */
-.nav-item:nth-child(2) { color: #999; }      /* Inventory */
-.nav-item:nth-child(3) { color: #999; }      /* Favorites */
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 480px) {
