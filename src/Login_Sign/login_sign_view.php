@@ -9,7 +9,6 @@
     </head>
 <body>
 <div class="container">
-    <!-- SUCCESS MESSAGE -->
     <div class="tabs">
         <span class="<?php echo $active_tab === 'login' ? 'active' : ''; ?>" onclick="showForm('login')">Login</span>
         <span class="<?php echo $active_tab === 'signup' ? 'active' : ''; ?>" onclick="showForm('signup')">Sign up</span>
@@ -34,7 +33,7 @@
     </form>
 
     <!-- SUCCESS MESSAGE -->
-    <?php if (!empty($success)): ?>
+    <?php if (!empty($success) && $active_tab === 'login'): ?>
         <div class="success-message">
             <?php echo htmlspecialchars($success); ?>
         </div>
