@@ -130,7 +130,17 @@ button:hover {
     margin: 10px 0;
     border: 1px solid rgba(255, 0, 0, 0.2);
 }
-
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 14px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid #c3e6cb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
 /* Responsive */
 @media (max-width: 380px) {
     .container {
