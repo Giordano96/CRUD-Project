@@ -1,6 +1,5 @@
 <?php
-require "../DbConnector.php";
-global $pdo;
+require "../utility/DbConnector.php";
 global $active_tab;
 session_start();
 

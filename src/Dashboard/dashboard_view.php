@@ -6,6 +6,7 @@
     <title>My Secret Chef - Home</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles_dashboard.css">
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 </head>
 <body>
 
@@ -14,7 +15,7 @@
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
     </div>
     <div class="page-title">Home</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>

@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="db fixed and nutrition script fixed">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="organized directory src">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysecretchef.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/heart-regular-full.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/heart-regular-full.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/heart-solid-full.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/heart-solid-full.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/recipe_details_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Recipe_Details/styles_recipe_details.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="JonathanPanico" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,7 +73,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;LorenzoUccellani&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lolly/PycharmProjects/CRUD-Project/data&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/CRUD-Project/data/cleaning_nutrients&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -80,24 +85,25 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_categories" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_time" />
-      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data\cleaning_nutrients" />
+      <recent name="C:\wamp64\www\CRUD-Project\data\cleaning_nutrients" />
+      <recent name="C:\wamp64\www\CRUD-Project\src" />
+      <recent name="C:\wamp64\www\CRUD-Project\data" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
+      <recent name="C:\Users\lolly\PycharmProjects\CRUD-Project\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\src\img" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\utility" />
+      <recent name="C:\wamp64\www\CRUD-Project\src\Dashboard" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
-      <recent name="C:\wamp64\www\CRUD-Project\src\Inventory" />
-      <recent name="C:\wamp64\www\CRUD-Project\src\Sign" />
-      <recent name="$PROJECT_DIR$/data/count_categories_nutrients" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
       </set>
     </attachedChunks>
   </component>
@@ -113,6 +119,10 @@
       <workItem from="1763152403230" duration="1287000" />
       <workItem from="1763194716997" duration="9627000" />
       <workItem from="1763288961175" duration="12297000" />
+      <workItem from="1763411307178" duration="6389000" />
+      <workItem from="1763630287634" duration="2544000" />
+      <workItem from="1763662541898" duration="5750000" />
+      <workItem from="1763669945610" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -218,23 +228,55 @@
       <option name="project" value="LOCAL" />
       <updated>1763314346596</updated>
     </task>
-    <task id="LOCAL-00014" summary="populated_db.py and db fixed">
+    <task id="LOCAL-00014" summary="added csrf-token in dashboard and favorites">
       <option name="closed" value="true" />
-      <created>1763314504737</created>
+      <created>1763328871931</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1763314504737</updated>
+      <updated>1763328871931</updated>
     </task>
-    <task id="LOCAL-00015" summary="db fixed and nutrition script fixed">
+    <task id="LOCAL-00015" summary="minor updates">
       <option name="closed" value="true" />
-      <created>1763669923901</created>
+      <created>1763420190656</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1763669923901</updated>
+      <updated>1763420190656</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="adapted inventory">
+      <option name="closed" value="true" />
+      <created>1763507747443</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1763507747443</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fixed add from inventory">
+      <option name="closed" value="true" />
+      <created>1763639087733</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1763639087733</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixed add from inventory">
+      <option name="closed" value="true" />
+      <created>1763639121760</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1763639121760</updated>
+    </task>
+    <task id="LOCAL-00019" summary="organized directory src">
+      <option name="closed" value="true" />
+      <created>1763668384256</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1763668384256</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +303,21 @@
     <MESSAGE value="upgraded dashboard and add favorites backend" />
     <MESSAGE value="lik new frontend with upgraded backend of dashboard" />
     <MESSAGE value="populated_db.py and db fixed" />
-    <MESSAGE value="db fixed and nutrition script fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="db fixed and nutrition script fixed" />
+    <MESSAGE value="Merge branch 'LorenzoUccellani' into Dev&#10;&#10;# Conflicts:&#10;#&#9;data/mysecretchef.sql" />
+    <MESSAGE value="merge LorenzoUccellani branch" />
+    <MESSAGE value="added csrf-token in dashboard and favorites" />
+    <MESSAGE value="minor updates" />
+    <MESSAGE value="adapted inventory" />
+    <MESSAGE value="fixed add from inventory" />
+    <MESSAGE value="organized directory src" />
+    <option name="LAST_COMMIT_MESSAGE" value="organized directory src" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

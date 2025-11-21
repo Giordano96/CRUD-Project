@@ -4,8 +4,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require "../DbConnector.php";
-global $pdo;
+require "../utility/DbConnector.php";
 
 session_start();
 

@@ -1,0 +1,162 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_1.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_1.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_1.xml	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
++++ /dev/null	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1" date="1762105555834" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 02/11/2025 18:45 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
++++ /dev/null	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
+@@ -1,18 +0,0 @@
+-Index: .idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n    <mapping directory=\"$PROJECT_DIR$/src\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+---- a/.idea/vcs.xml	(revision 0daa14c020e5196e41d856f1d37f91d17be22fc9)
+-+++ b/.idea/vcs.xml	(date 1762105489141)
+-@@ -2,6 +2,5 @@
+- <project version="4">
+-   <component name="VcsDirectoryMappings">
+-     <mapping directory="" vcs="Git" />
+--    <mapping directory="$PROJECT_DIR$/src" vcs="Git" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45__Changes_.xml	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
++++ /dev/null	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]" date="1762105511310" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 02/11/2025 18:45 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_11_2025_18_45_[Changes]1/shelved.patch	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
++++ /dev/null	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
+@@ -1,86 +0,0 @@
+-Index: .idea/copilot.data.migration.agent.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/copilot.data.migration.agent.xml b/.idea/copilot.data.migration.agent.xml
+-new file mode 100644
+---- /dev/null	(date 1762105489130)
+-+++ b/.idea/copilot.data.migration.agent.xml	(date 1762105489130)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="AgentMigrationStateService">
+-+    <option name="migrationStatus" value="COMPLETED" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: .idea/copilot.data.migration.ask2agent.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/copilot.data.migration.ask2agent.xml b/.idea/copilot.data.migration.ask2agent.xml
+-new file mode 100644
+---- /dev/null	(date 1762105489132)
+-+++ b/.idea/copilot.data.migration.ask2agent.xml	(date 1762105489132)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="Ask2AgentMigrationStateService">
+-+    <option name="migrationStatus" value="COMPLETED" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: .idea/copilot.data.migration.ask.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/copilot.data.migration.ask.xml b/.idea/copilot.data.migration.ask.xml
+-new file mode 100644
+---- /dev/null	(date 1762105489135)
+-+++ b/.idea/copilot.data.migration.ask.xml	(date 1762105489135)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="AskMigrationStateService">
+-+    <option name="migrationStatus" value="COMPLETED" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: .idea/copilot.data.migration.edit.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/copilot.data.migration.edit.xml b/.idea/copilot.data.migration.edit.xml
+-new file mode 100644
+---- /dev/null	(date 1762105489138)
+-+++ b/.idea/copilot.data.migration.edit.xml	(date 1762105489138)
+-@@ -0,0 +1,6 @@
+-+<?xml version="1.0" encoding="UTF-8"?>
+-+<project version="4">
+-+  <component name="EditMigrationStateService">
+-+    <option name="migrationStatus" value="COMPLETED" />
+-+  </component>
+-+</project>
+-\ No newline at end of file
+-Index: .idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n    <mapping directory=\"$PROJECT_DIR$/src\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+---- a/.idea/vcs.xml	(revision 0daa14c020e5196e41d856f1d37f91d17be22fc9)
+-+++ b/.idea/vcs.xml	(date 1762105511287)
+-@@ -2,6 +2,5 @@
+- <project version="4">
+-   <component name="VcsDirectoryMappings">
+-     <mapping directory="" vcs="Git" />
+--    <mapping directory="$PROJECT_DIR$/src" vcs="Git" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: .idea/php.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"MessDetectorOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PHPCSFixerOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PHPCodeSnifferOptionsConfiguration\">\n    <option name=\"highlightLevel\" value=\"WARNING\" />\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PhpStanOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n  <component name=\"PsalmOptionsConfiguration\">\n    <option name=\"transferred\" value=\"true\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/php.xml b/.idea/php.xml
+--- a/.idea/php.xml	(revision 020e1bf6e3a1e9a3e38e44ab18e0e018fc34628b)
++++ b/.idea/php.xml	(date 1763539728605)
+@@ -10,6 +10,9 @@
+     <option name="highlightLevel" value="WARNING" />
+     <option name="transferred" value="true" />
+   </component>
++  <component name="PhpProjectSharedConfiguration" php_language_level="8.5">
++    <option name="suggestChangeDefaultLanguageLevel" value="false" />
++  </component>
+   <component name="PhpStanOptionsConfiguration">
+     <option name="transferred" value="true" />
+   </component>

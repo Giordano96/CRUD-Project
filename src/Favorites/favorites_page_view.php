@@ -6,6 +6,7 @@
     <title>My Secret Chef - Favorites</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles_favorites.css">
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 </head>
 <body>
 
@@ -14,7 +15,7 @@
         <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
     </div>
     <div class="page-title">My Favorites</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
@@ -93,23 +94,23 @@
                 }
 
                 data.recipes.forEach(recipe => {
-                    const imageUrl = recipe.image_url || 'img/garlic_bread.png';
+                    const imageUrl = recipe.image_url;
+                    const detailUrl = `../Recipe_Details/recipe_details.php?id=${recipe.id}`;
+
                     html += `
                         <div class="recipe" style="position:relative;">
-                            <button class="recipe-remove" onclick="removeFavorite(${recipe.id}, event)" title="Remove from favorites">×</button>
-                            <img src="${imageUrl}" alt="${recipe.name}">
-                            <div class="recipe-content">
-                                <form action="recipe_detail.php" method="POST">
-                                    <input type="hidden" name="recipe_id" value="${recipe.id}">
-                                    <button type="submit" style="all:unset; cursor:pointer; width:100%; text-align:left;">
-                                        <div class="recipe-title">${recipe.name}</div>
-                                    </button>
-                                </form>
-                                <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
-                            </div>
+                            <button class="recipe-remove" onclick="removeFavorite(${recipe.id}, event)" title="Remove from favorites">
+                                <span class="material-symbols-outlined">Cancel</span>
+                            </button>
+                            <a href="${detailUrl}" class="recipe-link">
+                                <img src="${imageUrl}" alt="${recipe.name}">
+                                <div class="recipe-content">
+                                    <div class="recipe-title">${recipe.name}</div>
+                                    <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
+                                </div>
+                            </a>
                         </div>`;
                 });
-
                 if (page === 1) {
                     recipeResults.innerHTML = html + '</div>';
                 } else {
