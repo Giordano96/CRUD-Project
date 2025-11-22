@@ -12,7 +12,7 @@
 
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
     <div class="page-title">My Favorites</div>
     <div class="logout-icon" onclick="location.href='../utility/logout.php'">

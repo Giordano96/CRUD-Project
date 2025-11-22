@@ -15,7 +15,7 @@
 <!-- ==================== HEADER IDENTICO ALLA DASHBOARD ==================== -->
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
 
     <div class="page-title">Recipe details</div>

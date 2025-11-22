@@ -12,7 +12,7 @@
 
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
     <div class="page-title">Home</div>
     <div class="logout-icon" onclick="location.href='../utility/logout.php'">
@@ -59,7 +59,6 @@
     </div>
 </div>
 
-<!-- Hidden CSRF token -->
 <input type="hidden" id="csrfToken" value="<?= $_SESSION['csrf_token'] ?>">
 
 <!-- Bottom navigation -->
