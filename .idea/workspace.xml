@@ -8,10 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/CRUD-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CRUD-Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_categories/recipes_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_ingredients/recipes_to_metric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_nutrients/recipes_cleaned.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_time/recipes_cleaned.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/populate_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/recipes_cleaned.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/recipes_cleaned.csv" afterDir="false" />
     </list>
@@ -60,6 +56,7 @@
     "Python.duplicate_recipes.executor": "Run",
     "Python.ingredients_parse.executor": "Run",
     "Python.ingredients_tags_check.executor": "Run",
+    "Python.missing.executor": "Run",
     "Python.morecleaning.executor": "Run",
     "Python.populate_db.executor": "Run",
     "Python.recipe_categories_parse.executor": "Run",
@@ -104,8 +101,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
-        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
+        <option value="bundled-python-sdk-b3d66beaba9a-c6efb3732140-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.26199.168" />
       </set>
     </attachedChunks>
   </component>
