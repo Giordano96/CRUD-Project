@@ -29,9 +29,9 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 - ✅ Data cleaning and preparation  
 - ✅ CRUD functionality implementation  
 - ✅ Pantry–dataset–recipes integration
-- ✅ containerize using docker 
+- ✅ Containerize using docker 
 - ⏳ CI|CD implementation
-- ⏳ Tableu report
+- ✅ Tableu report
 - ⏳ Testing and documentation  
 
 ---
@@ -66,7 +66,7 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 - Giordano Sancricca (PM)
 - Lorenzo Uccellani (Backend Supervisor)
 - Alessio Parlani (Frontend Supervisor)
-- Jhonatan Panico (UI and Frontend)
+- Jonathan Panico (UI and Frontend)
 - Giorgio Leonard Dahore (Backend)
 - Carlo Perella (Documentation)
 
