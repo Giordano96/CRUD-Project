@@ -32,7 +32,7 @@
     <div class="add-ingredient-section">
         <div class="expiration-container">
             <label for="expirationDate" class="expiration-label">Expiration date (optional)</label>
-            <input type="date" id="expirationDate" class="add-date">
+            <input type="date" id="expirationDate" class="add-date" min="<?= date('Y-m-d') ?>" onkeydown="return false" onpaste="return false">
         </div>
 
         <div class="buttons">
@@ -100,7 +100,7 @@
 
     let searchTimer;
 
-    // RICERCA DALLA PRIMA LETTERA (come Dashboard)
+    // RICERCA DALLA PRIMA LETTERA
     ingredientInput.addEventListener('input', () => {
         clearTimeout(searchTimer);
         const query = ingredientInput.value.trim();
@@ -171,6 +171,8 @@
             addButton.disabled = true;
         }
     });
+
+
 </script>
 
 </body>
