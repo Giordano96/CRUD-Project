@@ -8,7 +8,7 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 ---
 
 ## 🎯 Goals
-- CRUD management of pantry products (create, read, update, delete).  
+- CRUD management (create, read, update, delete).  
 - Link between available ingredients and possible recipes.  
 - Dataset analysis to extract useful insights from recipes.  
 - Build a working prototype using Python and web tools.  
@@ -25,49 +25,56 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 ## 📌 Milestones (to modify)
 - ✅ Project research  
 - ✅ Dataset research  
-- 🔄 Preliminary dataset analysis (EDA)  
-- ⏳ Data cleaning and preparation  
-- ⏳ CRUD functionality implementation  
-- ⏳ Pantry–dataset–recipes integration  
-- ⏳ Testing and documentation  
+- ✅ Preliminary dataset analysis (EDA)  
+- ✅ Data cleaning and preparation  
+- ✅ CRUD functionality implementation  
+- ✅ Pantry–dataset–recipes integration
+- ✅ containerize using docker 
+- ✅ Tableu report
+- ✅ Testing and documentation  
 
 ---
 
-## 🛠️ Technologies (to modify)
-- **Backend:** Python (Flask/Django or FastAPI)  
-- **Database:** SQLite / PostgreSQL  
+## 🛠️ Technologies 
+- **Backend:**  PHP
+- **Database:** MariaDb (phpMyAdmin)  
 - **Frontend:** HTML, CSS, JavaScript  
-- **Data Analysis:** Pandas, NumPy, Matplotlib/Seaborn  
+- **Data Analysis:** Python  
+- **Container:** Docker, Docker Desktop
 
 ---
 
-## 📖 Repository Structure (to modify)
+## 📖 Repository Structure 
 ```
-├── data/             # Dataset and related files
-├── notebooks/        # EDA and prototype notebooks
-├── src/              # Web-app source code
-├── docs/             # Documentation
-└── README.md         # This file
+├── data/               # Dataset and related files
+├── src/                # Web-app source code
+├── docs/               # Documentation
+├── docker-compose.yml  # Docker
+├── Dockerfile          # Docker
+└── README.md           # This file
 ```
 
 ---
 
 ## 👥 Team & Roles
 - Client contact:
-- Edoardo  
+- Edoardo Moretti
 - Technical advisor:
-- Marco  
+- Marco Amici
 - Team members:
-- Giordano Sancricca (Referent)
-- Lorenzo Uccellani 
-- Alessio Parlani
-- Jhonatan Panico
-- Giorgio Leonard Dahore
-- Carlo Perella
+- Giordano Sancricca (PM)
+- Lorenzo Uccellani (Backend Supervisor)
+- Alessio Parlani (Frontend Supervisor)
+- Jonathan Panico (UI and Frontend)
+- Giorgio Leonard Dahore (Backend)
+- Carlo Perella (Documentation)
 
 ---
 
-## 🚀 Next Steps
-1. Complete dataset exploratory analysis.  
-2. Define database schema and CRUD functionalities.  
-3. Integrate recipe suggestion logic based on available ingredients.  
+## 🚀 How to use
+1. Download Docker Desktop and open it 
+2. Clone the repository
+3. Create on the root of the project a file .env for insert the credentials on the dockercompose
+4. Open a terminal inside the dir CRUD-Project and use the command docker-compose up -d
+5. Open the browser and go to localhost:8080 to interact with the app
+6. localhost:8081 to interact with the DB 

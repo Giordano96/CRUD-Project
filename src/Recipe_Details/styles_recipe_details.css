@@ -1,0 +1,260 @@
+/* ==================================================================
+   styles.css – Stile UNIFICATO per recipe_details.php
+   Header, bottom nav, colori e tipografia 100% uguali alla dashboard
+   ================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+* {
+    font-family: 'Plus Jakarta Sans';
+}
+
+body {
+    background-color: #F6F4E9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==================== HEADER IDENTICO ALLA DASHBOARD ==================== */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 70px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.logo-container img {
+    height: clamp(50px, 8vw, 70px);
+    width: auto;
+}
+
+.page-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: 600;
+    color: #173822;
+    white-space: nowrap;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logout-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: #173822;
+}
+
+/* ==================== IMMAGINE RICETTA ==================== */
+.recipe-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-bottom: 4px solid #EF8A37;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+/* ==================== FAVORITE ICON ==================== */
+.icon-wrap {
+    position: absolute;
+    bottom: 20px;
+    right: 12px;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 50;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favorite-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.icon-fill { display: none; }
+.icon-wrap.active .icon-outline { display: none; }
+.icon-wrap.active .icon-fill { display: block; }
+
+/* ==================== TABS ==================== */
+.tabs {
+    display: flex;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 70px;
+    z-index: 90;
+}
+
+.tab {
+    flex: 1;
+    padding: 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.tab.active {
+    background-color: #fff;
+    color: #EF8A37;
+    border-bottom: 4px solid #EF8A37;
+}
+
+/* ==================== CONTENUTO ==================== */
+.content {
+    margin-bottom: 65px;
+    flex: 1;
+    padding: 20px;
+    max-width: 1000px;
+    width: 100%;
+    padding-bottom: 90px;
+}
+
+.tab-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-section.active-tab {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== TITOLI SEZIONI ==================== */
+.ingredients-title,
+#procedure-section h3,
+#nutrition-section h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #173822;
+    margin: 0 0 18px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #EF8A37;
+    display: inline-block;
+}
+
+.recipe-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #173822;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ==================== INGREDIENTI ==================== */
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
+}
+
+.ingredient-item:last-child {
+    border-bottom: none;
+}
+
+.ingredient-checkbox {
+    width: 22px;
+    height: 22px;
+    accent-color: #EF8A37;
+    cursor: pointer;
+}
+
+.ingredient-checkbox:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.ingredient-item p {
+    margin: 0;
+    color: #333;
+    line-height: 1.4;
+    transition: all 0.2s;
+}
+
+.ingredient-item input:checked + p {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* ==================== TESTO PROCEDURA E NUTRIZIONE ==================== */
+#procedure-section p,
+#nutrition-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin: 12px 0;
+}
+
+/* ==================== BOTTOM NAV IDENTICA ==================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 50;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #173822;
+    font-size: 12px;
+    cursor: pointer;
+    gap: 6px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 480px) {
+    .header { padding: 0 10px; }
+    .page-title { font-size: 16px; max-width: 55%; }
+    .recipe-img { height: 180px; }
+    .content { padding: 16px; }
+    .ingredient-item { font-size: 15px; }
+    .tab { font-size: 15px; padding: 14px; }
+}

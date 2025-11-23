@@ -3,92 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-    <title>My Secret Chef - Recipe details</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <title>My Secret Chef - <?= htmlspecialchars($item['recipe_name']) ?></title>
 
+    <!-- Icone Material -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="styles_recipe_details.css">
+</head>
 <body>
+
+<!-- ==================== HEADER IDENTICO ALLA DASHBOARD ==================== -->
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
-    <div class="logout-icon">
+
+    <div class="page-title">Recipe details</div>
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
 
-    <img src="img/pasta.png" class="recipe-img" alt="Recipe Image">
+<!-- Immagine principale della ricetta -->
+<div class="image-container">
+    <img src="<?= htmlspecialchars($item['image_url']) ?>" class="recipe-img" alt="<?= htmlspecialchars($item['recipe_name']) ?>">
+    <div class="icon-wrap <?= $is_favorite ? 'active' : '' ?>" id="fav" data-recipe-id="<?= $recipe_id ?>">
+        <img src="../img/heart-regular-full.svg" class="favorite-icon icon-outline">
+        <img src="../img/heart-solid-full.svg" class="favorite-icon icon-fill">
+    </div>
 
-    <div class="recipe-header">
-        <h2>Pasta rossa</h2>
-        <div class="recipe-info">
-            10 min
+</div>
+<div>
+    <p style= "text-align: center" class="recipe-title"><?= htmlspecialchars($item['recipe_name']) ?></p>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+    <div class="tab active">Ingredients</div>
+    <div class="tab">Procedure</div>
+    <div class="tab">Nutrition</div>
+</div>
+
+<!-- Contenuto -->
+<div class="content">
+
+    <!-- ==================== INGREDIENTI ==================== -->
+    <div id="ingredients-section" class="tab-section active-tab">
+        <div class="ingredients-title">Ingredients</div>
+
+        <?php foreach ($ingredients as $ing):
+            $ing = trim($ing);
+            preg_match('/^([\d.,\s]+(?:\s*(piece|g|ml|package|jars|jar|cans|can|bottle|))?)\s*-?\s*(.+)$/i', $ing, $m);
+            $quantita = $m[1] ?? '';
+            $nome     = trim($m[3] ?? $ing);
+
+            $found = false;
+            foreach ($inventory as $inv_item) {
+                if (strcasecmp($inv_item, $nome) === 0 ||
+                    stripos($inv_item, $nome) !== false ||
+                    stripos($nome, $inv_item) !== false) {
+                    $found = true;
+                    break;
+                }
+            }
+            ?>
+            <div class="ingredient-item">
+                <input type="checkbox" class="ingredient-checkbox" <?= $found ? 'checked' : 'disabled' ?>>
+                <?php if ($quantita): ?>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($nome) ?> <?= htmlspecialchars($quantita) ?>
+                    </p>
+                <?php else: ?>
+                    <p style="text-decoration:none; color:#333; opacity:1;">
+                        <?= htmlspecialchars($ing) ?>
+                    </p>
+                <?php endif; ?>
+            </div>        <?php endforeach; ?>
+    </div>
+
+    <!-- ==================== PROCEDURA ==================== -->
+    <div id="procedure-section" class="tab-section">
+        <h3>Procedure</h3>
+        <div class="prep-time">
+            <strong>Prep Time: <?= htmlspecialchars($item['prep_time']) ?> mins</strong>
+        </div>
+        <br>
+        <div style="line-height:1.8; color:#444;">
+            <?= nl2br(htmlspecialchars($item['instructions'])) ?>
         </div>
     </div>
 
-    <div class="tabs">
-        <div class="tab active">Ingredients</div>
-        <div class="tab">Procedure</div>
-        <div class="tab">Nutrition</div>
+    <!-- ==================== NUTRIZIONE ==================== -->
+    <div id="nutrition-section" class="tab-section">
+        <h3>Nutritional Values</h3>
+        <?php foreach ($nutrients as $nutrient): ?>
+            <p><?= htmlspecialchars($nutrient) ?></p>
+        <?php endforeach; ?>
     </div>
 
-    <div class="content">
+</div>
 
-        <div id="ingredients-section" class="tab-section active-tab">
-            <div class="ingredients-title">Ingredients</div>
-
-            <div class="ingredient-item">
-                <input type="checkbox" class="ingredient-checkbox">
-                Pasta (spaghetti o penne) — 200 g
-            </div>
-
-            <div class="ingredient-item">
-                <input type="checkbox" class="ingredient-checkbox">
-                Pomodori pelati o passata di pomodoro — 300 g
-            </div>
-
-            <div class="ingredient-item">
-                <input type="checkbox" class="ingredient-checkbox">
-                Basilico fresco — circa 6-8 foglie
-            </div>
-
-            <div class="ingredient-item">
-                <input type="checkbox" class="ingredient-checkbox">
-                Olio extravergine d’oliva — 2 cucchiai
-            </div>
-
-            <div class="ingredient-item">
-                <input type="checkbox" class="ingredient-checkbox">
-                Sale — quanto basta
-            </div>
-        </div>
-
-        <div id="procedure-section" class="tab-section">
-            <h3>Procedure</h3>
-            <p>Bollire la pasta in acqua salata.</p>
-            <p>Preparare un soffritto leggero con olio e aglio.</p>
-            <p>Aggiungere la passata di pomodoro, sale e pepe.</p>
-            <p>Cuocere per 10 minuti e aggiungere basilico fresco.</p>
-            <p>Scolare la pasta e unirla al sugo.</p>
-        </div>
-
-        <div id="nutrition-section" class="tab-section">
-            <h3>Nutrition</h3>
-            <p>Calorie: ~450 kcal a porzione</p>
-            <p>Carboidrati: 75 g</p>
-            <p>Proteine: 12 g</p>
-            <p>Grassi: 10 g</p>
-        </div>
-
-    </div>
-
+<!-- ==================== BOTTOM NAV IDENTICA ==================== -->
 <div class="bottom-nav">
-    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.html'">
+    <div class="nav-item" onclick="location.href='../Dashboard/dashboard.php'">
         <span class="material-symbols-outlined">view_cozy</span>
         Home
     </div>
-    <div class="nav-item" onclick="location.href='../Inventory/inventory.html'">
+    <div class="nav-item" onclick="location.href='../Inventory/inventory.php'">
         <span class="material-symbols-outlined">box</span>
         Inventory
     </div>
@@ -97,6 +118,52 @@
         Favorites
     </div>
 </div>
-    <script src="script.js"></script>
+
+<script>
+    // Gestione tab
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.tab-section');
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active-tab'));
+            tab.classList.add('active');
+            sections[index].classList.add('active-tab');
+        });
+    });
+
+    // Toggle preferiti (AJAX verso lo stesso file)
+    const fav = document.getElementById('fav');
+    if (fav) {
+        fav.addEventListener('click', async function () {
+            const recipeId = this.dataset.recipeId;
+
+            // UI ottimistica
+            this.classList.toggle('active');
+
+            const formData = new FormData();
+            formData.append('action', 'toggle_favorite');
+            formData.append('recipe_id', recipeId);
+
+            try {
+                const response = await fetch('', {  // '' = stessa pagina
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    this.classList.toggle('active'); // rollback
+                    alert('Errore: non è stato possibile aggiornare i preferiti');
+                }
+            } catch (e) {
+                this.classList.toggle('active'); // rollback
+                alert('Errore di connessione');
+            }
+        });
+    }
+</script>
 </body>
 </html>

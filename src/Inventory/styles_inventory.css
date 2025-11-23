@@ -6,11 +6,14 @@
     box-sizing: border-box;
 }
 
+* {
+    font-family: 'Plus Jakarta Sans';
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #F6F4E9;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -109,6 +112,13 @@ body {
     border-bottom: none;
 }
 
+.delete-and-expire-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 5px;
+}
+
 /* BOTTONI IDENTICI */
 .buttons {
     display: flex;
@@ -153,6 +163,7 @@ body {
     padding: 16px 14px;
     margin-bottom: 12px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
@@ -177,6 +188,7 @@ body {
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
+    justify-items: right;
 }
 
 .no-ingredients {
@@ -195,11 +207,12 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 12px 0;
     border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     z-index: 50;
 }
 
@@ -210,16 +223,15 @@ body {
     color: #173822;
     font-size: 12px;
     cursor: pointer;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 .nav-item.active {
     color: #EF8A37;
 }
 
-.nav-item .material-symbols-outlined {
-    font-size: 24px;
-}
 
 #addIngredientForm {
     background-color: #f9f9f9;
@@ -292,7 +304,7 @@ body {
 /* Responsività mobile - IDENTICA alla Dashboard */
 @media (max-width: 480px) {
     .search-input {
-        padding: 10px 36px 10px 10px;   /* ← Stessa regola della Dashboard */
+        padding: 14px 16px 14px 5px;  /* ← Stessa regola della Dashboard */
         font-size: 15px;
     }
 }

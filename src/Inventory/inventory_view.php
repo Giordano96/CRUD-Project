@@ -6,15 +6,16 @@
     <title>My Secret Chef - Inventory</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="styles_inventory.css">
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 </head>
 <body>
 
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" class="logo">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
     <div class="page-title">My Inventory</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
@@ -31,7 +32,7 @@
     <div class="add-ingredient-section">
         <div class="expiration-container">
             <label for="expirationDate" class="expiration-label">Expiration date (optional)</label>
-            <input type="date" id="expirationDate" class="add-date">
+            <input type="date" id="expirationDate" class="add-date" min="<?= date('Y-m-d') ?>" onkeydown="return false" onpaste="return false">
         </div>
 
         <div class="buttons">
@@ -55,18 +56,18 @@
             </div>
         <?php else: foreach ($inventoryItems as $item): ?>
             <div class="ingredient-row">
-                <div class="ingredient-left">
-                    <span class="ingredient-name"><?= htmlspecialchars($item['ingredient_name']) ?></span>
+                <span class="ingredient-name"><?= htmlspecialchars($item['ingredient_name']) ?></span>
+                <div class="delete-and-expire-container">
+                    <span class="expiry-value">
+                        <?= $item['expiration_date'] ? date('d/m/Y', strtotime($item['expiration_date'])) : 'No expiration' ?>
+                    </span>
                     <form method="POST" style="display:inline;">
                         <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="ingredient_id" value="<?= $item['ingredient_id'] ?>">
-                        <button type="submit" class="delete-inline-btn">Delete</button>
+                        <button type="submit" class="material-symbols-outlined delete-inline-btn">delete</button>
                     </form>
                 </div>
-                <span class="expiry-value">
-                    <?= $item['expiration_date'] ? date('d/m/Y', strtotime($item['expiration_date'])) : 'No expiration' ?>
-                </span>
             </div>
         <?php endforeach; endif; ?>
     </div>
@@ -99,7 +100,7 @@
 
     let searchTimer;
 
-    // RICERCA DALLA PRIMA LETTERA (come Dashboard)
+    // RICERCA DALLA PRIMA LETTERA
     ingredientInput.addEventListener('input', () => {
         clearTimeout(searchTimer);
         const query = ingredientInput.value.trim();
@@ -170,6 +171,8 @@
             addButton.disabled = true;
         }
     });
+
+
 </script>
 
 </body>

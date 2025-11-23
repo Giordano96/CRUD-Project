@@ -1,21 +1,33 @@
-/* Unified with login CSS: predictable sizing */
+/* ==================================================================
+   styles_dashboard.css – Versione aggiornata e definitiva
+   Stili per la dashboard di MySecretChef (home page)
+   ================================================================== */
+
+/* Reset globale e box-sizing ereditato */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+/* Font di default per tutto il documento */
+* {
+    font-family: 'Plus Jakarta Sans';
+}
+
+/* Layout base della pagina */
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #F6F4E9;
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Occupa almeno tutta l'altezza dello schermo */
 }
 
+/* ==================== HEADER ==================== */
+/* Barra superiore fissa con logo, titolo e logout */
 .header {
     display: flex;
     justify-content: space-between;
@@ -30,6 +42,7 @@ body {
     z-index: 100;
 }
 
+/* Titolo centrato nella header */
 .page-title {
     position: absolute;
     left: 50%;
@@ -41,33 +54,66 @@ body {
     white-space: nowrap;
 }
 
+/* Logo a sinistra */
 .logo-container img {
     height: clamp(50px, 8vw, 70px);
     width: auto;
 }
 
+/* Icona logout a destra */
 .logout-icon {
     font-size: 28px;
     cursor: pointer;
     color: #173822;
 }
 
+/* ==================== CONTENT ==================== */
+/* Area principale con padding e scroll indipendente */
 .content {
-    padding: 20px;
+    padding: 40px;
     flex: 1;
     overflow-y: auto;
     max-width: 1000px;
     margin: 0 auto;
     width: 100%;
+    padding-bottom: 80px; /* Spazio per la bottom nav fissa */
 }
 
+/* Domanda principale in alto */
 .cooking-question {
     font-size: 18px;
-    color: #173822; /* dark green */
-    margin-bottom: 10px;
+    color: #173822;
+    margin-bottom: 12px;
     text-align: left;
+    font-weight: 600;
 }
-/* === AUTOCOMPLETE DROPDOWN === */
+
+/* ==================== SEARCH & AUTOCOMPLETE ==================== */
+/* Contenitore relativo per posizionare i suggerimenti */
+.search-container {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+/* Campo di ricerca ingredienti */
+.search-input {
+    width: 100%;
+    padding: 14px 16px 14px 5px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 14px;
+    font-size: 16px;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+
+.search-input:focus {
+    border-color: #EF8A37;
+    box-shadow: 0 4px 15px rgba(239, 138, 55, 0.15);
+}
+
+/* Lista suggerimenti autocomplete */
 .suggestions-box {
     position: absolute;
     top: 100%;
@@ -76,155 +122,231 @@ body {
     background: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-top: none;
-    border-radius: 0 0 12px 12px;
-    max-height: 200px;
+    border-radius: 0 0 14px 14px;
+    max-height: 220px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: block !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .suggestion {
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 15px;
     cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f5f5f5;
     transition: background 0.15s;
 }
 
 .suggestion:hover {
-    background-color: #f9f9f9;
+    background-color: #fff8f0;
 }
 
 .suggestion:last-child {
     border-bottom: none;
 }
 
-.search-container {
-    position: relative;
-    margin-bottom: 14px;
-}
-
-.search-input {
-    width: 100%;
-    padding: 12px 16px 12px 44px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    font-size: 16px;
-    background-color: rgba(255,255,255,0.95);
-    box-sizing: border-box;
-    outline: none;
-}
-
-
+/* ==================== BUTTONS ==================== */
+/* Contenitore pulsanti Aggiungi e Carica Inventario */
 .buttons {
     display: flex;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 18px;
     flex-wrap: wrap;
 }
 
+/* Stile base pulsanti */
 .button {
-    padding: 10px 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1 1 180px;
+    transition: all 0.2s;
+    min-width: 140px;
     background-color: #EF8A37;
     color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    flex: 1 1 200px;
-    text-align: center;
 }
 
-.button:hover {
+.button:hover:not(.disabled) {
     background-color: #e67300;
+    transform: translateY(-1px);
 }
 
 .button.secondary {
     background-color: #173822;
 }
 
-.button.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
+.button.secondary:hover {
+    background-color: #0f2418;
 }
 
+.button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ==================== TAGS ==================== */
+/* Contenitore tag ingredienti selezionati */
 .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
+/* Stile singolo tag */
 .tag {
     background-color: #f0f0f0;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
     color: #333;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+/* Icona chiusura tag */
 .tag-close {
     cursor: pointer;
     color: #999;
-    font-weight: 600;
-}
-
-.recommended {
+    font-weight: bold;
     font-size: 18px;
-    color: #173822;
-    margin-bottom: 12px;
-    font-weight: 600;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
 }
 
+.tag-close:hover {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Messaggio quando non ci sono ingredienti */
+.no-ingredients {
+    color: #999;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+/* ==================== RECIPES GRID ==================== */
+/* Titolo sezione ricette consigliate */
+.recommended {
+    font-size: 19px;
+    font-weight: 700;
+    color: #173822;
+    margin: 24px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #EF8A37;
+    display: inline-block;
+}
+
+.recommended span {
+    font-weight: normal;
+    font-size: 15px;
+    color: #EF8A37;
+}
+
+/* Griglia responsiva delle ricette */
 .recipes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+    margin-bottom: 65px;
 }
 
-.recipe {
-    background-color: #fff;
-    border-radius: 12px;
+/* Link che avvolge tutta la card ricetta */
+.recipe-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    text-align: center;
-    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.recipe-link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.16);
+}
+
+/* Card ricetta orizzontale con immagine + testo */
+.recipe {
+    display: flex;
+    height: 110px;
+    background: white;
+    cursor: pointer;
 }
 
 .recipe img {
-    width: 100%;
-    height: 120px;
+    width: 110px;
+    height: 100%;
     object-fit: cover;
-    display: block;
+    flex-shrink: 0;
+}
+
+.recipe-content {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
 }
 
 .recipe-title {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 8px 4px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+    line-height: 1.3;
 }
 
 .recipe-subtitle {
-    font-size: 13px;
+    font-size: 14px;
     color: #EF8A37;
-    margin-bottom: 12px;
+    font-weight: 600;
 }
 
+/* Messaggio quando non ci sono ricette */
+.no-recipes {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: #999;
+    font-size: 17px;
+    background: #f9f9f9;
+    border-radius: 16px;
+    margin: 20px 0;
+}
+
+/* ==================== BOTTOM NAV ==================== */
+/* Barra di navigazione fissa in basso */
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 12px 0;
     border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     z-index: 50;
 }
 
@@ -235,43 +357,22 @@ body {
     color: #173822;
     font-size: 12px;
     cursor: pointer;
-    gap: 4px;
+    gap: 6px;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 .nav-item.active {
     color: #EF8A37;
 }
 
-.nav-item.active .nav-icon {
-    color: #EF8A37;
-}
-
-.nav-icon {
-    font-size: 22px;
-    line-height: 1;
-}
-
-/* Responsiveness and small-screen tweaks */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 480px) {
-    .content {
-        padding: 14px;
-    }
-    .cooking-question {
-        font-size: 16px;
-    }
-    .search-input {
-        padding: 10px 36px 10px 10px;
-        font-size: 15px;
-    }
-    .button {
-        font-size: 15px;
-        padding: 10px;
-        flex-basis: 100%;
-    }
-    .recipe img {
-        height: 110px;
-    }
-    .recipes {
-        padding-bottom: 70px;
-    }
+    .content { padding: 14px; }
+    .cooking-question { font-size: 17px; }
+    .recipes { grid-template-columns: 1fr; } /* Una colonna su mobile */
+    .recipe { height: 100px; }
+    .recipe img { width: 100px; }
+    .button { font-size: 15px; padding: 11px; }
+    .recommended { font-size: 18px; }
 }

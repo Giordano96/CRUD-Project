@@ -4,58 +4,84 @@ import re
 from difflib import SequenceMatcher
 import logging
 
-# === CONFIGURAZIONE LOG (opzionale) ===
+# === CONFIGURAZIONE LOG ===
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # === CONNESSIONE DATABASE ===
 db = mysql.connector.connect(
     host="localhost",
-    user="root",        # Cambia se necessario
-    password="",        # Inserisci password
+    user="root",
+    password="",
     database="mysecretchef",
     port=3306,
     autocommit=False
 )
 cursor = db.cursor()
 
+
 # === FUNZIONI DI SUPPORTO ===
 def normalize(s):
     """Rimuove caratteri non alfabetici e converte in minuscolo"""
     return re.sub(r'[^a-z]', '', s.lower())
 
+
 def similarity(a, b):
     """Calcola somiglianza tra due stringhe"""
     return SequenceMatcher(None, a, b).ratio()
 
-def best_match_tag(full_ing, tags):
-    """Trova il tag più simile a full_ing tra i tags"""
+
+def best_match_tag(full_ing, tags_set):
+    """
+    Trova il tag migliore per un ingrediente completo (es. 'almond milk')
+    Priorità:
+    1. Corrispondenza esatta o quasi-esatta (case/space insensitive)
+    2. Corrispondenza come frase completa (contenimento)
+    3. Corrispondenza più lunga possibile (es. 'almond milk' > 'milk')
+    4. Solo se nulla sopra funziona → similarità alta con ultima parola
+    """
+    full_clean = full_ing.strip().lower()
     full_norm = normalize(full_ing)
-    words = full_norm.split()
-    last_word = words[-1] if words else ""
 
-    best_tag = None
-    best_score = 0
+    candidates = []
 
-    for tag in tags:
+    for tag in tags_set:
+        tag_lower = tag.lower()
         tag_norm = normalize(tag)
+
         score = 0
+        reason = ""
 
-        # 1. Sottostringa esatta
-        if tag_norm in full_norm:
-            score = 1.0
-        else:
-            # 2. Somiglianza con ultima parola o frase completa
-            score = max(
-                similarity(tag_norm, last_word),
-                similarity(tag_norm, full_norm)
-            )
+        # 1. Corrispondenza esatta (ignora spazi/plurale)
+        if tag_lower == full_clean or tag_norm == full_norm:
+            return tag  # corrispondenza perfetta → esci subito
 
-        if score > best_score and score >= 0.6:
-            best_score = score
-            best_tag = tag
+        # 2. Il tag è contenuto esattamente nella stringa (es. "almond milk" in "2 cups almond milk")
+        if tag_lower in full_clean:
+            score = 10 + len(tag) * 0.1  # premia i tag più lunghi
+            reason = "exact substring"
 
-    return best_tag
+        # 3. Tutte le parole del tag sono nell'ingrediente (ordine non importa)
+        elif all(word in full_clean.split() for word in tag_lower.split()):
+            score = 8 + len(tag.split()) * 0.2
+            reason = "all words present"
+
+        # 4. Alta similarità (fallback)
+        elif similarity(tag_norm, full_norm) >= 0.85:
+            score = similarity(tag_norm, full_norm) * 5
+            reason = "high similarity"
+
+        if score > 0:
+            candidates.append((score, len(tag), tag))
+
+    if not candidates:
+        return None
+
+    # Ordina per: punteggio → lunghezza (più lungo meglio) → nome
+    candidates.sort(key=lambda x: (-x[0], -x[1], x[2]))
+
+    return candidates[0][2]
+
 
 # === 1. POPOLA TABELLA NUTRIENT ===
 nutrient_names = [
@@ -145,7 +171,9 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
 
         # --- INGREDIENTI PARSED + MATCHING ---
         tags = [t.strip() for t in row["tags"].split(",") if t.strip()]
-        parsed = re.findall(r"quantity: ([\d.]+) unit: (\S+) ingredient: (.*?)(?= quantity:|$)", row["ingredients_parsed"])
+        tags_set = set(tags)  # Per velocità
+        parsed = re.findall(r"quantity: ([\d.]+) unit: (\S+) ingredient: (.*?)(?= quantity:|$)",
+                            row["ingredients_parsed"])
 
         ingredient_dict = {}
 
@@ -159,7 +187,7 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
                 continue
 
             # Trova il miglior tag
-            best_tag = best_match_tag(full_ing, tags)
+            best_tag = best_match_tag(full_ing, tags_set)
             if not best_tag or best_tag not in ingredient_ids:
                 continue
 

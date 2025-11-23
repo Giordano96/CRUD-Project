@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Secret Chef - Home</title>
+    <!-- Icone Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <!-- Stili principali -->
     <link rel="stylesheet" href="styles_dashboard.css">
+    <!-- Font personalizzato -->
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
 </head>
 <body>
 
+<!-- ==================== HEADER ==================== -->
 <div class="header">
     <div class="logo-container">
-        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef">
+        <img src="../img/MySecretChef_Logo.png" alt="My Secret Chef" onclick="location.href='../Dashboard/dashboard.php'">
     </div>
     <div class="page-title">Home</div>
-    <div class="logout-icon" onclick="location.href='../logout.php'">
+    <div class="logout-icon" onclick="location.href='../utility/logout.php'">
         <span class="material-symbols-outlined">logout</span>
     </div>
 </div>
 
+<!-- ==================== CONTENUTO PRINCIPALE ==================== -->
 <div class="content">
     <div class="cooking-question">What are we cooking today?</div>
 
-    <!-- Ingredient search bar -->
+    <!-- Barra di ricerca con autocomplete -->
     <div class="search-container">
         <input type="text" id="ingredientInput" class="search-input" placeholder="Enter ingredients..." autocomplete="off">
         <div id="suggestionsList" class="suggestions-box"></div>
     </div>
 
+    <!-- Pulsanti azione -->
     <div class="buttons">
         <button id="addButton" class="button disabled">Add Ingredient</button>
         <button id="loadInventoryButton" class="button secondary">Add from Inventory</button>
     </div>
 
-    <!-- Selected ingredients tags -->
+    <!-- Tag ingredienti selezionati -->
     <div class="tags" id="tagsContainer">
         <?php if (empty($currentIngredients)): ?>
             <div class="no-ingredients">Add ingredients to search for recipes!</div>
@@ -46,22 +53,23 @@
         <?php endif; ?>
     </div>
 
-    <!-- Recipe results -->
+    <!-- Area risultati ricette -->
     <div id="recipeResults">
-        <div style="text-align:center; color:#999; padding:1rem;">
+        <div style="text-align:center; color:#999; padding:2rem;">
             Add ingredients to see suggested recipes!
         </div>
     </div>
 
+    <!-- Spinner di caricamento -->
     <div id="loadingSpinner" style="display:none; text-align:center; padding:1.5rem; color:#999;">
         Loading recipes...
     </div>
 </div>
 
-<!-- Hidden CSRF token -->
+<!-- Token CSRF nascosto per le richieste POST -->
 <input type="hidden" id="csrfToken" value="<?= $_SESSION['csrf_token'] ?>">
 
-<!-- Bottom navigation -->
+<!-- ==================== NAVIGAZIONE INFERIORE ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active">
         <span class="material-symbols-outlined">view_cozy</span>
@@ -78,7 +86,7 @@
 </div>
 
 <script>
-    // ==================== DOM ELEMENTS ====================
+    // ==================== RIFERIMENTI DOM ====================
     const ingredientInput = document.getElementById('ingredientInput');
     const suggestionsList = document.getElementById('suggestionsList');
     const addButton = document.getElementById('addButton');
@@ -88,14 +96,14 @@
     const loadingSpinner = document.getElementById('loadingSpinner');
     const csrfToken = document.getElementById('csrfToken').value;
 
-    // ==================== STATE VARIABLES ====================
+    // ==================== VARIABILI DI STATO ====================
     let currentPage = 1;
     let hasMoreRecipes = true;
     let isLoading = false;
     let searchTimer;
-    let isIngredientValid = false;  // ← Unica variabile di controllo
+    let isIngredientValid = false;
 
-    // ==================== GESTIONE STATO BOTTONE ====================
+    // ==================== GESTIONE STATO PULSANTE AGGIUNGI ====================
     function updateAddButtonState() {
         if (isIngredientValid && ingredientInput.value.trim() !== '') {
             addButton.disabled = false;
@@ -105,16 +113,13 @@
             addButton.classList.add('disabled');
         }
     }
-
-    // Inizializzazione: bottone disabilitato
     updateAddButtonState();
 
-    // ==================== AUTOCOMPLETE ====================
+    // ==================== AUTOCOMPLETE INGREDIENTI ====================
     ingredientInput.addEventListener('input', () => {
         clearTimeout(searchTimer);
         const query = ingredientInput.value.trim();
 
-        // Se l'utente cancella tutto → invalida e disabilita
         if (query === '') {
             suggestionsList.innerHTML = '';
             isIngredientValid = false;
@@ -122,10 +127,10 @@
             return;
         }
 
-        // Qualsiasi digitazione manuale invalida la selezione precedente
         isIngredientValid = false;
         updateAddButtonState();
 
+        // Richiesta AJAX per suggerimenti ingredienti
         searchTimer = setTimeout(() => {
             fetch(`dashboard.php?ajax=suggest&q=${encodeURIComponent(query)}`)
                 .then(r => r.json())
@@ -144,7 +149,7 @@
         }, 250);
     });
 
-    // Selezione da tendina → ingrediente valido
+    // Seleziona un ingrediente dal suggerimento
     window.selectIngredient = function(name) {
         ingredientInput.value = name;
         suggestionsList.innerHTML = '';
@@ -152,19 +157,17 @@
         updateAddButtonState();
     };
 
-    // Chiudi suggerimenti cliccando fuori
+    // Chiude i suggerimenti cliccando fuori
     document.addEventListener('click', (e) => {
         if (!ingredientInput.contains(e.target) && !suggestionsList.contains(e.target)) {
             suggestionsList.innerHTML = '';
         }
     });
 
-    // ==================== BUTTON ACTIONS ====================
+    // ==================== AZIONI PULSANTI ====================
     addButton.addEventListener('click', () => {
         const ingredient = ingredientInput.value.trim();
-        if (!ingredient || !isIngredientValid) {
-            return; // Silenziosamente ignorato (o puoi mettere alert se preferisci)
-        }
+        if (!ingredient || !isIngredientValid) return;
 
         sendPostRequest('add', { ingredient }, () => {
             ingredientInput.value = '';
@@ -182,7 +185,7 @@
         });
     });
 
-    // Rimozione tag
+    // Rimuovi ingrediente cliccando sulla X
     tagsContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('tag-close')) {
             const tag = e.target.parentElement;
@@ -194,13 +197,11 @@
         }
     });
 
-    // ==================== UTILITY FUNCTIONS (invariate) ====================
+    // ==================== FUNZIONI UTILITY ====================
     function sendPostRequest(action, data = {}, callback = null) {
         const formData = new FormData();
         formData.append('csrf_token', csrfToken);
-        for (const key in data) {
-            formData.append(key, data[key]);
-        }
+        for (const key in data) formData.append(key, data[key]);
 
         fetch(`dashboard.php?ajax=${action}`, {
             method: 'POST',
@@ -221,18 +222,18 @@
             .catch(() => alert('Network error. Please try again.'));
     }
 
+    // Aggiorna visualizzazione tag ingredienti
     function updateTags(ingredients) {
         ingredients.sort();
         if (ingredients.length === 0) {
             tagsContainer.innerHTML = '<div class="no-ingredients">Add ingredients to search for recipes!</div>';
             return;
         }
-        const html = ingredients.map(name => `
+        tagsContainer.innerHTML = ingredients.map(name => `
             <div class="tag" data-name="${name}">
                 ${name} <span class="tag-close">×</span>
             </div>
         `).join('');
-        tagsContainer.innerHTML = html;
     }
 
     function showLoading() {
@@ -250,7 +251,7 @@
         recipeResults.innerHTML = '';
     }
 
-    // ==================== SEARCH RECIPES & INFINITE SCROLL (invariati) ====================
+    // ==================== RICERCA RICETTE ====================
     function searchRecipes(page = 1) {
         if (isLoading || !hasMoreRecipes) return;
 
@@ -267,11 +268,9 @@
 
                 if (!data.recipes || data.recipes.length === 0) {
                     if (page === 1) {
-                        if (tagsContainer.querySelectorAll('.tag').length === 0) {
-                            recipeResults.innerHTML = '<div style="text-align:center; color:#999; padding:1rem;">Add ingredients to see suggested recipes!</div>';
-                        } else {
-                            recipeResults.innerHTML = '<div class="no-recipes">No recipes found with these ingredients.</div>';
-                        }
+                        recipeResults.innerHTML = tagsContainer.querySelectorAll('.tag').length === 0
+                            ? '<div style="text-align:center; color:#999; padding:2rem;">Add ingredients to see suggested recipes!</div>'
+                            : '<div class="no-recipes">No recipes found with these ingredients.</div>';
                     }
                     hasMoreRecipes = false;
                     return;
@@ -284,19 +283,17 @@
                 }
 
                 data.recipes.forEach(recipe => {
+                    const url = `../Recipe_Details/recipe_details.php?id=${recipe.id}`;
                     html += `
-                    <div class="recipe">
-                        <img src="${recipe.image_url}" alt="${recipe.name}">
-                        <div class="recipe-content">
-                            <form action="recipe_detail.php" method="POST">
-                                <input type="hidden" name="recipe_id" value="${recipe.id}">
-                                <button type="submit" style="all:unset; cursor:pointer; width:100%; text-align:left;">
-                                    <div class="recipe-title">${recipe.name}</div>
-                                </button>
-                            </form>
-                            <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
+                    <a href="${url}" class="recipe-link">
+                        <div class="recipe">
+                            <img src="${recipe.image_url}" alt="${recipe.name}">
+                            <div class="recipe-content">
+                                <div class="recipe-title">${recipe.name}</div>
+                                <div class="recipe-subtitle">Ready in ${recipe.prep_time} min</div>
+                            </div>
                         </div>
-                    </div>`;
+                    </a>`;
                 });
 
                 if (page === 1) {
@@ -316,7 +313,7 @@
             });
     }
 
-    // Infinite scroll
+    // ==================== SCROLL INFINITO ====================
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
@@ -328,7 +325,7 @@
         }, 100);
     });
 
-    // Caricamento iniziale
+    // Carica ricette automaticamente se ci sono già ingredienti al caricamento
     document.addEventListener('DOMContentLoaded', () => {
         if (tagsContainer.querySelectorAll('.tag').length > 0) {
             resetSearch();

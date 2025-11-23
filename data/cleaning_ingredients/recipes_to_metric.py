@@ -1,110 +1,74 @@
+# recipes_to_metric_FIXED.py
 import pandas as pd
 import re
 
-# Carica il file CSV pulito
 df = pd.read_csv('ingredients_with_tags.csv')
 
-# Mappatura delle conversioni fornita
-conversion_map = {
-    "tablespoon": (15, 'g'),  # 15 g
-    "tablespoons": (15, 'g'),  # 15 g
-    "teaspoon": (5, 'g'),  # 5 g
-    "teaspoons": (5, 'g'),  # 5 g
-    "pound": (450, 'g'),  # 450 g
-    "pounds": (450, 'g'),  # 450 g
-    "pinch": (1, 'g'),  # 1 g
-    "dash": (1, 'g'),  # 1 g
-    "ounce": (30, 'g'),  # 30 g
-    "ounces": (30, 'g'),  # 30 g
-    "cup": {  # Unifica cup e cups
-        "default": (240, 'ml'),  # Liquidi (acqua, latte, panna)
-        "water": (240, 'ml'),
-        "milk": (240, 'ml'),
-        "cream": (240, 'ml'),
-        "sugar": (210, 'g'),
-        "flour": (128, 'g'),
-        "whole wheat flour": (130, 'g'),
-        "butter": (228, 'g'),
-        "rice": (200, 'g'),
-        "cocoa": (88, 'g')
-    },
-    "cups": {  # Stessa mappatura di cup per coerenza
-        "default": (240, 'ml'),
-        "water": (240, 'ml'),
-        "milk": (240, 'ml'),
-        "cream": (240, 'ml'),
-        "sugar": (210, 'g'),
-        "flour": (128, 'g'),
-        "whole wheat flour": (130, 'g'),
-        "butter": (228, 'g'),
-        "rice": (200, 'g'),
-        "cocoa": (88, 'g')
-    }
-}
 
-# Elenco delle unità metriche da non convertire
-metric_units = {'g', 'ml', 'kg', 'l', 'mg'}
+def convert_ingredients_safely(text):
+    if pd.isna(text):
+        return text
 
+    # Trova TUTTI i blocchi "quantity: ... unit: ... ingredient: ..."
+    pattern = r'quantity:\s*([\d.]+)\s+unit:\s*(\S+)\s+ingredient:\s*(.+?)(?=quantity:|$)'
+    matches = re.finditer(pattern, text)
 
-# Funzione per ottenere il fattore di conversione per 'cup' o 'cups'
-def get_cup_conversion(ingredient):
-    ingredient = ingredient.lower().strip()
-    for key in conversion_map["cup"]:
-        if key in ingredient:
-            return conversion_map["cup"][key]
-    return conversion_map["cup"]["default"]
+    new_parts = []
+    last_end = 0
 
+    for match in matches:
+        qty, unit, ing = match.groups()
+        qty = float(qty)
+        unit = unit.lower()
 
-# Funzione per convertire una singola entry
-def convert_entry(entry):
-    if pd.isna(entry):
-        return entry
+        # Mantieni tutto il testo prima del match
+        new_parts.append(text[last_end:match.start()])
 
-    match = re.match(r'quantity: ([\d\.]+) unit: ([^\s]+) ingredient: (.+)', entry)
-    if not match:
-        return entry
-
-    quantity_str, unit, ingredient = match.groups()
-    quantity = float(quantity_str)
-    unit_lower = unit.lower()
-
-    # Non convertire unità già metriche
-    if unit_lower in metric_units:
-        return entry
-
-    if unit_lower in conversion_map:
-        if unit_lower in ["cup", "cups"]:
-            factor, new_unit = get_cup_conversion(ingredient)
+        # Converti solo se possibile
+        if unit in ['cup', 'cups']:
+            ing_lower = ing.lower()
+            if 'flour' in ing_lower:
+                new_qty = round(qty * 128)
+                new_unit = 'g'
+            elif 'sugar' in ing_lower:
+                new_qty = round(qty * 200)
+                new_unit = 'g'
+            elif 'butter' in ing_lower:
+                new_qty = round(qty * 227)
+                new_unit = 'g'
+            else:
+                new_qty = round(qty * 240)
+                new_unit = 'ml'
+        elif unit in ['tablespoon', 'tablespoons', 'tbsp']:
+            new_qty = round(qty * 15)
+            new_unit = 'g' if any(x in ing.lower() for x in ['flour', 'sugar', 'butter']) else 'ml'
+        elif unit in ['teaspoon', 'teaspoons', 'tsp']:
+            new_qty = round(qty * 5)
+            new_unit = 'g' if any(x in ing.lower() for x in ['salt', 'baking']) else 'ml'
+        elif unit in ['pound', 'pounds', 'lb']:
+            new_qty = round(qty * 450)
+            new_unit = 'g'
+        elif unit in ['ounce', 'ounces', 'oz']:
+            new_qty = round(qty * 28)
+            new_unit = 'g'
         else:
-            factor, new_unit = conversion_map[unit_lower]
-        new_quantity = round(quantity * factor)  # Arrotonda a intero per leggibilità
-        return f'quantity: {new_quantity} unit: {new_unit} ingredient: {ingredient}'
-    else:
-        # Unità non convertibile (es. 'piece', 'can'), mantieni invariata
-        return entry
+            new_qty = qty
+            new_unit = unit
+
+        new_parts.append(f"quantity: {new_qty} unit: {new_unit} ingredient: {ing}")
+        last_end = match.end()
+
+    # Aggiungi il testo finale (dopo l'ultimo match)
+    new_parts.append(text[last_end:])
+
+    return ''.join(new_parts)
 
 
-# Funzione per convertire tutti gli ingredienti in una riga
-def convert_ingredients_parsed(row):
-    if pd.isna(row):
-        return row
+# Applica in modo sicuro
+print("Conversione in corso (senza perdere ingredienti)...")
+df['ingredients_parsed'] = df['ingredients_parsed'].apply(convert_ingredients_safely)
 
-    # Dividi la stringa in una lista di ingredienti (separati da ' quantity: ')
-    ingredients = row.split(' quantity: ')[1:]  # Salta il primo split vuoto
-    ingredients = ['quantity: ' + ingredient for ingredient in ingredients]
-
-    # Applica la conversione a ciascun ingrediente
-    converted_ingredients = [convert_entry(ingredient) for ingredient in ingredients]
-
-    # Ricostruisci la stringa unendo gli ingredienti convertiti
-    return ' '.join(converted_ingredients)
-
-
-# Applica la funzione alla colonna ingredients_parsed
-df['ingredients_parsed'] = df['ingredients_parsed'].apply(convert_ingredients_parsed)
-
-# Visualizza il risultato
-print(df[['recipe_name', 'ingredients_parsed']].head(10))
-
-# Salva il DataFrame convertito in un nuovo file CSV
+# Salva
 df.to_csv('recipes_cleaned.csv', index=False)
+print("Fatto! File salvato come recipes_cleaned.csv")
+print("   → Nessun ingrediente è stato eliminato")
