@@ -1,18 +1,21 @@
 /* ==================================================================
    styles_dashboard.css – Versione aggiornata e definitiva
-   Compatibile con le ultime modifiche (link diretto, hover, ecc.)
+   Stili per la dashboard di MySecretChef (home page)
    ================================================================== */
 
+/* Reset globale e box-sizing ereditato */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
+/* Font di default per tutto il documento */
 * {
     font-family: 'Plus Jakarta Sans';
 }
 
+/* Layout base della pagina */
 body {
     margin: 0;
     padding: 0;
@@ -20,10 +23,11 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Occupa almeno tutta l'altezza dello schermo */
 }
 
 /* ==================== HEADER ==================== */
+/* Barra superiore fissa con logo, titolo e logout */
 .header {
     display: flex;
     justify-content: space-between;
@@ -38,6 +42,7 @@ body {
     z-index: 100;
 }
 
+/* Titolo centrato nella header */
 .page-title {
     position: absolute;
     left: 50%;
@@ -49,11 +54,13 @@ body {
     white-space: nowrap;
 }
 
+/* Logo a sinistra */
 .logo-container img {
     height: clamp(50px, 8vw, 70px);
     width: auto;
 }
 
+/* Icona logout a destra */
 .logout-icon {
     font-size: 28px;
     cursor: pointer;
@@ -61,6 +68,7 @@ body {
 }
 
 /* ==================== CONTENT ==================== */
+/* Area principale con padding e scroll indipendente */
 .content {
     padding: 40px;
     flex: 1;
@@ -68,9 +76,10 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 80px; /* spazio per bottom nav */
+    padding-bottom: 80px; /* Spazio per la bottom nav fissa */
 }
 
+/* Domanda principale in alto */
 .cooking-question {
     font-size: 18px;
     color: #173822;
@@ -80,11 +89,13 @@ body {
 }
 
 /* ==================== SEARCH & AUTOCOMPLETE ==================== */
+/* Contenitore relativo per posizionare i suggerimenti */
 .search-container {
     position: relative;
     margin-bottom: 14px;
 }
 
+/* Campo di ricerca ingredienti */
 .search-input {
     width: 100%;
     padding: 14px 16px 14px 5px;
@@ -102,6 +113,7 @@ body {
     box-shadow: 0 4px 15px rgba(239, 138, 55, 0.15);
 }
 
+/* Lista suggerimenti autocomplete */
 .suggestions-box {
     position: absolute;
     top: 100%;
@@ -134,6 +146,7 @@ body {
 }
 
 /* ==================== BUTTONS ==================== */
+/* Contenitore pulsanti Aggiungi e Carica Inventario */
 .buttons {
     display: flex;
     gap: 12px;
@@ -141,6 +154,7 @@ body {
     flex-wrap: wrap;
 }
 
+/* Stile base pulsanti */
 .button {
     padding: 12px 20px;
     border: none;
@@ -151,9 +165,6 @@ body {
     flex: 1 1 180px;
     transition: all 0.2s;
     min-width: 140px;
-}
-
-.button {
     background-color: #EF8A37;
     color: white;
 }
@@ -178,6 +189,7 @@ body {
 }
 
 /* ==================== TAGS ==================== */
+/* Contenitore tag ingredienti selezionati */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -185,6 +197,7 @@ body {
     margin-bottom: 24px;
 }
 
+/* Stile singolo tag */
 .tag {
     background-color: #f0f0f0;
     color: #333;
@@ -198,6 +211,7 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+/* Icona chiusura tag */
 .tag-close {
     cursor: pointer;
     color: #999;
@@ -217,6 +231,7 @@ body {
     color: #333;
 }
 
+/* Messaggio quando non ci sono ingredienti */
 .no-ingredients {
     color: #999;
     font-style: italic;
@@ -226,6 +241,7 @@ body {
 }
 
 /* ==================== RECIPES GRID ==================== */
+/* Titolo sezione ricette consigliate */
 .recommended {
     font-size: 19px;
     font-weight: 700;
@@ -242,6 +258,7 @@ body {
     color: #EF8A37;
 }
 
+/* Griglia responsiva delle ricette */
 .recipes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -250,7 +267,7 @@ body {
     margin-bottom: 65px;
 }
 
-/* Card ricetta con link */
+/* Link che avvolge tutta la card ricetta */
 .recipe-link {
     display: block;
     text-decoration: none;
@@ -267,6 +284,7 @@ body {
     box-shadow: 0 16px 30px rgba(0,0,0,0.16);
 }
 
+/* Card ricetta orizzontale con immagine + testo */
 .recipe {
     display: flex;
     height: 110px;
@@ -304,7 +322,7 @@ body {
     font-weight: 600;
 }
 
-/* Messaggi vuoti */
+/* Messaggio quando non ci sono ricette */
 .no-recipes {
     grid-column: 1 / -1;
     text-align: center;
@@ -317,6 +335,7 @@ body {
 }
 
 /* ==================== BOTTOM NAV ==================== */
+/* Barra di navigazione fissa in basso */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -351,7 +370,7 @@ body {
 @media (max-width: 480px) {
     .content { padding: 14px; }
     .cooking-question { font-size: 17px; }
-    .recipes { grid-template-columns: 1fr; }
+    .recipes { grid-template-columns: 1fr; } /* Una colonna su mobile */
     .recipe { height: 100px; }
     .recipe img { width: 100px; }
     .button { font-size: 15px; padding: 11px; }

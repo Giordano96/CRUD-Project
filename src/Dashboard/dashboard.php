@@ -1,14 +1,11 @@
 <?php
-// dashboard.php - Main page of MySecretChef
+// dashboard.php - Pagina principale dell'app MySecretChef (Home)
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-require "../utility/DbConnector.php";
+require "../utility/DbConnector.php"; // Connessione al database
 
 session_start();
 
-// --- Check if user is logged in ---
+// --- Controllo autenticazione utente ---
 if (!isset($_SESSION["user_id"])) {
     if (isset($_GET['ajax'])) {
         http_response_code(401);
@@ -21,27 +18,27 @@ if (!isset($_SESSION["user_id"])) {
 
 $userId = $_SESSION["user_id"];
 
-// List of currently selected ingredients (stored in session)
+// --- Gestione ingredienti selezionati (sessione) ---
 if (!isset($_SESSION['selected_ingredients'])) {
     $_SESSION['selected_ingredients'] = [];
 }
 $selectedIngredients = &$_SESSION['selected_ingredients'];
 
-// --- CSRF Token (one per session) ---
+// --- Generazione CSRF Token (uno per sessione) ---
 if (!isset($_SESSION["csrf_token"])) {
     $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
 }
 $csrfToken = $_SESSION["csrf_token"];
 
 // -------------------------------------------------
-// AJAX HANDLER
+// GESTORE RICHIESTE AJAX
 // -------------------------------------------------
 if (isset($_GET['ajax'])) {
     header('Content-Type: application/json');
     $action = $_GET['ajax'];
 
     try {
-        // 1. Autocomplete suggestions
+        // 1. Suggerimenti autocomplete ingredienti
         if ($action === 'suggest' && !empty($_GET['q'])) {
             $query = "%" . trim($_GET['q']) . "%";
             $stmt = $pdo->prepare("SELECT name FROM ingredient WHERE name LIKE :query ORDER BY name LIMIT 10");
@@ -52,16 +49,16 @@ if (isset($_GET['ajax'])) {
             exit;
         }
 
-        // All POST actions require CSRF validation
+        // Validazione CSRF per tutte le azioni POST
         $postActions = ['add', 'remove', 'load_inventory'];
-        if (in_array($action, $postActions)) {  // CORRETTO: era "recurse(in_array(...))" → errore!
+        if (in_array($action, $postActions)) {
             if (empty($_POST['csrf_token']) || !hash_equals($csrfToken, $_POST['csrf_token'])) {
                 echo json_encode(['error' => 'Invalid CSRF token']);
                 exit;
             }
         }
 
-        // 2. Add manually typed ingredient
+        // 2. Aggiungi ingrediente digitato manualmente
         if ($action === 'add' && !empty($_POST['ingredient'])) {
             $name = trim($_POST['ingredient']);
 
@@ -79,7 +76,7 @@ if (isset($_GET['ajax'])) {
             exit;
         }
 
-        // 3. Remove ingredient from selection
+        // 3. Rimuovi ingrediente dalla selezione
         if ($action === 'remove' && !empty($_POST['ingredient'])) {
             $name = $_POST['ingredient'];
             $selectedIngredients = array_values(array_filter($selectedIngredients, fn($i) => $i !== $name));
@@ -91,20 +88,20 @@ if (isset($_GET['ajax'])) {
             exit;
         }
 
-        // 4. Load all ingredients from user's inventory
+        // 4. Carica tutti gli ingredienti dall'inventario utente
         if ($action === 'load_inventory') {
             $stmt = $pdo->prepare("
-        SELECT i.name 
-        FROM inventory inv
-        JOIN ingredient i ON inv.ingredient_id = i.id 
-        WHERE inv.user_id = :userId
-        ORDER BY i.name
-    ");
+                SELECT i.name 
+                FROM inventory inv
+                JOIN ingredient i ON inv.ingredient_id = i.id 
+                WHERE inv.user_id = :userId
+                ORDER BY i.name
+            ");
             $stmt->bindValue(':userId', $userId);
             $stmt->execute();
             $inventory = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-            // Aggiunge tutti gli ingredienti dell'inventario (anche se duplicati con quelli già selezionati)
+            // Unisce inventario con ingredienti già selezionati (senza duplicati)
             $selectedIngredients = array_values(array_unique(array_merge($selectedIngredients, $inventory)));
 
             echo json_encode([
@@ -113,7 +110,8 @@ if (isset($_GET['ajax'])) {
             ]);
             exit;
         }
-        // 5. Search recipes using selected ingredients
+
+        // 5. Ricerca ricette basate sugli ingredienti selezionati
         if ($action === 'search') {
             if (empty($selectedIngredients)) {
                 echo json_encode(['recipes' => [], 'total' => 0, 'pages' => 1, 'page' => 1]);
@@ -124,7 +122,7 @@ if (isset($_GET['ajax'])) {
             $perPage = 15;
             $offset = ($page - 1) * $perPage;
 
-            // Build dynamic IN clause with named placeholders
+            // Costruisce dinamicamente la clausola IN con placeholder nominati
             $inPlaceholders = '';
             $params = [];
             foreach ($selectedIngredients as $index => $ingredient) {
@@ -133,7 +131,7 @@ if (isset($_GET['ajax'])) {
                 $params[$key] = $ingredient;
             }
 
-            // Count total matching recipes
+            // Conta totale ricette trovate
             $countSql = "
                 SELECT COUNT(DISTINCT r.id) 
                 FROM recipe r 
@@ -149,7 +147,7 @@ if (isset($_GET['ajax'])) {
             $total = (int)$countStmt->fetchColumn();
             $totalPages = max(1, ceil($total / $perPage));
 
-            // Fetch recipes for current page
+            // Recupera ricette per la pagina corrente
             $sql = "
                 SELECT DISTINCT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time
                 FROM recipe r 
@@ -185,9 +183,10 @@ if (isset($_GET['ajax'])) {
     exit;
 }
 
-// Prepare data for view
+// Prepara dati per la vista HTML
 $currentIngredients = $selectedIngredients;
 sort($currentIngredients);
 
+// Include la vista (HTML + JS)
 include "dashboard_view.php";
 ?>

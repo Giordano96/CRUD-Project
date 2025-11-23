@@ -1,14 +1,15 @@
 <?php
-// favorites.php - User's favorite recipes page
+// favorites.php - Pagina dei preferiti dell'utente
 
+// Mostra errori solo in sviluppo
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require "../utility/DbConnector.php";
+require "../utility/DbConnector.php"; // Connessione al database PDO
 
 session_start();
 
-// --- Authentication check ---
+// --- Controllo autenticazione ---
 if (!isset($_SESSION["user_id"])) {
     if (isset($_GET['ajax'])) {
         http_response_code(401);
@@ -21,34 +22,34 @@ if (!isset($_SESSION["user_id"])) {
 
 $userId = $_SESSION["user_id"];
 
-// --- CSRF Token (one per session) ---
+// --- CSRF Token unico per sessione ---
 if (!isset($_SESSION["csrf_token"])) {
     $_SESSION["csrf_token"] = bin2hex(random_bytes(16));
 }
 $csrfToken = $_SESSION["csrf_token"];
 
 // -------------------------------------------------
-// AJAX HANDLER
+// GESTORE RICHIESTE AJAX
 // -------------------------------------------------
 if (isset($_GET['ajax'])) {
     header('Content-Type: application/json');
     $action = $_GET['ajax'];
 
     try {
-        // 1. Load favorite recipes with pagination
+        // 1. Carica ricette preferite con paginazione
         if ($action === 'search') {
             $page = max(1, (int)($_GET['page'] ?? 1));
             $perPage = 12;
             $offset = ($page - 1) * $perPage;
 
-            // Count total
+            // Conta totale preferiti dell'utente
             $countStmt = $pdo->prepare("SELECT COUNT(*) FROM favorites WHERE user_id = :userId");
             $countStmt->bindValue(':userId', $userId);
             $countStmt->execute();
             $total = (int)$countStmt->fetchColumn();
             $totalPages = max(1, ceil($total / $perPage));
 
-            // Fetch current page
+            // Recupera ricette della pagina corrente
             $stmt = $pdo->prepare("
                 SELECT r.id, r.name, r.image_url, COALESCE(r.prep_time, 0) AS prep_time 
                 FROM favorites f 
@@ -72,8 +73,9 @@ if (isset($_GET['ajax'])) {
             exit;
         }
 
-        // 2. Remove recipe from favorites
+        // 2. Rimuovi una ricetta dai preferiti
         if ($action === 'remove' && !empty($_POST['recipe_id'])) {
+            // Validazione CSRF obbligatoria
             if (empty($_POST['csrf_token']) || !hash_equals($csrfToken, $_POST['csrf_token'])) {
                 echo json_encode(['error' => 'Invalid CSRF token']);
                 exit;
@@ -96,6 +98,6 @@ if (isset($_GET['ajax'])) {
     exit;
 }
 
-// Load the view
+// Carica la vista HTML + JavaScript
 include "favorites_page_view.php";
 ?>

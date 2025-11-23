@@ -1,5 +1,9 @@
+/* ==================================================================
+   styles_favorites.css – Stili per la pagina "I miei Preferiti"
+   Griglia compatta con card verticali e pulsante rimozione
+   ================================================================== */
 
-/* Reset e layout base */
+/* Reset globale e box-sizing */
 *,
 *::before,
 *::after {
@@ -10,6 +14,7 @@
     font-family: 'Plus Jakarta Sans';
 }
 
+/* Layout base pagina */
 body {
     margin: 0;
     padding: 0;
@@ -20,6 +25,7 @@ body {
     min-height: 100vh;
 }
 
+/* ==================== HEADER ==================== */
 .header {
     display: flex;
     justify-content: space-between;
@@ -56,8 +62,7 @@ body {
     color: #173822;
 }
 
-
-/* Content */
+/* ==================== CONTENT ==================== */
 .content {
     padding: 20px;
     flex: 1;
@@ -67,14 +72,14 @@ body {
     width: 100%;
 }
 
-/* Grid ricette */
+/* Griglia compatta per i preferiti */
 .recipes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 15px;
 }
 
-/* Card ricetta */
+/* Card ricetta verticale */
 .recipe {
     background-color: #fff;
     border-radius: 12px;
@@ -103,6 +108,7 @@ body {
     justify-content: space-between;
 }
 
+/* Link che copre immagine e testo */
 .recipe-link {
     display: block;
     text-decoration: none;
@@ -111,7 +117,7 @@ body {
     z-index: 1;
 }
 
-/* Titolo cliccabile */
+/* Titolo ricetta */
 .recipe-title {
     font-size: 16px;
     color: #333;
@@ -128,7 +134,7 @@ body {
     color: #EF8A37;
 }
 
-/* Sottotitolo */
+/* Tempo di preparazione */
 .recipe-subtitle {
     font-size: 13px;
     color: #EF8A37;
@@ -136,7 +142,7 @@ body {
     font-weight: 500;
 }
 
-/* Pulsante rimuovi preferito */
+/* Pulsante per rimuovere dai preferiti */
 .recipe-remove {
     position: absolute;
     top: 8px;
@@ -162,16 +168,7 @@ body {
     color: white;
 }
 
-/* Loading */
-#loading-fav {
-    text-align: center;
-    padding: 1.5rem;
-    color: #999;
-    font-style: italic;
-    display: none;
-}
-
-/* Messaggio vuoto */
+/* Messaggio quando non ci sono preferiti */
 .no-favorites {
     text-align: center;
     padding: 2rem;
@@ -183,7 +180,7 @@ body {
     font-size: 15px;
 }
 
-/* Bottom navigation */
+/* ==================== BOTTOM NAV ==================== */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -214,7 +211,7 @@ body {
     color: #EF8A37;
 }
 
-/* Responsive (mobile) */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 480px) {
     .content {
         padding: 14px;
@@ -223,6 +220,6 @@ body {
         height: 110px;
     }
     .recipes {
-        padding-bottom: 70px;
+        padding-bottom: 70px; /* Spazio per bottom nav */
     }
 }

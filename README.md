@@ -65,7 +65,7 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 - Giordano Sancricca (PM)
 - Lorenzo Uccellani (Backend Supervisor)
 - Alessio Parlani (Frontend Supervisor)
-- Jhonatan Panico (UI and Frontend)
+- Jonathan Panico (UI and Frontend)
 - Giorgio Leonard Dahore (Backend)
 - Carlo Perella (Documentation)
 
