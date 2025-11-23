@@ -14,10 +14,10 @@ services:
     container_name: mariadb_db
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: mysecretchef
-      MARIADB_USER: user
-      MARIADB_PASSWORD: userpass
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASS}
     volumes:
       - db_data:/var/lib/mysql
       - ./data:/docker-entrypoint-initdb.d
@@ -30,8 +30,8 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASS}
     depends_on:
       - db
 

@@ -8,7 +8,7 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 ---
 
 ## 🎯 Goals
-- CRUD management of pantry products (create, read, update, delete).  
+- CRUD management (create, read, update, delete).  
 - Link between available ingredients and possible recipes.  
 - Dataset analysis to extract useful insights from recipes.  
 - Build a working prototype using Python and web tools.  
@@ -30,9 +30,8 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 - ✅ CRUD functionality implementation  
 - ✅ Pantry–dataset–recipes integration
 - ✅ containerize using docker 
-- ⏳ CI|CD implementation
-- ⏳ Tableu report
-- ⏳ Testing and documentation  
+- ✅ Tableu report
+- ✅ Testing and documentation  
 
 ---
 
@@ -59,9 +58,9 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 
 ## 👥 Team & Roles
 - Client contact:
-- Edoardo  
+- Edoardo Moretti
 - Technical advisor:
-- Marco  
+- Marco Amici
 - Team members:
 - Giordano Sancricca (PM)
 - Lorenzo Uccellani (Backend Supervisor)
@@ -73,10 +72,9 @@ The system is based on the analysis of a recipes dataset available on Kaggle:
 ---
 
 ## 🚀 How to use
-1. Download Docker Desktop and open it
+1. Download Docker Desktop and open it 
 2. Clone the repository
-3. Open a terminal inside the dir CRUD-Project and use the command docker-compose up -d
-4. Open the browser and go to localhost:8080 to interact with the app
-5. localhost:8081 to interact with the DB 
-(WARNING if your porrt 8080 or 8081 are busy you must change port to connect to the services)
-
+3. Create on the root of the project a file .env for insert the credentials on the dockercompose
+4. Open a terminal inside the dir CRUD-Project and use the command docker-compose up -d
+5. Open the browser and go to localhost:8080 to interact with the app
+6. localhost:8081 to interact with the DB 
