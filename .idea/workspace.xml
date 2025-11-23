@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="click logo redirect to homepage">
+    <list default="true" id="b58851ae-b358-4c5c-bcdc-7d18e7cf4039" name="Changes" comment="added comments and expiration date control">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_16_11_2025_11_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_16_11_2025_11_35__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/dashboard_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/styles_dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaning_categories/recipe_categories_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaning_categories/recipe_categories_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/duplicate_recipes.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/count_categories_nutrients_unit/duplicate_recipes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Favorites/favorites.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/favorites_page_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Favorites/styles_favorites.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Inventory/inventory_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory/inventory_view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,11 +97,11 @@
       <recent name="C:\wamp64\www\CRUD-Project\data\cleaning_nutrients" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\CRUD-Project\data\count_categories_nutrients_unit" />
       <recent name="C:\wamp64\www\CRUD-Project\src\img" />
       <recent name="C:\wamp64\www\CRUD-Project\src\utility" />
       <recent name="C:\wamp64\www\CRUD-Project\src\Dashboard" />
       <recent name="C:\wamp64\www\CRUD-Project\src" />
-      <recent name="C:\wamp64\www\CRUD-Project\src\Login" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -129,7 +129,9 @@
       <workItem from="1763662541898" duration="5750000" />
       <workItem from="1763669945610" duration="2509000" />
       <workItem from="1763721756132" duration="1874000" />
-      <workItem from="1763834668887" duration="10205000" />
+      <workItem from="1763834668887" duration="10249000" />
+      <workItem from="1763894788225" duration="830000" />
+      <workItem from="1763904801980" duration="10672000" />
     </task>
     <task id="LOCAL-00001" summary="modify base_ingredients.py">
       <option name="closed" value="true" />
@@ -291,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763836551363</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="added comments and expiration date control">
+      <option name="closed" value="true" />
+      <created>1763855205478</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1763855205478</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +337,8 @@
     <MESSAGE value="organized directory src" />
     <MESSAGE value="fixed add favorites button in recipe details" />
     <MESSAGE value="click logo redirect to homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="click logo redirect to homepage" />
+    <MESSAGE value="added comments and expiration date control" />
+    <option name="LAST_COMMIT_MESSAGE" value="added comments and expiration date control" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

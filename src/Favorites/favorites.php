@@ -1,9 +1,6 @@
 <?php
 // favorites.php - Pagina dei preferiti dell'utente
 
-// Mostra errori solo in sviluppo
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
 require "../utility/DbConnector.php"; // Connessione al database PDO
 
