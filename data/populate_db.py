@@ -2,11 +2,6 @@ import csv
 import mysql.connector
 import re
 from difflib import SequenceMatcher
-import logging
-
-# === CONFIGURAZIONE LOG ===
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 # === CONNESSIONE DATABASE ===
 db = mysql.connector.connect(
@@ -33,7 +28,7 @@ def similarity(a, b):
 
 def best_match_tag(full_ing, tags_set):
     """
-    Trova il tag migliore per un ingrediente completo (es. 'almond milk')
+    Trova il tag migliore per un ingrediente
     Priorità:
     1. Corrispondenza esatta o quasi-esatta (case/space insensitive)
     2. Corrispondenza come frase completa (contenimento)
@@ -56,9 +51,9 @@ def best_match_tag(full_ing, tags_set):
         if tag_lower == full_clean or tag_norm == full_norm:
             return tag  # corrispondenza perfetta → esci subito
 
-        # 2. Il tag è contenuto esattamente nella stringa (es. "almond milk" in "2 cups almond milk")
+        # 2. Il tag è contenuto esattamente nella stringa
         if tag_lower in full_clean:
-            score = 10 + len(tag) * 0.1  # premia i tag più lunghi
+            score = 10 + len(tag) * 0.1
             reason = "exact substring"
 
         # 3. Tutte le parole del tag sono nell'ingrediente (ordine non importa)
@@ -66,7 +61,7 @@ def best_match_tag(full_ing, tags_set):
             score = 8 + len(tag.split()) * 0.2
             reason = "all words present"
 
-        # 4. Alta similarità (fallback)
+        # 4. Alta similarità
         elif similarity(tag_norm, full_norm) >= 0.85:
             score = similarity(tag_norm, full_norm) * 5
             reason = "high similarity"
@@ -89,7 +84,6 @@ nutrient_names = [
     "Dietary Fiber", "Total Sugars", "Protein"
 ]
 
-logger.info("Inserimento nutrienti...")
 for name in nutrient_names:
     cursor.execute("INSERT IGNORE INTO nutrient (name) VALUES (%s)", (name,))
 db.commit()
@@ -101,7 +95,6 @@ for nid, name in cursor.fetchall():
     nutrient_ids[name] = nid
 
 # === 2. RACCOLTA INGREDIENTI UNIVOCI DA TAGS ===
-logger.info("Raccolta ingredienti univoci da tags...")
 unique_ingredients = set()
 
 with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
@@ -112,7 +105,6 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
             unique_ingredients.update(tags)
 
 # === 3. INSERISCI INGREDIENTI UNIVOCI ===
-logger.info(f"Inserimento {len(unique_ingredients)} ingredienti univoci...")
 for ing in sorted(unique_ingredients):
     cursor.execute("INSERT IGNORE INTO ingredient (name) VALUES (%s)", (ing,))
 db.commit()
@@ -124,15 +116,10 @@ for iid, name in cursor.fetchall():
     ingredient_ids[name] = iid
 
 # === 4. POPOLA RICETTE, NUTRIENTI E INGREDIENTI ===
-logger.info("Popolamento ricette, nutrienti e ingredienti...")
 with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
     reader = csv.DictReader(f)
-    recipe_count = 0
 
     for row in reader:
-        recipe_count += 1
-        if recipe_count % 50 == 0:
-            logger.info(f"Elaborate {recipe_count} ricette...")
 
         # --- RICETTA ---
         name = row["recipe_name"].strip()
@@ -171,7 +158,7 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
 
         # --- INGREDIENTI PARSED + MATCHING ---
         tags = [t.strip() for t in row["tags"].split(",") if t.strip()]
-        tags_set = set(tags)  # Per velocità
+        tags_set = set(tags)
         parsed = re.findall(r"quantity: ([\d.]+) unit: (\S+) ingredient: (.*?)(?= quantity:|$)",
                             row["ingredients_parsed"])
 
@@ -186,7 +173,6 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
             except:
                 continue
 
-            # Trova il miglior tag
             best_tag = best_match_tag(full_ing, tags_set)
             if not best_tag or best_tag not in ingredient_ids:
                 continue
@@ -196,7 +182,7 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
 
             entry = ingredient_dict[best_tag]
             if entry["unit"] != unit:
-                continue  # Unità diverse: salta (o converti in futuro)
+                continue
 
             entry["quantity"] += quantity
             entry["raws"].append(full_ing)
@@ -205,7 +191,7 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
         for tag, entry in ingredient_dict.items():
             quantity = round(entry["quantity"], 2)
             unit = entry["unit"]
-            raw_ingredient = ", ".join(entry["raws"])[:30]  # max 30 caratteri
+            raw_ingredient = ", ".join(entry["raws"])[:30]
             ing_id = ingredient_ids[tag]
 
             cursor.execute("""
@@ -215,9 +201,7 @@ with open("recipes_cleaned.csv", "r", encoding="utf-8") as f:
             """, (recipe_id, ing_id, raw_ingredient, quantity, unit))
 
     db.commit()
-    logger.info(f"Popolamento completato: {recipe_count} ricette inserite.")
 
 # === CHIUSURA ===
 cursor.close()
 db.close()
-logger.info("Connessione chiusa. Database popolato con successo!")
